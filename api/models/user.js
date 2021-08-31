@@ -1,7 +1,7 @@
 const { sequelize, DataTypes } = require("sequelize");
 
 module.exports = (sequelize) => {
-  sequelize.define("User", {
+  sequelize.define("user", {
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -15,14 +15,24 @@ module.exports = (sequelize) => {
     email: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: true,
+      validate: {
+        isEmail: {
+          msg: "El email tiene que ser un correo valido",
+        },
+      },
     },
     phone: {
       type: DataTypes.NUMBER,
-      allowNull: false,
+      allowNull: true,
     },
     whatsapp: {
       type: DataTypes.NUMBER,
-      allowNull: true,
+      allowNull: false,
+    },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false,
     },
     clarifications: {
       type: DataTypes.TEXT,
