@@ -1,0 +1,8 @@
+Crear un .env con las siguientes constantes, y reemplazar por la configuración local de cada uno. 
+
+DB_USER = postgres // colocar usuario
+DB_PASSWORD =       //clave de usuario
+DB_HOST = localhost
+DB_HOST_PORT = 5432 //puerto de postgres
+DB_DATABASE = makellar //crear una db con este nombre
+DB_DIALECT = postgres //dejar como esta
