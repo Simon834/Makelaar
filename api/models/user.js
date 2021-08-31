@@ -1,6 +1,36 @@
-//user model branch
-var hola = "hola";
+const { sequelize, DataTypes } = require("sequelize");
 
-//es un comentario
-//otro comentario
-// otro comentario3
+module.exports = (sequelize) => {
+  sequelize.define("User", {
+    id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      PrimaryKey: true,
+      autoIncrement: true,
+    },
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    phone: {
+      type: DataTypes.NUMBER,
+      allowNull: false,
+    },
+    whatsapp: {
+      type: DataTypes.NUMBER,
+      allowNull: true,
+    },
+    clarifications: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+    },
+    isAdmin: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+    },
+  });
+};
