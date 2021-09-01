@@ -16,4 +16,7 @@ router.get("/AllUsers", function (req, res, next) {
   }
 });
 
+router.get('/:id', getUserById)
+
+
 module.exports = router;
