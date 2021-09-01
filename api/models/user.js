@@ -1,11 +1,11 @@
-const { sequelize, DataTypes } = require("sequelize");
+const { DataTypes } = require("sequelize");
 
-module.exports = (sequelize) => {
-  sequelize.define("User", {
+module.exports = (db) => {
+  db.define("User", {
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      PrimaryKey: true,
+      primaryKey: true,
       autoIncrement: true,
     },
     name: {
@@ -23,11 +23,11 @@ module.exports = (sequelize) => {
       },
     },
     phone: {
-      type: DataTypes.NUMBER,
+      type: DataTypes.INTEGER,
       allowNull: true,
     },
     whatsapp: {
-      type: DataTypes.NUMBER,
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
     password: {
