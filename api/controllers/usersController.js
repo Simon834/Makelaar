@@ -1,8 +1,8 @@
-const { User } = require("../models/user");
+const {User} = require("../db");
 
 async function getUserById(req, res, next) {
   const userId = req.params.id;
-
+  console.log('me ejecuto')
   try {
     const user = await User.findByPk(userId);
     if (user) {
@@ -32,5 +32,3 @@ module.exports = {
   getUserById,
   allUsers,
 };
-
-module.exports = { AllUsers };
