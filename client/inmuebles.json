@@ -1,0 +1,66 @@
+[{
+    "title":"DPTO CON GRAN BALCÓN A PASOS DE CAÑADA",
+    "concept":"Venta",
+    "adress":"Santa Rosa 715",
+    "tipe":"Dúplex",
+    "rooms":2,
+    "bedroom":1,
+    "bathroom":1,
+    "garage":null,
+    "area":"80m2",
+    "price":"75000 Dolares",
+    "image":"http://garbero.com.ar/wp-content/uploads/2021/08/20210804_102428-1600x1200.jpg"
+},
+{
+    "title":"DEPARTAMENTO AMOBLADO DE DOS DORM EN COLON Y CAÑADA",
+    "concept":"Alquiler",
+    "adress":"Av. Colon 566",
+    "tipe":"Departamento",
+    "rooms":4,
+    "bedroom":2,
+    "bathroom":3,
+    "garage":null,
+    "area":null,
+    "price":32000,
+    "image":"http://garbero.com.ar/wp-content/uploads/2021/07/20210512_131408-1600x1200.jpg"
+},
+{
+    "title":"DEPARTAMENTO EN GÜEMES CON EXPENSAS BAJAS",
+    "concept":"Alquiler",
+    "adress":" Simón Bolívar 825",
+    "tipe":"Departamento",
+    "rooms":2,
+    "bedroom":1,
+    "bathroom":2,
+    "garage":null,
+    "area":null,
+    "price":15000,
+    "image":"http://garbero.com.ar/wp-content/uploads/2021/07/20210701_180748-1600x1200.jpg"
+},
+{
+    "title":"GRAN OPORTUNIDAD! DUPLEX A ESTRENAR EN VALLE CERCANO",
+    "concept":"Venta",
+    "adress":"José Benito Cottolengo 600",
+    "tipe":"Dúplex",
+    "rooms":4,
+    "bedroom":3,
+    "bathroom":2,
+    "garage":1,
+    "area":"80m2",
+    "price":"75000 Dolares",
+    "image":"http://garbero.com.ar/wp-content/uploads/2021/08/20210804_102428-1600x1200.jpg"
+},
+{
+    "title":"HERMOSO DPTO TIPO DUPLEX DE UN DORMITORIO EN B° ALBERDI",
+    "concept":"Venta",
+    "adress":"Ingeniero López 24",
+    "tipe":"Departamento",
+    "rooms":2,
+    "bedroom":1,
+    "bathroom":1,
+    "garage":null,
+    "area":null,
+    "price":"42000 Dolares",
+    "image":"http://garbero.com.ar/wp-content/uploads/2021/07/WhatsApp-Image-2020-10-02-at-18.11.44-2.jpeg"
+}]
+
