@@ -3,6 +3,7 @@ const { Sequelize } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
 
+
 const {
   DATABASE_URL,
   DB_USER,
@@ -19,6 +20,7 @@ const db = new Sequelize(DATABASE_URL || `${DB_DIALECT}://${DB_USER}:${DB_PASSWO
 });
 
 db.authenticate().then(() => console.log('conectado')).catch(e => console.log(e))
+
 
 const basename = path.basename(__filename);
 

@@ -43,7 +43,7 @@ try{
     }
 
     }catch(err){
-        console.log(err)
+       return res.status(500).json(err)
     }
 }
 
@@ -59,6 +59,7 @@ try{
             email:req.body.email,
             password: password
         })
+        
     //creamos el token
         let token =  await jwt.sign({user:user}, authConfig.secret, {expiresIn: authConfig.expires} );
     
@@ -68,7 +69,7 @@ try{
         })
         
     }catch(err){
-        console.log(err)
+       return res.status(500).json(err)
     }
         }
 
