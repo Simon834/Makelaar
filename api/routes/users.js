@@ -1,7 +1,11 @@
 var express = require("express");
 var router = express.Router();
 const { User } = require("../models/user");
+const { getUserById } = require("../controllers/usersController")
+
 /* GET users listing. */
+
+
 router.get("/AllUsers", function (req, res, next) {
   try {
     //.findAll() cuando se agregue l
