@@ -1,11 +1,9 @@
 import "./App.css";
-import FormContraseña from "./Components/FormContraseña/FormContraseña";
+import UserList from "./Components/UserList/UserList";
 function App() {
-  return (
-    <div className="App">
-      <FormContraseña />
-    </div>
-  );
+  return <div className="App">
+    <UserList/>  
+    </div>;
 }
 
 export default App;
