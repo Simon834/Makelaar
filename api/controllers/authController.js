@@ -4,12 +4,13 @@ const jwt = require("jsonwebtoken");
 const authConfig = require("../config/auth");
 
 
+//Proteger las rutas, isAuthenticated (Simon)
+
 //auth0: permite terciarizar signIn logIn --> investigar
 //token
 
-module.exports={
-    //LogIn
-   async logIn(req, res){
+//LogIn
+async function logIn(req, res){
   
     let {email,password}= req.body;
 
@@ -44,32 +45,31 @@ try{
     }catch(err){
         console.log(err)
     }
-},
-
-    //registro
-    async signUp(req,res){
-try{
-    //encriptamos pass
-    let password= await bcrypt.hashSync(req.body.password,Number.parseInt(authConfig.rounds))
-
-    //crear usuario, a traves de formulario de front
-   let user= await User.create({
-        name: req.body.name,
-        email:req.body.email,
-        password: password
-    })
-//creamos el token
-    let token =  await jwt.sign({user:user}, authConfig.secret, {expiresIn: authConfig.expires} );
-
-    res.json({
-        user:user,
-        token: token
-    })
-
-
-}catch(err){
-    console.log(err)
 }
+
+ //registro
+ async function signUp(req,res){
+    try{
+        //encriptamos pass
+        let password= await bcrypt.hashSync(req.body.password,Number.parseInt(authConfig.rounds))
+    
+        //crear usuario, a traves de formulario de front
+       let user= await User.create({
+            name: req.body.name,
+            email:req.body.email,
+            password: password
+        })
+    //creamos el token
+        let token =  await jwt.sign({user:user}, authConfig.secret, {expiresIn: authConfig.expires} );
+    
+        res.json({
+            user:user,
+            token: token
+        })
+        
+    }catch(err){
+        console.log(err)
     }
+        }
 
-}
+module.exports={ logIn, signUp}
