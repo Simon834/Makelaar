@@ -11,7 +11,7 @@ const newUser = require("../email/emailModels/newUser")
 //token
 
 //LogIn
-async function logIn(req, res) {
+async function logIn(req, res, next) {
 
     let { email, password } = req.body;
 
@@ -23,7 +23,7 @@ async function logIn(req, res) {
             }
         })
 
-        if (user) {
+        if (!user) {
             res.status(404).json({ msg: "Usuario con este correo no encontrado" })
         } else {
             //comparo las contraseñas
@@ -44,22 +44,27 @@ async function logIn(req, res) {
         }
 
     } catch (err) {
+        console.log(next(err))
         return res.status(500).json(err)
+
     }
 }
 
 //registro
-async function signUp(req, res) {
+async function signUp(req, res,next) {
     try {
         console.log(req.body)
         //encriptamos pass
-        let password = await bcrypt.hashSync(req.body.password, Number.parseInt(authConfig.rounds))
+        const {name, email, password,isAdmin,whatsapp} = req.body
+        let hashPassword = await bcrypt.hashSync(password, Number.parseInt(authConfig.rounds))
 
         //crear usuario, a traves de formulario de front
         let user = await User.create({
-            name: req.body.name,
-            email: req.body.email,
-            password: password
+            name: name,
+            email: email,
+            password: hashPassword,
+            isAdmin: isAdmin,
+            whatsapp: whatsapp
 
         })
 
@@ -74,7 +79,7 @@ async function signUp(req, res) {
         })
 
     } catch (err) {
-        console.log(err)
+        console.log(next(err))
         return res.status(500).json(err)
     }
 }
