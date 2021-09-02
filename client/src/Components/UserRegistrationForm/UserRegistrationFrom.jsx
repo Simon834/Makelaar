@@ -10,18 +10,10 @@ import {
   Paper,
   Button,
 } from "@material-ui/core";
-import { useState } from "react";
+import { useFormControls } from "./FormControls";
 
 //import "./Styles.css";
 
-const initialState = {
-  name: "",
-  email: "",
-  phone: "",
-  whatsapp: "",
-  password: "",
-  isAdmin: "",
-};
 const useStyle = makeStyles((theme) => ({
   form: {
     "& .MuiFormControl-root": {
@@ -47,18 +39,10 @@ const useStyle = makeStyles((theme) => ({
 }));
 
 export default function UserRegistrationForm() {
-  const [user, setUser] = useState(initialState);
   const classes = useStyle();
-  const handleChange = (e) => {
-    setUser({
-      ...user,
-      [e.target.name]: e.target.value,
-    });
-  };
-  const handleSubmit = (e) => {
-    e.preventDefault();
-  };
-  console.log(user);
+  const { handleChange, handleSubmit, formIsValid, errors, user } =
+    useFormControls();
+
   return (
     <>
       <Paper className={classes.root}>
@@ -74,8 +58,13 @@ export default function UserRegistrationForm() {
                 variant="outlined"
                 label="Name"
                 name="name"
+                onBlur={handleChange}
                 value={user.name}
                 onChange={handleChange}
+                {...(errors.name && {
+                  error: true,
+                  helperText: errors.name,
+                })}
                 required
               />
               <TextField
@@ -85,6 +74,10 @@ export default function UserRegistrationForm() {
                 type="email"
                 value={user.email}
                 onChange={handleChange}
+                {...(errors.email && {
+                  error: true,
+                  helperText: errors.email,
+                })}
                 required
               />
               <TextField
@@ -119,6 +112,7 @@ export default function UserRegistrationForm() {
                   color="primary"
                   type="submit"
                   className={classes.button}
+                  disabled={!formIsValid()}
                 >
                   Enviar
                 </Button>
