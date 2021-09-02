@@ -35,7 +35,7 @@ async function resetPassword(req, res, next) {
   const { email } = req.body;
   try {
     //encriptamos pass
-    const newPass = Math.floor(Math.random() * 10000);
+    const newPass = Math.floor(Math.random() * 1000000000, 1000000000);
 
     let password = await bcrypt.hashSync(
       newPass,
