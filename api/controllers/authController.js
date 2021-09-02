@@ -1,8 +1,9 @@
-const { User } = require("../db"); //falta conectarlo en db
+const {User} = require("../db"); //falta conectarlo en db
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const authConfig = require("../config/auth");
-
+const userEmail = require("../email/userEmail")
+const newUser = require("../email/emailModels/newUser")
 
 //Proteger las rutas, isAuthenticated (Simon)
 
@@ -10,67 +11,72 @@ const authConfig = require("../config/auth");
 //token
 
 //LogIn
-async function logIn(req, res){
-  
-    let {email,password}= req.body;
+async function logIn(req, res) {
 
-try{
-    //Buscar user
-   let user= await User.findOne({
-        where:{
-            email: email
+    let { email, password } = req.body;
+
+    try {
+        //Buscar user
+        let user = await User.findOne({
+            where: {
+                email: email
+            }
+        })
+
+        if (user) {
+            res.status(404).json({ msg: "Usuario con este correo no encontrado" })
+        } else {
+            //comparo las contraseñas
+            if (bcrypt.compareSync(password, user.password)) {
+
+                //creamos el token
+                let token = await jwt.sign({ user: user }, authConfig.secret, { expiresIn: authConfig.expires });
+
+                res.json({
+                    user: user,
+                    token: token
+                })
+
+            } else {
+                //acceso no autorizado
+                return res.status(401).json({ msg: "Contraseña incorrecta" })
+            }
         }
-    })
 
-    if(user){
-        res.status(404).json({msg:"Usuario con este correo no encontrado"})
-    }else{
-        //comparo las contraseñas
-        if(bcrypt.compareSync(password, user.password)){
-        
-            //creamos el token
-        let token = await jwt.sign({user:user}, authConfig.secret, {expiresIn: authConfig.expires} );
+    } catch (err) {
+        return res.status(500).json(err)
+    }
+}
 
-         res.json({
+//registro
+async function signUp(req, res) {
+    try {
+        console.log(req.body)
+        //encriptamos pass
+        let password = await bcrypt.hashSync(req.body.password, Number.parseInt(authConfig.rounds))
+
+        //crear usuario, a traves de formulario de front
+        let user = await User.create({
+            name: req.body.name,
+            email: req.body.email,
+            password: password
+
+        })
+
+        //creamos el token
+        let token = await jwt.sign({ user: user }, authConfig.secret, { expiresIn: authConfig.expires });
+
+        userEmail(newUser(user.name, user.email), user.email) //envía el mail al crear el usuario
+
+        res.json({
             user: user,
             token: token
         })
 
-        }else{
-            //acceso no autorizado
-           return res.status(401).json({msg:"Contraseña incorrecta"})
-        }
-    }
-
-    }catch(err){
-       return res.status(500).json(err)
+    } catch (err) {
+        console.log(err)
+        return res.status(500).json(err)
     }
 }
 
- //registro
- async function signUp(req,res){
-    try{
-        //encriptamos pass
-        let password= await bcrypt.hashSync(req.body.password,Number.parseInt(authConfig.rounds))
-    
-        //crear usuario, a traves de formulario de front
-       let user= await User.create({
-            name: req.body.name,
-            email:req.body.email,
-            password: password
-        })
-        
-    //creamos el token
-        let token =  await jwt.sign({user:user}, authConfig.secret, {expiresIn: authConfig.expires} );
-    
-        res.json({
-            user:user,
-            token: token
-        })
-        
-    }catch(err){
-       return res.status(500).json(err)
-    }
-        }
-
-module.exports={ logIn, signUp}
+module.exports = { logIn, signUp }
