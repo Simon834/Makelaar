@@ -1,0 +1,54 @@
+*, *::after, *::before {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+.base-container{
+    border: 3px solid rgb(109, 76, 76);
+}
+.header-container{
+    border: 3px solid red;
+    display:flex;
+    flex-flow: column;
+}
+
+.with-carousel{
+    height: 100vh;
+}
+.topBar-container{
+    border: 3px solid rgb(0, 255, 128);
+    height: 25px;
+}
+.navBar-container{
+    border: 3px solid rgb(38, 63, 207);
+    height: 45px;
+}
+.carousel-container{
+    border: 3px solid rgb(185, 46, 104);
+    height: 100%;
+}
+.body-container{
+    border: 3px solid rgb(187, 161, 17);
+    height: 650px;
+    display: flex;
+}
+.filter-container{
+    border: 3px solid rgb(29, 110, 9);
+    width: 30%;
+    float: left;
+    height: 100%;
+}
+.content-container{
+    border: 3px solid rgb(109, 76, 76);
+    float:left;
+    height: 100%;
+    width: 100%;
+}
+.right{
+    width: 70%;
+}
+.footer-container{
+    border: 3px solid rgb(47, 202, 230);
+    height: 120px;
+}
