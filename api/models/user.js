@@ -33,10 +33,6 @@ module.exports = (db) => {
     password: {
       type: DataTypes.STRING(64),
       allowNull: false,
-      validate: {
-        len: [4, 20],
-        msg: "La contraseña tiene que tener minimamente 6 caracteres",
-      },
     },
     comments: {
       type: DataTypes.TEXT,
