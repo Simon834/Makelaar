@@ -6,7 +6,7 @@ const {
     MAILPASS
 } = process.env;
 
-async function email() {
+async function email(htmlModel, userEmail) {
 
     let transporter = nodemailer.createTransport({
         service: 'yahoo',
@@ -18,10 +18,10 @@ async function email() {
     
     let info = await transporter.sendMail({
         from: MAILUSER, // sender address
-        to: "jjejalil@gmail.com", // list of receivers
+        to: userEmail, // list of receivers
         subject: `Nuevo mensaje de Makelaar`, // Subject line
         text: "Nuevo mensaje de Makelaar", // plain text body
-        html: recoveryPass(), // html body
+        html: htmlModel, // html body
     });
 
     console.log("Message sent: %s", info.messageId);
