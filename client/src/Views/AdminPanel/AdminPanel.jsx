@@ -1,7 +1,7 @@
 import React from 'react'
-import ViewBase from './view-base'
-import MenuPanelList from '../Components/MenuPanelList/MenuPanelList'
-import AdminBody from '../Components/AdminBody/AdminBody'
+import ViewBase from '../ViewBase/view-base'
+import MenuPanelList from '../../Components/MenuPanelList/MenuPanelList'
+import AdminBody from '../../Components/AdminBody/AdminBody'
 
 export default function AdminPanel() {
     const list =

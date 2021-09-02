@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 
-export function TopBar(){
+export default function TopBar(){
     return(
         <div>
             <div>
