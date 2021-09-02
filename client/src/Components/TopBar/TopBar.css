@@ -1,4 +1,16 @@
 #contenedor{
     height: 50px;
-    
+
+}
+
+.MuiIconButton-root{
+    padding: 0px !important
+}
+
+.MuiTypography-body1{
+    margin: 1px !important
+}
+
+.MuiSvgIcon-root{
+    margin: 12px !important
 }

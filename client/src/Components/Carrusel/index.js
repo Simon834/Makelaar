@@ -2,7 +2,7 @@ import CarouselSlide from "./CarouselSlide";
 import { useState } from "react";
 export default function IndexCarrousel() {
   //necesito recibir imagenes
-  export const SLIDE_INFO = [
+  const SLIDE_INFO = [
     {
       url: "http://www.inmobiliariaberrini.com.ar/wp-content/uploads/2021/08/1.0-10-525x328.jpg",
     },

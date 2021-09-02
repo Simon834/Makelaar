@@ -98,7 +98,7 @@ export default function TopBar(){
             <Toolbar>
 
                 <div className={classes.left}>
-                <IconButton  color="inherit">
+                <IconButton className="whatspBtn" color="inherit">
                 <WhatsAppIcon/>
                 <Typography>+549 11456982365</Typography>
                 </IconButton>  

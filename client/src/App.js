@@ -9,10 +9,11 @@ import TopBar from "./Components/TopBar/TopBar";
 function App() {
   return (
             <div className="App">
-              {/* <ViewBase carousel="carousel content" filter="filters"/> */}
+              <ViewBase navBar={<NavBar/>} topBar={<TopBar/>} carousel="carousel content" filter="filters"/>
               <Route exact path="/admin/:id" component={UserList} />
-              <TopBar/>
-              <NavBar/>
+              
+              {/* <TopBar/>
+              <NavBar/> */}
             </div>
           )
 }
