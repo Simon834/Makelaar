@@ -16,6 +16,6 @@ router.post("/signUp", signUp); //ruta para nuevo usuario.
 
 router.get("/:id", getUserById);
 
-router.put("/resetPassword", resetPassword);
+router.put("/resetPassword", resetPassword); //testar luego de 
 
 module.exports = router;
