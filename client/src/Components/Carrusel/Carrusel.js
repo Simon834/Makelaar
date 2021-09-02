@@ -1,7 +1,7 @@
-import React from "react";
-import { Carousel } from "react-responsive-carousel";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
+import React, { useState, useEffect } from "react";
+import "./Slider.css";
 
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 export default function Carrusel() {
   const SLIDE_INFO = [
     {
@@ -15,20 +15,31 @@ export default function Carrusel() {
     },
   ];
 
+  const [slideIndex, setSlideIndex] = useState(1);
+
+  function nextSlide() {
+    if (slideIndex !== SLIDE_INFO.length) {
+      setSlideIndex(slideIndex + 1);
+    } else if (slideIndex === SLIDE_INFO.length) {
+      setSlideIndex(1);
+    }
+  }
+
+  useEffect(() => {
+    setTimeout(nextSlide, 5000);
+  }, [slideIndex]);
   return (
-    <Carousel
-      autoPlay={true}
-      interval={5000}
-      infiniteLoop={true}
-      centerMode={true}
-      showThumbs={false}
-      centerSlidePercentage={100}
-    >
-      {SLIDE_INFO.map((image) => (
-        <div>
-          <img src={image.url} alt="Not found" />
-        </div>
-      ))}
-    </Carousel>
+    <div className="container-slider">
+      {SLIDE_INFO.map((obj, index) => {
+        return (
+          <div
+            key={index}
+            className={slideIndex === index + 1 ? "slide active-anim" : "slide"}
+          >
+            <img src={obj.url} />
+          </div>
+        );
+      })}
+    </div>
   );
 }
