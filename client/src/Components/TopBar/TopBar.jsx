@@ -92,6 +92,7 @@ export default function TopBar(){
     prevOpen.current = open;
   }, [open]);
 
+export default function TopBar(){
     return(
         <div className={classes.root} style={{textAlign:"left"} } id="contenedor">
            <AppBar>
