@@ -15,7 +15,7 @@ export function userLogIn({email, password}){
          switch(data.request.status){
              case 200:
                  dispatch({
-                     type: LOGIN_SUCCESS,
+                     type: LOGIN_SUCCES,
                      payload: data.data
                  })
             
@@ -88,9 +88,10 @@ export function signUpUser(body){
 }
 
 export function logOutUser(){
+   return async function(dispatch){
     localStorage.removeItem('userInfo')
     // localStorage.removeItem("persist:root"); //libreria de redux que mantiene el estado en localstorage, se importa en el store
-    return {
+    return (
         dispatch({type:LOGOUT})
-    }
-}
+    )
+}}
