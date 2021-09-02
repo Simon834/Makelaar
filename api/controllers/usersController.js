@@ -1,5 +1,6 @@
 const {User} = require("../db");
-const newPassword = require("../email/emailModels/recoveryPass");
+const recoveryPass = require("../email/emailModels/recoveryPass");
+const userEmail = require("../email/userEmail");
 
 async function getUserById(req, res, next) {
   const userId = req.params.id;
@@ -34,8 +35,10 @@ async function resetPassword(req, res, next) {
   const { email } = req.body;
   try {
     //encriptamos pass
+    const newPass = Math.floor(Math.random() * 10000);
+
     let password = await bcrypt.hashSync(
-      Math.floor(Math.random() * 1000),
+      newPass,
       Number.parseInt(authConfig.rounds)
     );
 
@@ -44,11 +47,11 @@ async function resetPassword(req, res, next) {
       user.password = password;
       await user.save();
 
-      newPassword(recoveryPass(password));
+      userEmail(recoveryPass(newPass), email);
 
-      return res.send(
-        "Tu nueva contraseña ha sido enviada a la direccion de email ingresada."
-      );
+      return res.json({
+        msg: "Tu nueva contraseña ha sido enviada a la direccion de email ingresada.",
+      });
     } else {
       return res.send("No existe ninguna cuenta creada con ese email.");
     }
