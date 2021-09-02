@@ -1,20 +1,16 @@
 import "./App.css";
+import "./"
+import ViewBase from "./Views/view-base";
 import { Route } from "react-router";
-
 import UserList from "./Components/UserList/UserList";
-
-//Prueba Mili NavBar
-import NavBar from "./Components/NavBar/NavBar";
-import TopBar from "./Components/TopBar/TopBar"
 
 function App() {
   return (
-    <div className="App">
-      <Route exact path="/admin/:id" component={UserList} />
-      <NavBar/>
-      <TopBar/>
-    </div>
-  );
+            <div className="App">
+              <ViewBase carousel="carousel content" filter="filters"/>
+              <Route exact path="/admin/:id" component={UserList} />
+            </div>
+          )
 }
 
 export default App;
