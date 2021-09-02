@@ -1,4 +1,7 @@
-const {User} = require("../db");
+const { User } = require("../db");
+const bcrypt = require("bcrypt");
+const authConfig = require("../config/auth");
+
 const recoveryPass = require("../email/emailModels/recoveryPass");
 const userEmail = require("../email/userEmail");
 
@@ -53,7 +56,9 @@ async function resetPassword(req, res, next) {
         msg: "Tu nueva contraseña ha sido enviada a la direccion de email ingresada.",
       });
     } else {
-      return res.send("No existe ninguna cuenta creada con ese email.");
+      return res.json({
+        msg: "No existe ninguna cuenta creada con ese email.",
+      });
     }
   } catch (err) {
     return next(err);
