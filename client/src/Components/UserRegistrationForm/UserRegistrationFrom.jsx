@@ -87,6 +87,10 @@ export default function UserRegistrationForm() {
                 type="number"
                 value={user.phone}
                 onChange={handleChange}
+                {...(errors.phone && {
+                  error: true,
+                  helperText: errors.phone,
+                })}
               />
               <TextField
                 variant="outlined"
@@ -96,6 +100,10 @@ export default function UserRegistrationForm() {
                 value={user.whatsapp}
                 onChange={handleChange}
                 required
+                {...(errors.whastapp && {
+                  error: true,
+                  helperText: errors.whastapp,
+                })}
               />
               <TextField
                 variant="outlined"
@@ -105,6 +113,10 @@ export default function UserRegistrationForm() {
                 value={user.password}
                 onChange={handleChange}
                 required
+                {...(errors.password && {
+                  error: true,
+                  helperText: errors.password,
+                })}
               />
               <p>
                 <Button

@@ -24,14 +24,45 @@ export const useFormControls = () => {
     let temp = { ...errors };
 
     if ("name" in fieldValues)
-      temp.name = fieldValues.name ? "" : "This field is required.";
+      temp.name = fieldValues.name ? "" : "Este campo es requerido";
+    if (fieldValues.name) {
+      temp.name = /^[a-z ,.'-]+$/.test(fieldValues.name)
+        ? ""
+        : "El nombre no es valido";
+    }
 
     if ("email" in fieldValues) {
-      temp.email = fieldValues.email ? "" : "This field is required.";
+      temp.email = fieldValues.email ? "" : "Este campo es requerido";
       if (fieldValues.email)
         temp.email = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(fieldValues.email)
           ? ""
-          : "Email is not valid.";
+          : "El email no es valido";
+    }
+
+    if (fieldValues.phone) {
+      temp.phone = /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/.test(
+        fieldValues.phone
+      )
+        ? ""
+        : "Debe ser un telefono valido";
+    }
+    if ("whatsapp" in fieldValues) {
+      temp.whatsapp = fieldValues.whatsapp ? "" : "Este campo es requerido";
+      if (fieldValues.whatsapp)
+        temp.whastapp = /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/.test(
+          fieldValues.whatsapp
+        )
+          ? ""
+          : "Debe ser un telefono valido";
+    }
+    if ("password" in fieldValues) {
+      temp.password = fieldValues.password ? "" : "Este campo es requerido";
+      if (fieldValues.passwords)
+        temp.password = /\(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/.test(
+          fieldValues.password
+        )
+          ? ""
+          : "La contraseña debe tener minimo 8 caracteres, 1 número, y 1 mayúscula";
     }
 
     setErrors({
