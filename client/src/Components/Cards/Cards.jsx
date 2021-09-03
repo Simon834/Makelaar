@@ -1,13 +1,12 @@
 import { Grid } from "@material-ui/core";
 import React from "react";
 import CardComponent from "../Card/Card";
-const inmuebles = require("../../inmuebles.json");
 
-export default function Cards() {
+export default function Cards({ inmuebles }) {
   return (
-    <Grid container spacing={4}>
+    <Grid container spacing={6}>
       {inmuebles.map((inm) => (
-        <Grid item xs={12} sm={12} md={4}>
+        <Grid item lg={4} xs={12} sm={6} md={6}>
           <CardComponent
             title={inm.title}
             image={inm.image}
