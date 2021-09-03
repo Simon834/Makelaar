@@ -5,8 +5,8 @@ const BACK_SERVER =
 
 export async function getAllUserApi() {
   try {
-    const allUsers = await axios.get(`${BACK_SERVER}/users/AllUsers`).data;
-    return allUsers;
+    const allUsers = await axios.get(`${BACK_SERVER}/users/AllUsers`);
+    return allUsers.data;
   } catch (err) {
     throw err;
   }
