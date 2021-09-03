@@ -28,26 +28,29 @@
 .carousel-container{
     /* border: 3px solid rgb(185, 46, 104); */
     height: 100%;
+    z-index: -1;
 }
 .body-container{
     border: 3px solid rgb(187, 161, 17);
     height: 100%;
     display: flex;
+    
 }
 .filter-container{
     border: 3px solid rgb(29, 110, 9);
-    width: 30%;
+    width: 25%;
     float: left;
     height: 100%;
 }
 .content-container{
     border: 3px solid rgb(109, 76, 76);
-    float:left;
+    float: left;
     height: 100%;
     width: 100%;
+    padding: 10px
 }
 .right{
-    width: 70%;
+    width: 80%;
 }
 .footer-container{
     border: 3px solid rgb(47, 202, 230);

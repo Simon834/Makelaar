@@ -8,12 +8,17 @@ import FormLogin from "./Components/FormLogin/FormLogin";
 import FormContraseña from "./Components/FormContraseña/FormContraseña";
 import UserRegistrationForm from "./Components/UserRegistrationForm/UserRegistrationFrom";
 import Cards from "./Components/Cards/Cards";
+const inmuebles = require("./inmuebles.json");
 
 function App() {
   return (
     <div className="App">
       <Route exact path="/">
-        <ViewBase filter={"filter"} carousel={<Carrusel />} content={<Cards />}/>
+        <ViewBase
+          filter="filters"
+          carousel={<Carrusel />}
+          content={<Cards inmuebles={inmuebles} />}
+        />
       </Route>
       <Route path="/admin" component={AdminPanel} />
       <Route path="/form">
@@ -21,7 +26,10 @@ function App() {
         <FormContraseña />
         <UserRegistrationForm />
       </Route>
+<<<<<<< HEAD
       
+=======
+>>>>>>> e14ac8b7ea4c1cd1c4e7beb7ffc866ecce1ddf85
     </div>
   );
 }
