@@ -10,6 +10,8 @@ import UserRegistrationForm from "./Components/UserRegistrationForm/UserRegistra
 import Cards from "./Components/Cards/Cards";
 
 import Filter from "./Views/Filters/Filters.jsx"
+import SearchBar from "./Components/SearchBar/SearchBar";
+import FilterPrice from "./Components/FilterPrice/FilterPrice";
 
 import UserPanel from "./Views/UserPanel/UserPanel";
 
@@ -23,10 +25,10 @@ function App() {
         <ViewBase
           filters={
             <Filter
-              searchBar="Componente-searchBar"
+              searchBar={<SearchBar/>}
               type="Componente-type"
               sellRent="Componente-sellRent"
-              price="Componente-price"
+              price={<FilterPrice/>}
               city="Componente-city"
               province="Componente-province"
               neighbothood="Componente-neighbothood"

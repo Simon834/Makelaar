@@ -13,7 +13,7 @@ function valuetext(value) {
   return `${value}°C`;
 }
 
-export default function RangeSlider() {
+export default function FilterPrice() {
   const classes = useStyles();
   const [value, setValue] = React.useState([20, 37]);
 
