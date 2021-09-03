@@ -13,7 +13,7 @@ function App() {
   return (
     <div className="App">
       <Route exact path="/">
-        <ViewBase filter="filters" carousel={<Carrusel />} />
+        <ViewBase filter={"filter"} carousel={<Carrusel />} content={<Cards />}/>
       </Route>
       <Route path="/admin" component={AdminPanel} />
       <Route path="/form">
@@ -21,7 +21,7 @@ function App() {
         <FormContraseña />
         <UserRegistrationForm />
       </Route>
-      <Cards />
+      
     </div>
   );
 }

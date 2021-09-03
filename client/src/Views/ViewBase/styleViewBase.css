@@ -31,7 +31,7 @@
 }
 .body-container{
     border: 3px solid rgb(187, 161, 17);
-    height: 650px;
+    height: 100%;
     display: flex;
 }
 .filter-container{
