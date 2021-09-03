@@ -6,18 +6,19 @@ import { Link } from "react-router-dom";
 
 
 export function validate(input) {
-  let errors = {};
-  if (!input.email) {
-    errors.email = "Se Requiere un Email";
-  } else if (/\S+@\S+\.\S+/.test(input.email)) {
-    errors.email = "Email inválido";
+    let errors = {};
+    if (!input.email) {
+      errors.email = "Se Requiere un Email";
+    } else if (!/\S+@\S+\.\S+/.test(input.email)) {
+      errors.email = "Email inválido";
+    }
+    if (!input.password) {
+      errors.password = "Se requiere una contraseña";
+    }
+  
+    return errors;
   }
-  if (!input.password) {
-    errors.password = "Se requiere una contraseña";
-  }
-
-  return errors;
-}
+  
 
 export default function FormLogin() {
   const dispatch = useDispatch();
