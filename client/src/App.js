@@ -12,6 +12,7 @@ import Cards from "./Components/Cards/Cards";
 import Filter from "./Views/Filters/Filters.jsx"
 import SearchBar from "./Components/SearchBar/SearchBar";
 import FilterPrice from "./Components/FilterPrice/FilterPrice";
+import FilterModel from "./Components/FilterModel/FilterModel";
 
 import UserPanel from "./Views/UserPanel/UserPanel";
 
@@ -26,7 +27,7 @@ function App() {
           filters={
             <Filter
               searchBar={<SearchBar/>}
-              type="Componente-type"
+              type={<FilterModel title="Tipo"/>}
               sellRent="Componente-sellRent"
               price={<FilterPrice/>}
               city="Componente-city"
