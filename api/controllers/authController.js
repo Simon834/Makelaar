@@ -14,7 +14,6 @@ const { newUser } = require("../email/emailModels/newUser")
 async function logIn(req, res, next) {
 
     let { email, password } = req.body;
-
     try {
         //Buscar user
         let user = await User.findOne({
@@ -22,8 +21,7 @@ async function logIn(req, res, next) {
                 email: email
             }
         })
-
-        if (!user) {
+             if (!user) {
             res.status(404).json({ msg: "Usuario con este correo no encontrado" })
         } else {
             //comparo las contraseñas

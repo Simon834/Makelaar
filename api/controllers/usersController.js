@@ -2,8 +2,8 @@ const { User } = require("../db");
 const bcrypt = require("bcrypt");
 const authConfig = require("../config/auth");
 
-const recoveryPass = require("../email/emailModels/recoveryPass");
-const userEmail = require("../email/userEmail");
+const {recoveryPass} = require("../email/emailModels/recoveryPass");
+const {sendUserEmail} = require("../email/userEmail");
 
 async function getUserById(req, res, next) {
   const userId = req.params.id;
@@ -39,8 +39,8 @@ async function resetPassword(req, res, next) {
   const { email } = req.body;
   try {
     //encriptamos pass
-    const newPass = Math.floor(Math.random() * 1000000000, 1000000000);
-
+    const newPass = Math.floor(Math.random() * 1000000000, 1000000000).toString();
+    console.log(newPass)
     let password = await bcrypt.hashSync(
       newPass,
       Number.parseInt(authConfig.rounds)
@@ -51,7 +51,7 @@ async function resetPassword(req, res, next) {
       user.password = password;
       await user.save();
 
-      userEmail(recoveryPass(newPass), email);
+      sendUserEmail(recoveryPass(newPass), email);
 
       return res.json({
         msg: "Tu nueva contraseña ha sido enviada a la direccion de email ingresada.",
