@@ -20,3 +20,12 @@ export async function registerUser(user) {
     throw err;
   }
 }
+
+export async function getUserByIdApi() {
+    try {
+        const userbyid = await axios.get(`${BACK_SERVER}/users/:id`).data
+        return userbyid
+    } catch (err) {
+        throw err
+    }
+}
