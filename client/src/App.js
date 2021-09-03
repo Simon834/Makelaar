@@ -8,7 +8,11 @@ import FormLogin from "./Components/FormLogin/FormLogin";
 import FormContraseña from "./Components/FormContraseña/FormContraseña";
 import UserRegistrationForm from "./Components/UserRegistrationForm/UserRegistrationFrom";
 import Cards from "./Components/Cards/Cards";
+
+import Filter from "./Views/Filters/Filters.jsx"
+
 import UserPanel from "./Views/UserPanel/UserPanel";
+
 
 const inmuebles = require("./inmuebles.json");
 
@@ -17,7 +21,20 @@ function App() {
     <div className="App">
       <Route exact path="/">
         <ViewBase
-          filter="filters"
+          filters={
+            <Filter
+              searchBar="Componente-searchBar"
+              type="Componente-type"
+              sellRent="Componente-sellRent"
+              price="Componente-price"
+              city="Componente-city"
+              province="Componente-province"
+              neighbothood="Componente-neighbothood"
+              street="Componente-street"
+              bedrooms="Componente-bedrooms"
+              bathrooms="Componente-bathrooms"
+            />
+          }
           carousel={<Carrusel />}
           content={<Cards inmuebles={inmuebles} />}
         />

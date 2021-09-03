@@ -5,10 +5,10 @@
     }
 
 .base-container{
-    border: 3px solid rgb(109, 76, 76);
+    /* border: 3px solid rgb(109, 76, 76); */
 }
 .header-container{
-    border: 3px solid red;
+    /* border: 3px solid red; */
     display:flex;
     flex-flow: column;
 }
@@ -31,7 +31,7 @@
     z-index: -1;
 }
 .body-container{
-    border: 3px solid rgb(187, 161, 17);
+    /* border: 3px solid rgb(187, 161, 17); */
     height: 100%;
     display: flex;
     
@@ -43,7 +43,7 @@
     height: 100%;
 }
 .content-container{
-    border: 3px solid rgb(109, 76, 76);
+    /* border: 3px solid rgb(109, 76, 76); */
     float: left;
     height: 100%;
     width: 100%;
