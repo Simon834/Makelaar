@@ -4,7 +4,8 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import Button from '@material-ui/core/Button';
+import { useDispatch } from 'react-redux';
+import { filterByConstant } from '../../Redux/Actions/filterActions';
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -13,17 +14,19 @@ const useStyles = makeStyles((theme) => ({
   },
   formControl: {
     margin: theme.spacing(1),
-    minWidth: 120,
+    minWidth: "80%",
   },
 }));
 
-export default function FilterModel({list, title}) {
+export default function FilterModel({list, title, constant}) {
   const classes = useStyles();
+  const dispatch = useDispatch()
   const [concept, setConcept] = React.useState('');
   const [open, setOpen] = React.useState(false);
 
   const handleChange = (event) => {
     setConcept(event.target.value);
+    dispatch(filterByConstant(constant,event.target.value))
   };
 
   const handleClose = () => {
@@ -47,12 +50,11 @@ export default function FilterModel({list, title}) {
           value={concept}
           onChange={handleChange}
         >
-          <MenuItem value="">
-            <em>None</em>
+          <MenuItem value={null}>
+            <em>Cualquier</em>
           </MenuItem>
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
+          {list.map(e=>
+            <MenuItem value={e} key={e} >{e}</MenuItem>)}
         </Select>
       </FormControl>
     </div>
