@@ -1,11 +1,5 @@
 import { useState } from "react";
-
-const PostContactForm = async (values, successCallback, errorCallback) => {
-  // do stuff
-  // if successful
-  if (true) successCallback();
-  else errorCallback();
-};
+import { registerUser } from "../../Functions/api/users";
 
 const initialFormValues = {
   name: "",
@@ -16,22 +10,60 @@ const initialFormValues = {
   isAdmin: "",
 };
 
-export const useFormControls = () => {
-  const [user, setUser] = useState(initialFormValues);
+export const useFormControls = (isAdmin) => {
+  const [user, setUser] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    whatsapp: "",
+    password: "",
+    isAdmin,
+  });
   const [errors, setErrors] = useState({});
 
   const validate = (fieldValues = user) => {
     let temp = { ...errors };
 
     if ("name" in fieldValues)
-      temp.name = fieldValues.name ? "" : "This field is required.";
+      temp.name = fieldValues.name ? "" : "Este campo es requerido";
+    if (fieldValues.name) {
+      temp.name = /^[a-z ,.'-]+$/.test(fieldValues.name)
+        ? ""
+        : "El nombre no es valido";
+    }
 
     if ("email" in fieldValues) {
-      temp.email = fieldValues.email ? "" : "This field is required.";
+      temp.email = fieldValues.email ? "" : "Este campo es requerido";
       if (fieldValues.email)
         temp.email = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(fieldValues.email)
           ? ""
-          : "Email is not valid.";
+          : "El email no es valido";
+    }
+
+    if (fieldValues.phone) {
+      temp.phone = /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/.test(
+        fieldValues.phone
+      )
+        ? ""
+        : "Debe ser un telefono valido";
+    }
+    if ("whatsapp" in fieldValues) {
+      temp.whatsapp = fieldValues.whatsapp ? "" : "Este campo es requerido";
+      if (fieldValues.whatsapp)
+        temp.whastapp = /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/.test(
+          fieldValues.whatsapp
+        )
+          ? ""
+          : "Debe ser un telefono valido";
+    }
+    if ("password" in fieldValues) {
+      temp.password = fieldValues.password ? "" : "Este campo es requerido";
+      if (fieldValues.password)
+        temp.password = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/.test(
+          fieldValues.password
+        )
+          ? ""
+          : "La contraseña debe tener minimo 8 caracteres, 1 número, y 1 mayúscula";
     }
 
     setErrors({
@@ -46,22 +78,7 @@ export const useFormControls = () => {
       [name]: value,
     });
     validate({ [name]: value });
-  };
-
-  const handleSuccess = () => {
-    setUser({
-      ...initialFormValues,
-      formSubmitted: true,
-      success: true,
-    });
-  };
-
-  const handleError = () => {
-    setUser({
-      ...initialFormValues,
-      formSubmitted: true,
-      success: false,
-    });
+    console.log(user);
   };
 
   const formIsValid = (fieldValues = user) => {
@@ -78,7 +95,11 @@ export const useFormControls = () => {
     const isValid =
       Object.values(errors).every((x) => x === "") && formIsValid();
     if (isValid) {
-      await PostContactForm(user, handleSuccess, handleError);
+      const registeredUser = await registerUser(user);
+      console.log(registeredUser);
+      alert(
+        `Hola ${registeredUser.user.name}, en tu email: ${registeredUser.user.email}, encontraras la confirmacion de creacion de tu cuenta`
+      );
     }
   };
 
