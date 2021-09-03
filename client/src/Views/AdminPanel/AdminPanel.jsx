@@ -5,10 +5,7 @@ import AdminBody from '../../Components/AdminBody/AdminBody'
 
 export default function AdminPanel() {
     const list =
-        [{
-            title: "Mis contratos",
-            rute: "/contrato"
-        },
+        [
         {
             title: "Mis datos",
             rute: "/datos"
@@ -16,6 +13,14 @@ export default function AdminPanel() {
         {
             title: "Mis usuarios",
             rute: "/users"
+        },
+        {
+            title: "Crear admin",
+            rute: "/newadmin"
+        }        ,
+        {
+            title: "Test",
+            rute: "/test"
         }
         ]
 
