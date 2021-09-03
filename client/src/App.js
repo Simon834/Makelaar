@@ -26,10 +26,6 @@ function App() {
         <FormContraseña />
         <UserRegistrationForm />
       </Route>
-<<<<<<< HEAD
-      
-=======
->>>>>>> e14ac8b7ea4c1cd1c4e7beb7ffc866ecce1ddf85
     </div>
   );
 }
