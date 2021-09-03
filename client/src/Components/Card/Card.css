@@ -1,0 +1,39 @@
+.image-title{
+    margin-right: 15px;
+    justify-content: center;
+    align-items: center;
+}
+
+.info-title{
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+    margin: 2px;
+}
+
+.info-text{
+    display:inline-flex;
+    font-size: 12px;
+    font-weight: 800;
+    margin-left: 18px;
+    color:#4C3C90;
+}
+.Container-info{
+    padding: 6px;
+    margin-top: 10px
+}
+.price-txt {
+    font-weight: bold;
+    font-size: 19px;
+    color: #4C3C90;
+    margin-top: 25px
+}
+.footer-card{
+    display: flex;
+    justify-content: space-between;
+}
+
+.Favorite-button {
+ color: #4C3C90;
+ margin-top: 10px
+}

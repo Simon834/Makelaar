@@ -7,25 +7,21 @@ import Carrusel from "./Components/Carrusel/Carrusel";
 import FormLogin from "./Components/FormLogin/FormLogin";
 import FormContraseña from "./Components/FormContraseña/FormContraseña";
 import UserRegistrationForm from "./Components/UserRegistrationForm/UserRegistrationFrom";
-
-
+import Cards from "./Components/Cards/Cards";
 
 function App() {
   return (
     <div className="App">
       <Route exact path="/">
-        <ViewBase
-          filter="filters"
-          carousel={<Carrusel />}
-        />
+        <ViewBase filter="filters" carousel={<Carrusel />} />
       </Route>
       <Route path="/admin" component={AdminPanel} />
       <Route path="/form">
-      
-      <FormLogin/>
-      <FormContraseña/>
-      <UserRegistrationForm/>
+        <FormLogin />
+        <FormContraseña />
+        <UserRegistrationForm />
       </Route>
+      <Cards />
     </div>
   );
 }
