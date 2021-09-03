@@ -38,10 +38,11 @@ const useStyle = makeStyles((theme) => ({
   },
 }));
 
-export default function UserRegistrationForm() {
+export default function UserRegistrationForm(props) {
+  const isAdmin = props.isAdmin;
   const classes = useStyle();
   const { handleChange, handleSubmit, formIsValid, errors, user } =
-    useFormControls();
+    useFormControls(isAdmin);
 
   return (
     <>

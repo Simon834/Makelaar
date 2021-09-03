@@ -1,11 +1,5 @@
 import { useState } from "react";
-
-const PostContactForm = async (values, successCallback, errorCallback) => {
-  // do stuff
-  // if successful
-  if (true) successCallback();
-  else errorCallback();
-};
+import { registerUser } from "../../Functions/api/users";
 
 const initialFormValues = {
   name: "",
@@ -16,8 +10,15 @@ const initialFormValues = {
   isAdmin: "",
 };
 
-export const useFormControls = () => {
-  const [user, setUser] = useState(initialFormValues);
+export const useFormControls = (isAdmin) => {
+  const [user, setUser] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    whatsapp: "",
+    password: "",
+    isAdmin,
+  });
   const [errors, setErrors] = useState({});
 
   const validate = (fieldValues = user) => {
@@ -57,8 +58,8 @@ export const useFormControls = () => {
     }
     if ("password" in fieldValues) {
       temp.password = fieldValues.password ? "" : "Este campo es requerido";
-      if (fieldValues.passwords)
-        temp.password = /\(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/.test(
+      if (fieldValues.password)
+        temp.password = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/.test(
           fieldValues.password
         )
           ? ""
@@ -77,22 +78,7 @@ export const useFormControls = () => {
       [name]: value,
     });
     validate({ [name]: value });
-  };
-
-  const handleSuccess = () => {
-    setUser({
-      ...initialFormValues,
-      formSubmitted: true,
-      success: true,
-    });
-  };
-
-  const handleError = () => {
-    setUser({
-      ...initialFormValues,
-      formSubmitted: true,
-      success: false,
-    });
+    console.log(user);
   };
 
   const formIsValid = (fieldValues = user) => {
@@ -109,7 +95,11 @@ export const useFormControls = () => {
     const isValid =
       Object.values(errors).every((x) => x === "") && formIsValid();
     if (isValid) {
-      await PostContactForm(user, handleSuccess, handleError);
+      const registeredUser = await registerUser(user);
+      console.log(registeredUser);
+      alert(
+        `Hola ${registeredUser.user.name}, en tu email: ${registeredUser.user.email}, encontraras la confirmacion de creacion de tu cuenta`
+      );
     }
   };
 
