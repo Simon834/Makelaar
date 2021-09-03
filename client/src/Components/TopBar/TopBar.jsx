@@ -96,6 +96,8 @@ export default function TopBar() {
     }, [open]);
 
 
+   
+
     return (
 
         <div className="containerTopBar">

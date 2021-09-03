@@ -38,10 +38,11 @@ const useStyle = makeStyles((theme) => ({
   },
 }));
 
-export default function UserRegistrationForm() {
+export default function UserRegistrationForm(props) {
+  const isAdmin = props.isAdmin;
   const classes = useStyle();
   const { handleChange, handleSubmit, formIsValid, errors, user } =
-    useFormControls();
+    useFormControls(isAdmin);
 
   return (
     <>
@@ -87,6 +88,10 @@ export default function UserRegistrationForm() {
                 type="number"
                 value={user.phone}
                 onChange={handleChange}
+                {...(errors.phone && {
+                  error: true,
+                  helperText: errors.phone,
+                })}
               />
               <TextField
                 variant="outlined"
@@ -96,6 +101,10 @@ export default function UserRegistrationForm() {
                 value={user.whatsapp}
                 onChange={handleChange}
                 required
+                {...(errors.whastapp && {
+                  error: true,
+                  helperText: errors.whastapp,
+                })}
               />
               <TextField
                 variant="outlined"
@@ -105,6 +114,10 @@ export default function UserRegistrationForm() {
                 value={user.password}
                 onChange={handleChange}
                 required
+                {...(errors.password && {
+                  error: true,
+                  helperText: errors.password,
+                })}
               />
               <p>
                 <Button

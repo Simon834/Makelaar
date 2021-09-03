@@ -21,15 +21,16 @@ async function getUserById(req, res, next) {
   }
 }
 
-async function allUsers(res, req, next) {
+async function allUsers(req, res, next) {
   try {
-    const users = User.findAll();
+    const users = await User.findAll();
     if (!users.length) {
-      return res.send("No hay usuarios registrados por el momento");
+      return res.json({ msg: "No hay usuarios registrados por el momento"});
     } else {
-      return res.send(users);
+      return res.json(users);
     }
   } catch (err) {
+    console.log(err);
     return next(err);
   }
 }
@@ -61,6 +62,7 @@ async function resetPassword(req, res, next) {
       });
     }
   } catch (err) {
+    console.log(err);
     return next(err);
   }
 }
