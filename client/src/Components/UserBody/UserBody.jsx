@@ -9,13 +9,16 @@ import Cards from "../Cards/Cards";
 const inmuebles = require("../../inmuebles.json");
 
 export default function UserBody() {
+  const inmueblesFiltrados = inmuebles.filter(
+    (inmueble) => inmueble.user === "user1"
+  );
   return (
     <div>
       <Route path="/user/datos">
         <UserDetail />
       </Route>
       <Route path="/user/properties">
-        <Cards />
+        <Cards inmuebles={inmueblesFiltrados} />
       </Route>
     </div>
   );

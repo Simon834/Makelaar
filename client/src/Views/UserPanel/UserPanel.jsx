@@ -4,7 +4,7 @@ import MenuPanelList from "../../Components/MenuPanelList/MenuPanelList";
 import AdminBody from "../../Components/AdminBody/AdminBody";
 import UserBody from "../../Components/UserBody/UserBody";
 
-export default function AdminPanel() {
+export default function UserPanel() {
   const list = [
     {
       title: "Mis datos",
