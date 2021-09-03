@@ -23,7 +23,8 @@
     "garage": null,
     "area": "80m2",
     "price": "75.000",
-    "image": "http://garbero.com.ar/wp-content/uploads/2021/08/20210804_102428-1600x1200.jpg"
+    "image": "http://garbero.com.ar/wp-content/uploads/2021/08/20210804_102428-1600x1200.jpg",
+    "user": "user1"
   },
   {
     "title": "DEPARTAMENTO AMOBLADO DE DOS DORM EN COLON Y CAÑADA",
@@ -49,7 +50,8 @@
     "garage": null,
     "area": null,
     "price": "15.000",
-    "image": "http://garbero.com.ar/wp-content/uploads/2021/07/20210701_180748-1600x1200.jpg"
+    "image": "http://garbero.com.ar/wp-content/uploads/2021/07/20210701_180748-1600x1200.jpg",
+    "user": "user1"
   },
   {
     "title": "GRAN OPORTUNIDAD! DUPLEX A ESTRENAR EN VALLE CERCANO",
