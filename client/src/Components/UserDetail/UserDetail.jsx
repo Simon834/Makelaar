@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector} from "react-redux";
 import { getUserDetail } from "../../Redux/Actions/actions";
@@ -215,3 +216,14 @@ export default function UserDetail() {
   );
 }
 
+=======
+import React from "react";
+
+export default function UserDetail() {
+  return (
+    <div>
+      <h1>Este es el user detail</h1>
+    </div>
+  );
+}
+>>>>>>> dev
