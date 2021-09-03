@@ -8,11 +8,9 @@ import FormLogin from "./Components/FormLogin/FormLogin";
 import FormContraseña from "./Components/FormContraseña/FormContraseña";
 import UserRegistrationForm from "./Components/UserRegistrationForm/UserRegistrationFrom";
 import Cards from "./Components/Cards/Cards";
-
-import Filter from "./Views/Filters/Filters.jsx"
-
+import Contact from "./Views/Contact/Contact";
+import Filter from "./Views/Filters/Filters.jsx";
 import UserPanel from "./Views/UserPanel/UserPanel";
-
 
 const inmuebles = require("./inmuebles.json");
 
@@ -45,7 +43,8 @@ function App() {
         <FormContraseña />
         <UserRegistrationForm />
       </Route>
-      <Route path="/user" component={UserPanel}/>
+      <Route path="/contact" component={Contact} />
+      <Route path="/user" component={UserPanel} />
     </div>
   );
 }
