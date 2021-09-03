@@ -1,9 +1,9 @@
-const {User} = require("../db"); //falta conectarlo en db
+const { User } = require("../db"); //falta conectarlo en db
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const authConfig = require("../config/auth");
-const userEmail = require("../email/userEmail")
-const newUser = require("../email/emailModels/newUser")
+const { sendUserEmail } = require("../email/userEmail")
+const { newUser } = require("../email/emailModels/newUser")
 
 //Proteger las rutas, isAuthenticated (Simon)
 
@@ -51,11 +51,11 @@ async function logIn(req, res, next) {
 }
 
 //registro
-async function signUp(req, res,next) {
+async function signUp(req, res, next) {
     try {
         console.log(req.body)
         //encriptamos pass
-        const {name, email, password,isAdmin,whatsapp} = req.body
+        const { name, email, password, isAdmin, whatsapp } = req.body
         let hashPassword = await bcrypt.hashSync(password, Number.parseInt(authConfig.rounds))
 
         //crear usuario, a traves de formulario de front
@@ -71,7 +71,7 @@ async function signUp(req, res,next) {
         //creamos el token
         let token = await jwt.sign({ user: user }, authConfig.secret, { expiresIn: authConfig.expires });
 
-        userEmail(newUser(user.name, user.email), user.email) //envía el mail al crear el usuario
+        sendUserEmail(newUser(user.name, user.email), user.email) //envía el mail al crear el usuario
 
         res.json({
             user: user,
