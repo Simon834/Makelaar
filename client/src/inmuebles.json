@@ -10,6 +10,19 @@
     "garage": null,
     "area": "80m2",
     "price": "75.000",
+    "image": "https://i.ibb.co/C9CJvx7/landing-back.jpg"
+  },
+  {
+    "title": "DPTO CON GRAN BALCÓN A PASOS DE CAÑADA",
+    "concept": "Venta",
+    "address": "Santa Rosa 715",
+    "type": "Dúplex",
+    "rooms": 2,
+    "bedroom": 1,
+    "bathroom": 1,
+    "garage": null,
+    "area": "80m2",
+    "price": "75.000",
     "image": "http://garbero.com.ar/wp-content/uploads/2021/08/20210804_102428-1600x1200.jpg",
     "user": "user1"
   },

@@ -12,15 +12,15 @@ export default function UserPanel() {
     },
     {
       title: "Mis contratos",
-      rute: "/contracts",
+      rute: "/:id/contracts",
     },
     {
       title: "Mis pagos",
-      rute: "/payments",
+      rute: "/:id/payments",
     },
     {
       title: "Mis propiedades",
-      rute: "/properties",
+      rute: "/:id/properties",
     },
   ];
 
