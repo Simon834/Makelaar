@@ -1,8 +1,7 @@
 .navBarContainer{
     height: 160px;
     background-color: #fff;
-
-    
+    z-index: 1;   
 }
 
 .logo{

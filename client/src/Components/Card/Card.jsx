@@ -13,13 +13,14 @@ import "./Card.css";
 
 const useStyles = makeStyles({
   root: {
-    margin: 15,
-    minWidth: 420,
-    maxWidth: 400,
+    margin: "0px",
+    width: "100%",
+    // minWidth: "380px",
+    // maxWidth: "380px",
     boxShadow: "1px 3px 10px rgba(0,0,0,0.3)",
   },
   media: {
-    height: 360,
+    height: 350,
   },
   title: {
     fontWeight: "bold",
