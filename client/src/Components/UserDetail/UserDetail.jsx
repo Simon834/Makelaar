@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector} from "react-redux";
 import { getUserDetail } from "../../Redux/Actions/actions";
@@ -147,20 +146,37 @@ export default function UserDetail() {
   const {id}= useParams();
     const dispatch = useDispatch();
 
-        useEffect(()=>{
-            dispatch(getUserDetail(id))
-        },[])
+    const [info, setInfo] = useState({
+        name: "",
+        email: "",
+        phone: "",
+        whatsapp: "",
+        coments: ""
+    });    
+    
+    let userInfo= useSelector((state)=> state.userInfo);
 
-        let userInfo= useSelector((state)=> state.userInfo);
-        console.log(userInfo)
+    useEffect(()=>{
+        dispatch(getUserDetail(id))
+        
+    },[])
 
-        const [info, setInfo] = useState({
-            name: "mili",
-            email: userInfo.email,
-            phone: userInfo.phone,
-            whatsapp: userInfo.whatsapp,
-            coments: userInfo.comments
-        });    
+    useEffect(()=>{
+     
+      setInfo({
+        ...info, 
+        name: userInfo.name,
+          email: userInfo.email,
+          phone: userInfo.phone,
+          whatsapp: userInfo.whatsapp,
+          coments: userInfo.coments
+  
+      })
+  },[userInfo])
+    
+        console.log("info", info)
+
+
 
   return (
     <div className={classes.root}>
@@ -216,14 +232,3 @@ export default function UserDetail() {
   );
 }
 
-=======
-import React from "react";
-
-export default function UserDetail() {
-  return (
-    <div>
-      <h1>Este es el user detail</h1>
-    </div>
-  );
-}
->>>>>>> dev
