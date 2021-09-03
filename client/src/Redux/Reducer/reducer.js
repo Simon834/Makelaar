@@ -5,6 +5,7 @@ const {
   LOGOUT,
   SIGN_UP,
   FORGOT_PASSWORD,
+  GET_USER_DETAIL,
 } = require("../Constants/constants");
 
 const initialState = {
@@ -71,6 +72,12 @@ export default function userReducer(state = initialState, action) {
         ...state,
         msg_password: action.payload,
       };
+    }
+    case GET_USER_DETAIL:{
+      return{
+        ...state,
+        userInfo: action.payload
+      }
     }
     default:
       return state;

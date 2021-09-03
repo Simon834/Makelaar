@@ -8,6 +8,8 @@ import FormLogin from "./Components/FormLogin/FormLogin";
 import FormContraseña from "./Components/FormContraseña/FormContraseña";
 import UserRegistrationForm from "./Components/UserRegistrationForm/UserRegistrationFrom";
 import Cards from "./Components/Cards/Cards";
+import UserPanel from "./Views/UserPanel/UserPanel";
+
 const inmuebles = require("./inmuebles.json");
 
 function App() {
@@ -26,6 +28,7 @@ function App() {
         <FormContraseña />
         <UserRegistrationForm />
       </Route>
+      <Route path="/user" component={UserPanel}/>
     </div>
   );
 }
