@@ -2,7 +2,7 @@ import "./styleViewBase.css";
 import NavBar from "../../Components/NavBar/NavBar";
 import TopBar from "../../Components/TopBar/TopBar";
 
-export default function viewBase({topBar, navBar, carousel, filters, content, footBar}) {
+export default function ViewBase({topBar, navBar, carousel, filters, content, footBar}) {
     return (
         <div className="base-container">
             <div className={ carousel? "header-container with-carousel" : "header-container"}>

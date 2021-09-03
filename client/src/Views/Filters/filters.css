@@ -3,50 +3,50 @@
     top: 0px
 }
 .searchbar-container{
-    border: 3px solid rgb(115, 126, 20);
+    /* border: 3px solid rgb(115, 126, 20); */
     height: 65px;
 }
 .type-container{
-    border: 3px solid rgb(0, 195, 255);
+    /* border: 3px solid rgb(0, 195, 255); */
     height: 65px;
 }
 
 .sellRent-container{
-    border: 3px solid rgb(105, 97, 97);
+    /* border: 3px solid rgb(105, 97, 97); */
     height: 65px;
 }
 
 .price-container{
-    border: 3px solid rgb(21, 255, 0);
+    /* border: 3px solid rgb(21, 255, 0); */
     height: 65px;
 }
 
 .city-container{
-    border: 3px solid rgb(0, 17, 255);
+    /* border: 3px solid rgb(0, 17, 255); */
     height: 65px;
 }
 
 .province-container{
-    border: 3px solid rgb(255, 0, 149);
+    /* border: 3px solid rgb(255, 0, 149); */
     height: 65px;
 }
 
 .neighbothood-container{
-    border: 3px solid rgb(255, 238, 0);
+    /* border: 3px solid rgb(255, 238, 0); */
     height: 65px;
 }
 
 .street-container{
-    border: 3px solid rgb(87, 66, 66);
+    /* border: 3px solid rgb(87, 66, 66); */
     height: 65px;
 }
 
 .bedrooms-container{
-    border: 3px solid rgb(153, 0, 255);
+    /* border: 3px solid rgb(153, 0, 255); */
     height: 65px;
 }
 
 .bathrooms-container{
-    border: 3px solid rgb(10, 143, 17);
+    /* border: 3px solid rgb(10, 143, 17); */
     height: 65px;
 }

@@ -26,7 +26,7 @@ export default function AdminPanel() {
 
     return (
         <div>
-            <ViewBase filter={<MenuPanelList list={list} routeAction="/admin" />} content={<AdminBody />} />
+            <ViewBase filters={<MenuPanelList list={list} routeAction="/admin" />} content={<AdminBody />} />
         </div>
     )
 }

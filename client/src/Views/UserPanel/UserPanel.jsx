@@ -27,7 +27,7 @@ export default function UserPanel() {
   return (
     <div>
       <ViewBase
-        filter={<MenuPanelList list={list} routeAction="/user" />}
+        filters={<MenuPanelList list={list} routeAction="/user" />}
         content={<UserBody />}
       />
     </div>
