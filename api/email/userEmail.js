@@ -6,7 +6,7 @@ const {
     MAILPASS
 } = process.env;
 
-async function email(htmlModel, userEmail) {
+async function sendUserEmail(htmlModel, userEmail) {
 
     let transporter = nodemailer.createTransport({
         service: 'yahoo',
@@ -38,5 +38,5 @@ async function email(htmlModel, userEmail) {
 
 
 
-module.exports = { email }
+module.exports = { sendUserEmail }
 
