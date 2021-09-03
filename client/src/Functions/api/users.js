@@ -21,10 +21,10 @@ export async function registerUser(user) {
   }
 }
 
-export async function getUserByIdApi() {
+export async function getUserByIdApi(id) {
     try {
-        const userbyid = await axios.get(`${BACK_SERVER}/users/:id`).data
-        return userbyid
+        const userbyid = await axios.get(`${BACK_SERVER}/users/${id}`)
+        return userbyid.data
     } catch (err) {
         throw err
     }
