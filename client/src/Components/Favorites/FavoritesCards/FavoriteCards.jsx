@@ -1,13 +1,14 @@
 import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import React from "react";
-import FavoriteCard from "../FavoriteCard"
+import FavoriteCard from "../FavoriteCard";
+import inmuebles from '../../../inmuebles.json'
 
 const useStyles = makeStyles({
   root: {
       
-      width: "50%",
-      boxShadow: "1px 3px 10px rgba(0,0,0,0.3)",
+      width: "100%",
+     
       height:"100%",
       display:"flex",
       
@@ -35,7 +36,7 @@ const useStyles = makeStyles({
     },
   });
 
-export default function FavoriteCards({ inmuebles }) {
+export default function FavoriteCards() {
 
   const classes = useStyles();
     
