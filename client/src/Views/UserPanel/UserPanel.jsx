@@ -9,7 +9,19 @@ export default function UserPanel() {
   const list = [
     {
       title: "Mis datos",
+<<<<<<< HEAD
+      rute: "/datos",
+    },
+    {
+      title: "Mis contratos",
+      rute: "/contracts",
+    },
+    {
+      title: "Mis pagos",
+      rute: "/payments",
+=======
       rute: "/data",
+>>>>>>> dev
     },
     {
       title: "Mis propiedades",
@@ -20,7 +32,11 @@ export default function UserPanel() {
   return (
     <div>
       <ViewBase
+<<<<<<< HEAD
+        filters={<MenuPanelList list={list} routeAction="/user" />}
+=======
         filters={<MenuPanelList list={list} routeAction={`/user/${id}`} />}
+>>>>>>> dev
         content={<UserBody />}
       />
     </div>

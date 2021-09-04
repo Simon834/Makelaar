@@ -4,6 +4,7 @@ const {
   getUserById,
   allUsers,
   resetPassword,
+  updateUser,
 } = require("../controllers/usersController");
 const { logIn, signUp } = require("../controllers/authController");
 
@@ -16,6 +17,8 @@ router.post("/signUp", signUp); //ruta para nuevo usuario.
 
 router.get("/:id", getUserById);
 
-router.put("/resetPassword", resetPassword); //testar luego de 
+router.put("/resetPassword", resetPassword); //testar luego de
+
+router.put("/updateUser", updateUser);
 
 module.exports = router;
