@@ -1,15 +1,36 @@
 import { Fragment } from "react";
 import { Button } from "@material-ui/core";
+import { TextareaAutosize } from "@material-ui/core";
+import emailjs from "emailjs-com";
 import Home from "@material-ui/icons/Home";
 import Phone from "@material-ui/icons/Phone";
 import MailOutlineIcon from "@material-ui/icons/MailOutline";
 import Facebook from "@material-ui/icons/Facebook";
 import Instagram from "@material-ui/icons/Instagram";
 import TextField from "@material-ui/core/TextField";
-import style from './Contact.module.css'
-
+import style from "./Contact.module.css";
 
 export default function Contact() {
+  function sendEmail(e) {
+    e.preventDefault();
+
+    emailjs
+      .sendForm(
+        "service_1xynnfa",
+        "template_1m8o20i",
+        e.target,
+        "user_M9Q8yUk8l34e3M9hIZ04f"
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
+  }
+
   return (
     <Fragment>
       <div className={style.container}>
@@ -51,7 +72,7 @@ export default function Contact() {
         </div>
         <div className={style.linea} />
         <div className={style.container_Form}>
-          <form className={style.form_contact}>
+          <form className={style.form_contact} onSubmit={sendEmail}>
             <h2 className={style.title}>Formulario de Contacto</h2>
             <p>Personalmente te responderemos tan pronto como podamos.</p>
             <TextField
@@ -59,31 +80,49 @@ export default function Contact() {
               type="text"
               name="name"
               placeholder="name"
+              variant="outlined"
               style={{
-                marginBottom: "15px",
-                paddingBottom: "15px",
+                marginBottom: "10px",
                 marginTop: "1rem",
               }}
             />
             <TextField
               id="phone"
+              variant="outlined"
               type="text"
               name="phone"
               placeholder="phone"
-              style={{ marginBottom: "15px", paddingBottom: "15px" }}
+              style={{ marginBottom: "10px" }}
             />
             <TextField
               id="email"
-              type="text"
+              variant="outlined"
+              type="email"
               name="email"
               placeholder="email@makelaar.com"
-              style={{ marginBottom: "15px", paddingBottom: "15px" }}
+              style={{
+                marginBottom: "10px",
+              }}
             />
-            <Button variant="contained" color="primary" p={5} type="submit">
+            <TextareaAutosize
+              aria-label="minimum height"
+              name="message"
+              placeholder="tu mensaje"
+              rowsMin={3}
+              cols="20"
+            />
+            <Button
+              variant="contained"
+              color="primary"
+              p={5}
+              type="submit"
+              style={{ marginTop: "1rem" }}
+            >
               Enviar
             </Button>
           </form>
-          <img className={style.img}
+          <img
+            className={style.img}
             src="http://garbero.com.ar/wp-content/uploads/2019/03/telefono-03.jpg"
             alt="imagen"
           />
