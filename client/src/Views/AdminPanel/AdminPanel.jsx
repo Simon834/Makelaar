@@ -3,6 +3,7 @@ import ViewBase from '../ViewBase/view-base'
 import MenuPanelList from '../../Components/MenuPanelList/MenuPanelList'
 import AdminBody from '../../Components/AdminBody/AdminBody'
 
+
 export default function AdminPanel() {
     const id=15
     const list =
