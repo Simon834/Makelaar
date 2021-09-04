@@ -1,91 +1,89 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from 'react-router-dom';
 
 import { userLogIn } from "../../Redux/Actions/userActions";
-// import { Link } from "react-router-dom";
-
 
 //material
 import TextField from "@material-ui/core/TextField";
-import {
-  Container,
-  FormControl,
-  Input,
-  InputLabel,
-  FormHelperText,
-  Grid,
-  makeStyles,
-  Paper,
-  Button,
-  Typography,
-} from "@material-ui/core";
+import { makeStyles, Button, Typography } from "@material-ui/core";
 
-import Link from '@material-ui/core/Link';
-
+import Link from "@material-ui/core/Link";
 
 const useStyle = makeStyles((theme) => ({
   form: {
     "& .MuiFormControl-root": {
-      width: "500px",
-      margin: theme.spacing(2),
+      width: "450px",
+      margin: theme.spacing(1),
     },
   },
   root: {
     width: "min-content",
-    margin: theme.spacing(5),
-    padding: theme.spacing(3),
-    display: "flex",
+    margin: theme.spacing(1),
+    padding: theme.spacing(1),
     flexDirection: "column",
     allingItems: "center",
     justifyContent: "center",
   },
   button: {
-    alignContent:"center",
+    marginTop: "25px",
+    marginLeft: theme.spacing(24),
+    marginBottom: "15px",
+    padding: "10px",
+    alignContent: "left",
   },
-  
 
-  link:{
-    padding: theme.spacing(1),
-    margin: theme.spacing(27),
-    alignContent:"center"
-  }
+  link: {
+    marginTop: "15px",
+    marginBottom: "15px",
+    alignContent: "center",
+    fontWeight: "400",
+  },
 }));
+
 //material
 
-
-
-
-
-
 export function validate(input) {
-    let errors = {};
-    if (!input.email) {
-      errors.email = "Se Requiere un Email";
-    } else if (!/\S+@\S+\.\S+/.test(input.email)) {
-      errors.email = "Email inválido";
-    }
-    if (!input.password) {
-      errors.password = "Se requiere una contraseña";
-    }
-  
-    return errors;
+  let errors = {};
+  if (!input.email) {
+    errors.email = "Se Requiere un Email";
+  } else if (!/\S+@\S+\.\S+/.test(input.email)) {
+    errors.email = "Email inválido";
   }
-  
+  if (!input.password) {
+    errors.password = "Se requiere una contraseña";
+  }
 
-export default function FormLogin() {
+  return errors;
+}
+
+export default function FormLogin({action}) {
   const dispatch = useDispatch();
+  const history = useHistory()
+  const { userInfo } = useSelector(state => state)
 
-  
   const classes = useStyle();
-
 
   const [input, setInput] = useState({
     email: "",
     password: "",
   });
 
-
   const [errors, setErrors] = useState({});
+
+  useEffect(() => {
+    if (userInfo.token) {
+      if (userInfo.user.isAdmin) {
+        history.push(`/admin/${userInfo.user.id}/data`)
+        action()
+      } else {
+        history.push(`/user/${userInfo.user.id}/data`)
+        action()
+      }
+    }
+  }
+    , [userInfo])
+
 
 
   function handleChange(e) {
@@ -100,92 +98,74 @@ export default function FormLogin() {
         [e.target.id]: e.target.value,
       })
     );
-  };
+  }
 
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(input);
     dispatch(userLogIn(input));
-    // setLoading(true);
   }
 
   return (
-     <Paper className={classes.root}>
-    
-    <form className={classes.form} noValidate autoComplete="off" onSubmit={e => handleSubmit(e)}>
-      
-      {/* <Grid container> */}
-        {/* <Grid item xs={6}> */}
-          
-        <div>
-          <label htmlFor="email"></label>
-          <TextField id="filled-basic" label="e-mail" variant="outlined"
+    <form
+      className={classes.form}
+      noValidate
+      autoComplete="off"
+      onSubmit={(e) => handleSubmit(e)}
+    >
+      <div>
+        <label htmlFor="email"></label>
+        <TextField
+          label="e-mail"
+          variant="outlined"
+          placeholder="email@makelaar.com"
+          type="email"
+          id="email"
+          value={input.email}
+          onChange={(e) => handleChange(e)}
+          {...(errors.email && {
+            error: true,
+            helperText: errors.email,
+          })}
+        />
+      </div>
+      <div>
+        <label htmlFor="password"></label>
+        <TextField
+          label="Password"
+          variant="outlined"
+          placeholder="Contraseña"
+          type="password"
+          id="password"
+          value={input.password}
+          onChange={(e) => handleChange(e)}
+          {...(errors.password && {
+            error: true,
+            helperText: errors.password,
+          })}
+        />
+      </div>
 
-            placeholder="email@makelaar.com"
-            type="email"
-            id="email"
-            value={input.email}
-            onChange={e => handleChange(e)}
-            {...(errors.email && {
-              error: true,
-              helperText: errors.email,
-            })}
-          />
-          
-        </div>
-        <div>
-          <label htmlFor="password"></label>
-          <TextField id="filled-basic" label="Password" variant="outlined" 
-            placeholder="Contraseña"
-            type="password"
-            id="password"
-            value={input.password}
-            onChange={e => handleChange(e)}
-            {...(errors.password && {
-              error: true,
-              helperText: errors.password,
-            })}
-          />
-          
-        </div>
-
-        <div>
+      <div>
         <p>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  type="submit"
-                  className={classes.button}
-                  
-                >
-                  INGRESAR
-                </Button>
-              </p>
-        </div>
+          <Button
+            variant="contained"
+            color="primary"
+            type="submit"
+            className={classes.button}
+          >
+            INGRESAR
+          </Button>
+        </p>
+      </div>
 
-        {/* <Link to="/resetpassword" className={classes.link}> Olvidaste tu contraseña</Link> */}
+      <Typography className={classes.link}>
+        <Link href="/resetpassword">¿Olvidaste tu contraseña?</Link>
+      </Typography>
 
-        <Typography className={classes.link}>
-  <Link href="/resetpassword">
-    ¿Olvidaste tu contraseña?
-  </Link>
-  </Typography>
-
-  <Typography className={classes.link}>
-  <Link href="/resetpassword">
-    REGISTRARSE
-  </Link>
-  </Typography>
-  
-
-        {/* </Grid> */}
-        {/* </Grid> */}
-      
-      </form>
-
-    
-    </Paper>
-  )
-
+      <Typography className={classes.link}>
+        <Link href="/register">REGISTRARSE</Link>
+      </Typography>
+    </form>
+  );
 }

@@ -2,8 +2,8 @@ const { User } = require("../db");
 const bcrypt = require("bcrypt");
 const authConfig = require("../config/auth");
 
-const {recoveryPass} = require("../email/emailModels/recoveryPass");
-const {sendUserEmail} = require("../email/userEmail");
+const { recoveryPass } = require("../email/emailModels/recoveryPass");
+const { sendUserEmail } = require("../email/userEmail");
 
 async function getUserById(req, res, next) {
   const userId = req.params.id;
@@ -25,7 +25,7 @@ async function allUsers(req, res, next) {
   try {
     const users = await User.findAll();
     if (!users.length) {
-      return res.json({ msg: "No hay usuarios registrados por el momento"});
+      return res.json({ msg: "No hay usuarios registrados por el momento" });
     } else {
       return res.json(users);
     }
@@ -39,8 +39,11 @@ async function resetPassword(req, res, next) {
   const { email } = req.body;
   try {
     //encriptamos pass
-    const newPass = Math.floor(Math.random() * 1000000000, 1000000000).toString();
-    console.log(newPass)
+    const newPass = Math.floor(
+      Math.random() * 1000000000,
+      1000000000
+    ).toString();
+    console.log(newPass);
     let password = await bcrypt.hashSync(
       newPass,
       Number.parseInt(authConfig.rounds)
@@ -67,8 +70,34 @@ async function resetPassword(req, res, next) {
   }
 }
 
+async function updateUser(req, res, next) {
+  const { email, name, phone, whatsapp, password } = req.body;
+  try {
+    let user = await User.findOne({ where: { email } });
+    if (user) {
+      user.name = name;
+      user.phone = phone;
+      user.whatsapp = whatsapp;
+      if (password) {
+        const updatedPass = password.toString();
+        let newPassword = await bcrypt.hashSync(
+          updatedPass,
+          Number.parseInt(authConfig.rounds)
+        );
+        user.password = newPassword;
+      }
+      await user.save();
+      sendUserEmail(recoveryPass(updatePass), email);
+      return res.json({ msg: "Tus datos han sido actualizados" });
+    }
+  } catch (err) {
+    next(err);
+  }
+}
+
 module.exports = {
   getUserById,
   allUsers,
   resetPassword,
+  updateUser,
 };

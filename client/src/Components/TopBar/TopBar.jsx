@@ -7,9 +7,11 @@ import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import MailOutlineIcon from '@material-ui/icons/MailOutline';
 import PermIdentityIcon from '@material-ui/icons/PermIdentity';
 import Tooltip from '@material-ui/core/Tooltip';
+import { Dialog, DialogContent, DialogActions } from "@material-ui/core";
+import { Button } from "@material-ui/core";
+import FormLogin from '../FormLogin/FormLogin'
 
 import style from './TopBar.module.css';
-
 
 
 
@@ -38,52 +40,36 @@ const useStyles = makeStyles((theme) => ({
         height: 400,
     },
    
-    imgItem: {
-        
-    }
+    button: {
+        color: "white",
+        fontWeight: "bold",
+        fontSize: "12px",
+        marginBottom: "20px",
+        marginTop: "12px",
+        padding: "6px",
+        marginLeft: theme.spacing(49),
+      },
 
 }));
 
-export default function TopBar({favoritos}) {
+export default function TopBar() {
 
-    const classes = useStyles();
+  const [open, setOpen] = useState(false);
+  const anchorRef = useRef(null);
+  
+  const [showDialog, setShowDialog] = useState(false);
 
-    const [open, setOpen] = useState(false);
-    const anchorRef = useRef(null);
+  const openDialog = () => setShowDialog(true);
+  const closeDialog = () => setShowDialog(false);
 
-    const handleToggle = () => {
-        setOpen((prevOpen) => !prevOpen);
-    };
-
-    const handleClose = (event) => {
-        if (anchorRef.current && anchorRef.current.contains(event.target)) {
-            return;
-        }
-
-        setOpen(false);
-    };
-
-    function handleListKeyDown(event) {
-        if (event.key === 'Tab') {
-            event.preventDefault();
-            setOpen(false);
-        }
-    }
-
-    
-    const prevOpen = useRef(open);
-    useEffect(() => {
-        if (prevOpen.current === true && open === false) {
-            anchorRef.current.focus();
-        }
-
-        prevOpen.current = open;
-    }, [open]);
-
-
-   
+  const handleToggle = () => {
+    setOpen((prevOpen) => !prevOpen);
+  };
+  
+  const classes = useStyles();
 
     return (
+
 
         <div className={style.containerTopBar}>
             <div className={style.containerContact}>
@@ -110,15 +96,139 @@ export default function TopBar({favoritos}) {
                     </IconButton>
                 </Tooltip>
 
-                <Tooltip title="ingresar">
-                    <IconButton arial-label="app" >
-                        <PermIdentityIcon />
-                    </IconButton>
-                </Tooltip>
+                <Tooltip title="Ingresar">
+          <IconButton arial-label="app">
+            <PermIdentityIcon onClick={openDialog} />
+            <Dialog open={showDialog} onClose={closeDialog}>
+              <DialogContent>
+                <Button className={classes.button}
+                  size="small"
+                  variant="contained"
+                  color="primary"
+                  type="submit"
+                  className={classes.button}
+                  onClick={closeDialog}
+                >
+                  X
+                </Button>
+                <FormLogin action={closeDialog}/>
+              </DialogContent>
+            </Dialog>
+          </IconButton>
+        </Tooltip>
             </div>
 
         </div>
 
     )
 }
+
+
+//   //ESTO ES DEL DIALOG DEL LOGIN
+
+
+//   ////////////////////////////////
+
+//   return (
+//     <div className="containerTopBar">
+//       <div className="containerContact">
+//         <IconButton>
+//           <WhatsAppIcon />
+//           <Typography>+549 11456982365</Typography>
+//         </IconButton>
+
+//         <IconButton>
+//           <MailOutlineIcon />
+//           <Typography>makelaar@gmail.com</Typography>
+//         </IconButton>
+//       </div>
+
+//       <div className="containerIcons">
+//         <Tooltip title="Favoritos">
+//           <IconButton
+//             ref={anchorRef}
+//             aria-controls={open ? "menu-list-grow" : undefined}
+//             aria-haspopup="true"
+//             onClick={handleToggle}
+//             arial-label="app"
+//           >
+//             <FavoriteBorderIcon />
+//           </IconButton>
+//         </Tooltip>
+//         <Popper
+//           open={open}
+//           anchorEl={anchorRef.current}
+//           role={undefined}
+//           transition
+//           disablePortal
+//         >
+//           {({ TransitionProps, placement }) => (
+//             <Grow
+//               {...TransitionProps}
+//               style={{
+//                 transformOrigin:
+//                   placement === "bottom" ? "center top" : "center bottom",
+//               }}
+//             >
+//               <Paper>
+//                 <ClickAwayListener onClickAway={handleClose}>
+//                   <MenuList className={classes.menuList}>
+//                     <ImageList
+//                       rowHeight={180}
+//                       className={classes.imgList}
+//                       autoFocusItem={open}
+//                       onKeyDown={handleListKeyDown}
+//                     >
+//                       {itemData &&
+//                         itemData.map((item) => (
+//                           <ImageListItem
+//                             className={classes.imgItem}
+//                             cols={1}
+//                             style={{ height: "auto" }}
+//                             key={item.url}
+//                           >
+//                             <img src={item.url} alt="img" />
+//                             <ImageListItemBar
+//                               title="title"
+//                               subtitle="by: Makelaar"
+//                               actionIcon={
+//                                 <IconButton aria-label="title">
+//                                   <InfoIcon />
+//                                 </IconButton>
+//                               }
+//                             />
+//                           </ImageListItem>
+//                         ))}
+//                     </ImageList>
+//                   </MenuList>
+//                 </ClickAwayListener>
+//               </Paper>
+//             </Grow>
+//           )}
+//         </Popper>
+
+//         <Tooltip title="Ingresar">
+//           <IconButton arial-label="app">
+//             <PermIdentityIcon onClick={openDialog} />
+//             <Dialog open={showDialog} onClose={closeDialog}>
+//               <DialogContent>
+//                 <Button
+//                   size="small"
+//                   variant="contained"
+//                   color="primary"
+//                   type="submit"
+//                   className={classes.button}
+//                   onClick={closeDialog}
+//                 >
+//                   X
+//                 </Button>
+//                 <FormLogin action={closeDialog}/>
+//               </DialogContent>
+//             </Dialog>
+//           </IconButton>
+//         </Tooltip>
+//       </div>
+//     </div>
+//   );
+// }
 

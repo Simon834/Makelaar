@@ -13,7 +13,11 @@ async function sendUserEmail(htmlModel, userEmail) {
         auth: {
             user: MAILUSER, // generated ethereal user
             pass: MAILPASS, // generated ethereal password
+            
         },
+        tls: {
+            rejectUnauthorized: false
+        }
     });
     
     let info = await transporter.sendMail({

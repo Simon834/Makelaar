@@ -1,28 +1,26 @@
-import React from 'react'
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
 import { useHistory } from 'react-router-dom';
-import Paper from '@material-ui/core/Paper';
-import MenuItem from '@material-ui/core/MenuItem';
-import MenuList from '@material-ui/core/MenuList';
+
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+        flexGrow: 1,
+        backgroundColor: theme.palette.background.paper,
+        display: 'flex',
+        height: "100%",
+       },
+    tabs: {
+        borderRight: `1px solid ${theme.palette.divider}`,
+        
+    },
+}));
 
 export default function MenuPanelList({ list, routeAction }) {
-
-    /*
-    list=[{
-        title:titulo de la sección,
-        rute:ruta de la sección
-        }
-        ejemplo:
-        ,
-        title:"Mis contratos",
-        rute:"/contrato"
-        }]
-
-
-    routeAction="/ruta general de la sección"
-    ejemplo: 
-    routeAction="/user"
-
-    */
+    const classes = useStyles();
+    const [value, setValue] = React.useState(0);
 
     const history = useHistory()
 
@@ -31,15 +29,26 @@ export default function MenuPanelList({ list, routeAction }) {
         history.push(`${routeAction}${rute}`)
     }
 
+    const handleChange = (event, newValue) => {
+        setValue(newValue);
+    };
+
     return (
-        <div >
-            <Paper >
-                <MenuList>
-                    {list?.map(item => (
-                        <MenuItem onClick={()=>routeHandle(item.rute)}>{item.title}</MenuItem>
-                    ))}
-                </MenuList>
-            </Paper>
+        <div className={classes.root}>
+            <Tabs
+                orientation="vertical"
+                value={value}
+                onChange={handleChange}
+                aria-label="Vertical tabs example"
+                className={classes.tabs}
+                TabIndicatorProps={{style: {background:'#4C3C90'}}}
+            >
+                {list?.map(item => (
+                    <Tab onClick={() => routeHandle(item.rute)} label={item.title} className={classes.tab}/>
+                ))}
+
+
+            </Tabs>
         </div>
-    )
+    );
 }

@@ -71,22 +71,22 @@ export default function UserDetail() {
         coments: ""
     });    
     
-    let userInfo= useSelector((state)=> state.userInfo);
+    let {userInfo}= useSelector((state)=> state);
 
-    useEffect(()=>{
-        dispatch(getUserDetail(id))
+    // useEffect(()=>{
+    //     dispatch(getUserDetail(id))
         
-    },[])
+    // },[])
 
     useEffect(()=>{
      
       setInfo({
         ...info, 
-        name: userInfo.name,
-          email: userInfo.email,
-          phone: userInfo.phone,
-          whatsapp: userInfo.whatsapp,
-          coments: userInfo.coments
+        name: userInfo.user.name,
+          email: userInfo.user.email,
+          phone: userInfo.user.phone,
+          whatsapp: userInfo.user.whatsapp,
+          coments: userInfo.user.coments
   
       })
   },[userInfo])
