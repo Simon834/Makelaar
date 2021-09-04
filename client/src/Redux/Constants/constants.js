@@ -14,5 +14,4 @@ export const FILTER_BATHROOM = "FILTER_BATHROOM";
 export const FILTER_PRICE = "FILTER_PRICE";
 export const RESET_FILTER = "RESET_FILTER";
 export const SEARCH = "SEARCH";
-
-
+export const ADD_FAVORITES = "ADD_FAVORITES";

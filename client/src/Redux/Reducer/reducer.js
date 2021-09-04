@@ -12,7 +12,8 @@ const {
   FILTER_BATHROOM,
   FILTER_PRICE,
   RESET_FILTER,
-  SEARCH
+  SEARCH,
+  ADD_FAVORITES
 
 } = require("../Constants/constants");
 
@@ -28,7 +29,8 @@ const initialState = {
   bedroom:null,
   bathroom:null,
   price:[null,null],
-  search:null
+  search:null,
+  favorites:[]
 };
 
 export default function userReducer(state = initialState, action) {
@@ -88,63 +90,69 @@ export default function userReducer(state = initialState, action) {
         msg_password: action.payload,
       };
     }
-    case GET_USER_DETAIL:{
-      return{
+    case GET_USER_DETAIL: {
+      return {
         ...state,
-        userInfo: action.payload
-      }
+        userInfo: action.payload,
+      };
     }
-//-----------------Filters---------------------
-    case FILTER_CONCEPT:{
-      return{
+    //-----------------Filters---------------------
+    case FILTER_CONCEPT: {
+      return {
         ...state,
-        concept: action.payload
-      }
+        concept: action.payload,
+      };
     }
-    case FILTER_TIPE:{
-      return{
+    case FILTER_TIPE: {
+      return {
         ...state,
-        tipe: action.payload
-      }
+        tipe: action.payload,
+      };
     }
-    case FILTER_BEDROOM:{
-      return{
+    case FILTER_BEDROOM: {
+      return {
         ...state,
-        bedroom: action.payload
-      }
+        bedroom: action.payload,
+      };
     }
-    case FILTER_BATHROOM:{
-      return{
+    case FILTER_BATHROOM: {
+      return {
         ...state,
-        bathroom: action.payload
-      }
+        bathroom: action.payload,
+      };
     }
-    case FILTER_PRICE:{
-      return{
+    case FILTER_PRICE: {
+      return {
         ...state,
-        price: action.payload
-      }
+        price: action.payload,
+      };
     }
-    case SEARCH:{
-      return{
+    case SEARCH: {
+      return {
         ...state,
-        search: action.payload
-      }
+        search: action.payload,
+      };
     }
-    case RESET_FILTER:{
-      return{
+    case RESET_FILTER: {
+      return {
         ...state,
-        concept:null,
-        tipe:null,
-        bedroom:null,
+        concept: null,
+        tipe: null,
+        bedroom: null,
         bathroom: null,
         price: [null, null],
-        search: null
-
-      }
+        search: null,
+      };
     }
 
+    //-----------------Favorites---------------------
+    case ADD_FAVORITES: {
 
+      return {
+        ...state,
+        favorites: action.payload
+      }
+    }
 
     default:
       return state;
