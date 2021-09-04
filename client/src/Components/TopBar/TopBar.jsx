@@ -18,7 +18,7 @@ import ImageListItemBar from '@material-ui/core/ImageListItemBar';
 import { Dialog, DialogContent, DialogActions } from "@material-ui/core";
 import { Button } from "@material-ui/core";
 import FormLogin from "../FormLogin/FormLogin";
-import UserRegistrationForm from "../UserRegistrationForm/UserRegistrationFrom";
+
 
 import "./TopBar.css";
 
@@ -66,6 +66,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function TopBar() {
+ 
   const classes = useStyles();
 
   const [open, setOpen] = useState(false);
@@ -202,7 +203,7 @@ export default function TopBar() {
                 >
                   X
                 </Button>
-                <FormLogin />
+                <FormLogin action={closeDialog}/>
               </DialogContent>
             </Dialog>
           </IconButton>

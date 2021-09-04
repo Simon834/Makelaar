@@ -7,6 +7,8 @@ import UserPanel from "./Views/UserPanel/UserPanel";
 import ViewContact from "./Views/ViewContact/ViewContact";
 import ViewProperty from "./Views/ViewProperty/ViewProperty";
 import ViewAbout from "./Views/ViewAbout/ViewAbout";
+import ViewResetPassword from "./Views/ViewResetPassword/ViewResetPassword";
+import VierwRegister from "./Views/ViewRegister/VierwRegister";
 
 
 function App() {
@@ -18,6 +20,8 @@ function App() {
       <Route path="/contact" component={ViewContact}/>
       <Route path="/property" component={ViewProperty}/>
       <Route path="/about" component={ViewAbout}/>
+      <Route path="/resetpassword" component={ViewResetPassword}/>
+      <Route path="/register" component={VierwRegister}/>
 
     </div>
   );
