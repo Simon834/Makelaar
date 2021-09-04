@@ -14,11 +14,7 @@ export default function UserBody() {
   );
   return (
     <div>
-<<<<<<< HEAD
-      <Route path="/user/datos">
-=======
       <Route path="/user/:id/data">
->>>>>>> dev
         <UserDetail />
       </Route>
       <Route path="/user/properties">
