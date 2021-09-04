@@ -12,22 +12,22 @@ export default function UserPanel() {
     },
     {
       title: "Mis contratos",
-      rute: "/:id/contracts",
+      rute: "/contracts",
     },
     {
       title: "Mis pagos",
-      rute: "/:id/payments",
+      rute: "/payments",
     },
     {
       title: "Mis propiedades",
-      rute: "/:id/properties",
+      rute: "/properties",
     },
   ];
 
   return (
     <div>
       <ViewBase
-        filter={<MenuPanelList list={list} routeAction="/user" />}
+        filters={<MenuPanelList list={list} routeAction="/user" />}
         content={<UserBody />}
       />
     </div>
