@@ -2,7 +2,59 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 
 import { userLogIn } from "../../Redux/Actions/userActions";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
+
+
+//material
+import TextField from "@material-ui/core/TextField";
+import {
+  Container,
+  FormControl,
+  Input,
+  InputLabel,
+  FormHelperText,
+  Grid,
+  makeStyles,
+  Paper,
+  Button,
+  Typography,
+} from "@material-ui/core";
+
+import Link from '@material-ui/core/Link';
+
+
+const useStyle = makeStyles((theme) => ({
+  form: {
+    "& .MuiFormControl-root": {
+      width: "500px",
+      margin: theme.spacing(2),
+    },
+  },
+  root: {
+    width: "min-content",
+    margin: theme.spacing(5),
+    padding: theme.spacing(3),
+    display: "flex",
+    flexDirection: "column",
+    allingItems: "center",
+    justifyContent: "center",
+  },
+  button: {
+    alignContent:"center",
+  },
+  
+
+  link:{
+    padding: theme.spacing(1),
+    margin: theme.spacing(27),
+    alignContent:"center"
+  }
+}));
+//material
+
+
+
+
 
 
 export function validate(input) {
@@ -23,6 +75,8 @@ export function validate(input) {
 export default function FormLogin() {
   const dispatch = useDispatch();
 
+  
+  const classes = useStyle();
 
 
   const [input, setInput] = useState({
@@ -57,49 +111,81 @@ export default function FormLogin() {
   }
 
   return (
-    <div>
-      <form action="" onSubmit={e => handleSubmit(e)} >
+     <Paper className={classes.root}>
+    
+    <form className={classes.form} noValidate autoComplete="off" onSubmit={e => handleSubmit(e)}>
+      
+      {/* <Grid container> */}
+        {/* <Grid item xs={6}> */}
+          
         <div>
           <label htmlFor="email"></label>
-          <input
+          <TextField id="filled-basic" label="e-mail" variant="outlined"
+
             placeholder="email@makelaar.com"
             type="email"
             id="email"
             value={input.email}
             onChange={e => handleChange(e)}
+            {...(errors.email && {
+              error: true,
+              helperText: errors.email,
+            })}
           />
-          {errors.email && <p>{errors.email}</p>}
+          
         </div>
         <div>
           <label htmlFor="password"></label>
-          <input
+          <TextField id="filled-basic" label="Password" variant="outlined" 
             placeholder="Contraseña"
             type="password"
             id="password"
             value={input.password}
             onChange={e => handleChange(e)}
+            {...(errors.password && {
+              error: true,
+              helperText: errors.password,
+            })}
           />
-          {errors.password && <p>{errors.password}</p>}
+          
         </div>
 
         <div>
-          {input.password ? (
-            <button type="submit" >
-              Login
-            </button>
-          ) : (
-            <button type="button" >
-              Login
-            </button>
-          )}
+        <p>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  type="submit"
+                  className={classes.button}
+                  
+                >
+                  INGRESAR
+                </Button>
+              </p>
         </div>
 
-        <Link to="/resetpassword"> I forgot the password</Link>
+        {/* <Link to="/resetpassword" className={classes.link}> Olvidaste tu contraseña</Link> */}
 
+        <Typography className={classes.link}>
+  <Link href="/resetpassword">
+    ¿Olvidaste tu contraseña?
+  </Link>
+  </Typography>
 
+  <Typography className={classes.link}>
+  <Link href="/resetpassword">
+    REGISTRARSE
+  </Link>
+  </Typography>
+  
+
+        {/* </Grid> */}
+        {/* </Grid> */}
+      
       </form>
 
-    </div>
+    
+    </Paper>
   )
 
 }

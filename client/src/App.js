@@ -7,6 +7,7 @@ import Carrusel from "./Components/Carrusel/Carrusel";
 import FormLogin from "./Components/FormLogin/FormLogin";
 import FormContraseña from "./Components/FormContraseña/FormContraseña";
 import UserRegistrationForm from "./Components/UserRegistrationForm/UserRegistrationFrom";
+import SearchBar from "./Components/SearchBar/SearchBar"
 
 
 
@@ -16,7 +17,8 @@ function App() {
       <Route exact path="/">
         <ViewBase
           filter="filters"
-          carousel={<Carrusel />}
+          // carousel={<Carrusel />}
+          
         />
       </Route>
       <Route path="/admin" component={AdminPanel} />
