@@ -78,7 +78,7 @@ export const useFormControls = (isAdmin) => {
       [name]: value,
     });
     validate({ [name]: value });
-    console.log(user);
+    //console.log(user);
   };
 
   const formIsValid = (fieldValues = user) => {
@@ -96,7 +96,7 @@ export const useFormControls = (isAdmin) => {
       Object.values(errors).every((x) => x === "") && formIsValid();
     if (isValid) {
       const registeredUser = await registerUser(user);
-      console.log(registeredUser);
+      //console.log(registeredUser);
       alert(
         `Hola ${registeredUser.user.name}, en tu email: ${registeredUser.user.email}, encontraras la confirmacion de creacion de tu cuenta`
       );

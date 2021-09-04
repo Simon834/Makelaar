@@ -5,6 +5,15 @@ const {
   LOGOUT,
   SIGN_UP,
   FORGOT_PASSWORD,
+  GET_USER_DETAIL,
+  FILTER_CONCEPT,
+  FILTER_TIPE,
+  FILTER_BEDROOM,
+  FILTER_BATHROOM,
+  FILTER_PRICE,
+  RESET_FILTER,
+  SEARCH
+
 } = require("../Constants/constants");
 
 const initialState = {
@@ -14,6 +23,12 @@ const initialState = {
   userInfo: {},
   isAuth: false,
   msg_password: {},
+  concept:null,
+  tipe:null,
+  bedroom:null,
+  bathroom:null,
+  price:[null,null],
+  search:null
 };
 
 export default function userReducer(state = initialState, action) {
@@ -72,6 +87,64 @@ export default function userReducer(state = initialState, action) {
         msg_password: action.payload,
       };
     }
+    case GET_USER_DETAIL:{
+      return{
+        ...state,
+        userInfo: action.payload
+      }
+    }
+//-----------------Filters---------------------
+    case FILTER_CONCEPT:{
+      return{
+        ...state,
+        concept: action.payload
+      }
+    }
+    case FILTER_TIPE:{
+      return{
+        ...state,
+        tipe: action.payload
+      }
+    }
+    case FILTER_BEDROOM:{
+      return{
+        ...state,
+        bedroom: action.payload
+      }
+    }
+    case FILTER_BATHROOM:{
+      return{
+        ...state,
+        bathroom: action.payload
+      }
+    }
+    case FILTER_PRICE:{
+      return{
+        ...state,
+        price: action.payload
+      }
+    }
+    case SEARCH:{
+      return{
+        ...state,
+        search: action.payload
+      }
+    }
+    case RESET_FILTER:{
+      return{
+        ...state,
+        concept:null,
+        tipe:null,
+        bedroom:null,
+        bathroom: null,
+        price: [null, null],
+        search: null
+
+      }
+    }
+
+
+
     default:
       return state;
   }

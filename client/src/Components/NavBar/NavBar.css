@@ -1,0 +1,41 @@
+.navBarContainer{
+    height: 160px;
+    background-color: #fff;
+    z-index: 1;   
+}
+
+.logo{
+    width: 600px;
+    float: left;
+    line-height: 160px;
+    text-align:left ;
+    padding-left: 150px;
+} 
+.logo img{
+    line-height: 160px;
+    height: 100px;
+}
+
+.centerImg{
+    line-height: 160px;
+    height: 100px;
+    margin-top: 25px;
+
+}
+
+.links{
+    float:right;
+    width: 700px;
+    line-height: 160px;
+    text-align: right;
+    padding-right: 150px;
+    
+}
+
+.texto{
+    color: #616160;
+    text-decoration: none;
+    margin-left: 20px;
+    font-size: 20px;
+    text-transform: uppercase;
+}
