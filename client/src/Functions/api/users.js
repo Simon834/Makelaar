@@ -29,3 +29,13 @@ export async function getUserByIdApi(id) {
         throw err
     }
 }
+
+export async function loguinUserApi(email, password) {
+  try {
+    const data = await axios.post(`${BACK_SERVER}/users/logIn`, {email, password})
+      return data
+  } catch (err) {
+      throw err
+  }
+}
+

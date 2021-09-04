@@ -39,7 +39,7 @@ export default function Home() {
                         type={<FilterModel title="Tipo" list={constantFilter.tipeFilter} constant={FILTER_TIPE} />}
                         sellRent={<FilterModel title="Condición" list={constantFilter.conceptFilter} constant={FILTER_CONCEPT} />}
                         price={<FilterPrice />}
-                        bedrooms={<FilterModel title="Habitaciones" list={constantFilter.bedroomFilter} constant={FILTER_BEDROOM} />}
+                        bedrooms={<FilterModel title="Dormitorios" list={constantFilter.bedroomFilter} constant={FILTER_BEDROOM} />}
                         bathrooms={<FilterModel title="Baños" list={constantFilter.bathroomFilter} constant={FILTER_BATHROOM} />}
                     />
                 }

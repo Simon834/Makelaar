@@ -2,15 +2,16 @@ import axios from "axios";
 
 import { LOGIN,LOGIN_ERROR,LOGIN_SUCCES,LOGOUT, SIGN_UP, SIGN_UP_ERROR, SIGN_UP_SUCCES } from "../Constants/constants";
 
+import { loguinUserApi } from "../../Functions/api/users";
 //recibimos email y token del form
 export function userLogIn({email, password}){
  return async function(dispatch){
      try{
-         dispatch({
-             type: LOGIN
-         })
+        //  dispatch({
+        //      type: LOGIN
+        //  })
 
-         const data = await axios.post(`http://localhost:3010/api/logIn`, {email, password})
+         const data = await loguinUserApi(email, password)
 
          switch(data.request.status){
              case 200:
@@ -20,22 +21,22 @@ export function userLogIn({email, password}){
                  })
             
                  //guardamos en localStorage
-                 localStorage.setItem('userInfo', JSON.stringify(data))
+                 localStorage.setItem('userInfo', JSON.stringify(data.data))
                  break;
             
                 case 401:
-                    dispatch({
-                        type: LOGIN_ERROR,
-                        payload: data.error
-                    });
+                    // dispatch({
+                    //     type: LOGIN_ERROR,
+                    //     payload: data.error
+                    // });
                     alert("Usuario o contraseña incorrectos")
                     break;
 
                 case 500:
-                    dispatch({
-                        type: LOGIN_ERROR,
-                        payload: data.error
-                    });
+                    // dispatch({
+                    //     type: LOGIN_ERROR,
+                    //     payload: data.error
+                    // });
                     alert("Error en el servidor");
                     break;
                     default: break;
@@ -43,49 +44,49 @@ export function userLogIn({email, password}){
 
      }catch(err){
          alert("Usuario o Contraseña incorrectos")
-         dispatch({
-             type: LOGIN_ERROR,
-             payload: err
-         })
+        //  dispatch({
+        //      type: LOGIN_ERROR,
+        //      payload: err
+        //  })
      }
  }
 }
 
-//recibe por body nombre, email, pass
-export function signUpUser(body){
-    return async function(dispatch){
-        try{dispatch({
-            type: SIGN_UP,
-        });
-        const config = {
-            headers: { "Content-Type": "application/json" }
-        };
+// //recibe por body nombre, email, pass
+// export function signUpUser(body){
+//     return async function(dispatch){
+//         try{dispatch({
+//             type: SIGN_UP,
+//         });
+//         const config = {
+//             headers: { "Content-Type": "application/json" }
+//         };
 
-        //data es el user y token
-        const {data} = await axios.post(`http://localhost:3010/api/signUp`, {body, config}
-        );
-        dispatch({
-            type: SIGN_UP_SUCCES,
-            payload:data
-        });
-        dispatch({
-            type:LOGIN_SUCCES,
-            payload:data
-        });
-        alert("Te registraste con Exito")
+//         //data es el user y token
+//         const {data} = await axios.post(`http://localhost:3010/api/signUp`, {body, config}
+//         );
+//         dispatch({
+//             type: SIGN_UP_SUCCES,
+//             payload:data
+//         });
+//         dispatch({
+//             type:LOGIN_SUCCES,
+//             payload:data
+//         });
+//         alert("Te registraste con Exito")
             
-        }catch(err){
-            alert("No se ha podido realizar el registro")
-            dispatch({
-                type: SIGN_UP_ERROR,
-                payload:err
-            })
+//         }catch(err){
+//             alert("No se ha podido realizar el registro")
+//             dispatch({
+//                 type: SIGN_UP_ERROR,
+//                 payload:err
+//             })
 
-        }
+//         }
 
-    }
+//     }
 
-}
+// }
 
 export function logOutUser(){
    return async function(dispatch){

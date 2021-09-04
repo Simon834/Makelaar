@@ -17,10 +17,10 @@ const {
 } = require("../Constants/constants");
 
 const initialState = {
-  user: {},
+  userToken: "",
   error: false,
   isLoading: false,
-  userInfo: {},
+  userInfo: JSON.parse(localStorage.getItem('userInfo')) || {},
   isAuth: false,
   msg_password: {},
   concept:null,
@@ -36,7 +36,7 @@ export default function userReducer(state = initialState, action) {
     case LOGIN_SUCCES: {
       return {
         ...state,
-        user: {},
+        userToken: action.payload.token,
         userInfo: action.payload,
         isLoading: false,
         error: false,
@@ -75,6 +75,7 @@ export default function userReducer(state = initialState, action) {
 
     case LOGOUT: {
       return {
+        ...state,
         isAuth: false,
         userInfo: {},
         user: {},

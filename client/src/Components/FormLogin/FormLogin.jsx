@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from 'react-router-dom';
 
 import { userLogIn } from "../../Redux/Actions/userActions";
 
@@ -56,8 +57,10 @@ export function validate(input) {
   return errors;
 }
 
-export default function FormLogin() {
+export default function FormLogin({action}) {
   const dispatch = useDispatch();
+  const history = useHistory()
+  const { userInfo } = useSelector(state => state)
 
   const classes = useStyle();
 
@@ -67,6 +70,21 @@ export default function FormLogin() {
   });
 
   const [errors, setErrors] = useState({});
+
+  useEffect(() => {
+    if (userInfo.token) {
+      if (userInfo.user.isAdmin) {
+        history.push(`/admin/${userInfo.user.id}/data`)
+        action()
+      } else {
+        history.push(`/user/${userInfo.user.id}/data`)
+        action()
+      }
+    }
+  }
+    , [userInfo])
+
+
 
   function handleChange(e) {
     e.persist();
@@ -82,9 +100,9 @@ export default function FormLogin() {
     );
   }
 
+
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(input);
     dispatch(userLogIn(input));
   }
 
@@ -146,7 +164,7 @@ export default function FormLogin() {
       </Typography>
 
       <Typography className={classes.link}>
-        <Link href="/resetpassword">REGISTRARSE</Link>
+        <Link href="/register">REGISTRARSE</Link>
       </Typography>
     </form>
   );
