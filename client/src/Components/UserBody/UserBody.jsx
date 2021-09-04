@@ -1,6 +1,6 @@
 import React from "react";
 import { Route } from "react-router";
-import UserList from "../UserList/UserList";
+
 import UserRegistrationForm from "../UserRegistrationForm/UserRegistrationFrom";
 import FormContraseña from "../FormContraseña/FormContraseña";
 import UserDetail from "../UserDetail/UserDetail";
@@ -14,7 +14,7 @@ export default function UserBody() {
   );
   return (
     <div>
-      <Route path="/user/:id">
+      <Route path="/user/:id/data">
         <UserDetail />
       </Route>
       <Route path="/user/:id/properties">
