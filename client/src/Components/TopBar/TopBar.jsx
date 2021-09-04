@@ -15,7 +15,7 @@ import MenuList from '@material-ui/core/MenuList';
 import ImageList from '@material-ui/core/ImageList';
 import ImageListItem from '@material-ui/core/ImageListItem';
 import ImageListItemBar from '@material-ui/core/ImageListItemBar';
-import './TopBar.css'
+import style from './TopBar.module.css';
 
 import InfoIcon from '@material-ui/icons/Info';
 
@@ -85,7 +85,7 @@ export default function TopBar() {
         }
     }
 
-    // return focus to the button when we transitioned from !open -> open
+    
     const prevOpen = useRef(open);
     useEffect(() => {
         if (prevOpen.current === true && open === false) {
@@ -100,8 +100,8 @@ export default function TopBar() {
 
     return (
 
-        <div className="containerTopBar">
-            <div className="containerContact">
+        <div className={style.containerTopBar}>
+            <div className={style.containerContact}>
                 <IconButton>
                     <WhatsAppIcon />
                     <Typography >+549 11456982365</Typography>
@@ -110,11 +110,11 @@ export default function TopBar() {
                 <IconButton>
                     <MailOutlineIcon />
                     <Typography >
-                    <a href="mailto:niromilagros@gmail.com" className="mail">makelaar@gmail.com</a></Typography>
+                    <a href="mailto:niromilagros@gmail.com" className={style.mail}>makelaar@gmail.com</a></Typography>
                 </IconButton>
             </div>
 
-            <div className="containerIcons">
+            <div className={style.containerIcons}>
                 <Tooltip title="favoritos">
                     <IconButton ref={anchorRef}
                         aria-controls={open ? 'menu-list-grow' : undefined}

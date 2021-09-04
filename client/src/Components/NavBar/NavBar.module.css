@@ -39,3 +39,27 @@
     font-size: 20px;
     text-transform: uppercase;
 }
+
+
+/*--RESPONSIVE--*/
+@media screen and (max-width:1300px){
+  
+    .navBarContainer{
+      padding-top: 0;
+    }
+    
+      .texto{
+        margin-left: 45px;
+      }
+}
+
+@media screen and (max-width:800px){
+    .links{
+        float: none;
+        margin: 25px 25px;
+      }
+      .texto{
+        display: inline-block;
+        margin-left: 20px;
+      }
+}
