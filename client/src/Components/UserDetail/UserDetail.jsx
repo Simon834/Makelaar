@@ -126,19 +126,39 @@ import TextField from "@material-ui/core/TextField";
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
+import EditIcon from '@material-ui/icons/Edit';
+import Tooltip from '@material-ui/core/Tooltip';
 
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    
+    margin: theme.spacing(5),
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
+    overflow: 'hidden',
+    
   },
-  paper: {
+  paperLeft: {
     padding: theme.spacing(2),
     margin: theme.spacing(1),
     textAlign: 'center',
-    color: theme.palette.text.primary, 
+    backgroundColor: "#E1535E", 
+    color:"#fff",
+    
     
   },
+
+  paperRight: {
+    padding: theme.spacing(2),
+    margin: theme.spacing(1), 
+    textAlign: 'center',
+    color: theme.palette.text.primary,
+    borderColor:"#E1535E !important" 
+    
+  }
 }));
 
 export default function UserDetail() {
@@ -182,48 +202,63 @@ export default function UserDetail() {
     <div className={classes.root}>
       <Grid container spacing={3}>   
         <Grid item xs={6}>
-          <Paper className={classes.paper}>Nombre</Paper>
+          <Paper className={classes.paperLeft}>Nombre</Paper>
         </Grid>
         <Grid item xs={6}>
-          <Paper className={classes.paper}>
+          <Paper className={classes.paperRight}>
           {info.name}
+          <Tooltip title="Editar">
+          <EditIcon/>
+          </Tooltip>
           </Paper>
         </Grid>
         <Grid item xs={6}>
-          <Paper className={classes.paper}>Email</Paper>
+          <Paper className={classes.paperLeft}>Email</Paper>
         </Grid>
         <Grid item xs={6}>
-          <Paper className={classes.paper}>
+          <Paper className={classes.paperRight}>
           {info.email}
+          <Tooltip title="Editar">
+          <EditIcon/>
+          </Tooltip>
           </Paper>
           </Grid>
 
           <Grid item xs={6}>
-          <Paper className={classes.paper}>Telefono</Paper>
+          <Paper className={classes.paperLeft}>Telefono</Paper>
         </Grid>
         <Grid item xs={6}>
-          <Paper className={classes.paper}>
+          <Paper className={classes.paperRight}>
           {info.phone}
+          <Tooltip title="Editar">
+          <EditIcon/>
+          </Tooltip>
           </Paper>
         </Grid>
 
         
 
         <Grid item xs={6}>
-          <Paper className={classes.paper}>WhatsApp</Paper>
+          <Paper className={classes.paperLeft}>WhatsApp</Paper>
         </Grid>
         <Grid item xs={6}>
-          <Paper className={classes.paper}>
+          <Paper className={classes.paperRight}>
           {info.whatsapp}
+          <Tooltip title="Editar">
+          <EditIcon/>
+          </Tooltip>
           </Paper>
         </Grid>
 
         <Grid item xs={6}>
-          <Paper className={classes.paper}>Comentarios</Paper>
+          <Paper className={classes.paperLeft}>Comentarios</Paper>
         </Grid>
         <Grid item xs={6}>
-          <Paper className={classes.paper}>
+          <Paper className={classes.paperRight}>
           {info.coments}
+          <Tooltip title="Editar">
+          <EditIcon/>
+          </Tooltip>
           </Paper>
         </Grid>
         

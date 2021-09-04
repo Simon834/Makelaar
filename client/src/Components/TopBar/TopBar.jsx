@@ -36,10 +36,10 @@ const itemData = [
 const useStyles = makeStyles((theme) => ({
 
     menuList: {
-        width: 800,
-        height: 1600,
+        width: "min-content",
+        
         display: 'flex',
-        margin: theme.spacing(7, 'auto'),
+        margin: theme.spacing(5),
         display: 'flex',
         flexWrap: 'wrap',
         justifyContent: 'space-around',
@@ -104,12 +104,13 @@ export default function TopBar() {
             <div className="containerContact">
                 <IconButton>
                     <WhatsAppIcon />
-                    <Typography>+549 11456982365</Typography>
+                    <Typography >+549 11456982365</Typography>
                 </IconButton>
 
                 <IconButton>
                     <MailOutlineIcon />
-                    <Typography>makelaar@gmail.com</Typography>
+                    <Typography >
+                    <a href="mailto:niromilagros@gmail.com" className="mail">makelaar@gmail.com</a></Typography>
                 </IconButton>
             </div>
 
