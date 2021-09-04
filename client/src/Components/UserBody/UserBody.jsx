@@ -14,10 +14,14 @@ export default function UserBody() {
   );
   return (
     <div>
+<<<<<<< HEAD
+      <Route path="/user/datos">
+=======
       <Route path="/user/:id/data">
+>>>>>>> dev
         <UserDetail />
       </Route>
-      <Route path="/user/:id/properties">
+      <Route path="/user/properties">
         <Cards inmuebles={inmueblesFiltrados} />
       </Route>
     </div>
