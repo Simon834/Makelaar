@@ -1,8 +1,9 @@
 import "./styleViewBase.css";
 import NavBar from "../../Components/NavBar/NavBar";
 import TopBar from "../../Components/TopBar/TopBar";
+import Footer from "../../Components/Footer/Footer";
 
-export default function viewBase({topBar, navBar, carousel, filters, content, footBar}) {
+export default function ViewBase({carousel, filters, content}) {
     return (
         <div className="base-container">
             <div className={ carousel? "header-container with-carousel" : "header-container"}>
@@ -14,7 +15,7 @@ export default function viewBase({topBar, navBar, carousel, filters, content, fo
                 {filters && <div className="filter-container">{filters}</div>}
                 <div className={filters? "content-container right": "content-container"}>{content}</div>
             </div>
-            <div className="footer-container">{footBar}</div>
+            <div className="footer-container"><Footer/></div>
         </div>
     );
 }

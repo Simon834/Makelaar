@@ -4,29 +4,30 @@ import MenuPanelList from '../../Components/MenuPanelList/MenuPanelList'
 import AdminBody from '../../Components/AdminBody/AdminBody'
 
 export default function AdminPanel() {
+    const id=15
     const list =
         [
         {
             title: "Mis datos",
-            rute: "/datos"
+            rute: "/data"
         },
         {
             title: "Mis usuarios",
             rute: "/users"
         },
         {
+            title: "Mis propiedades",
+            rute: "/property"
+        },
+        {
             title: "Crear admin",
             rute: "/newadmin"
-        }        ,
-        {
-            title: "Test",
-            rute: "/test"
         }
         ]
 
     return (
         <div>
-            <ViewBase filter={<MenuPanelList list={list} routeAction="/admin" />} content={<AdminBody />} />
+            <ViewBase filters={<MenuPanelList list={list} routeAction={`/admin/${id}`} />} content={<AdminBody />} />
         </div>
     )
 }

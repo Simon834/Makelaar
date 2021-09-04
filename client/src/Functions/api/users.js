@@ -23,9 +23,7 @@ export async function registerUser(user) {
 
 export async function getUserByIdApi(id) {
     try {
-      console.log("ID", id)
         const userbyid = await axios.get(`${BACK_SERVER}/users/${id}`)
-        console.log("userId", userbyid)
         return userbyid.data
     } catch (err) {
         throw err

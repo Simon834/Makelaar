@@ -13,7 +13,7 @@ export default function NavBar() {
 
       <div >
         <div className="links">
-          <NavLink className="texto"to="/home">Inicio</NavLink>
+          <NavLink className="texto"to="/">Inicio</NavLink>
           <NavLink className="texto"to="/property" >Propiedades</NavLink>
           <NavLink className="texto"to="/about" >Nosotros</NavLink>
           <NavLink className="texto"to="/contact" >Contacto</NavLink>
