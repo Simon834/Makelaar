@@ -5,29 +5,22 @@ import AdminBody from "../../Components/AdminBody/AdminBody";
 import UserBody from "../../Components/UserBody/UserBody";
 
 export default function UserPanel() {
+  const id=15
   const list = [
     {
       title: "Mis datos",
-      rute: "/datos",
-    },
-    {
-      title: "Mis contratos",
-      rute: "/:id/contracts",
-    },
-    {
-      title: "Mis pagos",
-      rute: "/:id/payments",
+      rute: "/data",
     },
     {
       title: "Mis propiedades",
-      rute: "/:id/properties",
+      rute: "/properties",
     },
   ];
 
   return (
     <div>
       <ViewBase
-        filters={<MenuPanelList list={list} routeAction="/user" />}
+        filters={<MenuPanelList list={list} routeAction={`/user/${id}`} />}
         content={<UserBody />}
       />
     </div>

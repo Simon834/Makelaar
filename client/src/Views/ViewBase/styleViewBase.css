@@ -37,22 +37,23 @@
     
 }
 .filter-container{
-    border: 3px solid rgb(29, 110, 9);
+    /* border: 3px solid rgb(29, 110, 9); */
     width: 25%;
     float: left;
     height: 100%;
+    padding: 30px
 }
 .content-container{
     /* border: 3px solid rgb(109, 76, 76); */
     float: left;
     height: 100%;
     width: 100%;
-    padding: 10px
+    padding: 30px
 }
 .right{
     width: 80%;
 }
 .footer-container{
-    border: 3px solid rgb(47, 202, 230);
+    /* border: 3px solid rgb(47, 202, 230); */
     height: 120px;
 }
