@@ -4,6 +4,8 @@ import { useSelector } from 'react-redux';
 import ViewBase from '../ViewBase/view-base'
 import Carrusel from '../../Components/Carrusel/Carrusel';
 import Cards from '../../Components/Cards/Cards';
+import FavoriteCard from '../../Components/Favorites/FavoriteCard';
+import FavoriteCards from '../../Components/Favorites/FavoritesCards/FavoriteCards';
 
 import Filter from '../Filters/Filters';
 import SearchBar from '../../Components/SearchBar/SearchBar';
@@ -44,7 +46,7 @@ export default function Home() {
                     />
                 }
                 carousel={<Carrusel />}
-                content={<Cards inmuebles={estates} />}
+                content={<FavoriteCards inmuebles={estates} />}
             />
         </div>
     )

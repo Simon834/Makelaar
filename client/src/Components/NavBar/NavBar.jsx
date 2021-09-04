@@ -13,10 +13,10 @@ export default function NavBar() {
 
       <div >
         <div className={style.links}>
-          <NavLink className={style.texto} to="/">Inicio</NavLink>
-          <NavLink className={style.texto} to="/property" >Propiedades</NavLink>
-          <NavLink className={style.texto} to="/about" >Nosotros</NavLink>
-          <NavLink className={style.texto} to="/contact" >Contacto</NavLink>
+          <NavLink className={style.texto}to="/home">Inicio</NavLink>
+          <NavLink className={style.texto}to="/property" >Propiedades</NavLink>
+          <NavLink className={style.texto}to="/about" >Nosotros</NavLink>
+          <NavLink className={style.texto}to="/contact" >Contacto</NavLink>
 
         </div>
       </div>
