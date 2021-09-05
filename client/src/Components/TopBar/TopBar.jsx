@@ -48,7 +48,8 @@ const useStyles = makeStyles((theme) => ({
         marginBottom: "20px",
         marginTop: "12px",
         padding: "6px",
-        marginLeft: theme.spacing(49),
+        marginLeft: theme.spacing(40),
+        float: "right",
     },
 
 }));
