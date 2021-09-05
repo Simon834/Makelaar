@@ -27,7 +27,7 @@ export const useFormControls = (isAdmin) => {
     if ("name" in fieldValues)
       temp.name = fieldValues.name ? "" : "Este campo es requerido";
     if (fieldValues.name) {
-      temp.name = /^[a-z ,.'-]+$/.test(fieldValues.name)
+      temp.name = /^[A-ZÄËÏÖÜÁÉÍÓÚÂÊÎÔÛÀÈÌÒÙ][a-zäÄëËïÏöÖüÜáéíóúáéíóúÁÉÍÓÚÂÊÎÔÛâêîôûàèìòùÀÈÌÒÙ]+$/.test(fieldValues.name)
         ? ""
         : "El nombre no es valido";
     }

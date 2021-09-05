@@ -85,12 +85,13 @@ async function updateUser(req, res, next) {
           Number.parseInt(authConfig.rounds)
         );
         user.password = newPassword;
+        sendUserEmail(recoveryPass(password), email);
       }
       await user.save();
-      sendUserEmail(recoveryPass(updatePass), email);
       return res.json({ msg: "Tus datos han sido actualizados" });
     }
   } catch (err) {
+    console.log(err);
     next(err);
   }
 }
