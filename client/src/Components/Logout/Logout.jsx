@@ -1,4 +1,7 @@
 import { Button, Grid, Paper, makeStyles } from "@material-ui/core";
+import { useDispatch } from "react-redux";
+import { logOutUser } from "../../Redux/Actions/userActions";
+import { useHistory } from "react-router";
 
 const useStyle = makeStyles((theme) => ({
   message: {
@@ -31,6 +34,8 @@ const useStyle = makeStyles((theme) => ({
 
 export default function Logout() {
   const classes = useStyle();
+  const dispatch = useDispatch()
+  const history = useHistory()
   return (
     <div>
       <Paper className={classes.container}>
@@ -42,10 +47,20 @@ export default function Logout() {
             variant="contained"
             color="secondary"
             className={classes.cancel}
+            onClick={() => {
+              history.goBack()
+            }}
           >
             Cancelar
           </Button>
-          <Button variant="contained" color="primary" className={classes.ok}>
+          <Button
+            variant="contained"
+            color="primary"
+            className={classes.ok}
+            onClick={() => {
+              dispatch(logOutUser())
+              history.push(`/`)
+            }}>
             Si, cerrar sesión!
           </Button>
         </Grid>
