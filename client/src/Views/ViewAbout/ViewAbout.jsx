@@ -1,11 +1,11 @@
 import React from 'react'
-import Contact from '../../Components/Contact/Contact'
-import ViewBase from '../ViewBase/view-base'
+import AboutUs from "../../Components/AboutUs/AboutUs";
+import ViewBase from "../ViewBase/view-base";
 
 export default function ViewAbout() {
-    return (
-        <div>
-            <ViewBase content={<Contact />} />
-        </div>
-    )
+  return (
+    <div>
+      <ViewBase content={<AboutUs />} />
+    </div>
+  );
 }
