@@ -12,7 +12,7 @@ export default function AdminPanel() {
     const history = useHistory()
 
     useEffect(() => {
-        if(!userInfo.user.isAdmin){
+        if(!userInfo.user?.isAdmin){
             history.push("/")
         }
     }, [userInfo])

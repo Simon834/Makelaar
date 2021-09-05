@@ -62,6 +62,7 @@ export default function CardComponent(props) {
           <Typography className={classes.address}>{props.address}</Typography>
           <Typography className="Container-info">
             <img
+            
               className="image-title"
               src="http://garbero.com.ar/wp-content/themes/realtyelite/img/ico-amountrooms.png"
               alt="rooms"

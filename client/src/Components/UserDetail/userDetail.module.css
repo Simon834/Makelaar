@@ -1,0 +1,8 @@
+ .divContainer{
+  width: 30rem !important;
+}
+
+.paper{
+  display: flex;
+  justify-content: flex-end;
+}

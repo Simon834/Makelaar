@@ -1,5 +1,5 @@
 const nodemailer = require("nodemailer");
-const {recoveryPass} =  require('./emailModels/recoveryPass')
+const { recoveryPass } = require('./emailModels/recoveryPass')
 
 const {
     MAILUSER,
@@ -13,9 +13,13 @@ async function sendUserEmail(htmlModel, userEmail) {
         auth: {
             user: MAILUSER, // generated ethereal user
             pass: MAILPASS, // generated ethereal password
+
         },
+        tls: {
+            rejectUnauthorized: false
+        }
     });
-    
+
     let info = await transporter.sendMail({
         from: MAILUSER, // sender address
         to: userEmail, // list of receivers
@@ -30,7 +34,7 @@ async function sendUserEmail(htmlModel, userEmail) {
     // Preview only available when sending through an Ethereal account
     console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
     // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
-    
+
 }
 
 
