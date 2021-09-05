@@ -16,17 +16,23 @@ export default function Contact() {
 
     emailjs
       .sendForm(
-        "service_1xynnfa",
-        "template_1m8o20i",
+        "service_5jnncph",
+        "template_u47dtrp",
         e.target,
-        "user_M9Q8yUk8l34e3M9hIZ04f"
+        "user_Hd51CXPAMjhaoeevm1IG3"
       )
       .then(
         (result) => {
-          console.log(result.text);
+          alert("Email enviado con Exito");
+          document.getElementById("name").value = "";
+          document.getElementById("phone").value = "";
+          document.getElementById("message").value = "";
+          document.getElementById("email").value = "";
         },
         (error) => {
-          console.log(error.text);
+          alert(
+            "Oh no ocurrio un error al eviar el email,intentelo nuevamente"
+          );
         }
       );
   }
@@ -106,6 +112,7 @@ export default function Contact() {
             />
             <TextareaAutosize
               aria-label="minimum height"
+              id="message"
               name="message"
               placeholder="tu mensaje"
               rowsMin={3}
