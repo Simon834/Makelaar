@@ -21,16 +21,16 @@ const initialState = {
   userToken: "",
   error: false,
   isLoading: false,
-  userInfo: JSON.parse(localStorage.getItem('userInfo')) || {},
+  userInfo: JSON.parse(localStorage.getItem("userInfo")) || {},
   isAuth: false,
   msg_password: {},
-  concept:null,
-  tipe:null,
-  bedroom:null,
-  bathroom:null,
-  price:[null,null],
-  search:null,
-  favorites:[]
+  concept: null,
+  tipe: null,
+  bedroom: null,
+  bathroom: null,
+  price: [null, null],
+  search: null,
+  favorites: JSON.parse(localStorage.getItem("userInfo")) || [],
 };
 
 export default function userReducer(state = initialState, action) {
@@ -147,10 +147,11 @@ export default function userReducer(state = initialState, action) {
 
     //-----------------Favorites---------------------
     case ADD_FAVORITES: {
-
       return {
         ...state,
-        favorites: action.payload
+        favorites: [...state.favorites,
+          action.payload
+        ]
       }
     }
 

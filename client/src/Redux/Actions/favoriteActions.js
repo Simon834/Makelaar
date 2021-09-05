@@ -1,8 +1,8 @@
 import { ADD_FAVORITES } from "../Constants/constants";
 
-export function addFavorite(id) {
+export function addFavorite(obj) {
     return {
         type: ADD_FAVORITES,
-        payload: id,
+        payload: obj,
     };
 }
