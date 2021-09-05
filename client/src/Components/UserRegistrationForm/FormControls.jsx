@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { registerUser } from "../../Functions/api/users";
+import { useHistory } from "react-router-dom";
 
 const initialFormValues = {
   name: "",
@@ -27,7 +28,9 @@ export const useFormControls = (isAdmin) => {
     if ("name" in fieldValues)
       temp.name = fieldValues.name ? "" : "Este campo es requerido";
     if (fieldValues.name) {
-      temp.name = /^[A-ZÄËÏÖÜÁÉÍÓÚÂÊÎÔÛÀÈÌÒÙ][a-zäÄëËïÏöÖüÜáéíóúáéíóúÁÉÍÓÚÂÊÎÔÛâêîôûàèìòùÀÈÌÒÙ]+$/.test(fieldValues.name)
+      temp.name = /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/.test(
+        fieldValues.name
+      )
         ? ""
         : "El nombre no es valido";
     }
@@ -90,6 +93,8 @@ export const useFormControls = (isAdmin) => {
     return isValid;
   };
 
+  let history = useHistory();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const isValid =
@@ -101,6 +106,8 @@ export const useFormControls = (isAdmin) => {
         `Hola ${registeredUser.user.name}, en tu email: ${registeredUser.user.email}, encontraras la confirmacion de creacion de tu cuenta`
       );
     }
+    e.reset();
+    history.push("/");
   };
 
   return {
