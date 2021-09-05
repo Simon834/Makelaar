@@ -14,7 +14,7 @@ export default function Footer() {
           <div className={style.left_contact}>
             <div className={style.container_left}>
               <MailOutlineIcon style={{ margin: "7px" }} />
-              makelaar.com.arg
+            info_makelaar
             </div>
 
             <div
@@ -25,13 +25,13 @@ export default function Footer() {
               }}
             >
               <WhatsAppIcon style={{ margin: "7px" }} />
-              +31 989 88999
+              +54911456982365
             </div>
           </div>
 
           <div className={style.right_contact}>
-            <Instagram style={{ display: "block", margin: "7px" }} />
-            <Facebook style={{ margin: "7px" }} />
+            <Instagram style={{ display: "block", margin: "7px" }} onClick={()=>window.open('https://www.instagram.com/makelaar.inmobiliaria/', '_blank')}/>
+            <Facebook style={{ margin: "7px" }} onClick={()=>window.open('https://m.facebook.com/Makelaar-110691244682513/', '_blank')}/>
           </div>
         </div>
 

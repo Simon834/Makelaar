@@ -106,7 +106,7 @@ export const useFormControls = (isAdmin) => {
         `Hola ${registeredUser.user.name}, en tu email: ${registeredUser.user.email}, encontraras la confirmacion de creacion de tu cuenta`
       );
     }
-    e.reset();
+    setUser(initialFormValues);
     history.push("/");
   };
 

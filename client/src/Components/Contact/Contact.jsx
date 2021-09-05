@@ -71,7 +71,7 @@ export default function Contact() {
             <div>
               <h3>Escribinos a</h3>
               <div className={style.info}>
-                <p>makelaar@gmail.com</p>
+                <p>info_makelaar@yahoo.com</p>
               </div>
             </div>
           </div>
@@ -80,12 +80,12 @@ export default function Contact() {
         <div className={style.container_Form}>
           <form className={style.form_contact} onSubmit={sendEmail}>
             <h2 className={style.title}>Formulario de Contacto</h2>
-            <p>Personalmente te responderemos tan pronto como podamos.</p>
+            <p>Personalmente te responderemos a la brevedad.</p>
             <TextField
               id="name"
               type="text"
               name="name"
-              placeholder="name"
+              placeholder="Nombre"
               variant="outlined"
               style={{
                 marginBottom: "10px",
@@ -97,7 +97,7 @@ export default function Contact() {
               variant="outlined"
               type="text"
               name="phone"
-              placeholder="phone"
+              placeholder="Teléfono"
               style={{ marginBottom: "10px" }}
             />
             <TextField
@@ -110,13 +110,16 @@ export default function Contact() {
                 marginBottom: "10px",
               }}
             />
-            <TextareaAutosize
+            <TextField
               aria-label="minimum height"
+              multiline
               id="message"
               name="message"
-              placeholder="tu mensaje"
+              placeholder="Tu mensaje"
+              rows={4}
               rowsMin={3}
               cols="20"
+              variant="outlined"
             />
             <Button
               variant="contained"
@@ -144,7 +147,7 @@ export default function Contact() {
               Para estar actualizado
             </div>
             <div>
-              <Button variant="contained" color="primary" p={5} type="submit">
+              <Button variant="contained" color="primary" p={5} onClick={()=>window.open('https://m.facebook.com/Makelaar-110691244682513/', '_blank')}>
                 Seguinos
               </Button>
             </div>
@@ -158,7 +161,7 @@ export default function Contact() {
               Todas las novedades
             </div>
             <div>
-              <Button variant="contained" color="primary" p={5} type="submit">
+              <Button variant="contained" color="primary" p={5} onClick={()=>window.open('https://www.instagram.com/makelaar.inmobiliaria/', '_blank')}>
                 Seguinos
               </Button>
             </div>

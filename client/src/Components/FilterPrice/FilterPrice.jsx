@@ -9,7 +9,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 
 const useStyles = makeStyles({
   root: {
-    width: 300,
+    width: "80%",
   },
 });
 
@@ -50,6 +50,18 @@ export default function FilterPrice() {
           getAriaValueText={valuetext}
           min={10}
           max={110}
+          marks={[{
+            value: 10,
+            label: '$10.000',
+          },
+          {
+            value: 55,
+            label: '$55.000',
+          },
+          {
+            value: 110,
+            label: '$110.000',
+          }]}
         />
       </div>
       <div>

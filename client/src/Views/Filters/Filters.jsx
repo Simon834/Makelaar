@@ -1,4 +1,7 @@
 import "./filters.css";
+import Button from '@material-ui/core/Button'
+import { useDispatch } from 'react-redux';
+import { clearFilter } from "../../Redux/Actions/filterActions";
 
 export default function Filter({
     searchBar,
@@ -11,20 +14,23 @@ export default function Filter({
     street,
     bedrooms,
     bathrooms,
-    }) {
+}) {
+    const dispatch = useDispatch()
+
     return (
         <div>
             <div className="filters-fixed">
-            {searchBar && <div className="searchbar-container">{searchBar}</div>}
-            {type && <div className="type-container">{type}</div>}
-            {sellRent && <div className="sellRent-container">{sellRent}</div>}
-            {price && <div className="price-container">{price}</div>}
-            {city && <div className="city-container">{city}</div>}
-            {province && <div className="province-container">{province}</div>}
-            {neighbothood && <div className="neighbothood-container">{neighbothood}</div>}
-            {street && <div className="street-container">{street}</div>}
-            {bedrooms && <div className="bedrooms-container">{bedrooms}</div>}
-            {bathrooms && <div className="bathrooms-container">{bathrooms}</div>}
+                {searchBar && <div className="searchbar-container">{searchBar}</div>}
+                {type && <div className="type-container">{type}</div>}
+                {sellRent && <div className="sellRent-container">{sellRent}</div>}
+                {price && <div className="price-container">{price}</div>}
+                {city && <div className="city-container">{city}</div>}
+                {province && <div className="province-container">{province}</div>}
+                {neighbothood && <div className="neighbothood-container">{neighbothood}</div>}
+                {street && <div className="street-container">{street}</div>}
+                {bedrooms && <div className="bedrooms-container">{bedrooms}</div>}
+                {bathrooms && <div className="bathrooms-container">{bathrooms}</div>}
+            {/* <Button variant="contained" color="primary" onClick={()=>dispatch(clearFilter())} >Limpiar filtros</Button> */}
             </div>
         </div>
     );

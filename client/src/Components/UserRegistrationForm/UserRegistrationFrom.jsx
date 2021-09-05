@@ -57,7 +57,7 @@ export default function UserRegistrationForm(props) {
             <Grid item xs={6}>
               <TextField
                 variant="outlined"
-                label="Name"
+                label="Nombre"
                 name="name"
                 onBlur={handleChange}
                 value={user.name}
@@ -108,7 +108,7 @@ export default function UserRegistrationForm(props) {
               />
               <TextField
                 variant="outlined"
-                label="Password"
+                label="Contraseña"
                 name="password"
                 type="password"
                 value={user.password}

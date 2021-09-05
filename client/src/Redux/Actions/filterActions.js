@@ -1,4 +1,4 @@
-import { FILTER_PRICE,SEARCH } from "../Constants/constants"
+import { FILTER_PRICE,SEARCH,RESET_FILTER } from "../Constants/constants"
 
 export function filterByConstant(constant,id) {
     return (
@@ -23,6 +23,14 @@ export function searchAction(search) {
         dispatch => {
 
             dispatch({ type: SEARCH, payload: search })
+        }
+    )
+}
+
+export function clearFilter() {
+    return (
+        dispatch => {
+            dispatch({ type: RESET_FILTER })
         }
     )
 }

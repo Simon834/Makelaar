@@ -12,13 +12,13 @@
   margin: 3rem 0 3rem 0px;
   height: 500px;
   justify-content: space-around;
-  border: 1px solid;
+  /* border: 1px solid; */
 }
 .container .about_contact {
   display: flex;
   width: -webkit-fill-available;
   justify-content: space-around;
-  border-bottom: 1px solid;
+  /* border-bottom: 1px solid; */
   padding: 0 0 2rem 0;
 }
 .container .about_contact .contact {
@@ -55,7 +55,7 @@
 }
 .container .container_redes .red {
   display: flex;
-  border: 1px solid;
+  /* border: 1px solid; */
   margin: 1rem;
   padding: 1rem;
   align-items: center;
@@ -64,7 +64,7 @@
   margin: 2rem 2rem 0 3rem;
 }
 .container .container_redes .red .icon_red {
-  border: 1px solid;
+  /* border: 1px solid; */
   padding: 1rem;
   margin: 0rem 2rem 0 0rem;
   border-radius: 50%;
