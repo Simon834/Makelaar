@@ -2,7 +2,8 @@ import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import React from "react";
 import FavoriteCard from "../FavoriteCard";
-import inmuebles from '../../../inmuebles.json'
+// import inmuebles from '../../../inmuebles.json';
+import { useSelector } from 'react-redux'
 
 const useStyles = makeStyles({
   root: {
@@ -37,13 +38,13 @@ const useStyles = makeStyles({
   });
 
 export default function FavoriteCards() {
-
+  const inmuebles = useSelector(state => state.favorites);
   const classes = useStyles();
     
   return (
-    <Grid className={classes.root}container spacing={1}>
+    <Grid className={classes.root} container spacing={1}>
       {inmuebles.map((inm) => (
-        <Grid item  xs={12} sm={6} md={6}>
+        <Grid item xs={12} sm={6} md={6}>
           <FavoriteCard
             title={inm.title}
             image={inm.image}
