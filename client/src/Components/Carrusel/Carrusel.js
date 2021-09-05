@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "./Slider.css";
-import inmuebles from "../../inmuebles.json";
+import images from "./Carruselimg.json";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 export default function Carrusel() {
   const [slideIndex, setSlideIndex] = useState(1);
   function nextSlide() {
-    if (slideIndex !== inmuebles.length) {
+    if (slideIndex !== images.length) {
       setSlideIndex(slideIndex + 1);
-    } else if (slideIndex === inmuebles.length) {
+    } else if (slideIndex === images.length) {
       setSlideIndex(1);
     }
   }
@@ -18,7 +18,7 @@ export default function Carrusel() {
 
   return (
     <div className="container-slider">
-      {inmuebles.map((obj, index) => {
+      {images.map((obj, index) => {
         return (
           <div
             key={index}
