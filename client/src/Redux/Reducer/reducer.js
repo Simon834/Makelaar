@@ -12,7 +12,9 @@ const {
   FILTER_BATHROOM,
   FILTER_PRICE,
   RESET_FILTER,
-  SEARCH
+  SEARCH,
+  ADD_FAVORITES,
+  DELETE_FAVORITE
 
 } = require("../Constants/constants");
 
@@ -20,15 +22,16 @@ const initialState = {
   userToken: "",
   error: false,
   isLoading: false,
-  userInfo: JSON.parse(localStorage.getItem('userInfo')) || {},
+  userInfo: JSON.parse(localStorage.getItem("userInfo")) || {},
   isAuth: false,
   msg_password: {},
-  concept:null,
-  tipe:null,
-  bedroom:null,
-  bathroom:null,
-  price:[null,null],
-  search:null
+  concept: null,
+  tipe: null,
+  bedroom: null,
+  bathroom: null,
+  price: [null, null],
+  search: null,
+  favorites: JSON.parse(localStorage.getItem("favorites")) || [],
 };
 
 export default function userReducer(state = initialState, action) {
@@ -88,64 +91,81 @@ export default function userReducer(state = initialState, action) {
         msg_password: action.payload,
       };
     }
-    case GET_USER_DETAIL:{
-      return{
+    case GET_USER_DETAIL: {
+      return {
         ...state,
-        userInfo: action.payload
-      }
+        userInfo: action.payload,
+      };
     }
-//-----------------Filters---------------------
-    case FILTER_CONCEPT:{
-      return{
+    //-----------------Filters---------------------
+    case FILTER_CONCEPT: {
+      return {
         ...state,
-        concept: action.payload
-      }
+        concept: action.payload,
+      };
     }
-    case FILTER_TIPE:{
-      return{
+    case FILTER_TIPE: {
+      return {
         ...state,
-        tipe: action.payload
-      }
+        tipe: action.payload,
+      };
     }
-    case FILTER_BEDROOM:{
-      return{
+    case FILTER_BEDROOM: {
+      return {
         ...state,
-        bedroom: action.payload
-      }
+        bedroom: action.payload,
+      };
     }
-    case FILTER_BATHROOM:{
-      return{
+    case FILTER_BATHROOM: {
+      return {
         ...state,
-        bathroom: action.payload
-      }
+        bathroom: action.payload,
+      };
     }
-    case FILTER_PRICE:{
-      return{
+    case FILTER_PRICE: {
+      return {
         ...state,
-        price: action.payload
-      }
+        price: action.payload,
+      };
     }
-    case SEARCH:{
-      return{
+    case SEARCH: {
+      return {
         ...state,
-        search: action.payload
-      }
+        search: action.payload,
+      };
     }
-    case RESET_FILTER:{
-      return{
+    case RESET_FILTER: {
+      return {
         ...state,
-        concept:null,
-        tipe:null,
-        bedroom:null,
+        concept: null,
+        tipe: null,
+        bedroom: null,
         bathroom: null,
         price: [null, null],
-        search: null
-
-      }
+        search: null,
+      };
     }
 
-
-
+    //-----------------Favorites---------------------
+    case ADD_FAVORITES: {
+      const alreadyFavorite = state.favorites.find(fav => fav.id === action.payload.id) 
+      console.log(alreadyFavorite);
+      if (alreadyFavorite){
+        return state;
+      } else {
+        return {
+          ...state,
+          favorites: [...state.favorites, action.payload],
+        };
+      }
+    }
+    case DELETE_FAVORITE: {
+        const deletedFavorite = state.favorites.filter(fav => fav.id !== action.payload);
+      return {
+        ...state,
+        favorites: deletedFavorite
+      }
+    }
     default:
       return state;
   }
