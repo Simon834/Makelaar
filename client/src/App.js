@@ -9,9 +9,19 @@ import ViewProperty from "./Views/ViewProperty/ViewProperty";
 import ViewAbout from "./Views/ViewAbout/ViewAbout";
 import ViewResetPassword from "./Views/ViewResetPassword/ViewResetPassword";
 import VierwRegister from "./Views/ViewRegister/VierwRegister";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
 
 
 function App() {
+  const favorites = useSelector(state => state.favorites) 
+
+  useEffect(() => {
+    if(favorites.length > 0){
+      localStorage.setItem("favorites", JSON.stringify(favorites));
+    }
+  },[favorites])
+
   return (
     <div className="App">
       <Route exact path="/" component={Home}/>

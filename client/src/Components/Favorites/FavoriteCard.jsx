@@ -7,9 +7,11 @@ import CardMedia from "@material-ui/core/CardMedia";
 import IconButton from "@material-ui/core/IconButton";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import Typography from "@material-ui/core/Typography";
-
+import { useDispatch } from "react-redux";
+import DeleteIcon from "@material-ui/icons/Delete";
 
 import "./FavoriteCard.css";
+import { deleteFavorite } from "../../Redux/Actions/favoriteActions";
 
 const useStyles = makeStyles({
     root: {
@@ -30,6 +32,7 @@ const useStyles = makeStyles({
         fontSize: 12,
         marginBottom: 12,
         color: "#4C3C90",
+        width: "100%",
       },
       address: {
         fontWeight: "450",
@@ -41,30 +44,57 @@ const useStyles = makeStyles({
         fontWeight: "500",
         fontSize: 14,
       },
+      align: {
+        alignSelf: "flex-end",
+      },
+      flexBox: {
+        display: "flex",
+        flexDirection: "column",
+      },
+      iconDelete: {
+        display:"flex",
+        justifyContent: "flex-end",
+      }
     });
 
 
 export default function FavoriteCard(props) {
+  const dispatch = useDispatch();
   const classes = useStyles();
-
+  const handleOnClick = (id) => {
+    dispatch(deleteFavorite(id))
+  }
   return (
-    <Card className={classes.root}>
+    <Card className={classes.root} key={props.id}>
       <CardActionArea>
         <CardMedia
           className={classes.media}
           image={props.image}
           title={props.title}
         />
-        <CardContent >
-          <Typography className={classes.title}>{props.title}</Typography>
-          <Typography className={classes.address}>
-
-          <IconButton aria-label="add to favorites">
-              <FavoriteIcon className="Favorite-button" />
+        <CardContent className={classes.flexBox}>
+          <div className="descriptionCard">
+            <Typography className={classes.title}>{props.title}</Typography>
+          </div>
+          <div className="iconPrice">
+            <Typography className={classes.address}>
+              {/* <IconButton aria-label="add to favorites">
+                <FavoriteIcon className="Favorite-button" />
+              </IconButton> */}
+              <span className="price-txt">Precio ${props.price}</span>
+            </Typography>
+          </div>
+          <div className={classes.iconDelete}>
+            <IconButton aria-label="delete" color="primary" className={classes.align} onClick={() => handleOnClick(props.id)}>
+              <DeleteIcon
+                className={classes.align}
+                onClick={() => {
+                  handleOnClick(props.id);
+                }}
+              />
             </IconButton>
-            <span className="price-txt">Precio ${props.price}</span>
-          </Typography>
-          
+          </div>
+          {/* <button onClick={() => handleOnClick(props.id)}>x</button> */}
         </CardContent>
       </CardActionArea>
     </Card>

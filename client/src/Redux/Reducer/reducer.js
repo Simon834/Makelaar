@@ -13,7 +13,8 @@ const {
   FILTER_PRICE,
   RESET_FILTER,
   SEARCH,
-  ADD_FAVORITES
+  ADD_FAVORITES,
+  DELETE_FAVORITE
 
 } = require("../Constants/constants");
 
@@ -30,7 +31,7 @@ const initialState = {
   bathroom: null,
   price: [null, null],
   search: null,
-  favorites: JSON.parse(localStorage.getItem("userInfo")) || [],
+  favorites: JSON.parse(localStorage.getItem("favorites")) || [],
 };
 
 export default function userReducer(state = initialState, action) {
@@ -147,14 +148,24 @@ export default function userReducer(state = initialState, action) {
 
     //-----------------Favorites---------------------
     case ADD_FAVORITES: {
-      return {
-        ...state,
-        favorites: [...state.favorites,
-          action.payload
-        ]
+      const alreadyFavorite = state.favorites.find(fav => fav.id === action.payload.id) 
+      console.log(alreadyFavorite);
+      if (alreadyFavorite){
+        return state;
+      } else {
+        return {
+          ...state,
+          favorites: [...state.favorites, action.payload],
+        };
       }
     }
-
+    case DELETE_FAVORITE: {
+        const deletedFavorite = state.favorites.filter(fav => fav.id !== action.payload);
+      return {
+        ...state,
+        favorites: deletedFavorite
+      }
+    }
     default:
       return state;
   }
