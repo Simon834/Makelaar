@@ -30,7 +30,7 @@ export default function Filter({
                 {street && <div className="street-container">{street}</div>}
                 {bedrooms && <div className="bedrooms-container">{bedrooms}</div>}
                 {bathrooms && <div className="bathrooms-container">{bathrooms}</div>}
-            {/* <Button variant="contained" color="primary" onClick={()=>dispatch(clearFilter())} >Limpiar filtros</Button> */}
+            <Button variant="contained" color="primary" onClick={()=>dispatch(clearFilter())} >Limpiar filtros</Button>
             </div>
         </div>
     );

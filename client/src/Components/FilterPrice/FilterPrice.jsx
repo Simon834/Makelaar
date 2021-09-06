@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
@@ -17,10 +17,15 @@ function valuetext(value) {
   return `${value}°C`;
 }
 
-export default function FilterPrice() {
+export default function FilterPrice({valuePrice}) {
   const dispatch = useDispatch()
   const classes = useStyles();
-  const [value, setValue] = React.useState([null, null]);
+  const [value, setValue] = React.useState(valuePrice||[10, 20]);
+
+  useEffect(() => {
+    if(!valuePrice[0] && !valuePrice[1]){
+    setValue([10, 20])}
+  }, [valuePrice])
 
   const handleChange = (event, newValue) => {
     setValue(newValue);

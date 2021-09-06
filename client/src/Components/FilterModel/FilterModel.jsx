@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -18,11 +18,16 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function FilterModel({list, title, constant}) {
+export default function FilterModel({list, title, constant, value}) {
   const classes = useStyles();
   const dispatch = useDispatch()
-  const [concept, setConcept] = React.useState('');
+  const [concept, setConcept] = React.useState(value||"");
   const [open, setOpen] = React.useState(false);
+
+  useEffect(() => {
+    setConcept(value)
+  }, [value])
+
 
   const handleChange = (event) => {
     setConcept(event.target.value);
