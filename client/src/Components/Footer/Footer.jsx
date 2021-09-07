@@ -4,7 +4,7 @@ import MailOutlineIcon from "@material-ui/icons/MailOutline";
 import Facebook from "@material-ui/icons/Facebook";
 import Instagram from "@material-ui/icons/Instagram";
 import logo from "../../images/logo-white-horizontal.png";
-import style from "./Footer.module.css"
+import style from "./Footer.module.css";
 
 export default function Footer() {
   return (
@@ -14,7 +14,7 @@ export default function Footer() {
           <div className={style.left_contact}>
             <div className={style.container_left}>
               <MailOutlineIcon style={{ margin: "7px" }} />
-            info_makelaar
+              info_makelaar
             </div>
 
             <div
@@ -30,14 +30,34 @@ export default function Footer() {
           </div>
 
           <div className={style.right_contact}>
-            <Instagram style={{ display: "block", margin: "7px" }} onClick={()=>window.open('https://www.instagram.com/makelaar.inmobiliaria/', '_blank')}/>
-            <Facebook style={{ margin: "7px" }} onClick={()=>window.open('https://m.facebook.com/Makelaar-110691244682513/', '_blank')}/>
+            <Instagram
+              style={{ display: "block", margin: "7px" }}
+              className={style.icon}
+              onClick={() =>
+                window.open(
+                  "https://www.instagram.com/makelaar.inmobiliaria/",
+                  "_blank"
+                )
+              }
+            />
+            <Facebook
+              style={{ margin: "7px" }}
+              className={style.icon}
+              onClick={() =>
+                window.open(
+                  "https://m.facebook.com/Makelaar-110691244682513/",
+                  "_blank"
+                )
+              }
+            />
           </div>
         </div>
 
         <div className={style.linea} />
 
-        <div className={style.derechos}>© 2021 Makelaar.All Rights Reserved</div>
+        <div className={style.derechos}>
+          © 2021 Makelaar.All Rights Reserved
+        </div>
 
         <div className={style.linea} />
 

@@ -47,3 +47,19 @@
     width: calc(100px / 0.5);
   }
 }
+@media (max-width: 800px) {
+  .footer {
+    flex-direction: column;
+  }
+  .footer .contacto {
+    margin: 1.2rem;
+    width: auto;
+  }
+  .footer .derechos {
+    margin: 1.2rem;
+  }
+  .footer .logo_footer {
+    margin: 1.2rem;
+    width: auto;
+  }
+}
