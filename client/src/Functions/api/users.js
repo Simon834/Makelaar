@@ -17,8 +17,7 @@ export async function registerUser(user) {
   console.log("register")
   try {
     const response = await axios.post(`${BACK_SERVER}/users/signup`, user)
-    console.log("data",response.data)  
-    return response.data;
+     return response.data;
   } catch(err) {
     return err.response.status;
   }
@@ -36,7 +35,6 @@ export async function getUserByIdApi(id) {
 export async function loguinUserApi(email, password) {
   try {
     const data = await axios.post(`${BACK_SERVER}/users/logIn`, {email, password})
-    console.log("data",data)  
     return data
 
   } catch (err) {
