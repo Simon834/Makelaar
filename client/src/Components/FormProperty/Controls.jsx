@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { addNewProperty } from "../../Functions/api/property";
 
 const resetValues = {
     name: "",
@@ -17,7 +18,8 @@ const resetValues = {
     // firstImg: "",
     // photos: [],
     status: "activo",
-    transaction: ""
+    transaction: "",
+    // premium: false
 };
 
 export function Controls() {
@@ -116,18 +118,23 @@ export function Controls() {
         const isValid = Object.values(errors). every((e)=> e === "") && formValid();
 
         if(isValid){
-            // const registeredProperty = //ruta para registrar propiedad
-            alert("es valido")
-        }
+            try{
 
-        alert("se agrego una propiedad")
-        // alert(
-        //     `La propiedad ${nombre de la propiedad} a sido registrada con exito`
-        //   );
+                const registeredProperty = await addNewProperty(property);//ruta para registrar propiedad
+                // alert("es valido")
+
+                if(registeredProperty){
+                    alert("se agrego una propiedad con exito")
+                }
+            }catch(err){
+                console.log(err)
+            }
+        }
 
         setProperty(resetValues);
         setCheck(!check)
     }
+
 
     
     return{
