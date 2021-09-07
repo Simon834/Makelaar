@@ -30,6 +30,10 @@ module.exports = (db) => {
       type: DataTypes.DATEONLY,
       allowNull: false,
     },
+    file: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     comments: {
       //para agregar aclaraciones si es necesario
       type: DataTypes.TEXT,
