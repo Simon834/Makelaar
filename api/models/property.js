@@ -65,7 +65,7 @@ module.exports = (db) => {
             // allowNull: true
         },
         photos: {
-            type: DataTypes.ARRAY(DataTypes.STRING), //prgeuntar si esta bien
+            type: DataTypes.ARRAY(DataTypes.STRING), //preguntar si esta bien
             // allowNull: true
         },
         status: {
@@ -80,6 +80,10 @@ module.exports = (db) => {
 
         condition:{
             type: DataTypes.STRING,
+            // allowNull: false
+        },
+        premium:{
+            type: DataTypes.BOOLEAN,
             // allowNull: false
         }
 

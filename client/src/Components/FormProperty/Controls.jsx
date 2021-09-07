@@ -1,8 +1,9 @@
 import { useState } from "react";
+import { addNewProperty } from "../../Functions/api/property";
 
 const resetValues = {
     name: "",
-    // available: true,
+    available: true,
     area: "",
     rooms: "",
     bathrooms: "",
@@ -16,8 +17,9 @@ const resetValues = {
     description: "",
     // firstImg: "",
     // photos: [],
-    // status: "",
-    transaction: ""
+    status: "activo",
+    transaction: "",
+    // premium: false
 };
 
 export function Controls() {
@@ -76,7 +78,7 @@ export function Controls() {
         if("cp" in values) error.values = values.cp ? "": "Este campo es requerido"
         if(values.cp){error.cp = /^[+-]?[0-9]+$/.test(values.cp)?"": "El codigo postal debe ser un numero entero"}
 
-        // if("status" in values) error.values = values.status ? "": "Este campo es requerido"
+        if("status" in values) error.values = values.status ? "": "Este campo es requerido"
            
         if("transaction" in values) error.values = values.transaction ? "": "Este campo es requerido"
 
@@ -103,7 +105,7 @@ export function Controls() {
     }
     function formValid(values = property){
         const isValid = 
-         values.name  && values.area && values.rooms && values.bathrooms && values.type && values.city && values.neighborhood && values.street && values.streetNumber && values.province && values.cp  && values.transaction &&
+         values.name  && values.area && values.rooms && values.bathrooms && values.type && values.city && values.neighborhood && values.street && values.streetNumber && values.province && values.cp  && values.transaction && values.available && values.status &&
         
         Object.values(errors).every((e)=> e === "");
 
@@ -116,18 +118,23 @@ export function Controls() {
         const isValid = Object.values(errors). every((e)=> e === "") && formValid();
 
         if(isValid){
-            // const registeredProperty = //ruta para registrar propiedad
-            alert("es valido")
-        }
+            try{
 
-        alert("se agrego una propiedad")
-        // alert(
-        //     `La propiedad ${nombre de la propiedad} a sido registrada con exito`
-        //   );
+                const registeredProperty = await addNewProperty(property);//ruta para registrar propiedad
+                // alert("es valido")
+
+                if(registeredProperty){
+                    alert("se agrego una propiedad con exito")
+                }
+            }catch(err){
+                console.log(err)
+            }
+        }
 
         setProperty(resetValues);
         setCheck(!check)
     }
+
 
     
     return{
