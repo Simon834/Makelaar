@@ -16,6 +16,7 @@ import { FILTER_CONCEPT, FILTER_TIPE, FILTER_BEDROOM, FILTER_BATHROOM, RESET_FIL
 import { filterEstates } from '../../Functions/filters/filters';
 
 import { clearFilter } from '../../Redux/Actions/filterActions';
+import FormProperty from '../../Components/FormProperty/FormProperty';
 
 const inmuebles = require("../../inmuebles.json");
 
@@ -59,7 +60,7 @@ export default function Home() {
                     />
                 }
                 carousel={<Carrusel />}
-                content={<Cards inmuebles={estates} />}
+                content={<FormProperty/>}
             />
         </div>
     )
