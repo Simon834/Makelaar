@@ -1,8 +1,7 @@
 const { DataTypes } = require("sequelize");
 
-
 module.exports = (db) => {
-  db.define("User", {
+  db.define("Contract", {
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -13,35 +12,30 @@ module.exports = (db) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    email: {
-      type: DataTypes.STRING,
+    startDate: {
+      type: DataTypes.DATEONLY,
       allowNull: false,
-      unique: true,
-      validate: {
-        isEmail: {
-          msg: "El email tiene que ser un correo valido",
-        },
-      },
     },
-    phone: {
-      type: DataTypes.STRING,
-      allowNull: true,
+    endDate: {
+      type: DataTypes.DATEONLY,
+      allowNull: false,
     },
-    whatsapp: {
+    amount: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    password: {
-      type: DataTypes.STRING(64),
+    paymentDate: {
+      type: DataTypes.DATEONLY,
+      allowNull: false,
+    },
+    file: {
+      type: DataTypes.STRING,
       allowNull: false,
     },
     comments: {
+      //para agregar aclaraciones si es necesario
       type: DataTypes.TEXT,
       allowNull: true,
-    },
-    isAdmin: {
-      type: DataTypes.BOOLEAN,
-      allowNull: false,
     },
   });
 };
