@@ -1,3 +1,7 @@
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+
 import TextField from "@material-ui/core/TextField";
 import {
   Container,
@@ -43,11 +47,19 @@ export default function UserRegistrationForm(props) {
   const classes = useStyle();
   const { handleChange, handleSubmit, formIsValid, errors, user } =
     useFormControls(isAdmin);
+  const { userInfo } = useSelector(state => state)
+  let history = useHistory();
+  
+  useEffect(() => {
+    if(userInfo.user && !userInfo.user.isAdmin ){
+      history.push(`/user/${userInfo.user.id}/data`)
+    }
+  }, [userInfo])
 
   return (
     <>
       <Paper className={classes.root}>
-        <Container className={classes.header}>Registrate</Container>
+        <Container className={classes.header}>{isAdmin?"Registrar admin":"Registrate"}</Container>
         <form
           className={classes.form}
           autoComplete="off"
