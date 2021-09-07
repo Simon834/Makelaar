@@ -105,12 +105,13 @@ export const useFormControls = (isAdmin) => {
       if(registeredUser.user){
       alert(
         `Hola ${registeredUser.user.name}, en tu email: ${registeredUser.user.email}, encontraras la confirmacion de creacion de tu cuenta`
-      )}else{
+      )
+      setUser(initialFormValues);
+      history.push("/");
+        }else{
         alert(
           `El email: ${user.email} ya se encuentra registrado, si no recuerda la contraseña intente recuperarla`
         )
-        setUser(initialFormValues);
-        history.push("/");
       }
             
       ;}catch(err){
