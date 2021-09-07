@@ -34,7 +34,7 @@
     /* border: 3px solid rgb(187, 161, 17); */
     height: 100%;
     display: flex;
-      
+    padding: 3rem;
 }
 .filter-container{
     /* border: 3px solid rgb(29, 110, 9); */

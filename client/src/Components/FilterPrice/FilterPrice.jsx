@@ -10,6 +10,8 @@ import DeleteIcon from '@material-ui/icons/Delete';
 const useStyles = makeStyles({
   root: {
     width: "80%",
+    color: "rgb(105, 97, 97)",
+    paddingLeft: "0.5rem"
   },
 });
 
