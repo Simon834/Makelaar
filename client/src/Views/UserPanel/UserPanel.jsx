@@ -10,6 +10,7 @@ export default function UserPanel() {
   const history = useHistory()
   
   useEffect(() => {
+
     if(!userInfo.user || userInfo.user.isAdmin){
         history.push("/")
     }
