@@ -100,14 +100,27 @@ export const useFormControls = (isAdmin) => {
     const isValid =
       Object.values(errors).every((x) => x === "") && formIsValid();
     if (isValid) {
+      try{
       const registeredUser = await registerUser(user);
-      //console.log(registeredUser);
+      if(registeredUser.user){
       alert(
         `Hola ${registeredUser.user.name}, en tu email: ${registeredUser.user.email}, encontraras la confirmacion de creacion de tu cuenta`
-      );
+      )
+        setUser(initialFormValues);
+        history.push("/");
+      }else{
+        alert(
+          `El email: ${user.email} ya se encuentra registrado, si no recuerda la contraseña intente recuperarla`
+        )
+
+      }
+            
+      ;}catch(err){
+        console.log(err)
+      }
+    
     }
-    setUser(initialFormValues);
-    history.push("/");
+
   };
 
   return {

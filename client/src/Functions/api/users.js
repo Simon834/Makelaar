@@ -8,16 +8,19 @@ export async function getAllUserApi() {
     const allUsers = await axios.get(`${BACK_SERVER}/users/AllUsers`);
     return allUsers.data;
   } catch (err) {
+    
     throw err;
   }
 }
 
 export async function registerUser(user) {
+  console.log("register")
   try {
-    const response = await axios.post(`${BACK_SERVER}/users/signup`, user);
+    const response = await axios.post(`${BACK_SERVER}/users/signup`, user)
+    console.log("data",response.data)  
     return response.data;
-  } catch (err) {
-    throw err;
+  } catch(err) {
+    return err.response.status;
   }
 }
 
@@ -33,9 +36,12 @@ export async function getUserByIdApi(id) {
 export async function loguinUserApi(email, password) {
   try {
     const data = await axios.post(`${BACK_SERVER}/users/logIn`, {email, password})
-      return data
+    console.log("data",data)  
+    return data
+
   } catch (err) {
-      throw err
+    console.log("error",err)  
+    throw err
   }
 }
 
