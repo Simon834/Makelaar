@@ -15,12 +15,10 @@ module.exports = (db) => {
     startDate: {
       type: DataTypes.DATEONLY,
       allowNull: false,
-      unique: true,
     },
     endDate: {
       type: DataTypes.DATEONLY,
       allowNull: false,
-      unique: true,
     },
     amount: {
       type: DataTypes.STRING,
