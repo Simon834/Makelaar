@@ -6,11 +6,12 @@ async function addNewProperty(req,res,next){
         //photos, firstImg los recibe por body???
         const {name,area, rooms, bathrooms,type, city,neighborhood, province, street, streetNumber, cp, description, transaction, available, status,condition }= req.body
 
-        let propertyValidation= await Property.findOne({where: {name,area,rooms, bathrooms,type, city,neighborhood, province, street, streetNumber, cp, description, transaction}});
+        // let property= await Property.findOrCreate({where: {name,area,rooms, bathrooms,type, city,neighborhood, province, street, streetNumber, cp, description, transaction}});
 
-        if(propertyValidation){
-            res.status(409).json({ msg: "Esta propieda ya fue creada" })
-        }else{
+        // if(propertyValidation){
+        //     res.status(409).json({ msg: "Esta propieda ya fue creada" })
+        // }else{
+            
             let newProperty= await Property.create({
                 name: name,
                 area: area,
@@ -29,9 +30,9 @@ async function addNewProperty(req,res,next){
                 available: available,
                 status: status
 
-            })
+             })
             res.json({newProperty})
-        }
+        //}
 
     }catch(err){
         console.log(next(err))
