@@ -3,17 +3,7 @@ import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 import TextField from "@material-ui/core/TextField";
-import {
-  Container,
-  FormControl,
-  Input,
-  InputLabel,
-  FormHelperText,
-  Grid,
-  makeStyles,
-  Paper,
-  Button,
-} from "@material-ui/core";
+import { Container, Grid, makeStyles, Paper, Button } from "@material-ui/core";
 import { useFormControls } from "./FormControls";
 
 //import "./Styles.css";
@@ -47,19 +37,21 @@ export default function UserRegistrationForm(props) {
   const classes = useStyle();
   const { handleChange, handleSubmit, formIsValid, errors, user } =
     useFormControls(isAdmin);
-  const { userInfo } = useSelector(state => state)
-  let history = useHistory();
-  
+  const { userInfo } = useSelector((state) => state);
+  const history = useHistory();
+
   useEffect(() => {
-    if(userInfo.user && !userInfo.user.isAdmin ){
-      history.push(`/user/${userInfo.user.id}/data`)
+    if (userInfo.user && !userInfo.user.isAdmin) {
+      history.push(`/user/${userInfo.user.id}/data`);
     }
-  }, [userInfo])
+  }, [userInfo]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <>
       <Paper className={classes.root}>
-        <Container className={classes.header}>{isAdmin?"Registrar admin":"Registrate"}</Container>
+        <Container className={classes.header}>
+          {isAdmin ? "Registrar admin" : "Registrate"}
+        </Container>
         <form
           className={classes.form}
           autoComplete="off"
