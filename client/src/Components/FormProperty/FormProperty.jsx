@@ -10,15 +10,22 @@ import {
     Paper,
     Button,
     FormGroup,
-    Typography
+    Typography,
+    
 
 } from "@material-ui/core";
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+
+import FormControl from '@material-ui/core/FormControl';
+import FormLabel from '@material-ui/core/FormLabel';
 import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
 import { Controls } from "./Controls";
 
 const transaction = ['Alquiler', 'Venta', 'Alquiler Temporario'];
-const type = ['Casa', 'Departamento', 'Local', 'Duplex', 'Terreno']
+const type = ['Casa', 'Departamento', 'Local', 'Duplex', 'Terreno'];
+const condition = ['A estrenar', '1 a 5 años', '5 a 10 años', 'Mas de 10 años']
 
 const useStyle = makeStyles((theme) => ({
     form: {
@@ -43,7 +50,12 @@ const useStyle = makeStyles((theme) => ({
         fontSize: "25px",
     },
     check: {
-        marginLeft: "2%"
+        marginLeft: "2%",
+        display:"flex",
+        
+    },
+    checkBox:{
+        flexDirection: "row"
     },
     input: {
         width: "50%",
@@ -53,10 +65,8 @@ const useStyle = makeStyles((theme) => ({
 
 export default function FormProperty() {
     const classes = useStyle();
-    const { handleChange, handleSubmit, handleCheck, formValid, errors, property } = Controls();
-    console.log("PROPIEDAD", property)
-
-
+    const { handleChange, handleSubmit, handleCheck, formValid, errors, property, check } = Controls();
+    // console.log("PROPIEDAD", property)
 
     return (
         <>
@@ -70,9 +80,13 @@ export default function FormProperty() {
                     <Grid container >
                         <Grid item xs={6}>
                             <FormGroup>
-
-
                                 <TextField className={classes.input}
+                                inputProps={{
+                                    autocomplete: 'off',
+                                    form: {
+                                      autocomplete: 'off',
+                                    },
+                                  }} 
                                     variant="outlined"
                                     label="Nombre"
                                     name="name"
@@ -85,8 +99,6 @@ export default function FormProperty() {
                                     })}
                                     required
                                 />
-
-                                {/* AGREGAR LIST AVAILABLE ???*/}
 
                                 <TextField className={classes.input}
                                     variant="outlined"
@@ -129,27 +141,28 @@ export default function FormProperty() {
                                     })}
                                 />
 
-                                {/* AGREGAR CHECKBOX TYPE */}
-                                <Typography>Tipo de propiedad</Typography>
+                                <FormControl component="fieldset">
+                                <Typography>Tipo de Propiedad</Typography>
                                 {type && type.map(t =>
-
-<FormControlLabel className={classes.check}
-
-                                        control={
-                                            <Checkbox
-                                                value={t}
-                                                onChange={handleCheck}
-                                                icon={<CheckBoxOutlineBlankIcon fontSize="small"
-                                                />}
-                                                checkedIcon={<CheckBoxIcon
-                                                    fontSize="small" />}
-                                                name="type"
-                                            />
-                                        }
-                                        label={t}
-                                    />
+                                    <RadioGroup aria-label="type" name="type" value={check}  >
+                                      <FormControlLabel value={t} control={<Radio />} onChange={handleCheck}label={t} />
+                                     
+                                    </RadioGroup>
                                 )}
-                                {console.log("PROPIEDADCHECK", property)}
+                                </FormControl>
+
+                                    <FormControl component="fieldset">
+                                <Typography>Condicion de la Propiedad</Typography>
+                                    {/* <FormLabel component="legend">Condicion de la Propiedad</FormLabel> */}
+                                {condition && condition.map(t =>
+                                    <RadioGroup aria-label="condition" name="condition" value={check}  >
+                                      <FormControlLabel value={t} control={<Radio />} onChange={handleCheck}label={t} />
+                                     
+                                    </RadioGroup>
+                               
+                                )}
+                                 {console.log("PROPIEDADCHECK", property)}
+                                </FormControl>
 
                                 <TextField
                                     variant="outlined"
@@ -164,11 +177,9 @@ export default function FormProperty() {
                                     })}
                                 />
                             </FormGroup>
-                        
-                        
+
+
                             <FormGroup>
-
-
                                 <TextField
                                     variant="outlined"
                                     label="Barrio"
@@ -254,28 +265,16 @@ export default function FormProperty() {
 
                                 {/* CARGAR FOTOS */}
 
-                                {/* STATUS NO VA? */}
-
+                                <FormControl component="fieldset">
                                 <Typography>Que tipo de actividad desea realizar?</Typography>
                                 {transaction && transaction.map(t =>
-
-                                    <FormControlLabel className={classes.check}
-                                    label=""
-                                        control={
-                                            <Checkbox
-                                                value={t}
-                                                onChange={handleCheck}
-                                                icon={<CheckBoxOutlineBlankIcon fontSize="small" />}
-                                                checkedIcon={<CheckBoxIcon fontSize="small" />}
-                                                name="transaction"
-                                            />
-                                        }
-                                        label={t}
-                                    />
+                                    <RadioGroup aria-label="transaction" name="transaction" value={check}  >
+                                      <FormControlLabel value={t} control={<Radio />} onChange={handleCheck}label={t} />
+                                
+                                    </RadioGroup>      
                                 )}
-
-
-                                {/*CONDITION ??*/}
+                                 {console.log("PROPIEDADCHECK", property)}
+                                </FormControl>
 
                                 <p>
                                     <Button
@@ -289,7 +288,7 @@ export default function FormProperty() {
                                     </Button>
                                 </p>
                             </FormGroup>
-                            </Grid>
+                        </Grid>
                     </Grid>
                 </form>
             </Paper>
