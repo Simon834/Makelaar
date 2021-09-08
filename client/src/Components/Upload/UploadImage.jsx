@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import Button from '@material-ui/core/Button';
 import ImageList from '@material-ui/core/ImageList';
 import ImageListItem from '@material-ui/core/ImageListItem';
@@ -17,7 +17,6 @@ const useStyles = makeStyles((theme) => ({
     },
     imageList: {
         flexWrap: 'nowrap',
-        // Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
         transform: 'translateZ(0)',
         objectFit:"scale-down",
         width: "100%"
@@ -38,19 +37,18 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export default function UploadImage({images, setImages}) {
+export default function UploadImage({images = [], setImages}) {
     const [image, setImage] = useState([])
     const classes = useStyles();
 
-    let imgArr = image || []
+    let imgArr = images || []
     var myWidget = window.cloudinary.createUploadWidget({
         cloudName: 'makelaar',
         uploadPreset: 'amojar0m'
     }, (error, result) => {
         if (!error && result && result.event === "success") {
-            console.log('Done! Here is the image info: ', result.info);
             imgArr.push(result.info.url)
-            setImage([...imgArr])
+            setImages([...imgArr])
         }
     }
     )
@@ -60,9 +58,9 @@ export default function UploadImage({images, setImages}) {
     }
 
     function deleteImg(pos){
-        let imgDel=[...image]
+        let imgDel=[...images]
         imgDel.splice(pos,1)
-        setImage(imgDel)
+        setImages(imgDel)
     }
 
     return (
@@ -70,7 +68,7 @@ export default function UploadImage({images, setImages}) {
             <Paper>
             <Button className={classes.button} variant="contained" color="primary" onClick={() => uploadImage()}>Subir imagenes</Button>
             <ImageList className={classes.imageList} cols={2.5}>
-                {image.map((item,pos) => (
+                {images.map((item,pos) => (
                     <ImageListItem className={classes.imageListItem} key={item.img} style={{width: "200px",height: "200px",padding:" 2px"}}>
                         <img className={classes.img} src={item} alt={item} />
                         <ImageListItemBar

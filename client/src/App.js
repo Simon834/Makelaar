@@ -11,8 +11,13 @@ import ViewProperty from "./Views/ViewProperty/ViewProperty";
 import ViewAbout from "./Views/ViewAbout/ViewAbout";
 import ViewResetPassword from "./Views/ViewResetPassword/ViewResetPassword";
 import VierwRegister from "./Views/ViewRegister/VierwRegister";
+<<<<<<< HEAD
 import ViewPropertyDetail from "./Views/ViewPropertyDetail/ViewPropertyDetail";
 
+=======
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
+>>>>>>> dev
 
 
 function App() {
