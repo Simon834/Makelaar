@@ -11,8 +11,6 @@ import ViewResetPassword from "./Views/ViewResetPassword/ViewResetPassword";
 import VierwRegister from "./Views/ViewRegister/VierwRegister";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
-import UploadImage from "./Components/Upload/UploadImage";
-
 
 
 function App() {
@@ -35,7 +33,6 @@ function App() {
       <Route path="/about" component={ViewAbout}/>
       <Route path="/resetpassword" component={ViewResetPassword}/>
       <Route path="/register" component={VierwRegister}/>
-      <Route path="/upload" component={UploadImage}/>
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import Button from '@material-ui/core/Button';
 import ImageList from '@material-ui/core/ImageList';
 import ImageListItem from '@material-ui/core/ImageListItem';
@@ -17,7 +17,6 @@ const useStyles = makeStyles((theme) => ({
     },
     imageList: {
         flexWrap: 'nowrap',
-        // Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
         transform: 'translateZ(0)',
         objectFit:"scale-down",
         width: "100%"
@@ -48,7 +47,6 @@ export default function UploadImage({images, setImages}) {
         uploadPreset: 'amojar0m'
     }, (error, result) => {
         if (!error && result && result.event === "success") {
-            console.log('Done! Here is the image info: ', result.info);
             imgArr.push(result.info.url)
             setImage([...imgArr])
         }
