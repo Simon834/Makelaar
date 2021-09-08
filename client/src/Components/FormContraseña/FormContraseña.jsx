@@ -45,6 +45,7 @@ export default function FormContraseña() {
   function handleSubmit(e) {
     e.preventDefault();
     dispatch(forgot_password(input));
+    setInput({ email: "" });
   }
 
   return (
@@ -66,7 +67,7 @@ export default function FormContraseña() {
         />
         {errors.email && <p className="danger">{errors.email}</p>}
         <Button variant="contained" color="primary" p={5} type="submit">
-          Start
+          Enviar
         </Button>
         {estado.msg ? <p>{estado.msg}</p> : null}
       </form>

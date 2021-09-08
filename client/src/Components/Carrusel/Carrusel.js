@@ -15,7 +15,7 @@ export default function Carrusel() {
 
   useEffect(() => {
     setTimeout(nextSlide, 5000);
-  }, [slideIndex]);
+  }, [slideIndex]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div className="container-slider">
