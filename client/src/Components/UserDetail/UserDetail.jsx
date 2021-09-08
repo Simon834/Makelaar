@@ -5,6 +5,8 @@ import { useParams } from "react-router-dom";
 import style from './userDetail.module.css'
 import TextField from "@material-ui/core/TextField";
 import { UserDetailControl } from "./UserDetailControl";
+import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
+import Button from '@material-ui/core/Button';
 
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -61,7 +63,11 @@ const useStyles = makeStyles((theme) => ({
   },
   icon: {
     alingSelf: 'flex-end',
-    color: "#E1535E"
+    color: "#E1535E",
+    marginTop: "10%"
+  },
+  btn:{
+    margin:"min-content"
   }
 
 }));
@@ -104,9 +110,10 @@ export default function UserDetail() {
                     })}
                     required
                   />
-                  <Tooltip title="Editar" onClick={handleSubmit}>
-                    <EditIcon className={classes.icon}  />
-                  </Tooltip>
+                  {/* <Tooltip title="Enviar" onClick={handleSubmit}>
+                    <ThumbUpAltIcon className={classes.icon}  />
+                  </Tooltip> */}
+                  <Button color="secondary">Enviar</Button>
                 </div>
               </Paper>
             </Grid>
@@ -145,9 +152,10 @@ export default function UserDetail() {
                       helperText: errors.phone,
                     })}
                   />
-                  <Tooltip title="Editar" onClick={handleSubmit}>
-                    <EditIcon className={classes.icon} />
-                  </Tooltip>
+                  {/* <Tooltip title="Enviar" onClick={handleSubmit}>
+                    <ThumbUpAltIcon className={classes.icon} />
+                  </Tooltip> */}
+                  <Button color="secondary">Enviar</Button>
                 </div>
               </Paper>
             </Grid>
@@ -169,9 +177,10 @@ export default function UserDetail() {
                     })}
                   />
 
-                  <Tooltip title="Editar" onClick={handleSubmit}>
-                    <EditIcon className={classes.icon} />
-                  </Tooltip>
+                  {/* <Tooltip title="Enviar" onClick={handleSubmit}>
+                    <ThumbUpAltIcon className={classes.icon} />
+                  </Tooltip> */}
+                  <Button color="secondary">Enviar</Button>
                 </div>
               </Paper>
             </Grid>
@@ -192,28 +201,13 @@ export default function UserDetail() {
                       helperText: errors.password,
                     })}
                   />
-                  <Tooltip title="Editar" onClick={handleSubmit}>
-                    <EditIcon className={classes.icon} />
-                  </Tooltip>
+                  {/* <Tooltip title="Enviar" onClick={handleSubmit}>
+                    <ThumbUpAltIcon className={classes.icon} />
+                  </Tooltip> */}
+                  <Button className={classes.btn} color="secondary">Enviar</Button>
                 </div>
               </Paper>
             </Grid>
-
-            {/* <Grid item xs={3}>
-              <Paper className={classes.paperLeft}>Comentarios</Paper>
-            </Grid>
-            <Grid item xs={9}>
-              <Paper className={classes.paperRight}>
-                {info.coments}
-                <div className={style.paper}>
-
-                  <Tooltip title="Editar">
-                    <EditIcon className={classes.icon} />
-                  </Tooltip>
-                </div>
-              </Paper>
-            </Grid> */}
-
           </Grid>
         </form>
       </Paper>
