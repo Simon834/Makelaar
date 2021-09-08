@@ -1,5 +1,6 @@
 import TextField from "@material-ui/core/TextField";
 import { useState } from "react";
+import UploadImage from "../Upload/UploadImage";
 
 import {
     Container,
@@ -65,7 +66,7 @@ const useStyle = makeStyles((theme) => ({
 
 export default function FormProperty() {
     const classes = useStyle();
-    const { handleChange, handleSubmit, handleCheck, formValid, errors, property, check } = Controls();
+    const { handleChange, handleSubmit, handleCheck, formValid, errors, property, check,setImage } = Controls();
     // console.log("PROPIEDAD", property)
 
     return (
@@ -278,7 +279,7 @@ export default function FormProperty() {
                                 )}
                                  {console.log("PROPIEDADCHECK", property)}
                                 </FormControl>
-
+                                    <UploadImage images={property.photos} setImages={setImage}/>
                                 <p>
                                     <Button
                                         variant="contained"

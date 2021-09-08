@@ -23,6 +23,7 @@ function App() {
   },[favorites])
 
   return (
+    
     <div className="App">
       <Route exact path="/" component={Home}/>
       <Route path="/admin" component={AdminPanel} />
@@ -33,7 +34,7 @@ function App() {
       <Route path="/resetpassword" component={ViewResetPassword}/>
       <Route path="/register" component={VierwRegister}/>
 
-    </div>
+     </div>
   );
 }
 
