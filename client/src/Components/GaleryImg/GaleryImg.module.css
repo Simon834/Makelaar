@@ -1,0 +1,15 @@
+.contenedor{
+    width: 100%;
+}
+
+.mini{
+    width: 100px;
+    height: 100px;
+}
+
+
+.currentImage{
+    width: 100% !important;
+    height: 70vh;
+    object-fit: cover;
+}

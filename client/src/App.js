@@ -1,6 +1,8 @@
 import "./App.css";
 import "./";
+import { useEffect } from "react";
 import { Route } from "react-router";
+import { useSelector } from "react-redux";
 import Home from "./Views/Home/Home";
 import AdminPanel from "./Views/AdminPanel/AdminPanel";
 import UserPanel from "./Views/UserPanel/UserPanel";
@@ -9,9 +11,7 @@ import ViewProperty from "./Views/ViewProperty/ViewProperty";
 import ViewAbout from "./Views/ViewAbout/ViewAbout";
 import ViewResetPassword from "./Views/ViewResetPassword/ViewResetPassword";
 import VierwRegister from "./Views/ViewRegister/VierwRegister";
-import { useSelector } from "react-redux";
-import { useEffect } from "react";
-import UploadImage from "./Components/Upload/UploadImage";
+import ViewPropertyDetail from "./Views/ViewPropertyDetail/ViewPropertyDetail";
 
 
 
@@ -31,11 +31,11 @@ function App() {
       <Route path="/admin" component={AdminPanel} />
       <Route path="/user" component={UserPanel}/>
       <Route path="/contact" component={ViewContact}/>
-      <Route path="/property" component={ViewProperty}/>
+      <Route exact path="/property" component={ViewProperty}/>
       <Route path="/about" component={ViewAbout}/>
       <Route path="/resetpassword" component={ViewResetPassword}/>
       <Route path="/register" component={VierwRegister}/>
-      <Route path="/upload" component={UploadImage}/>
+      <Route path="/property/:id" component={ViewPropertyDetail}/>
     </div>
   );
 }
