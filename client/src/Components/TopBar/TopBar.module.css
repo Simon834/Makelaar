@@ -1,33 +1,55 @@
-
-
-.containerTopBar{
-    height: 70px;
-    background-color: #F2F4F6;
-   
+.containerTopBar {
+  height: auto;
+  background-color: #f2f4f6;
 }
 
-.containerContact{
-    width: 600px;
-    float: left;
-    line-height: 70px;
-    text-align:left ;
-padding-left: 150px;
+.containerContact {
+  width: 600px;
+  float: left;
+  line-height: 70px;
+  text-align: left;
+  padding-left: 150px;
 }
 
-.containerIcons{
-    float:right;
-    width: 400px;
-    line-height: 70px;
-    text-align: right;
-    padding-right: 150px;
+.containerIcons {
+  float: right;
+  width: 400px;
+  line-height: 70px;
+  text-align: right;
+  padding-right: 150px;
 }
 
-.mail{
-    font-size: 1rem;
-    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-    font-weight: 400;
-    line-height: 1.5;
-    letter-spacing: 0.00938em;
-    text-decoration: none;
-    color: rgba(0, 0, 0, 0.54);
+.mail {
+  font-size: 1rem;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0.00938em;
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.54);
+}
+@media (max-width: 1000px) {
+  .containerTopBar {
+    height: auto;
+    text-align-last: center;
+  }
+  .containerIcons {
+    padding-right: 2rem;
+    width: auto;
+    float: none;
+  }
+  .containerContact {
+    padding-left: 2rem;
+  }
+}
+@media (max-width: 750px) {
+  .containerContact {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding-left: 0;
+  }
+  .containerIcons {
+    padding-right: 0;
+  }
 }
