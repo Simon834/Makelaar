@@ -22,6 +22,7 @@ import {
 import { filterEstates } from "../../Functions/filters/filters";
 
 import { clearFilter } from "../../Redux/Actions/filterActions";
+import FormProperty from "../../Components/FormProperty/FormProperty";
 
 const inmuebles = require("../../inmuebles.json");
 
@@ -85,7 +86,7 @@ export default function Home() {
           />
         }
         carousel={<Carrusel />}
-        content={<Cards inmuebles={estates} />}
+        content={<FormProperty />}
       />
     </div>
   );

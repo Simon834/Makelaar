@@ -74,19 +74,22 @@ export default function FormProperty() {
                 <Container className={classes.header}>Registra tu Propiedad</Container>
                 <form
                     className={classes.form}
+                    
                     autoComplete="off"
                     onSubmit={handleSubmit}
                 >
                     <Grid container >
                         <Grid item xs={6}>
-                            <FormGroup>
+                            <FormGroup
+                             >
                                 <TextField className={classes.input}
-                                inputProps={{
-                                    autocomplete: 'off',
-                                    form: {
-                                      autocomplete: 'off',
-                                    },
-                                  }} 
+                                // autoComplete='off'
+                                // inputProps={{
+                                //     autocomplete: 'off',
+                                //     form: {
+                                //       autocomplete: 'off',
+                                //     },
+                                //   }} 
                                     variant="outlined"
                                     label="Nombre"
                                     name="name"
