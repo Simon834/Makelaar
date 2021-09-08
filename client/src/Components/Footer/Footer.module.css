@@ -1,4 +1,6 @@
 .footer {
+  min-height: 120px;
+
   color: #fff;
   background: #4c3c90;
   height: -webkit-fill-available;
@@ -45,5 +47,26 @@
   }
   .footer .logo_footer img {
     width: calc(100px / 0.5);
+  }
+}
+@media (max-width: 800px) {
+  .footer {
+    flex-direction: column;
+  }
+  .footer .contacto {
+    width: auto;
+    margin: 1rem;
+  }
+  .footer .contacto .left_contact {
+    margin-right: 2.2rem;
+  }
+
+  .footer .derechos {
+    width: auto;
+    margin: 1rem;
+  }
+  .footer .logo_footer {
+    width: auto;
+    margin: 1rem;
   }
 }
