@@ -11,13 +11,7 @@ import ViewProperty from "./Views/ViewProperty/ViewProperty";
 import ViewAbout from "./Views/ViewAbout/ViewAbout";
 import ViewResetPassword from "./Views/ViewResetPassword/ViewResetPassword";
 import VierwRegister from "./Views/ViewRegister/VierwRegister";
-<<<<<<< HEAD
 import ViewPropertyDetail from "./Views/ViewPropertyDetail/ViewPropertyDetail";
-=======
-import ViewContract from "./Views/ViewContract/ViewContract";
-import { useSelector } from "react-redux";
-import { useEffect } from "react";
->>>>>>> dev
 
 function App() {
   const favorites = useSelector((state) => state.favorites);
@@ -32,7 +26,6 @@ function App() {
     <div className="App">
       <Route exact path="/" component={Home} />
       <Route path="/admin" component={AdminPanel} />
-<<<<<<< HEAD
       <Route path="/user" component={UserPanel}/>
       <Route path="/contact" component={ViewContact}/>
       <Route exact path="/property" component={ViewProperty}/>
@@ -40,14 +33,6 @@ function App() {
       <Route path="/resetpassword" component={ViewResetPassword}/>
       <Route path="/register" component={VierwRegister}/>
       <Route path="/property/:id" component={ViewPropertyDetail}/>
-=======
-      <Route path="/user" component={UserPanel} />
-      <Route path="/contact" component={ViewContact} />
-      <Route path="/property" component={ViewProperty} />
-      <Route path="/about" component={ViewAbout} />
-      <Route path="/resetpassword" component={ViewResetPassword} />
-      <Route path="/register" component={VierwRegister} />
->>>>>>> dev
     </div>
   );
 }
