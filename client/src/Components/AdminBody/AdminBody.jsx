@@ -13,6 +13,7 @@ const columnsUserList = [
     { field: 'phone', headerName: 'Telefono', width: 150 },
     { field: 'whatsapp', headerName: 'WhatsApp', width: 150 },
     { field: 'isAdmin', headerName: 'Admin', width: 150 },
+    { field: 'contract', headerName: 'Contratos', width: 150 },
 
 ]
 

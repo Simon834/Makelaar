@@ -12,6 +12,7 @@ import VierwRegister from "./Views/ViewRegister/VierwRegister";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 
+ 
 
 function App() {
   const favorites = useSelector(state => state.favorites) 
