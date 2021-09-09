@@ -39,5 +39,18 @@ async function addNewProperty(req,res,next){
         return res.status(500).json(err)
     }
 }
+async function allProperties(req, res, next) {
+  try {
+    const properties = await Property.findAll();
+    if (!properties.length) {
+      return properties.data;
+    } else {
+      return res.json(properties);
+    }
+  } catch (err) {
+    console.log(err);
+    return next(err);
+  }
+}
 
-module.exports = {addNewProperty}
+module.exports = { addNewProperty, allProperties };
