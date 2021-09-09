@@ -63,11 +63,11 @@ export default function CardComponent(props) {
   return (
     <Card className={classes.root}>
       <CardActionArea >
-        <CardMedia
+        {props.image?<CardMedia
           className={classes.media}
           image={props.image}
           title={props.title}
-        />
+        />:<></>}
         <CardContent >
           <Typography className={classes.title}>{props.title}</Typography>
           <Typography className={classes.address}>{props.address}</Typography>

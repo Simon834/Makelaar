@@ -3,7 +3,7 @@ import TextField from "@material-ui/core/TextField";
 import emailjs from "emailjs-com";
 import { Button } from "@material-ui/core";
 
-import style from "../Contact/Contact.module.css";
+import style from "./ContactForm.module.css";
 
 function sendEmail(e) {
     e.preventDefault();
@@ -34,8 +34,9 @@ function sendEmail(e) {
 
 
 
-export default function ContactForm() {
+export default function ContactForm({msg}) {
     return (
+        <div className={style.container}>
         <div className={style.container_Form}>
             <form className={style.form_contact} onSubmit={sendEmail}>
                 <h2 className={style.title}>Formulario de Contacto</h2>
@@ -74,6 +75,7 @@ export default function ContactForm() {
                     multiline
                     id="message"
                     name="message"
+                    value={msg}
                     placeholder="Tu mensaje"
                     rows={4}
                     rowsMin={3}
@@ -90,6 +92,7 @@ export default function ContactForm() {
                     Enviar
                 </Button>
             </form>
+        </div>
         </div>
     )
 }
