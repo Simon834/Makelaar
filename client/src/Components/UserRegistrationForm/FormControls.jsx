@@ -1,8 +1,9 @@
-import { useDispatch } from "react-redux"
+import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { registerUser } from "../../Functions/api/users";
 import { useHistory } from "react-router-dom";
 import { userLogIn } from "../../Redux/Actions/userActions";
+import Swal from "sweetalert2";
 
 const initialFormValues = {
   name: "",
@@ -24,7 +25,7 @@ export const useFormControls = (isAdmin) => {
   });
   const [errors, setErrors] = useState({});
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const validate = (fieldValues = user) => {
     let temp = { ...errors };
@@ -109,31 +110,38 @@ export const useFormControls = (isAdmin) => {
 
         if (registeredUser.user) {
           if (user.isAdmin) {
-            alert(
-              `El usuario: ${registeredUser.user.email}, se creo correctamente con los permisos de Admin`
-            )
-            setUser(initialFormValues)
+            Swal.fire({
+              icon: "success",
+              title: "Listo..!",
+              text: `El usuario: ${registeredUser.user.email}, se creo correctamente con los permisos de Admin`
+            });
+            setUser(initialFormValues);
           } else {
-            dispatch(userLogIn({ email: registeredUser.user.email, password: user.password }))
-            
-            alert(
-              `Hola ${registeredUser.user.name}, en tu email: ${registeredUser.user.email}, encontraras la confirmacion de creacion de tu cuenta`
-            )
-            setUser(initialFormValues)
+            dispatch(
+              userLogIn({
+                email: registeredUser.user.email,
+                password: user.password,
+              })
+            );
+
+            Swal.fire({
+              icon: "success",
+              title: "Hola..!",
+              text: `${registeredUser.user.name}, en tu email: ${registeredUser.user.email}, encontraras la confirmacion de creacion de tu cuenta`,
+            });
+            setUser(initialFormValues);
           }
         } else {
-          alert(
-            `El email: ${user.email} ya se encuentra registrado, si no recuerda la contraseña intente recuperarla`
-          )
+          Swal.fire({
+            icon: "warning",
+            title: "Ups..!",
+            text: `El email: ${user.email} ya se encuentra registrado, si no recuerda la contraseña intente recuperarla`,
+          });
         }
-
-        ;
       } catch (err) {
-        console.log(err)
+        console.log(err);
       }
-
     }
-
   };
 
   return {

@@ -1,22 +1,18 @@
-import React, { useState, useEffect, useRef } from 'react';
-import WhatsAppIcon from '@material-ui/icons/WhatsApp';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
-import MailOutlineIcon from '@material-ui/icons/MailOutline';
-import PermIdentityIcon from '@material-ui/icons/PermIdentity';
-import Tooltip from '@material-ui/core/Tooltip';
-import { Dialog, DialogContent, DialogActions } from "@material-ui/core";
+import React, { useState } from "react";
+import WhatsAppIcon from "@material-ui/icons/WhatsApp";
+import IconButton from "@material-ui/core/IconButton";
+import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core/styles";
+import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
+import MailOutlineIcon from "@material-ui/icons/MailOutline";
+import PermIdentityIcon from "@material-ui/icons/PermIdentity";
+import Tooltip from "@material-ui/core/Tooltip";
+import { Dialog, DialogContent } from "@material-ui/core";
 import { Button } from "@material-ui/core";
 import FormLogin from '../FormLogin/FormLogin';
 import FavoriteCards from '../Favorites/FavoritesCards/FavoriteCards';
 
 import style from './TopBar.module.css';
-
-
-
-
 
 const useStyles = makeStyles((theme) => ({
 
@@ -29,14 +25,12 @@ const useStyles = makeStyles((theme) => ({
         flexDirection: 'row',
         display: 'flex',
         margin: theme.spacing(5),
-        display: 'flex',
         flexWrap: 'wrap',
         justifyContent: 'space-around',
         overflow: 'hidden',
 
     },
     imgList: {
-
         width: '100%',
         height: 400,
     },
@@ -51,13 +45,19 @@ const useStyles = makeStyles((theme) => ({
         marginLeft: theme.spacing(40),
         float: "right",
     },
+    icon:{
+        "&:hover":{
+backgroundColor: 'transparent'
+        },
+       
+    }
 
 }));
 
 export default function TopBar() {
 
-    const [open, setOpen] = useState(false);
-    const anchorRef = useRef(null);
+    // const [open, setOpen] = useState(false);
+    // const anchorRef = useRef(null);
 
     const [showDialog, setShowDialog] = useState(false);
 
@@ -70,35 +70,34 @@ export default function TopBar() {
     const openFav = () => setShowFav(true);
     const closeFav = () => setShowFav(false);
 
-    const handleToggle = () => {
-        setOpen((prevOpen) => !prevOpen);
-    };
+    // const handleToggle = () => {
+    //     setOpen((prevOpen) => !prevOpen);
+    // };
 
     const classes = useStyles();
 
     return (
 
-
         <div className={style.containerTopBar}>
             <div className={style.containerContact}>
-                <IconButton>
-                    <WhatsAppIcon />
+                <IconButton className={classes.icon}>
+                    <WhatsAppIcon className={classes.icon} />
                     <Typography >+549 11456982365</Typography>
                 </IconButton>
 
-                <IconButton>
-                    <MailOutlineIcon />
-                    <Typography >
+                <IconButton className={classes.icon}>
+                    <MailOutlineIcon className={classes.icon}/>
+                    <Typography>
                         <a href="mailto:info_makelaar@yahoo.com" className={style.mail}>info_makelaar@yahoo.com</a></Typography>
                 </IconButton>
             </div>
 
             <div className={style.containerIcons}>
                 <Tooltip title="favoritos">
-                    <IconButton
+                    <IconButton className={classes.icon}
 
                         arial-label="app" >
-                        <FavoriteBorderIcon onClick={openFav}/>
+                        <FavoriteBorderIcon onClick={openFav} className={classes.icon}/>
                         <Dialog open={showFav} onClose={closeFav}>
                             <DialogContent>
                                 <Button className={classes.button}
@@ -118,8 +117,8 @@ export default function TopBar() {
                 </Tooltip>
 
                 <Tooltip title="Ingresar">
-                    <IconButton arial-label="app">
-                        <PermIdentityIcon onClick={openDialog} />
+                    <IconButton arial-label="app" className={classes.icon}>
+                        <PermIdentityIcon onClick={openDialog} className={classes.icon}/>
                         <Dialog open={showDialog} onClose={closeDialog}>
                             <DialogContent>
                                 <Button className={classes.button}
@@ -143,113 +142,3 @@ export default function TopBar() {
 
     )
 }
-
-
-//   //ESTO ES DEL DIALOG DEL LOGIN
-
-
-//   ////////////////////////////////
-
-//   return (
-//     <div className="containerTopBar">
-//       <div className="containerContact">
-//         <IconButton>
-//           <WhatsAppIcon />
-//           <Typography>+549 11456982365</Typography>
-//         </IconButton>
-
-//         <IconButton>
-//           <MailOutlineIcon />
-//           <Typography>makelaar@gmail.com</Typography>
-//         </IconButton>
-//       </div>
-
-//       <div className="containerIcons">
-//         <Tooltip title="Favoritos">
-//           <IconButton
-//             ref={anchorRef}
-//             aria-controls={open ? "menu-list-grow" : undefined}
-//             aria-haspopup="true"
-//             onClick={handleToggle}
-//             arial-label="app"
-//           >
-//             <FavoriteBorderIcon />
-//           </IconButton>
-//         </Tooltip>
-//         <Popper
-//           open={open}
-//           anchorEl={anchorRef.current}
-//           role={undefined}
-//           transition
-//           disablePortal
-//         >
-//           {({ TransitionProps, placement }) => (
-//             <Grow
-//               {...TransitionProps}
-//               style={{
-//                 transformOrigin:
-//                   placement === "bottom" ? "center top" : "center bottom",
-//               }}
-//             >
-//               <Paper>
-//                 <ClickAwayListener onClickAway={handleClose}>
-//                   <MenuList className={classes.menuList}>
-//                     <ImageList
-//                       rowHeight={180}
-//                       className={classes.imgList}
-//                       autoFocusItem={open}
-//                       onKeyDown={handleListKeyDown}
-//                     >
-//                       {itemData &&
-//                         itemData.map((item) => (
-//                           <ImageListItem
-//                             className={classes.imgItem}
-//                             cols={1}
-//                             style={{ height: "auto" }}
-//                             key={item.url}
-//                           >
-//                             <img src={item.url} alt="img" />
-//                             <ImageListItemBar
-//                               title="title"
-//                               subtitle="by: Makelaar"
-//                               actionIcon={
-//                                 <IconButton aria-label="title">
-//                                   <InfoIcon />
-//                                 </IconButton>
-//                               }
-//                             />
-//                           </ImageListItem>
-//                         ))}
-//                     </ImageList>
-//                   </MenuList>
-//                 </ClickAwayListener>
-//               </Paper>
-//             </Grow>
-//           )}
-//         </Popper>
-
-//         <Tooltip title="Ingresar">
-//           <IconButton arial-label="app">
-//             <PermIdentityIcon onClick={openDialog} />
-//             <Dialog open={showDialog} onClose={closeDialog}>
-//               <DialogContent>
-//                 <Button
-//                   size="small"
-//                   variant="contained"
-//                   color="primary"
-//                   type="submit"
-//                   className={classes.button}
-//                   onClick={closeDialog}
-//                 >
-//                   X
-//                 </Button>
-//                 <FormLogin action={closeDialog}/>
-//               </DialogContent>
-//             </Dialog>
-//           </IconButton>
-//         </Tooltip>
-//       </div>
-//     </div>
-//   );
-// }
-

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { addNewProperty } from "../../Functions/api/property";
+import Swal from "sweetalert2";
 
 const resetValues = {
     name: "",
@@ -16,10 +17,11 @@ const resetValues = {
     cp: "",
     description: "",
     // firstImg: "",
-    // photos: [],
+    photos: [],
     status: "activo",
     transaction: "",
-    // premium: false
+    premium: false,
+    condition: ""
 };
 
 export function Controls() {
@@ -27,7 +29,8 @@ export function Controls() {
 
     const [errors, setErrors]= useState({});
 
-    const[check, setCheck] = useState(false)
+    const[check, setCheck] = useState({})
+    // console.log("ESTADO INICIAL CHECK", check)
 
     function validate (values = property){
 
@@ -82,6 +85,8 @@ export function Controls() {
            
         if("transaction" in values) error.values = values.transaction ? "": "Este campo es requerido"
 
+        if("condition" in values) error.values = values.condition ? "": "Este campo es requerido"
+
 
         setErrors({ ...error});
 
@@ -96,16 +101,17 @@ export function Controls() {
     };
 
     function handleCheck(e){
-        console.log("EVENTO",e)
+       
         setProperty({
             ...property,
             [e.target.name]: e.target.value
         });
-        setCheck(!check)
+        setCheck({...check,[e.target.name]:e.target.value})
+        console.log("ESTADO HANDLECHECK", check)
     }
     function formValid(values = property){
         const isValid = 
-         values.name  && values.area && values.rooms && values.bathrooms && values.type && values.city && values.neighborhood && values.street && values.streetNumber && values.province && values.cp  && values.transaction && values.available && values.status &&
+         values.name  && values.area && values.rooms && values.bathrooms && values.type && values.city && values.neighborhood && values.street && values.streetNumber && values.province && values.cp  && values.transaction && values.available && values.status && values.condition &&
         
         Object.values(errors).every((e)=> e === "");
 
@@ -120,21 +126,30 @@ export function Controls() {
         if(isValid){
             try{
 
-                const registeredProperty = await addNewProperty(property);//ruta para registrar propiedad
-                // alert("es valido")
-
+                // console.log("PROPIEDAD CREADA",property)
+                const registeredProperty = await addNewProperty(property); 
                 if(registeredProperty){
-                    alert("se agrego una propiedad con exito")
+                    Swal.fire("Listo!", "Se agrego una propiedad con exito!", "success");
                 }
+                
             }catch(err){
                 console.log(err)
             }
+            
         }
-
         setProperty(resetValues);
-        setCheck(!check)
+        // console.log("PROPIEDAD RESETTTT", property)
+        setCheck(false);
+        // console.log("CHECK ESTADO", check);
+
     }
 
+    function setImage(images){
+        setProperty({
+            ...property,
+            photos: images
+        });
+    }
 
     
     return{
@@ -145,6 +160,7 @@ export function Controls() {
         handleCheck,
         handleSubmit,
         formValid,
+        setImage
 
     }
 }
