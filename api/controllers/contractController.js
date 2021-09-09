@@ -33,4 +33,33 @@ async function newContract(req, res, next) {
   }
 }
 
-module.exports = { newContract };
+async function getContracts(req, res, next) {
+  try {
+    const contracts = await Contract.findAll();
+    if (!contracts.length) {
+      return res.json({ msg: "No hay contratos registrados por el momento" });
+    } else {
+      return res.json(contracts);
+    }
+  } catch (err) {
+    return next(err);
+  }
+}
+async function getContractsById(req, res, next) {
+  const UserId = req.params.id;
+  try {
+    const contract = await Contract.findOne({
+      where: {
+        UserId: UserId,
+      },
+    });
+    if (contract) {
+      res.json(contract);
+    } else {
+      res.status(204).json({ msg: "Id de usuario inexistente" });
+    }
+  } catch (err) {
+    return next(err);
+  }
+}
+module.exports = { newContract, getContracts, getContractsById };

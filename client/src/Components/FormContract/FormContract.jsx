@@ -19,7 +19,7 @@ import { UseFormControls } from "./FormContractControls";
 const useStyle = makeStyles((theme) => ({
   form: {
     "& .MuiFormControl-root": {
-      width: "500px",
+      width: "650px",
       margin: theme.spacing(2),
     },
   },
@@ -33,7 +33,8 @@ const useStyle = makeStyles((theme) => ({
     justifyContent: "center",
   },
   button: {
-    marginLeft: theme.spacing(27),
+    marginTop: theme.spacing(2),
+    marginLeft: theme.spacing(36),
   },
   header: {
     fontSize: "25px",

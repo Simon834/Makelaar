@@ -32,6 +32,7 @@ function App() {
       <Route path="/about" component={ViewAbout} />
       <Route path="/resetpassword" component={ViewResetPassword} />
       <Route path="/register" component={VierwRegister} />
+      <Route path="/contract" component={ViewContract} />
     </div>
   );
 }
