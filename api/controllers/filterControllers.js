@@ -17,7 +17,8 @@ async function filterProperties(req, res, next){
         transaction,
         condition,
         price
-    } = req.query
+    } = req.query;
+
     try{
         let filteredProperty = await Property.findAll({
             where: {
@@ -32,7 +33,7 @@ async function filterProperties(req, res, next){
                         condition: condition,
                     },
                     {
-                        price: price,
+                        price: {[Op.between]: price}
                     },
                     {
                         bedrooms: bedrooms,
@@ -90,6 +91,7 @@ async function filterProperties(req, res, next){
                 ],
             }
         })
+        res.send(filteredProperty);
     }catch(err){
         console.log(next(err))
     }
