@@ -10,23 +10,7 @@ import Facebook from "@material-ui/icons/Facebook";
 import Instagram from "@material-ui/icons/Instagram";
 import TextField from "@material-ui/core/TextField";
 import style from "./Contact.module.css";
-import Snackbar from "@material-ui/core/Snackbar";
-import MuiAlert from "@material-ui/lab/Alert";
-import { makeStyles } from "@material-ui/core/styles";
 import Swal from "sweetalert2";
-
-// function Alert(props) {
-//   return <MuiAlert elevation={6} variant="filled" {...props} />;
-// }
-
-// const useStyles = makeStyles((theme) => ({
-//   root: {
-//     width: "100%",
-//     "& > * + *": {
-//       marginTop: theme.spacing(2),
-//     },
-//   },
-// }));
 
 export default function Contact() {
   function sendEmail(e) {

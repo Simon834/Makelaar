@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { addNewProperty } from "../../Functions/api/property";
+import Swal from "sweetalert2";
 
 const resetValues = {
     name: "",
@@ -128,7 +129,7 @@ export function Controls() {
                 // console.log("PROPIEDAD CREADA",property)
                 const registeredProperty = await addNewProperty(property);
                 if(registeredProperty){
-                    alert("se agrego una propiedad con exito")
+                    Swal.fire("Listo!", "Se agrego una propiedad con exito!", "success");
                 }
                 
             }catch(err){
