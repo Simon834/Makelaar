@@ -1,7 +1,7 @@
 import { Map, Marker, GoogleApiWrapper } from "google-maps-react";
 import { useState } from "react";
 
-const {GOOGLE_API_KEY} = process.env
+const { GOOGLE_API_KEY } = process.env;
 
 const initialState = {
   activeMarker: {},
