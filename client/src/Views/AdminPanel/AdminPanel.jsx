@@ -31,6 +31,10 @@ export default function AdminPanel() {
                 rute: "/property"
             },
             {
+                title: "Nueva propiedad",
+                rute: "/newproperty"
+            },
+            {
                 title: "Crear admin",
                 rute: "/newadmin"
             },

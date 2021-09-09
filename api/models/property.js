@@ -64,10 +64,6 @@ module.exports = (db) => {
             type: DataTypes.STRING,
             // allowNull: true
         },
-        photos: {
-            type: DataTypes.ARRAY(DataTypes.STRING), //preguntar si esta bien
-            // allowNull: true
-        },
         status: {
             type: DataTypes.ENUM('activo', 'eliminado', 'pendiente'),
             // allowNull: false

@@ -29,7 +29,7 @@ export function Controls() {
 
     const [errors, setErrors]= useState({});
 
-    const[check, setCheck] = useState(true)
+    const[check, setCheck] = useState({})
     // console.log("ESTADO INICIAL CHECK", check)
 
     function validate (values = property){
@@ -106,8 +106,8 @@ export function Controls() {
             ...property,
             [e.target.name]: e.target.value
         });
-        setCheck(e.target.value)
-        // console.log("ESTADO HANDLECHECK", check)
+        setCheck({...check,[e.target.name]:e.target.value})
+        console.log("ESTADO HANDLECHECK", check)
     }
     function formValid(values = property){
         const isValid = 
@@ -138,9 +138,9 @@ export function Controls() {
             
         }
         setProperty(resetValues);
-        console.log("PROPIEDAD RESETTTT", property)
+        // console.log("PROPIEDAD RESETTTT", property)
         setCheck(false);
-        console.log("CHECK ESTADO", check);
+        // console.log("CHECK ESTADO", check);
 
     }
 
