@@ -118,10 +118,6 @@ export const useFormControls = (isAdmin) => {
             setUser(initialFormValues)
           } else {
             dispatch(userLogIn({ email: registeredUser.user.email, password: user.password }))
-            
-            alert(
-              
-            )
             Swal.fire({
               icon: "success",
               title: "Hola..!",
@@ -130,9 +126,6 @@ export const useFormControls = (isAdmin) => {
             setUser(initialFormValues)
           }
         } else {
-          alert(
-            `El email: ${user.email} ya se encuentra registrado, si no recuerda la contraseña intente recuperarla`
-          )
           Swal.fire({
             icon: "success",
             title: "Ups..!",
