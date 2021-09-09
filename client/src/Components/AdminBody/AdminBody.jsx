@@ -6,6 +6,7 @@ import { getAllUserApi } from '../../Functions/api/users';
 import property from '../../inmuebles.json'
 import UserDetail from '../UserDetail/UserDetail';
 import Logout from '../Logout/Logout';
+import FormProperty from '../FormProperty/FormProperty';
 
 const columnsUserList = [
     { field: 'name', headerName: 'Nombre', width: 150 },
@@ -57,6 +58,9 @@ export default function AdminBody() {
             </Route>
             <Route path="/admin/:id/logout">
                 <Logout/>
+            </Route>
+            <Route path="/admin/:id/newproperty">
+                <FormProperty />
             </Route>
         </div>
     )

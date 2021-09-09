@@ -1,5 +1,6 @@
 import axios from "axios";
 import { FORGOT_PASSWORD } from "../Constants/constants";
+import Swal from "sweetalert2";
 
 export function forgot_password(email) {
     return async function (dispatch) {
@@ -14,7 +15,7 @@ export function forgot_password(email) {
         payload: data,
       });
     } catch (err) {
-      alert("Email no registrado");
+      Swal.fire('Lo sentimos!', 'Email no registrado', 'error')
     }
   };
 }

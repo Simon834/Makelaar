@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 
 import { userLogIn } from "../../Redux/Actions/userActions";
 
@@ -57,16 +57,17 @@ export function validate(input) {
   return errors;
 }
 
-export default function FormLogin({action}) {
+export default function FormLogin({ action }) {
   const dispatch = useDispatch();
-  const history = useHistory()
-  const { userInfo } = useSelector(state => state)
+  const history = useHistory();
+  const { userInfo } = useSelector((state) => state);
 
   const classes = useStyle();
 
   const [input, setInput] = useState({
     email: "",
     password: "",
+    showPassword: false
   });
 
   const [errors, setErrors] = useState({});
@@ -74,17 +75,14 @@ export default function FormLogin({action}) {
   useEffect(() => {
     if (userInfo.token) {
       if (userInfo.user.isAdmin) {
-        history.push(`/admin/${userInfo.user.id}/data`)
-        action()
+        history.push(`/admin/${userInfo.user.id}/data`);
+        action();
       } else {
-        history.push(`/user/${userInfo.user.id}/data`)
-        action()
+        history.push(`/user/${userInfo.user.id}/data`);
+        action();
       }
     }
-  }
-    , [userInfo])
-
-
+  }, [userInfo]); // eslint-disable-line react-hooks/exhaustive-deps
 
   function handleChange(e) {
     e.persist();
@@ -99,7 +97,6 @@ export default function FormLogin({action}) {
       })
     );
   }
-
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -135,7 +132,7 @@ export default function FormLogin({action}) {
           label="Password"
           variant="outlined"
           placeholder="Contraseña"
-          type="password"
+          type={input.showPassword ? 'text' : 'password'}
           id="password"
           value={input.password}
           onChange={(e) => handleChange(e)}
