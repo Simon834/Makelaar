@@ -37,7 +37,7 @@ export default function AdminPanel() {
             {
                 title: "Crear admin",
                 rute: "/newadmin"
-            },
+            },git add
             {
                 title: "Salir",
                 rute: "/logout",
