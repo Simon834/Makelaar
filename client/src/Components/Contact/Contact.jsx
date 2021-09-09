@@ -1,3 +1,4 @@
+import React from "react"
 import { Fragment } from "react";
 import { Button } from "@material-ui/core";
 import { TextareaAutosize } from "@material-ui/core";
@@ -9,8 +10,51 @@ import Facebook from "@material-ui/icons/Facebook";
 import Instagram from "@material-ui/icons/Instagram";
 import TextField from "@material-ui/core/TextField";
 import style from "./Contact.module.css";
+import Snackbar from "@material-ui/core/Snackbar";
+import MuiAlert from "@material-ui/lab/Alert";
+import { makeStyles } from "@material-ui/core/styles";
+
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    width: "100%",
+    "& > * + *": {
+      marginTop: theme.spacing(2),
+    },
+  },
+}));
 
 export default function Contact() {
+  const classes = useStyles();
+  const [open, setOpen] = React.useState(false);
+  const [openNoSent, setOpenNoSent] = React.useState(false);
+
+  const handleClickSent = () => {
+    setOpen(true);
+  };
+
+  const handleCloseSent = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
+  };
+
+  const handleClickNoSent = () => {
+    setOpenNoSent(true);
+  };
+
+  const handleCloseNoSent = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpenNoSent(false);
+  };
   function sendEmail(e) {
     e.preventDefault();
 
@@ -23,7 +67,7 @@ export default function Contact() {
       )
       .then(
         (result) => {
-          alert("Email enviado con Exito");
+          handleClickSent();
           document.getElementById("name").value = "";
           document.getElementById("phone").value = "";
           document.getElementById("message").value = "";
@@ -37,9 +81,30 @@ export default function Contact() {
       );
   }
 
+
   return (
     <Fragment>
       <div className={style.container}>
+        <div className={classes.root}>
+          <Snackbar
+            open={open}
+            autoHideDuration={6000}
+            onClose={handleCloseSent}
+          >
+            <Alert onClose={handleCloseSent} severity="success">
+              Mensaje enviado con éxito
+            </Alert>
+          </Snackbar>
+          <Snackbar
+            open={openNoSent}
+            autoHideDuration={6000}
+            onClose={handleCloseNoSent}
+          >
+            <Alert onClose={handleClickNoSent} severity="error">
+              Oh no ocurrio un error al eviar el email,intentelo nuevamente
+            </Alert>
+          </Snackbar>
+        </div>
         <div className={style.about_contact}>
           <div className={style.contact}>
             <div className={style.icon}>
@@ -147,7 +212,17 @@ export default function Contact() {
               Para estar actualizado
             </div>
             <div>
-              <Button variant="contained" color="primary" p={5} onClick={()=>window.open('https://m.facebook.com/Makelaar-110691244682513/', '_blank')}>
+              <Button
+                variant="contained"
+                color="primary"
+                p={5}
+                onClick={() =>
+                  window.open(
+                    "https://m.facebook.com/Makelaar-110691244682513/",
+                    "_blank"
+                  )
+                }
+              >
                 Seguinos
               </Button>
             </div>
@@ -161,7 +236,17 @@ export default function Contact() {
               Todas las novedades
             </div>
             <div>
-              <Button variant="contained" color="primary" p={5} onClick={()=>window.open('https://www.instagram.com/makelaar.inmobiliaria/', '_blank')}>
+              <Button
+                variant="contained"
+                color="primary"
+                p={5}
+                onClick={() =>
+                  window.open(
+                    "https://www.instagram.com/makelaar.inmobiliaria/",
+                    "_blank"
+                  )
+                }
+              >
                 Seguinos
               </Button>
             </div>
