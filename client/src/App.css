@@ -1,4 +1,6 @@
-
+.my-swal {
+  width: 3000px;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;

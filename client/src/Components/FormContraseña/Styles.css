@@ -1,4 +1,5 @@
-.form {
+.form-login {
+  z-index: -10;
   width: 360px;
   padding: 40px;
   display: flex;

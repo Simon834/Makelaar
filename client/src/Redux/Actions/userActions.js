@@ -6,6 +6,8 @@ import { loguinUserApi } from "../../Functions/api/users";
 
 import Swal from "sweetalert2";
 
+import "./userActions.css"
+
 //recibimos email y token del form
 export function userLogIn({email, password}){
  return async function(dispatch){
@@ -32,7 +34,15 @@ export function userLogIn({email, password}){
                     //     type: LOGIN_ERROR,
                     //     payload: data.error
                     // });
-                     Swal.fire("Oh no!", "Usuario o contraseña incorrectos", "error");
+                     Swal.fire({
+                       icon: "error",
+                       title: "Oh no!",
+                       text: "Usuario o contraseña incorrectos",
+                    //    width: 1800 !important,
+                    //    customClass: {
+                    //      container: "my-swal",
+                    //    },
+                     });
                     break;
 
                 case 500:
