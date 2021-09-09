@@ -12,7 +12,7 @@ import {
     Button,
     FormGroup,
     Typography,
-    
+
 
 } from "@material-ui/core";
 import Radio from '@material-ui/core/Radio';
@@ -52,10 +52,10 @@ const useStyle = makeStyles((theme) => ({
     },
     check: {
         marginLeft: "2%",
-        display:"flex",
-        
+        display: "flex",
+
     },
-    checkBox:{
+    checkBox: {
         flexDirection: "row"
     },
     input: {
@@ -66,7 +66,7 @@ const useStyle = makeStyles((theme) => ({
 
 export default function FormProperty() {
     const classes = useStyle();
-    const { handleChange, handleSubmit, handleCheck, formValid, errors, property, check,setImage } = Controls();
+    const { handleChange, handleSubmit, handleCheck, formValid, errors, property, check, setImage } = Controls();
     // console.log("PROPIEDAD", property)
 
     return (
@@ -75,22 +75,21 @@ export default function FormProperty() {
                 <Container className={classes.header}>Registra tu Propiedad</Container>
                 <form
                     className={classes.form}
-                    
+
                     autoComplete="off"
                     onSubmit={handleSubmit}
                 >
                     <Grid container >
-                        <Grid item xs={6}>
-                            <FormGroup
-                             >
+                        <Grid item xs={12}>
+                            <FormGroup>
                                 <TextField className={classes.input}
-                                // autoComplete='off'
-                                // inputProps={{
-                                //     autocomplete: 'off',
-                                //     form: {
-                                //       autocomplete: 'off',
-                                //     },
-                                //   }} 
+                                    // autoComplete='off'
+                                    // inputProps={{
+                                    //     autocomplete: 'off',
+                                    //     form: {
+                                    //       autocomplete: 'off',
+                                    //     },
+                                    //   }} 
                                     variant="outlined"
                                     label="Nombre"
                                     name="name"
@@ -146,26 +145,26 @@ export default function FormProperty() {
                                 />
 
                                 <FormControl component="fieldset">
-                                <Typography>Tipo de Propiedad</Typography>
-                                {type && type.map(t =>
-                                    <RadioGroup aria-label="type" name="type" value={check}  >
-                                      <FormControlLabel value={t} control={<Radio />} onChange={handleCheck}label={t} />
-                                     
+                                    <Typography>Tipo de Propiedad</Typography>
+                                    <RadioGroup aria-label="type" name="type" value={check.type}  >
+                                        {type && type.map(t =>
+                                            <FormControlLabel value={t} control={<Radio />} onChange={handleCheck} label={t} />
+
+                                        )}
                                     </RadioGroup>
-                                )}
                                 </FormControl>
 
-                                    <FormControl component="fieldset">
-                                <Typography>Condicion de la Propiedad</Typography>
+                                <FormControl component="fieldset">
+                                    <Typography>Condicion de la Propiedad</Typography>
                                     {/* <FormLabel component="legend">Condicion de la Propiedad</FormLabel> */}
-                                {condition && condition.map(t =>
-                                    <RadioGroup aria-label="condition" name="condition" value={check}  >
-                                      <FormControlLabel value={t} control={<Radio />} onChange={handleCheck}label={t} />
-                                     
+                                    <RadioGroup aria-label="condition" name="condition" value={check.condition}  >
+                                        {condition && condition.map(t =>
+                                            <FormControlLabel value={t} control={<Radio />} onChange={handleCheck} label={t} />
+
+
+                                        )}
                                     </RadioGroup>
-                               
-                                )}
-                                 {console.log("PROPIEDADCHECK", property)}
+                                    {/* {console.log("PROPIEDADCHECK", property)} */}
                                 </FormControl>
 
                                 <TextField
@@ -270,16 +269,16 @@ export default function FormProperty() {
                                 {/* CARGAR FOTOS */}
 
                                 <FormControl component="fieldset">
-                                <Typography>Que tipo de actividad desea realizar?</Typography>
-                                {transaction && transaction.map(t =>
-                                    <RadioGroup aria-label="transaction" name="transaction" value={check}  >
-                                      <FormControlLabel value={t} control={<Radio />} onChange={handleCheck}label={t} />
-                                
-                                    </RadioGroup>      
-                                )}
-                                 {console.log("PROPIEDADCHECK", property)}
+                                    <Typography>Que tipo de actividad desea realizar?</Typography>
+                                    <RadioGroup aria-label="transaction" name="transaction" value={check.transaction}  >
+                                        {transaction && transaction.map(t =>
+                                            <FormControlLabel value={t} control={<Radio />} onChange={handleCheck} label={t} />
+
+                                        )}
+                                    </RadioGroup>
+                                    {/* {console.log("PROPIEDADCHECK", property)} */}
                                 </FormControl>
-                                    <UploadImage images={property.photos} setImages={setImage}/>
+                                <UploadImage images={property.photos} setImages={setImage} />
                                 <p>
                                     <Button
                                         variant="contained"

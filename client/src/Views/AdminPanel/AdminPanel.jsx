@@ -16,7 +16,6 @@ export default function AdminPanel() {
     }
   }, [userInfo]); // eslint-disable-line react-hooks/exhaustive-deps
 
-<<<<<<< HEAD
     const list =
         [
             {
@@ -44,30 +43,6 @@ export default function AdminPanel() {
                 rute: "/logout",
             }
         ]
-=======
-  const list = [
-    {
-      title: "Mis datos",
-      rute: "/data",
-    },
-    {
-      title: "Mis usuarios",
-      rute: "/users",
-    },
-    {
-      title: "Mis propiedades",
-      rute: "/property",
-    },
-    {
-      title: "Crear admin",
-      rute: "/newadmin",
-    },
-    {
-      title: "Salir",
-      rute: "/logout",
-    },
-  ];
->>>>>>> dev
 
   return (
     <div>
