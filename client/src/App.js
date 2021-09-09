@@ -9,32 +9,30 @@ import ViewProperty from "./Views/ViewProperty/ViewProperty";
 import ViewAbout from "./Views/ViewAbout/ViewAbout";
 import ViewResetPassword from "./Views/ViewResetPassword/ViewResetPassword";
 import VierwRegister from "./Views/ViewRegister/VierwRegister";
+import ViewContract from "./Views/ViewContract/ViewContract";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 
-
 function App() {
-  const favorites = useSelector(state => state.favorites) 
+  const favorites = useSelector((state) => state.favorites);
 
   useEffect(() => {
-    if(favorites.length > 0){
+    if (favorites.length > 0) {
       localStorage.setItem("favorites", JSON.stringify(favorites));
     }
-  },[favorites])
+  }, [favorites]);
 
   return (
-    
     <div className="App">
-      <Route exact path="/" component={Home}/>
+      <Route exact path="/" component={Home} />
       <Route path="/admin" component={AdminPanel} />
-      <Route path="/user" component={UserPanel}/>
-      <Route path="/contact" component={ViewContact}/>
-      <Route path="/property" component={ViewProperty}/>
-      <Route path="/about" component={ViewAbout}/>
-      <Route path="/resetpassword" component={ViewResetPassword}/>
-      <Route path="/register" component={VierwRegister}/>
-
-     </div>
+      <Route path="/user" component={UserPanel} />
+      <Route path="/contact" component={ViewContact} />
+      <Route path="/property" component={ViewProperty} />
+      <Route path="/about" component={ViewAbout} />
+      <Route path="/resetpassword" component={ViewResetPassword} />
+      <Route path="/register" component={VierwRegister} />
+    </div>
   );
 }
 

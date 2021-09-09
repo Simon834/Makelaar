@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import TextField from "@material-ui/core/TextField";
 import { Button } from "@material-ui/core";
 import { forgot_password } from "../../Redux/Actions/formsActions";
-import "./Styles.css";
+import style from "./Styles.module.css";
+
 
 export function validate(input) {
   let errors = {};
@@ -50,8 +51,8 @@ export default function FormContraseña() {
 
   return (
     <div style={{ textAlign: "-webkit-center" }}>
-      <form className="form" onSubmit={(e) => handleSubmit(e)}>
-        <p className="title">Olvidaste tu contraseña</p>
+      <form className={style.form} onSubmit={(e) => handleSubmit(e)}>
+        <p className={style.title}>Olvidaste tu contraseña</p>
         <p>
           Te enviaremos un email con instrucciones sobre cómo restablecer tu
           contraseña.
@@ -65,7 +66,7 @@ export default function FormContraseña() {
           onChange={(e) => handleInputChange(e)}
           value={input.email}
         />
-        {errors.email && <p className="danger">{errors.email}</p>}
+        {errors.email && <p className={style.danger}>{errors.email}</p>}
         <Button variant="contained" color="primary" p={5} type="submit">
           Enviar
         </Button>

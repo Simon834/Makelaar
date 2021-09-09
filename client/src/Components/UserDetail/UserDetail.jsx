@@ -8,7 +8,6 @@ import { UserDetailControl } from "./UserDetailControl";
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
 import Button from '@material-ui/core/Button';
 
-
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
@@ -67,7 +66,9 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "10%"
   },
   btn:{
-    margin:"min-content"
+    "&:hover":{
+      backgroundColor: 'transparent'
+              },
   }
 
 }));
@@ -113,7 +114,7 @@ export default function UserDetail() {
                   {/* <Tooltip title="Enviar" onClick={handleSubmit}>
                     <ThumbUpAltIcon className={classes.icon}  />
                   </Tooltip> */}
-                  <Button color="secondary">Enviar</Button>
+                  <Button classname={classes.btn} color="secondary">Enviar</Button>
                 </div>
               </Paper>
             </Grid>
@@ -155,7 +156,7 @@ export default function UserDetail() {
                   {/* <Tooltip title="Enviar" onClick={handleSubmit}>
                     <ThumbUpAltIcon className={classes.icon} />
                   </Tooltip> */}
-                  <Button color="secondary">Enviar</Button>
+                  <Button classname={classes.btn} color="secondary">Enviar</Button>
                 </div>
               </Paper>
             </Grid>
@@ -180,7 +181,7 @@ export default function UserDetail() {
                   {/* <Tooltip title="Enviar" onClick={handleSubmit}>
                     <ThumbUpAltIcon className={classes.icon} />
                   </Tooltip> */}
-                  <Button color="secondary">Enviar</Button>
+                  <Button classname={classes.btn} color="secondary">Enviar</Button>
                 </div>
               </Paper>
             </Grid>

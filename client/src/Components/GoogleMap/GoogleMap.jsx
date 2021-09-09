@@ -1,7 +1,7 @@
 import { Map, Marker, GoogleApiWrapper } from "google-maps-react";
 import { useState } from "react";
 
-const logo = require("../../images/logo-color.png");
+const { GOOGLE_API_KEY } = process.env;
 
 const initialState = {
   activeMarker: {},
@@ -30,5 +30,5 @@ export function MapContainer(props) {
 }
 
 export default GoogleApiWrapper({
-  apiKey: "AIzaSyAVef8w7jcOU7gqCZ6JtorzeFKFR2AsDdw",
+  apiKey: GOOGLE_API_KEY,
 })(MapContainer);
