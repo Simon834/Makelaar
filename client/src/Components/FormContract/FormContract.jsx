@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 import { getAllUserApi } from "../../Functions/api/users";
 import { allProperties } from "../../Functions/api/property";
 
@@ -143,8 +142,8 @@ export default function NewContractForm() {
                     <em>Seleccione la propiedad</em>
                   </MenuItem>
                   {propertyList.length > 0 ? (
-                    propertyList.map((u) => (
-                      <MenuItem value={u.id}>{u.email}</MenuItem>
+                    propertyList.map((p) => (
+                      <MenuItem value={p.id}>{p.name}</MenuItem>
                     ))
                   ) : (
                     <MenuItem selected disabled value="">
