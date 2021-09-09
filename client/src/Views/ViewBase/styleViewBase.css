@@ -5,10 +5,20 @@
   padding: 0;
   box-sizing: border-box;
 }
-
-.base-container {
-  /* border: 3px solid rgb(109, 76, 76); */
+.Separador {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  margin-top: 1rem;
 }
+.Separador .container {
+  border-top: 1px solid;
+  border-bottom: 1px solid;
+}
+.Separador .container p {
+  font-size: 2rem;
+}
+
 .header-container {
   /* border: 3px solid red; */
   display: flex;
@@ -21,10 +31,11 @@
 .topBar-container {
   /* border: 3px solid rgb(0, 255, 128); */
   height: 70px;
+  background-color: #f2f4f6;
 }
 .navBar-container {
   /* border: 3px solid rgb(38, 63, 207); */
-  height: 160px;
+  min-width: 160px;
   line-height: 160px;
 }
 .carousel-container {
@@ -57,9 +68,7 @@
 .right {
   width: 80%;
 }
-.footer-container {
-  /* border: 3px solid rgb(47, 202, 230); */
-}
+
 @media (max-width: 1000px) {
   .body-container {
     flex-direction: column;

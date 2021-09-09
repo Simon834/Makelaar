@@ -17,7 +17,7 @@ const resetValues = {
     cp: "",
     description: "",
     // firstImg: "",
-    // photos: [],
+    photos: [],
     status: "activo",
     transaction: "",
     premium: false,
@@ -144,6 +144,12 @@ export function Controls() {
 
     }
 
+    function setImage(images){
+        setProperty({
+            ...property,
+            photos: images
+        });
+    }
 
     
     return{
@@ -154,6 +160,7 @@ export function Controls() {
         handleCheck,
         handleSubmit,
         formValid,
+        setImage
 
     }
 }

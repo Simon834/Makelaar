@@ -1,7 +1,6 @@
 import React from "react"
 import { Fragment } from "react";
 import { Button } from "@material-ui/core";
-import { TextareaAutosize } from "@material-ui/core";
 import emailjs from "emailjs-com";
 import Home from "@material-ui/icons/Home";
 import Phone from "@material-ui/icons/Phone";
