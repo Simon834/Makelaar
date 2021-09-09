@@ -81,6 +81,9 @@ module.exports = (db) => {
         premium:{
             type: DataTypes.BOOLEAN,
             // allowNull: false
+        },
+        price:{
+            type:Datatypes.BIGINT
         }
 
 

@@ -1,6 +1,10 @@
 .containerTopBar {
   height: auto;
 }
+.containerTopBar:hover{
+  background-color: transparent;
+}
+
 
 .containerContact {
   width: 600px;

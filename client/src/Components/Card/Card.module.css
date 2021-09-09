@@ -1,39 +1,39 @@
-.image-title {
+.imageTitle {
   margin-right: 15px;
   justify-content: center;
   align-items: center;
 }
 
-.info-title {
+.infoTitle {
   font-size: 12px;
   font-weight: 500;
   text-transform: uppercase;
   margin: 2px;
 }
 
-.info-text {
+.infoText {
   display: inline-flex;
   font-size: 12px;
   font-weight: 800;
   margin-left: 18px;
   color: #4c3c90;
 }
-.Container-info {
+.ContainerInfo {
   padding: 6px;
   margin-top: 10px;
 }
-.price-txt {
+.priceTxt {
   font-weight: bold;
   font-size: 19px;
   color: #4c3c90;
   margin-top: 25px;
 }
-.footer-card {
+.footerCard {
   display: flex;
   justify-content: space-between;
 }
 
-.Favorite-button {
+.FavoriteButton {
   color: #4c3c90;
   margin-top: 10px;
   place-self: self-end;

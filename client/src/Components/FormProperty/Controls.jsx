@@ -127,7 +127,7 @@ export function Controls() {
             try{
 
                 // console.log("PROPIEDAD CREADA",property)
-                const registeredProperty = await addNewProperty(property);
+                const registeredProperty = await addNewProperty(property); 
                 if(registeredProperty){
                     Swal.fire("Listo!", "Se agrego una propiedad con exito!", "success");
                 }
