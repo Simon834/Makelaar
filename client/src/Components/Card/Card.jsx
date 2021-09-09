@@ -11,7 +11,7 @@ import { Divider } from "@material-ui/core";
 import { addFavorite } from "../../Redux/Actions/favoriteActions";
 import { useDispatch } from "react-redux";
 
-import "./Card.css";
+import style from  "./Card.module.css";
 
 const useStyles = makeStyles({
   root: {
@@ -71,50 +71,50 @@ export default function CardComponent(props) {
         <CardContent >
           <Typography className={classes.title}>{props.title}</Typography>
           <Typography className={classes.address}>{props.address}</Typography>
-          <Typography className="Container-info">
+          <Typography className={style.ContainerInfo}>
             <img
-              className="image-title"
+              className={style.imageTitle}
               src="http://garbero.com.ar/wp-content/themes/realtyelite/img/ico-amountrooms.png"
               alt="rooms"
             />
-            <span className="info-title">
+            <span className={style.infoTitle}>
               Ambientes
               <span className="info-text">{props.rooms}</span>
             </span>
             <Divider flexItem={true}  />
             <img
-              className="image-title"
+              className={style.imageTitle}
               src="http://garbero.com.ar/wp-content/themes/realtyelite/img/ico-bathrooms.png"
               alt="rooms"
             />
-            <span className="info-title">
+            <span className={style.infoTitle}>
               Baños
-              <span className="info-text">{props.bathroom}</span>
+              <span className={style.infoText}>{props.bathroom}</span>
             </span>
             <Divider flexItem={true}  />
             <img
-              className="image-title"
+              className={style.imageTitle}
               src="http://garbero.com.ar/wp-content/themes/realtyelite/img/ico-bedrooms.png"
               alt="rooms"
             />
-            <span className="info-title">
+            <span className={style.infoTitle}>
               Dormitorios
-              <span className="info-text">{props.bedroom}</span>
+              <span className={style.infoText}>{props.bedroom}</span>
             </span>
           </Typography>
           <Divider light />
-          <div className="footer-card">
+          <div className={style.footerCard}>
             {/* <IconButton
               aria-label="add to favorites"
               onClick={() => handleOnClick(props)}
             > */}
             <FavoriteIcon
-              className="Favorite-button"
+              className={style.FavoriteButton}
               aria-label="add to favorites"
               onClick={() => handleOnClick(props)}
             />
             {/* </IconButton> */}
-            <span className="price-txt">Precio ${props.price}</span>
+            <span className={style.priceTxt}>Precio ${props.price}</span>
           </div>
         </CardContent>
       </CardActionArea>
