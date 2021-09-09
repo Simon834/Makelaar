@@ -67,6 +67,7 @@ export default function FormLogin({ action }) {
   const [input, setInput] = useState({
     email: "",
     password: "",
+    showPassword: false
   });
 
   const [errors, setErrors] = useState({});
@@ -131,7 +132,7 @@ export default function FormLogin({ action }) {
           label="Password"
           variant="outlined"
           placeholder="Contraseña"
-          type="password"
+          type={input.showPassword ? 'text' : 'password'}
           id="password"
           value={input.password}
           onChange={(e) => handleChange(e)}

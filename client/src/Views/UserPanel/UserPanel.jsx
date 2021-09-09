@@ -25,7 +25,7 @@ export default function UserPanel() {
       rute: "/properties",
     },
     {
-      title: "Salir",
+      title: "Cerrar sesion",
       rute: "/logout",
     },
   ];

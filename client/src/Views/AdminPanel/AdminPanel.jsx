@@ -39,7 +39,7 @@ export default function AdminPanel() {
                 rute: "/newadmin"
             },
             {
-                title: "Salir",
+                title: "Cerrar sesion",
                 rute: "/logout",
             }
         ]

@@ -10,7 +10,7 @@ import Typography from "@material-ui/core/Typography";
 import { useDispatch } from "react-redux";
 import DeleteIcon from "@material-ui/icons/Delete";
 
-import "./FavoriteCard.css";
+import style from "./FavoriteCard.module.css";
 import { deleteFavorite } from "../../Redux/Actions/favoriteActions";
 
 const useStyles = makeStyles({
@@ -72,15 +72,15 @@ export default function FavoriteCard(props) {
           title={props.title}
         />
         <CardContent className={classes.flexBox}>
-          <div className="descriptionCard">
+          <div className={style.descriptionCard}>
             <Typography className={classes.title}>{props.title}</Typography>
           </div>
-          <div className="iconPrice">
+          <div className={style.iconPrice}>
             <Typography className={classes.address}>
               {/* <IconButton aria-label="add to favorites">
                 <FavoriteIcon className="Favorite-button" />
               </IconButton> */}
-              <span className="price-txt">Precio ${props.price}</span>
+              <span className={style.priceTxt}>Precio ${props.price}</span>
             </Typography>
           </div>
           <div className={classes.iconDelete}>
