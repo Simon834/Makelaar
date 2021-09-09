@@ -13,48 +13,22 @@ import style from "./Contact.module.css";
 import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
 import { makeStyles } from "@material-ui/core/styles";
+import Swal from "sweetalert2";
 
-function Alert(props) {
-  return <MuiAlert elevation={6} variant="filled" {...props} />;
-}
+// function Alert(props) {
+//   return <MuiAlert elevation={6} variant="filled" {...props} />;
+// }
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    width: "100%",
-    "& > * + *": {
-      marginTop: theme.spacing(2),
-    },
-  },
-}));
+// const useStyles = makeStyles((theme) => ({
+//   root: {
+//     width: "100%",
+//     "& > * + *": {
+//       marginTop: theme.spacing(2),
+//     },
+//   },
+// }));
 
 export default function Contact() {
-  const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
-  const [openNoSent, setOpenNoSent] = React.useState(false);
-
-  const handleClickSent = () => {
-    setOpen(true);
-  };
-
-  const handleCloseSent = (event, reason) => {
-    if (reason === "clickaway") {
-      return;
-    }
-
-    setOpen(false);
-  };
-
-  const handleClickNoSent = () => {
-    setOpenNoSent(true);
-  };
-
-  const handleCloseNoSent = (event, reason) => {
-    if (reason === "clickaway") {
-      return;
-    }
-
-    setOpenNoSent(false);
-  };
   function sendEmail(e) {
     e.preventDefault();
 
@@ -67,16 +41,14 @@ export default function Contact() {
       )
       .then(
         (result) => {
-          handleClickSent();
+          Swal.fire("Perfecto!", "Tu mensaje ha sido enviado con éxito!", "success");
           document.getElementById("name").value = "";
           document.getElementById("phone").value = "";
           document.getElementById("message").value = "";
           document.getElementById("email").value = "";
         },
         (error) => {
-          alert(
-            "Oh no ocurrio un error al eviar el email,intentelo nuevamente"
-          );
+          Swal.fire("Oh no!", "ocurrio un error al eviar el email,intentelo nuevamente", "error");
         }
       );
   }
@@ -85,26 +57,6 @@ export default function Contact() {
   return (
     <Fragment>
       <div className={style.container}>
-        <div className={classes.root}>
-          <Snackbar
-            open={open}
-            autoHideDuration={6000}
-            onClose={handleCloseSent}
-          >
-            <Alert onClose={handleCloseSent} severity="success">
-              Mensaje enviado con éxito
-            </Alert>
-          </Snackbar>
-          <Snackbar
-            open={openNoSent}
-            autoHideDuration={6000}
-            onClose={handleCloseNoSent}
-          >
-            <Alert onClose={handleClickNoSent} severity="error">
-              Oh no ocurrio un error al eviar el email,intentelo nuevamente
-            </Alert>
-          </Snackbar>
-        </div>
         <div className={style.about_contact}>
           <div className={style.contact}>
             <div className={style.icon}>
