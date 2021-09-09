@@ -3,6 +3,9 @@ import axios from "axios";
 import { LOGIN,LOGIN_ERROR,LOGIN_SUCCES,LOGOUT, SIGN_UP, SIGN_UP_ERROR, SIGN_UP_SUCCES } from "../Constants/constants";
 
 import { loguinUserApi } from "../../Functions/api/users";
+
+import Swal from "sweetalert2";
+
 //recibimos email y token del form
 export function userLogIn({email, password}){
  return async function(dispatch){
@@ -29,7 +32,7 @@ export function userLogIn({email, password}){
                     //     type: LOGIN_ERROR,
                     //     payload: data.error
                     // });
-                    alert("Usuario o contraseña incorrectos")
+                     Swal.fire("Oh no!", "Usuario o contraseña incorrectos", "error");
                     break;
 
                 case 500:
@@ -37,13 +40,13 @@ export function userLogIn({email, password}){
                     //     type: LOGIN_ERROR,
                     //     payload: data.error
                     // });
-                    alert("Error en el servidor");
+                    Swal.fire("Oh no!", "Error en el servidor", "error");
                     break;
                     default: break;
          }
 
      }catch(err){
-         alert("Usuario o Contraseña incorrectos")
+         Swal.fire("Oh no!", "Usuario o Contraseña incorrectos", "error");
         //  dispatch({
         //      type: LOGIN_ERROR,
         //      payload: err

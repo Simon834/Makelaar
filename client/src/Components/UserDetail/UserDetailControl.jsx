@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router";
 import { logOutUser } from "../../Redux/Actions/userActions";
+import Swal from "sweetalert2";
 
 export const UserDetailControl = () => {
   let { userInfo } = useSelector((state) => state);
@@ -105,9 +106,7 @@ export const UserDetailControl = () => {
       //console.log(registeredUser);
       dispatch(logOutUser());
       history.push(`/`);
-      alert(
-        `Tus datos han sido actualizados correctamente, vuelva a iniciar seción`
-      );
+      Swal.fire("Perfecto!", "Tus datos han sido actualizados correctamente, vuelva a iniciar seción", "success");
     }
   };
 

@@ -1,3 +1,4 @@
+import React from "react"
 import { Fragment } from "react";
 import { Button } from "@material-ui/core";
 import emailjs from "emailjs-com";
@@ -8,6 +9,7 @@ import Facebook from "@material-ui/icons/Facebook";
 import Instagram from "@material-ui/icons/Instagram";
 import TextField from "@material-ui/core/TextField";
 import style from "./Contact.module.css";
+import Swal from "sweetalert2";
 
 export default function Contact() {
   function sendEmail(e) {
@@ -22,19 +24,18 @@ export default function Contact() {
       )
       .then(
         (result) => {
-          alert("Email enviado con Exito");
+          Swal.fire("Perfecto!", "Tu mensaje ha sido enviado con éxito!", "success");
           document.getElementById("name").value = "";
           document.getElementById("phone").value = "";
           document.getElementById("message").value = "";
           document.getElementById("email").value = "";
         },
         (error) => {
-          alert(
-            "Oh no ocurrio un error al eviar el email,intentelo nuevamente"
-          );
+          Swal.fire("Oh no!", "ocurrio un error al eviar el email,intentelo nuevamente", "error");
         }
       );
   }
+
 
   return (
     <Fragment>
