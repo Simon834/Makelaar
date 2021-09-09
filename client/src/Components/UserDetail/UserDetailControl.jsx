@@ -106,7 +106,7 @@ export const UserDetailControl = () => {
       dispatch(logOutUser());
       history.push(`/`);
       alert(
-        `Tus datos han sido actualizados correctamente, vuelva a iniciar seción`
+        `Tus datos han sido actualizados correctamente, vuelva a iniciar sesión`
       );
     }
   };

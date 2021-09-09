@@ -20,9 +20,15 @@ const useStyles = makeStyles({
     // minWidth: "380px",
     // maxWidth: "380px",
     boxShadow: "1px 3px 10px rgba(0,0,0,0.3)",
+    "&:hover":{
+      backgroundColor: 'transparent'
+              },
   },
   media: {
     height: 350,
+    "&:hover":{
+      backgroundColor: 'transparent'
+              },
   },
   title: {
     fontWeight: "bold",
@@ -40,6 +46,11 @@ const useStyles = makeStyles({
     fontWeight: "500",
     fontSize: 14,
   },
+  cardArea:{
+    "&:hover":{
+      backgroundColor: 'transparent'
+              },
+  }
 });
 
 export default function CardComponent(props) {
@@ -51,13 +62,13 @@ export default function CardComponent(props) {
 
   return (
     <Card className={classes.root}>
-      <CardActionArea>
+      <CardActionArea >
         <CardMedia
           className={classes.media}
           image={props.image}
           title={props.title}
         />
-        <CardContent>
+        <CardContent >
           <Typography className={classes.title}>{props.title}</Typography>
           <Typography className={classes.address}>{props.address}</Typography>
           <Typography className="Container-info">
@@ -71,7 +82,7 @@ export default function CardComponent(props) {
               Ambientes
               <p className="info-text">{props.rooms}</p>
             </span>
-            <Divider flexItem={true} />
+            <Divider flexItem={true}  />
             <img
               className="image-title"
               src="http://garbero.com.ar/wp-content/themes/realtyelite/img/ico-bathrooms.png"
@@ -81,7 +92,7 @@ export default function CardComponent(props) {
               Baños
               <p className="info-text">{props.bathroom}</p>
             </span>
-            <Divider flexItem={true} />
+            <Divider flexItem={true}  />
             <img
               className="image-title"
               src="http://garbero.com.ar/wp-content/themes/realtyelite/img/ico-bedrooms.png"
@@ -94,8 +105,8 @@ export default function CardComponent(props) {
           </Typography>
           <Divider light />
           <div className="footer-card">
-            <IconButton aria-label="add to favorites" onClick={() => handleOnClick(props)}>
-              <FavoriteIcon className="Favorite-button" />
+            <IconButton className={classes.cardArea} aria-label="add to favorites" onClick={() => handleOnClick(props)}>
+              <FavoriteIcon className={classes.cardArea} className="Favorite-button" />
             </IconButton>
             <span className="price-txt">Precio ${props.price}</span>
           </div>

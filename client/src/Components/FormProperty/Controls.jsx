@@ -126,7 +126,7 @@ export function Controls() {
             try{
 
                 // console.log("PROPIEDAD CREADA",property)
-                const registeredProperty = await addNewProperty(property);
+                const registeredProperty = await addNewProperty(property); 
                 if(registeredProperty){
                     alert("se agrego una propiedad con exito")
                 }
