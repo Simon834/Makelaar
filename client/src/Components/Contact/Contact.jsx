@@ -1,6 +1,5 @@
 import { Fragment } from "react";
 import { Button } from "@material-ui/core";
-import { TextareaAutosize } from "@material-ui/core";
 import emailjs from "emailjs-com";
 import Home from "@material-ui/icons/Home";
 import Phone from "@material-ui/icons/Phone";
@@ -147,7 +146,17 @@ export default function Contact() {
               Para estar actualizado
             </div>
             <div>
-              <Button variant="contained" color="primary" p={5} onClick={()=>window.open('https://m.facebook.com/Makelaar-110691244682513/', '_blank')}>
+              <Button
+                variant="contained"
+                color="primary"
+                p={5}
+                onClick={() =>
+                  window.open(
+                    "https://m.facebook.com/Makelaar-110691244682513/",
+                    "_blank"
+                  )
+                }
+              >
                 Seguinos
               </Button>
             </div>
@@ -161,7 +170,17 @@ export default function Contact() {
               Todas las novedades
             </div>
             <div>
-              <Button variant="contained" color="primary" p={5} onClick={()=>window.open('https://www.instagram.com/makelaar.inmobiliaria/', '_blank')}>
+              <Button
+                variant="contained"
+                color="primary"
+                p={5}
+                onClick={() =>
+                  window.open(
+                    "https://www.instagram.com/makelaar.inmobiliaria/",
+                    "_blank"
+                  )
+                }
+              >
                 Seguinos
               </Button>
             </div>

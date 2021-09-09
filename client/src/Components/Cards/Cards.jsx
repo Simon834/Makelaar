@@ -6,7 +6,7 @@ export default function Cards({ inmuebles }) {
   return (
     <Grid container spacing={6}>
       {inmuebles.map((inm) => (
-        <Grid item lg={4} xs={12} sm={6} md={6}>
+        <Grid item lg={4} xs={12} sm={6} md={6} key={inm.id}>
           <CardComponent
             title={inm.title}
             image={inm.image}

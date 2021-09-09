@@ -4,8 +4,8 @@ import { useSelector, useDispatch } from "react-redux";
 import ViewBase from "../ViewBase/view-base";
 import Carrusel from "../../Components/Carrusel/Carrusel";
 import Cards from "../../Components/Cards/Cards";
-import FavoriteCard from "../../Components/Favorites/FavoriteCard";
-import FavoriteCards from "../../Components/Favorites/FavoritesCards/FavoriteCards";
+// import FavoriteCard from "../../Components/Favorites/FavoriteCard";
+// import FavoriteCards from "../../Components/Favorites/FavoritesCards/FavoriteCards";
 
 import Filter from "../Filters/Filters";
 import SearchBar from "../../Components/SearchBar/SearchBar";
@@ -17,7 +17,7 @@ import {
   FILTER_TIPE,
   FILTER_BEDROOM,
   FILTER_BATHROOM,
-  RESET_FILTER,
+  // RESET_FILTER,
 } from "../../Redux/Constants/constants";
 import { filterEstates } from "../../Functions/filters/filters";
 
@@ -41,7 +41,7 @@ export default function Home() {
 
   useEffect(() => {
     dispatch(clearFilter());
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div>
