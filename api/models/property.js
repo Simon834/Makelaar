@@ -87,7 +87,7 @@ module.exports = (db) => {
             // allowNull: false
         },
         price:{
-            type:Datatypes.FLOAT
+            type:Datatypes.BIGINT
         }
 
 
