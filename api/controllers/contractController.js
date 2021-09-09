@@ -46,20 +46,17 @@ async function getContracts(req, res, next) {
   }
 }
 async function getContractsById(req, res, next) {
-  const UserId = req.params.id;
+  const contractId = req.params.id;
   try {
-    const contract = await Contract.findOne({
-      where: {
-        UserId: UserId,
-      },
-    });
+    const contract = await Contract.findByPk(contractId);
     if (contract) {
       res.json(contract);
     } else {
-      res.status(204).json({ msg: "Id de usuario inexistente" });
+      res.status(204).json({ msg: "Id de contrato inexistente" });
     }
   } catch (err) {
     return next(err);
   }
+}
 }
 module.exports = { newContract, getContracts, getContractsById };
