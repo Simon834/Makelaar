@@ -1,7 +1,5 @@
 .containerTopBar {
   height: auto;
-  background-color: #f2f4f6;
-  
 }
 .containerTopBar:hover{
   background-color: transparent;
@@ -35,6 +33,7 @@
 }
 @media (max-width: 1000px) {
   .containerTopBar {
+    background-color: #f2f4f6;
     height: auto;
     text-align-last: center;
   }

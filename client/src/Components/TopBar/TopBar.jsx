@@ -1,13 +1,13 @@
-import React, { useState, useEffect, useRef } from 'react';
-import WhatsAppIcon from '@material-ui/icons/WhatsApp';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
-import MailOutlineIcon from '@material-ui/icons/MailOutline';
-import PermIdentityIcon from '@material-ui/icons/PermIdentity';
-import Tooltip from '@material-ui/core/Tooltip';
-import { Dialog, DialogContent, DialogActions } from "@material-ui/core";
+import React, { useState } from "react";
+import WhatsAppIcon from "@material-ui/icons/WhatsApp";
+import IconButton from "@material-ui/core/IconButton";
+import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core/styles";
+import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
+import MailOutlineIcon from "@material-ui/icons/MailOutline";
+import PermIdentityIcon from "@material-ui/icons/PermIdentity";
+import Tooltip from "@material-ui/core/Tooltip";
+import { Dialog, DialogContent } from "@material-ui/core";
 import { Button } from "@material-ui/core";
 import FormLogin from '../FormLogin/FormLogin';
 import FavoriteCards from '../Favorites/FavoritesCards/FavoriteCards';
@@ -25,7 +25,6 @@ const useStyles = makeStyles((theme) => ({
         flexDirection: 'row',
         display: 'flex',
         margin: theme.spacing(5),
-        display: 'flex',
         flexWrap: 'wrap',
         justifyContent: 'space-around',
         overflow: 'hidden',
@@ -57,8 +56,8 @@ backgroundColor: 'transparent'
 
 export default function TopBar() {
 
-    const [open, setOpen] = useState(false);
-    const anchorRef = useRef(null);
+    // const [open, setOpen] = useState(false);
+    // const anchorRef = useRef(null);
 
     const [showDialog, setShowDialog] = useState(false);
 
@@ -71,9 +70,9 @@ export default function TopBar() {
     const openFav = () => setShowFav(true);
     const closeFav = () => setShowFav(false);
 
-    const handleToggle = () => {
-        setOpen((prevOpen) => !prevOpen);
-    };
+    // const handleToggle = () => {
+    //     setOpen((prevOpen) => !prevOpen);
+    // };
 
     const classes = useStyles();
 

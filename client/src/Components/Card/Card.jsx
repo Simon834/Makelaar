@@ -4,7 +4,7 @@ import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
-import IconButton from "@material-ui/core/IconButton";
+// import IconButton from "@material-ui/core/IconButton";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import Typography from "@material-ui/core/Typography";
 import { Divider } from "@material-ui/core";
@@ -58,7 +58,7 @@ export default function CardComponent(props) {
   const dispatch = useDispatch();
   const handleOnClick = (obj) => {
     dispatch(addFavorite(obj));
-  }
+  };
 
   return (
     <Card className={classes.root}>
@@ -73,14 +73,13 @@ export default function CardComponent(props) {
           <Typography className={classes.address}>{props.address}</Typography>
           <Typography className="Container-info">
             <img
-            
               className="image-title"
               src="http://garbero.com.ar/wp-content/themes/realtyelite/img/ico-amountrooms.png"
               alt="rooms"
             />
             <span className="info-title">
               Ambientes
-              <p className="info-text">{props.rooms}</p>
+              <span className="info-text">{props.rooms}</span>
             </span>
             <Divider flexItem={true}  />
             <img
@@ -90,7 +89,7 @@ export default function CardComponent(props) {
             />
             <span className="info-title">
               Baños
-              <p className="info-text">{props.bathroom}</p>
+              <span className="info-text">{props.bathroom}</span>
             </span>
             <Divider flexItem={true}  />
             <img
@@ -100,14 +99,21 @@ export default function CardComponent(props) {
             />
             <span className="info-title">
               Dormitorios
-              <p className="info-text">{props.bedroom}</p>
+              <span className="info-text">{props.bedroom}</span>
             </span>
           </Typography>
           <Divider light />
           <div className="footer-card">
-            <IconButton className={classes.cardArea} aria-label="add to favorites" onClick={() => handleOnClick(props)}>
-              <FavoriteIcon className={classes.cardArea} className="Favorite-button" />
-            </IconButton>
+            {/* <IconButton
+              aria-label="add to favorites"
+              onClick={() => handleOnClick(props)}
+            > */}
+            <FavoriteIcon
+              className="Favorite-button"
+              aria-label="add to favorites"
+              onClick={() => handleOnClick(props)}
+            />
+            {/* </IconButton> */}
             <span className="price-txt">Precio ${props.price}</span>
           </div>
         </CardContent>
