@@ -80,4 +80,22 @@ async function allProperties(req, res, next) {
   }
 }
 
-module.exports = { addNewProperty, allProperties };
+async function idProperties(req, res, next) {
+  let id = req.params.id * 1;
+  console.log(id);
+  try {
+    const properties = await Property.findByPk(id, {
+      include: [{ model: Image }, { model: Contract }],
+    });
+    if (properties) {
+      return res.json(properties);
+    } else {
+      return res.json({ msg: "Id de propiedad inexistente" });
+    }
+  } catch (err) {
+    console.log(err);
+    return next(err);
+  }
+}
+
+module.exports = { addNewProperty, allProperties, idProperties };
