@@ -99,7 +99,7 @@ export default function TopBar() {
                         arial-label="app" >
                         <FavoriteBorderIcon onClick={openFav} className={classes.icon}/>
                         <Dialog open={showFav} onClose={closeFav}>
-                            <DialogContent>
+                            <DialogContent >
                                 <Button className={classes.button}
                                     size="small"
                                     variant="contained"
