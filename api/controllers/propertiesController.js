@@ -80,7 +80,23 @@ async function allProperties(req, res, next) {
   }
 }
 
-
+async function idProperties(req, res, next) {
+  let id = req.params.id * 1;
+  console.log(id);
+  try {
+    const properties = await Property.findByPk(id, {
+      include: [{ model: Image }, { model: Contract }],
+    });
+    if (properties) {
+      return res.json(properties);
+    } else {
+      return res.json({ msg: "Id de propiedad inexistente" });
+    }
+  } catch (err) {
+    console.log(err);
+    return next(err);
+  }
+}
 
 async function updateProperty(req, res, next) {
   const {id, name, available, area, rooms, bathrooms, type, description, firstImg, status, transaction, condition, premium, price} = req.body;
@@ -111,4 +127,4 @@ async function updateProperty(req, res, next) {
   }
 }
 
-module.exports = { addNewProperty, allProperties, updateProperty };
+module.exports = { addNewProperty, allProperties, updateProperty, idProperties };

@@ -5,10 +5,17 @@
 
 .info{
     padding: 5px;
-    width: 48vw;
+
 }
 
 .galery{
     padding: 5px;
     width: 48vw; 
 }
+
+.map{
+    margin-top: 10px; 
+    width: 100%; 
+     height: 350px;
+}     
+
