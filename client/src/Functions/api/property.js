@@ -22,3 +22,15 @@ export async function allProperties() {
     throw err;
   }
 }
+
+export async function propertyById(id) {
+  try {
+    const allProperties = await axios.get(
+      `${BACK_SERVER}/property/${id}`
+    );
+    return allProperties.data;
+  } catch (err) {
+    throw err;
+  }
+}
+

@@ -22,17 +22,17 @@ import { clearFilter } from "../../Redux/Actions/filterActions";
 const inmuebles = require("../../inmuebles.json");
 
 export default function ViewProperty() {
-  const { concept, tipe, bedroom, bathroom, price, search } = useSelector(
+  const { concept, tipe, bedroom, bathroom, price, search, properties } = useSelector(
     (state) => state
   );
-  const [estates, setEstates] = useState(inmuebles);
+  const [estates, setEstates] = useState(properties);
   const dispatch = useDispatch();
 
   useEffect(() => {
     setEstates(
-      filterEstates(inmuebles, concept, tipe, bedroom, bathroom, price, search)
+      filterEstates(properties, concept, tipe, bedroom, bathroom, price, search)
     );
-  }, [concept, tipe, bedroom, bathroom, price, search]);
+  }, [concept, tipe, bedroom, bathroom, price, search, properties]);
 
   useEffect(() => {
     dispatch(clearFilter());
