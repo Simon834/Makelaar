@@ -9,8 +9,8 @@
 }
 .title {
   margin: -20px 0 30px 0;
-  font-size: 2em;
-  font-weight: bold;
+  font-size: 1.7em;
+  font-weight: 400;
 
 }
 .input {
@@ -20,7 +20,7 @@
 
 .text {
   margin-bottom: 20px;
-  font-size: 18px;
+  font-size: 17px;
 }
 
 .errorText {

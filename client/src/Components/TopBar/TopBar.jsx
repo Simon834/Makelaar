@@ -12,6 +12,7 @@ import { Button } from "@material-ui/core";
 import FormLogin from "../FormLogin/FormLogin";
 import FavoriteCards from "../Favorites/FavoritesCards/FavoriteCards";
 import FormContraseña from "../FormContraseña/FormContraseña";
+import UserRegistrationForm from "../UserRegistrationForm/UserRegistrationFrom";
 
 import style from "./TopBar.module.css";
 
@@ -41,7 +42,6 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: "20px",
     marginTop: "12px",
     padding: "6px",
-    marginLeft: theme.spacing(40),
     float: "right",
   },
   icon: {
@@ -72,6 +72,9 @@ export default function TopBar() {
           <Button onClick={openDialogReset} autoFocus color="primary">
             ¿Olvidaste tu contraseña?
           </Button>
+          <Button onClick={openDialogRegister} autoFocus color="primary">
+            Regístrate
+          </Button>
         </DialogActions>
       </Dialog>
     );
@@ -95,6 +98,25 @@ export default function TopBar() {
       </Dialog>
     );
   };
+  const RegisterModal = (props) => {
+    return (
+      <Dialog open={showDialogRegister} onClose={closeDialogRegister}>
+        <DialogContent>
+          <Button
+            className={classes.button}
+            size="small"
+            variant="contained"
+            color="primary"
+            type="submit"
+            onClick={closeDialogRegister}
+          >
+            X
+          </Button>
+          <UserRegistrationForm action={closeDialogRegister} />
+        </DialogContent>
+      </Dialog>
+    );
+  };
 
   ///// -- Login dialog
   const [showDialog, setShowDialog] = useState(false);
@@ -109,6 +131,13 @@ export default function TopBar() {
 
   const closeDialogReset = () => setShowDialogReset(false);
 
+  ///// -- Register dialog
+
+  const [showDialogRegister, setShowDialogRegister] = useState(false);
+
+  const openDialogRegister = () => setShowDialogRegister(true);
+
+  const closeDialogRegister = () => setShowDialogRegister(false);
   ////
   const [showFav, setShowFav] = useState(false);
 
@@ -171,6 +200,10 @@ export default function TopBar() {
             <ResetModal
               open={openDialogReset}
               handleClose={() => setShowDialogReset(false)}
+            />
+            <RegisterModal
+              open={openDialogRegister}
+              handleClose={() => setShowDialogRegister(false)}
             />
           </IconButton>
         </Tooltip>
