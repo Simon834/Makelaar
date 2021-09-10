@@ -154,6 +154,7 @@ export default function UserRegistrationForm(props) {
                   </InputAdornment>
                 }
               />
+              <em>{errors.password}</em>
               </FormControl>
               <p>
                 <Button
