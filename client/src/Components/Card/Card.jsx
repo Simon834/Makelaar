@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import { Divider } from "@material-ui/core";
-import { addFavorite } from "../../Redux/Actions/favoriteActions";
-import { useDispatch } from "react-redux";
+import {
+  addFavorite,
+  deleteFavorite,
+} from "../../Redux/Actions/favoriteActions";
+import { useDispatch, useSelector } from "react-redux";
 
 import style from "./Card.module.css";
 
@@ -49,19 +52,44 @@ const useStyles = makeStyles({
 });
 
 export default function CardComponent(props) {
+  const [fav, setFav] = useState(false);
+  const favorites = useSelector((state) => state.favorites);
+
+  useEffect(() => {
+      if (favorites.length > 0) {
+      const searFav = favorites.filter((e) => e.id === props.id);
+      if (searFav.length) {
+        setFav(true);
+      }
+      localStorage.setItem("favorites", JSON.stringify(favorites));
+    }
+    if (favorites.length === 0) {
+      localStorage.setItem("favorites", JSON.stringify([]));
+    }// eslint-disable-next-line
+  }, [favorites]);
+
   const classes = useStyles();
   const dispatch = useDispatch();
-  const handleOnClick = (obj) => {
+
+  const handleAddFavorite = (obj) => {
     dispatch(addFavorite(obj));
+  };
+  const handleDeleteFavorite = (id) => {
+    dispatch(deleteFavorite(id));
+    setFav(false)
   };
 
   return (
     <Card className={classes.root}>
-      <CardMedia
-        className={classes.media}
-        image={props.image}
-        title={props.title}
-      />
+      {props.image ? (
+        <CardMedia
+          className={classes.media}
+          image={props.image}
+          title={props.title}
+        />
+      ) : (
+        <></>
+      )}
       <CardContent>
         <Typography className={classes.title}>{props.title}</Typography>
         <Typography className={classes.address}>{props.address}</Typography>
@@ -73,7 +101,7 @@ export default function CardComponent(props) {
           />
           <span className={style.infoTitle}>
             Ambientes
-            <span className="info-text">{props.rooms}</span>
+            <span className={style.infoText}>{props.rooms}</span>
           </span>
           <Divider flexItem={true} />
           <img
@@ -113,7 +141,8 @@ export default function CardComponent(props) {
               type="checkbox"
               className={style.heart__checkbox}
               aria-label="add to favorites"
-              onClick={() => handleOnClick(props)}
+              onClick={() => fav?handleDeleteFavorite(props.id):handleAddFavorite(props)     }
+              checked={fav}
             />
             <div className={style.heart__icon} />
           </div>

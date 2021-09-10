@@ -1,4 +1,4 @@
-const { Property } = require("../db");
+const { Property, Image, Contract } = require("../db");
 
 //creacion propiedad
 async function addNewProperty(req, res, next) {
@@ -46,18 +46,18 @@ async function addNewProperty(req, res, next) {
       transaction: transaction,
       condition: condition,
       available: available,
-      status: status,
+      status: status || "activo",
       lat: lat,
       lng: lng,
     });
+    if(photos){
+      const image = photos?.map(
+        async (photo) => await newProperty.createImage({ url: photo })
+      );
 
-    const image = photos.map(
-      async (photo) => await newProperty.createImage({ url: photo })
-    );
-
-    await Promise.all(image);
+      await Promise.all(image);
+    }
     res.json({ newProperty });
-    //}
   } catch (err) {
     console.log(next(err));
     return res.status(500).json(err);
@@ -66,7 +66,9 @@ async function addNewProperty(req, res, next) {
 
 async function allProperties(req, res, next) {
   try {
-    const properties = await Property.findAll();
+    const properties = await Property.findAll({
+      include: [{ model: Image }, { model: Contract }],
+    });
     if (!properties.length) {
       return properties.data;
     } else {
@@ -78,4 +80,35 @@ async function allProperties(req, res, next) {
   }
 }
 
-module.exports = { addNewProperty, allProperties };
+
+
+async function updateProperty(req, res, next) {
+  const {id, name, available, area, rooms, bathrooms, type, description, firstImg, status, transaction, condition, premium, price} = req.body;
+  try {
+    let property = await Property.findOne({ where: { id } });
+
+    if (property) {
+      property.name = name;
+      property.available = available;
+      property.area = area;
+      property.rooms = rooms;
+      property.bathrooms = bathrooms;
+      property.type = type;
+      property.description = description;
+      property.firstImg = firstImg;
+      property.status = status;
+      property.transaction = transaction;
+      property.condition = condition;
+      property.premium = premium;
+      property.price = price;
+      
+      await property.save();
+      return res.json({ msg: "Tu propiedad ha sido nodificada" });
+    }
+  } catch (err) {
+    console.log(err);
+    next(err);
+  }
+}
+
+module.exports = { addNewProperty, allProperties, updateProperty };

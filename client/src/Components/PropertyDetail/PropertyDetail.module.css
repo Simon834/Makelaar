@@ -1,0 +1,14 @@
+.conteiner{
+    display: flex;
+    justify-content: center;
+}
+
+.info{
+    padding: 5px;
+    width: 48vw;
+}
+
+.galery{
+    padding: 5px;
+    width: 48vw; 
+}

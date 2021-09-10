@@ -7,6 +7,8 @@ import property from '../../inmuebles.json'
 import UserDetail from '../UserDetail/UserDetail';
 import Logout from '../Logout/Logout';
 import FormProperty from '../FormProperty/FormProperty';
+import UploadFile from '../Upload/UploadFile';
+import NewContractForm from '../FormContract/FormContract'
 
 const columnsUserList = [
     { field: 'name', headerName: 'Nombre', width: 150 },
@@ -38,7 +40,7 @@ export default function AdminBody() {
 
     useEffect(() => {
         getAllUser()
-    }
+    }// eslint-disable-next-line
         , [])
 
     return (
@@ -62,6 +64,12 @@ export default function AdminBody() {
             </Route>
             <Route path="/admin/:id/newproperty">
                 <FormProperty />
+            </Route>
+            <Route path="/admin/:id/newcontract">
+                <NewContractForm />
+            </Route>
+            <Route path="/admin/:id/test">
+                <UploadFile />
             </Route>
         </div>
     )
