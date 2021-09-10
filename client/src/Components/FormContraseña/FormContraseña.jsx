@@ -62,7 +62,7 @@ export default function FormContraseña() {
           type="text"
           name="email"
           placeholder="email@makelaar.com"
-          style={{ marginBottom: "15x", paddingBottom: "25px" }}
+          style={{ marginBottom: "15px", paddingBottom: "20px" }}
           onChange={(e) => handleInputChange(e)}
           value={input.email}
         />
