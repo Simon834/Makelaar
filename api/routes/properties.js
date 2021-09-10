@@ -4,7 +4,7 @@ const {
   addNewProperty,
   allProperties,
 } = require("../controllers/propertiesController");
-const { filterProperties } = require("./")
+const { filterProperties } = require("../controllers/filterControllers")
 
 router.post("/addProperty", addNewProperty);
 router.get("/", filterProperties);

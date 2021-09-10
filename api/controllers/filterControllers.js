@@ -3,98 +3,74 @@ const { Op } = require('sequelize');
 
 async function filterProperties(req, res, next){
     let { 
-        name,
         search,
-        area,
-        rooms,
+        bedrooms,
         bathrooms,
         types,
         city,
         neighborhood,
         province,
-        street,
+        address,
         description,
         transaction,
         condition,
         price
     } = req.query;
-
-    try{
-        let filteredProperty = await Property.findAll({
-            where: {
-                [Op.and]: [
-                    {
-                        status: "activo",
-                    },
-                    {
-                        type:type
-                    },
-                    {
-                        condition: condition,
-                    },
-                    {
-                        price: {[Op.between]: price}
-                    },
-                    {
-                        bedrooms: bedrooms,
-                    },
-                    {
-                        bathrooms: bathrooms,
-                    },
-                    {
-                        [Op.or]: [
-                            [   {
-                                    name:
-                                    {   
-                                        [Op.iLike]: `%${search}%`
-                                    }
-                                },
-                                {
-                                    type:
-                                    {   
-                                        [Op.iLike]: `%${search}%`
-                                    }
-                                },
-                                {
-                                    city:
-                                    {   
-                                        [Op.iLike]: `%${search}%`
-                                    }
-                                },
-                                {
-                                    province:
-                                    {   
-                                        [Op.iLike]: `%${search}%`
-                                    }
-                                },
-                                {
-                                    description:
-                                    {   
-                                        [Op.iLike]: `%${search}%`
-                                    }
-                                },
-                                {
-                                    transaction:
-                                    {   
-                                        [Op.iLike]: `%${search}%`
-                                    }
-                                },
-                                {
-                                    condition:
-                                    {   
-                                        [Op.iLike]: `%${search}%`
-                                    }
-                                },
-                            ]
-                        ]
-                    }
-                ],
-            }
-        })
-        res.send(filteredProperty);
+    console.log(req.query)
+    let filterArray = [{status: "activo"}];
+    if(types) filterArray.push({type: types});
+    if(condition) filterArray.push({ condition: condition });
+    if(price) filterArray.push({ price: price });
+    if (bedrooms) filterArray.push({ bedrooms: bedrooms });
+    if (bathrooms) filterArray.push({ bathrooms: bathrooms });
+    if(search) {
+            filterArray.push({
+        [Op.or]: [
+            {
+                name: {
+                [Op.iLike]: `%${search}%`,
+                },
+            },
+            {
+                city: {
+                [Op.iLike]: `%${search}%`,
+                },
+            },
+            {
+                province: {
+                [Op.iLike]: `%${search}%`,
+                },
+            },
+            {
+                description: {
+                [Op.iLike]: `%${search}%`,
+                },
+            },
+            {
+                condition: {
+                [Op.iLike]: `%${search}%`,
+                },
+            },
+            ],
+        });
+    }
+    console.log("FILTER:", filterArray)
+    try {
+        const filterProperties = await Property.findAll({
+          where: {
+            [Op.and]: filterArray
+          },
+        });
+        console.log("FILERED FILTER", filterProperties);
+        if (filterProperties.length > 0) {
+            return res.json(filterProperties);
+        }else{
+            res.json("No properties");
+        }
     }catch(err){
-        console.log(next(err))
+        next(err)
     }
 }
+
 
 module.exports = { filterProperties };
