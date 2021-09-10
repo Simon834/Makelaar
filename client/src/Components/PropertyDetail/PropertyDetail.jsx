@@ -49,8 +49,6 @@ export default function PropertyDetail() {
           garage={inm.garage}
           id={inm.id}
         />
-
-
         <div>
           <ContactForm
             msg={`Hola, tengo interés en ${inm.name} en ${inm.address}, ¿podriamos coordinar una visita?`}
