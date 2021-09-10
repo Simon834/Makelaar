@@ -206,36 +206,38 @@ export default function FormLogin({ action }) {
         />
       </div>
       <div>
-      <FormControl variant="outlined">
-              <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
-              <OutlinedInput
-                // variant="outlined"
-                label="Contraseña"
-                name="password"
-                id="password"
-                type={showPass ? 'text' : 'password'}
-                value={input.password}
-                onChange={(e) => handleChange(e)}
-                required
-                {...(errors.password && {
-                  error: true,
-                  helperText: errors.password,
-                })}
-                endAdornment={
-                  <InputAdornment position="end">
-                    <IconButton
-                      aria-label="toggle password visibility"
-                      onClick={handleClickShowPassword}
-                      onMouseDown={handleMouseDownPassword}
-                      edge="end"
-                    >
-                      {showPass ? <Visibility /> : <VisibilityOff />}
-                    </IconButton>
-                  </InputAdornment>
-                }
-              />
-              <em>{errors.password}</em>
-              </FormControl>
+        <FormControl variant="outlined">
+          <InputLabel htmlFor="outlined-adornment-password">
+            Password
+          </InputLabel>
+          <OutlinedInput
+            // variant="outlined"
+            label="Contraseña"
+            name="password"
+            id="password"
+            type={showPass ? "text" : "password"}
+            value={input.password}
+            onChange={(e) => handleChange(e)}
+            required
+            {...(errors.password && {
+              error: true,
+              helperText: errors.password,
+            })}
+            endAdornment={
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={handleClickShowPassword}
+                  onMouseDown={handleMouseDownPassword}
+                  edge="end"
+                >
+                  {showPass ? <Visibility /> : <VisibilityOff />}
+                </IconButton>
+              </InputAdornment>
+            }
+          />
+          <em>{errors.password}</em>
+        </FormControl>
 
         {/* <label htmlFor="password"></label>
            <TextField
@@ -251,7 +253,7 @@ export default function FormLogin({ action }) {
             helperText: errors.password,
           })}
         />*/}
-      </div> 
+      </div>
 
       <div>
         <p>
@@ -265,14 +267,14 @@ export default function FormLogin({ action }) {
           </Button>
         </p>
       </div>
-
+      {/* 
       <Typography className={classes.link}>
         <Link href="/resetpassword">¿Olvidaste tu contraseña?</Link>
-      </Typography>
+      </Typography> */}
 
-      <Typography className={classes.link}>
+      {/* <Typography className={classes.link}>
         <Link href="/register">REGISTRARSE</Link>
-      </Typography>
+      </Typography> */}
     </form>
 >>>>>>> dev
   );
