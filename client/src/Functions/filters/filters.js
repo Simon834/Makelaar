@@ -2,8 +2,7 @@ import axios from "axios";
 require("dotenv").config();
 const BACK_SERVER =
   process.env.REACT_APP_BACK_SERVER || "http://localhost:3010";
-
-export async function filterEstates(
+export function filterEstates(
   estates,
   concept,
   tipe,
@@ -12,58 +11,74 @@ export async function filterEstates(
   price,
   search
 ) {
-   function filterProp(estateProp, prop) {
-    if (prop) {
-      return estateProp === prop ? true : false;
-    } else {
-      return true;
-    }
-  }
-  function filterPrice(estatePrice, price) {
-    if (price[0]) {
-      return estatePrice * 1 > price[0]
-        ? estatePrice * 1 < price[1]
-          ? true
-          : false
-        : false;
-    } else {
-      return true;
-    }
-  }
-  try{
-    const resultFiltered = await axios.get(`${BACK_SERVER}/property?types=${tipe}&bedroom=${bedroom}&bathroom=${bathroom}&search=${search}`)
-    return resultFiltered.data
-    const estatesFiltred = estates.filter(
-      (estate) =>
-    //     filterProp(estate.concept, concept) &&
-    //     filterProp(estate.type, tipe) &&
-    //     filterProp(estate.bedroom, bedroom) &&
-    //     filterProp(estate.bathroom, bathroom) &&
-        filterPrice(estate.price, price)
-    //     searchFilter(estate, search)
-    );
-    const ordenador_premium = estatesFiltred.sort(
-      (a, b) => b.premium - a.premium
-    );
-    return ordenador_premium;
-  }
+  console.log(estates, "INMUEBLES");
+  const estatesFiltred = backFilters(
+    estates,
+    concept,
+    tipe,
+    bedroom,
+    bathroom,
+    price,
+    search
+  );
+  console.log("estados", estatesFiltred);
+  const ordenador_premium = estatesFiltred.sort(
+    (a, b) => b.premium - a.premium
+  );
+  return ordenador_premium;
+}
 
+function backFilters(estates, concept, tipe, bedroom, bathroom, price, search) {
+  if (!search && !concept && !tipe && !bedroom && !bathroom) {
+    let resultado = estates.filter((estate) =>
+      filterPrice(estate.price, price)
+    );
+    console.log("entre aca primero", resultado);
+    return resultado;
+  } else if (price) {
+    const data = llamadoBack(tipe, bedroom, bathroom, search);
+    console.log("ACA no entre", data);
 
-  }catch(err){
-    console.log("no funciona el filtro")
+    return data.filter((estate) => filterPrice(estate.price, price));
+  } else {
+    const data = llamadoBack(tipe, bedroom, bathroom, search);
+    console.log(data, "Data");
+    return data;
   }
 }
 
-// function searchFilter(estate, search) {
-//   if (search) {
-//     return (
-//       estate.title?.toUpperCase().includes(search.toUpperCase()) ||
-//       estate.address?.toUpperCase().includes(search.toUpperCase()) ||
-//       estate.type?.toUpperCase().includes(search.toUpperCase()) ||
-//       estate.price?.toUpperCase().includes(search.toUpperCase()) ||
-//       estate.area?.toUpperCase().includes(search.toUpperCase())
-//     );
-//   } else {
-//     return true;
-//   }
-// }
+function filterPrice(estatePrice, price) {
+  if (price[0]) {
+    return estatePrice * 1 > price[0]
+      ? estatePrice * 1 < price[1]
+        ? true
+        : false
+      : false;
+  } else {
+    return true;
+  }
+}
+
+function generateRoute(tipe, bedroom, bathroom, search) {
+  let aux = [];
+  if (tipe) aux.push(`types=${tipe}&`);
+  if (bedroom) aux.push(`bedroom=${bedroom}&`);
+  if (bathroom) aux.push(`bathroom=${bathroom}&`);
+  if (search) aux.push(`search=${search}&`);
+  console.log(aux, "AUX");
+  let acumulador = aux.toString();
+
+  for (let i = 0; i < aux.length - 1; i++) {
+    if (i === 0) acumulador = acumulador + aux[i];
+    acumulador = acumulador + "&" + aux[i];
+  }
+  return acumulador;
+}
+async function llamadoBack(tipe, bedroom, bathroom, search) {
+  const ruta = generateRoute(tipe, bedroom, bathroom, search);
+  let backEstates = await axios.get(`${BACK_SERVER}/property/filter?${ruta}`);
+  const data = await backEstates.data;
+
+  console.log(data, "LA DATA");
+  return data;
+}

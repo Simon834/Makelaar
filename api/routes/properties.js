@@ -5,10 +5,10 @@ const {
   allProperties,
   updateProperty,
 } = require("../controllers/propertiesController");
-const { filterProperties } = require("../controllers/filterControllers")
+const { filterProperties } = require("../controllers/filterControllers");
 
 router.post("/addProperty", addNewProperty);
-router.get("/", filterProperties);
+router.get("/filter", filterProperties);
 router.get("/allProperties", allProperties);
 router.put("/updateProperty", updateProperty);
 
