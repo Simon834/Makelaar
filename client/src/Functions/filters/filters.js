@@ -16,8 +16,10 @@ export function filterEstates(
       filterPrice(estate.price, price) &&
       searchFilter(estate, search)
   );
-
-  return estatesFiltred;
+  const ordenador_premium = estatesFiltred.sort(
+    (a, b) => b.premium - a.premium
+  );
+  return ordenador_premium;
 }
 
 function filterProp(estateProp, prop) {
