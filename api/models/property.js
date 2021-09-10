@@ -86,6 +86,6 @@ module.exports = (db) => {
             type:DataTypes.BIGINT
         }
 
-
     })
 }
+
