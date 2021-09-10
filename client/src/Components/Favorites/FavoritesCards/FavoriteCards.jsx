@@ -1,6 +1,6 @@
+import React,{useEffect} from "react";
 import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
-import React from "react";
 import FavoriteCard from "../FavoriteCard";
 // import inmuebles from '../../../inmuebles.json';
 import { useSelector } from 'react-redux'
@@ -40,6 +40,15 @@ const useStyles = makeStyles({
 export default function FavoriteCards() {
   const inmuebles = useSelector(state => state.favorites);
   const classes = useStyles();
+
+  useEffect(() => {
+    if (inmuebles.length > 0) {
+      localStorage.setItem("favorites", JSON.stringify(inmuebles));
+    }
+    if (inmuebles.length === 0) {
+      localStorage.setItem("favorites", JSON.stringify([]));
+    }// eslint-disable-next-line
+  }, [inmuebles]);
     
   return (
     <>
