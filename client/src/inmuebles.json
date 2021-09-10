@@ -11,10 +11,11 @@
     "garage": null,
     "area": "80m2",
     "price": "75.000",
-    "image": "http://garbero.com.ar/wp-content/uploads/2021/03/20210208_153625-1600x1200.jpg"
+    "image": "http://garbero.com.ar/wp-content/uploads/2021/03/20210208_153625-1600x1200.jpg",
+    "premium": false
   },
   {
-    "id":2,
+    "id": 2,
     "title": "DPTO CON GRAN BALCÓN A PASOS DE CAÑADA",
     "concept": "Venta",
     "address": "Santa Rosa 715",
@@ -26,10 +27,11 @@
     "area": "80m2",
     "price": "75.000",
     "image": "http://garbero.com.ar/wp-content/uploads/2021/08/20210804_102428-1600x1200.jpg",
-    "user": "user1"
+    "user": "user1",
+    "premium": false
   },
   {
-    "id":3,
+    "id": 3,
     "title": "DEPARTAMENTO AMOBLADO DE DOS DORM EN COLON Y CAÑADA",
     "concept": "Alquiler",
     "address": "Av. Colon 566",
@@ -40,10 +42,11 @@
     "garage": null,
     "area": null,
     "price": "32.000",
-    "image": "http://garbero.com.ar/wp-content/uploads/2021/07/20210512_131408-1600x1200.jpg"
+    "image": "http://garbero.com.ar/wp-content/uploads/2021/07/20210512_131408-1600x1200.jpg",
+    "premium": false
   },
   {
-    "id":4,
+    "id": 4,
     "title": "DEPARTAMENTO EN GÜEMES CON EXPENSAS BAJAS",
     "concept": "Alquiler",
     "address": " Simón Bolívar 825",
@@ -55,10 +58,11 @@
     "area": null,
     "price": "15.000",
     "image": "http://garbero.com.ar/wp-content/uploads/2021/07/20210701_180748-1600x1200.jpg",
-    "user": "user1"
+    "user": "user1",
+    "premium": false
   },
   {
-    "id":5,
+    "id": 5,
     "title": "GRAN OPORTUNIDAD! DUPLEX A ESTRENAR EN VALLE CERCANO",
     "concept": "Venta",
     "address": "José Benito Cottolengo 600",
@@ -69,10 +73,11 @@
     "garage": 1,
     "area": "80m2",
     "price": "75.000",
-    "image": "http://garbero.com.ar/wp-content/uploads/2021/08/20210804_102428-1600x1200.jpg"
+    "image": "http://garbero.com.ar/wp-content/uploads/2021/08/20210804_102428-1600x1200.jpg",
+    "premium": true
   },
   {
-    "id":6,
+    "id": 6,
     "title": "HERMOSO DPTO TIPO DUPLEX DE UN DORMITORIO EN B° ALBERDI",
     "concept": "Venta",
     "address": "Ingeniero López 24",
@@ -83,6 +88,7 @@
     "garage": null,
     "area": null,
     "price": "42.000",
-    "image": "http://garbero.com.ar/wp-content/uploads/2021/07/WhatsApp-Image-2020-10-02-at-18.11.44-2.jpeg"
+    "image": "http://garbero.com.ar/wp-content/uploads/2021/07/WhatsApp-Image-2020-10-02-at-18.11.44-2.jpeg",
+    "premium": true
   }
 ]
