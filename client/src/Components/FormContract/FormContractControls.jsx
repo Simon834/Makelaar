@@ -77,7 +77,7 @@ export function UseFormControls() {
   const formIsValid = (fieldValues = contract) => {
     const isValid =
       fieldValues.name &&
-      fieldValues.date &&
+      fieldValues.amount &&
       Object.values(errors).every((x) => x === "");
 
     return isValid;

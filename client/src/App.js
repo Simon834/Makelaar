@@ -13,6 +13,8 @@ import ViewResetPassword from "./Views/ViewResetPassword/ViewResetPassword";
 import VierwRegister from "./Views/ViewRegister/VierwRegister";
 import ViewPropertyDetail from "./Views/ViewPropertyDetail/ViewPropertyDetail";
 
+ 
+
 function App() {
   const favorites = useSelector((state) => state.favorites);
 
