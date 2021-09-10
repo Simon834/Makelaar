@@ -46,16 +46,16 @@ async function addNewProperty(req, res, next) {
       transaction: transaction,
       condition: condition,
       available: available,
-      status: status,
+      status: status || "activo",
     });
+    if(photos){
+      const image = photos?.map(
+        async (photo) => await newProperty.createImage({ url: photo })
+      );
 
-    const image = photos.map(
-      async (photo) => await newProperty.createImage({ url: photo })
-    );
-
-    await Promise.all(image);
+      await Promise.all(image);
+    }
     res.json({ newProperty });
-    //}
   } catch (err) {
     console.log(next(err));
     return res.status(500).json(err);

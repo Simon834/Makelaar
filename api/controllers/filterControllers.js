@@ -21,7 +21,7 @@ async function filterProperties(req, res, next){
     if(types) filterArray.push({type: types});
     if(condition) filterArray.push({ condition: condition });
     if(price) filterArray.push({ price: price });
-    if (bedrooms) filterArray.push({ bedrooms: bedrooms });
+    if (bedrooms) filterArray.push({ rooms: bedrooms*1 });
     if (bathrooms) filterArray.push({ bathrooms: bathrooms });
     if(search) {
             filterArray.push({
