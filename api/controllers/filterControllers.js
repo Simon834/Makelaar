@@ -64,7 +64,7 @@ async function filterProperties(req, res, next) {
     if (filterProperties.length > 0) {
       return res.json(filterProperties);
     } else {
-      res.json("No properties");
+      res.json([]);
     }
   } catch (err) {
     next(err);
