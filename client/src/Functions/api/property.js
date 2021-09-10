@@ -12,3 +12,13 @@ export async function addNewProperty(property){
         return err.newProperty.status;
     }
 }
+export async function allProperties() {
+  try {
+    const allProperties = await axios.get(
+      `${BACK_SERVER}/property/allProperties`
+    );
+    return allProperties.data;
+  } catch (err) {
+    throw err;
+  }
+}

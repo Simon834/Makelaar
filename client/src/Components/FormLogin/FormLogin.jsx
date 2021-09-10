@@ -7,7 +7,13 @@ import { userLogIn } from "../../Redux/Actions/userActions";
 //material
 import TextField from "@material-ui/core/TextField";
 import { makeStyles, Button, Typography, styled } from "@material-ui/core";
-
+import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import IconButton from '@material-ui/core/IconButton';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
 import Link from "@material-ui/core/Link";
 import "./formLogin.css"
 
@@ -62,12 +68,13 @@ export default function FormLogin({ action }) {
   const dispatch = useDispatch();
   const history = useHistory();
   const { userInfo } = useSelector((state) => state);
-
+  const [showPass, setShowPass]=useState(false)
   const classes = useStyle();
 
   const [input, setInput] = useState({
     email: "",
     password: "",
+    showPassword: false
   });
 
   const [errors, setErrors] = useState({});
@@ -103,7 +110,16 @@ export default function FormLogin({ action }) {
     dispatch(userLogIn(input));
   }
 
+  const handleClickShowPassword = () => {
+    setShowPass(!showPass);
+  };
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
+
+
   return (
+<<<<<<< HEAD
     <div className="orderFormLogin">
       <form
         className={classes.form}
@@ -166,5 +182,98 @@ export default function FormLogin({ action }) {
         </Typography>
       </form>
     </div>
+=======
+    <form
+      className={classes.form}
+      noValidate
+      autoComplete="off"
+      onSubmit={(e) => handleSubmit(e)}
+    >
+      <div>
+        <label htmlFor="email"></label>
+        <TextField
+          label="e-mail"
+          variant="outlined"
+          placeholder="email@makelaar.com"
+          type="email"
+          id="email"
+          value={input.email}
+          onChange={(e) => handleChange(e)}
+          {...(errors.email && {
+            error: true,
+            helperText: errors.email,
+          })}
+        />
+      </div>
+      <div>
+      <FormControl variant="outlined">
+              <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+              <OutlinedInput
+                // variant="outlined"
+                label="Contraseña"
+                name="password"
+                id="password"
+                type={showPass ? 'text' : 'password'}
+                value={input.password}
+                onChange={(e) => handleChange(e)}
+                required
+                {...(errors.password && {
+                  error: true,
+                  helperText: errors.password,
+                })}
+                endAdornment={
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={handleClickShowPassword}
+                      onMouseDown={handleMouseDownPassword}
+                      edge="end"
+                    >
+                      {showPass ? <Visibility /> : <VisibilityOff />}
+                    </IconButton>
+                  </InputAdornment>
+                }
+              />
+              <em>{errors.password}</em>
+              </FormControl>
+
+        {/* <label htmlFor="password"></label>
+           <TextField
+          label="Password"
+          variant="outlined"
+          placeholder="Contraseña"
+          type={input.showPassword ? 'text' : 'password'}
+          id="password"
+          value={input.password}
+          onChange={(e) => handleChange(e)}
+          {...(errors.password && {
+            error: true,
+            helperText: errors.password,
+          })}
+        />*/}
+      </div> 
+
+      <div>
+        <p>
+          <Button
+            variant="contained"
+            color="primary"
+            type="submit"
+            className={classes.button}
+          >
+            INGRESAR
+          </Button>
+        </p>
+      </div>
+
+      <Typography className={classes.link}>
+        <Link href="/resetpassword">¿Olvidaste tu contraseña?</Link>
+      </Typography>
+
+      <Typography className={classes.link}>
+        <Link href="/register">REGISTRARSE</Link>
+      </Typography>
+    </form>
+>>>>>>> dev
   );
 }
