@@ -1,3 +1,5 @@
+
+import axios from "axios";
 export function filterEstates(
   estates,
   concept,
@@ -7,28 +9,22 @@ export function filterEstates(
   price,
   search
 ) {
-  const estatesFiltred = estates.filter(
-    (estate) =>
-      filterProp(estate.concept, concept) &&
-      filterProp(estate.type, tipe) &&
-      filterProp(estate.bedroom, bedroom) &&
-      filterProp(estate.bathroom, bathroom) &&
-      filterPrice(estate.price, price) &&
-      searchFilter(estate, search)
+  const estatesFiltred = backFilters(
+    estates,
+    concept,
+    tipe,
+    bedroom,
+    bathroom,
+    price,
+    search
   );
-  const ordenador_premium = estatesFiltred.sort(
+  const ordenador_premium = estatesFiltred(estates).sort(
     (a, b) => b.premium - a.premium
   );
   return ordenador_premium;
 }
 
-function filterProp(estateProp, prop) {
-  if (prop) {
-    return estateProp === prop ? true : false;
-  } else {
-    return true;
-  }
-}
+
 
 function filterPrice(estatePrice, price) {
   if (price[0]) {
@@ -41,17 +37,26 @@ function filterPrice(estatePrice, price) {
     return true;
   }
 }
+async function backFilters(
+  estates,
+  concept,
+  tipe,
+  bedroom,
+  bathroom,
+  price,
+  search
+) {
+  if (!search && !concept && !tipe && !bedroom && !bathroom) {
+    return estates.filter((estate) => filterPrice(estate.price, price));
+  } else if (price) {
+    let backEstates = await axios.get(`${BACK_SERVER}/property?types=${tipe}&bedroom=${bedroom}&bathroom=${bathroom}&search=${search}`);
 
-function searchFilter(estate, search) {
-  if (search) {
-    return (
-      estate.title?.toUpperCase().includes(search.toUpperCase()) ||
-      estate.address?.toUpperCase().includes(search.toUpperCase()) ||
-      estate.type?.toUpperCase().includes(search.toUpperCase()) ||
-      estate.price?.toUpperCase().includes(search.toUpperCase()) ||
-      estate.area?.toUpperCase().includes(search.toUpperCase())
-    );
+    return backEstates.data.filter((estate) => filterPrice(estate.price, price));
+
   } else {
-    return true;
+    let backEstates = await axios.get(`${BACK_SERVER}/property?types=${tipe}&bedroom=${bedroom}&bathroom=${bathroom}&search=${search}`);
+    return backEstates.data;
   }
 }
+
+//await axios.get(`${BACK_SERVER}/property?types=${tipe}&bedroom=${bedroom}&bathroom=${bathroom}&search=${search}`)

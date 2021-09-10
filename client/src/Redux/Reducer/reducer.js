@@ -31,6 +31,7 @@ const initialState = {
   price: [null, null],
   search: null,
   favorites: JSON.parse(localStorage.getItem("favorites")) || [],
+  propertiesFiltered:{}
 };
 
 export default function userReducer(state = initialState, action) {
@@ -45,6 +46,7 @@ export default function userReducer(state = initialState, action) {
         isAuth: true,
       };
     }
+
 
     case SIGN_UP: {
       return {
@@ -144,6 +146,7 @@ export default function userReducer(state = initialState, action) {
         search: null,
       };
     }
+
 
     //-----------------Favorites---------------------
     case ADD_FAVORITES: {

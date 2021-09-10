@@ -57,6 +57,7 @@ export default function Home() {
                 value={tipe}
               />
             }
+            
             sellRent={
               <FilterModel
                 title="Condición"
