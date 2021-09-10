@@ -9,7 +9,7 @@ import style from "./Styles.module.css";
 export function validate(input) {
   let errors = {};
   if (!input.email) {
-    errors.email = "Se Requiere un Email";
+    errors.email = "Se requiere un email";
   } else if (
     !/^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i.test(
       input.email
@@ -52,8 +52,8 @@ export default function FormContraseña() {
   return (
     <div style={{ textAlign: "-webkit-center" }}>
       <form className={style.form} onSubmit={(e) => handleSubmit(e)}>
-        <p className={style.title}>Olvidaste tu contraseña</p>
-        <p>
+        <p className={style.title}>¿Olvidaste tu contraseña?</p>
+        <p className={style.text}>
           Te enviaremos un email con instrucciones sobre cómo restablecer tu
           contraseña.
         </p>
@@ -62,7 +62,7 @@ export default function FormContraseña() {
           type="text"
           name="email"
           placeholder="email@makelaar.com"
-          style={{ marginBottom: "15px", paddingBottom: "15px" }}
+          style={{ marginBottom: "15px", paddingBottom: "20px" }}
           onChange={(e) => handleInputChange(e)}
           value={input.email}
         />
@@ -70,7 +70,9 @@ export default function FormContraseña() {
         <Button variant="contained" color="primary" p={5} type="submit">
           Enviar
         </Button>
-        {estado.msg ? <p>{estado.msg}</p> : null}
+        <div>
+          {estado.msg ? <p className={style.errorText}>{estado.msg}</p> : null}
+        </div>
       </form>
     </div>
   );
