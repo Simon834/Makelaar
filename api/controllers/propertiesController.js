@@ -1,4 +1,4 @@
-const { Property } = require("../db");
+const { Property, Image, Contract } = require("../db");
 
 //creacion propiedad
 async function addNewProperty(req, res, next) {
@@ -66,7 +66,9 @@ async function addNewProperty(req, res, next) {
 
 async function allProperties(req, res, next) {
   try {
-    const properties = await Property.findAll();
+    const properties = await Property.findAll({
+      include: [{ model: Image }, { model: Contract }],
+    });
     if (!properties.length) {
       return properties.data;
     } else {
