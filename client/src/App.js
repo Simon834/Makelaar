@@ -1,8 +1,7 @@
 import "./App.css";
 import "./";
-import { useEffect } from "react";
 import { Route } from "react-router";
-import { useSelector } from "react-redux";
+
 import Home from "./Views/Home/Home";
 import AdminPanel from "./Views/AdminPanel/AdminPanel";
 import UserPanel from "./Views/UserPanel/UserPanel";
@@ -16,13 +15,6 @@ import ViewPropertyDetail from "./Views/ViewPropertyDetail/ViewPropertyDetail";
  
 
 function App() {
-  const favorites = useSelector((state) => state.favorites);
-
-  useEffect(() => {
-    if (favorites.length > 0) {
-      localStorage.setItem("favorites", JSON.stringify(favorites));
-    }
-  }, [favorites]);
 
   return (
     <div className="App">
