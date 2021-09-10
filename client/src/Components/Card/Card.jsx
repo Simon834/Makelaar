@@ -56,8 +56,7 @@ export default function CardComponent(props) {
   const favorites = useSelector((state) => state.favorites);
 
   useEffect(() => {
-    console.log(favorites, props);
-    if (favorites.length > 0) {
+      if (favorites.length > 0) {
       const searFav = favorites.filter((e) => e.id === props.id);
       if (searFav.length) {
         setFav(true);
@@ -66,7 +65,7 @@ export default function CardComponent(props) {
     }
     if (favorites.length === 0) {
       localStorage.setItem("favorites", JSON.stringify([]));
-    }
+    }// eslint-disable-next-line
   }, [favorites]);
 
   const classes = useStyles();

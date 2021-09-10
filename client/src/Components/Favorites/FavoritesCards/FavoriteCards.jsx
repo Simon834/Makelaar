@@ -47,7 +47,7 @@ export default function FavoriteCards() {
     }
     if (inmuebles.length === 0) {
       localStorage.setItem("favorites", JSON.stringify([]));
-    }
+    }// eslint-disable-next-line
   }, [inmuebles]);
     
   return (

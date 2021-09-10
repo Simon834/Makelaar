@@ -40,7 +40,7 @@ export default function AdminBody() {
 
     useEffect(() => {
         getAllUser()
-    }
+    }// eslint-disable-next-line
         , [])
 
     return (

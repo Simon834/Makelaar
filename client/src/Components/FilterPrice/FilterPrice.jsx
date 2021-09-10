@@ -26,7 +26,7 @@ export default function FilterPrice({valuePrice}) {
 
   useEffect(() => {
     if(!valuePrice[0] && !valuePrice[1]){
-    setValue([10, 20])}
+    setValue([10, 20])}// eslint-disable-next-line
   }, [valuePrice])
 
   const handleChange = (event, newValue) => {
