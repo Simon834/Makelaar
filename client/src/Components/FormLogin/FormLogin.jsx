@@ -6,9 +6,10 @@ import { userLogIn } from "../../Redux/Actions/userActions";
 
 //material
 import TextField from "@material-ui/core/TextField";
-import { makeStyles, Button, Typography } from "@material-ui/core";
+import { makeStyles, Button, Typography, styled } from "@material-ui/core";
 
 import Link from "@material-ui/core/Link";
+import "./formLogin.css"
 
 const useStyle = makeStyles((theme) => ({
   form: {
@@ -103,65 +104,67 @@ export default function FormLogin({ action }) {
   }
 
   return (
-    <form
-      className={classes.form}
-      noValidate
-      autoComplete="off"
-      onSubmit={(e) => handleSubmit(e)}
-    >
-      <div>
-        <label htmlFor="email"></label>
-        <TextField
-          label="e-mail"
-          variant="outlined"
-          placeholder="email@makelaar.com"
-          type="email"
-          id="email"
-          value={input.email}
-          onChange={(e) => handleChange(e)}
-          {...(errors.email && {
-            error: true,
-            helperText: errors.email,
-          })}
-        />
-      </div>
-      <div>
-        <label htmlFor="password"></label>
-        <TextField
-          label="Password"
-          variant="outlined"
-          placeholder="Contraseña"
-          type="password"
-          id="password"
-          value={input.password}
-          onChange={(e) => handleChange(e)}
-          {...(errors.password && {
-            error: true,
-            helperText: errors.password,
-          })}
-        />
-      </div>
+    <div className="orderFormLogin">
+      <form
+        className={classes.form}
+        noValidate
+        autoComplete="off"
+        onSubmit={(e) => handleSubmit(e)}
+      >
+        <div>
+          <label htmlFor="email"></label>
+          <TextField
+            label="e-mail"
+            variant="outlined"
+            placeholder="email@makelaar.com"
+            type="email"
+            id="email"
+            value={input.email}
+            onChange={(e) => handleChange(e)}
+            {...(errors.email && {
+              error: true,
+              helperText: errors.email,
+            })}
+          />
+        </div>
+        <div>
+          <label htmlFor="password"></label>
+          <TextField
+            label="Password"
+            variant="outlined"
+            placeholder="Contraseña"
+            type="password"
+            id="password"
+            value={input.password}
+            onChange={(e) => handleChange(e)}
+            {...(errors.password && {
+              error: true,
+              helperText: errors.password,
+            })}
+          />
+        </div>
 
-      <div>
-        <p>
-          <Button
-            variant="contained"
-            color="primary"
-            type="submit"
-            className={classes.button}
-          >
-            INGRESAR
-          </Button>
-        </p>
-      </div>
+        <div>
+          <p>
+            <Button
+              variant="contained"
+              color="primary"
+              type="submit"
+              className={classes.button}
+            >
+              INGRESAR
+            </Button>
+          </p>
+        </div>
 
-      <Typography className={classes.link}>
-        <Link href="/resetpassword">¿Olvidaste tu contraseña?</Link>
-      </Typography>
+        <Typography className={classes.link}>
+          <Link href="/resetpassword">¿Olvidaste tu contraseña?</Link>
+        </Typography>
 
-      <Typography className={classes.link}>
-        <Link href="/register">REGISTRARSE</Link>
-      </Typography>
-    </form>
+        <Typography className={classes.link}>
+          <Link href="/register">REGISTRARSE</Link>
+        </Typography>
+      </form>
+    </div>
   );
 }

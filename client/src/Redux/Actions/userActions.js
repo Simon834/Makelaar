@@ -56,7 +56,14 @@ export function userLogIn({email, password}){
          }
 
      }catch(err){
-         Swal.fire("Oh no!", "Usuario o Contraseña incorrectos", "error");
+                    Swal.fire({
+                      icon: "error",
+                      title: "Oh no!",
+                      text: "Usuario o contraseña incorrectos",
+                      customClass: {
+                        container: "my-swal",
+                      },
+                    });
         //  dispatch({
         //      type: LOGIN_ERROR,
         //      payload: err

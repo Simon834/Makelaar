@@ -3,5 +3,5 @@
 } */
 
 .my-swal{
-  z-index: 20 !important;
+  z-index: 99999 !important;
 }
