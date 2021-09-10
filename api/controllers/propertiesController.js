@@ -98,9 +98,6 @@ async function idProperties(req, res, next) {
   }
 }
 
-module.exports = { addNewProperty, allProperties, idProperties };
-
-
 async function updateProperty(req, res, next) {
   const {id, name, available, area, rooms, bathrooms, type, description, firstImg, status, transaction, condition, premium, price} = req.body;
   try {
@@ -130,4 +127,4 @@ async function updateProperty(req, res, next) {
   }
 }
 
-module.exports = { addNewProperty, allProperties, updateProperty };
+module.exports = { addNewProperty, allProperties, updateProperty, idProperties };
