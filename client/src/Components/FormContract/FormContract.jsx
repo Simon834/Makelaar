@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 import { getAllUserApi } from "../../Functions/api/users";
 import { allProperties } from "../../Functions/api/property";
 
@@ -19,7 +18,7 @@ import { UseFormControls } from "./FormContractControls";
 const useStyle = makeStyles((theme) => ({
   form: {
     "& .MuiFormControl-root": {
-      width: "500px",
+      width: "650px",
       margin: theme.spacing(2),
     },
   },
@@ -33,7 +32,8 @@ const useStyle = makeStyles((theme) => ({
     justifyContent: "center",
   },
   button: {
-    marginLeft: theme.spacing(27),
+    marginTop: theme.spacing(2),
+    marginLeft: theme.spacing(36),
   },
   header: {
     fontSize: "25px",
@@ -142,8 +142,8 @@ export default function NewContractForm() {
                     <em>Seleccione la propiedad</em>
                   </MenuItem>
                   {propertyList.length > 0 ? (
-                    propertyList.map((u) => (
-                      <MenuItem value={u.id}>{u.email}</MenuItem>
+                    propertyList.map((p) => (
+                      <MenuItem value={p.id}>{p.name}</MenuItem>
                     ))
                   ) : (
                     <MenuItem selected disabled value="">

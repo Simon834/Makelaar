@@ -13,6 +13,8 @@ import ViewContract from "./Views/ViewContract/ViewContract";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 
+ 
+
 function App() {
   const favorites = useSelector((state) => state.favorites);
 
@@ -32,6 +34,7 @@ function App() {
       <Route path="/about" component={ViewAbout} />
       <Route path="/resetpassword" component={ViewResetPassword} />
       <Route path="/register" component={VierwRegister} />
+      <Route path="/contract" component={ViewContract} />
     </div>
   );
 }

@@ -13,8 +13,7 @@ async function addNewProperty(req, res, next) {
       city,
       neighborhood,
       province,
-      street,
-      streetNumber,
+      address,
       cp,
       description,
       transaction,
@@ -22,6 +21,8 @@ async function addNewProperty(req, res, next) {
       status,
       condition,
       photos,
+      lat,
+      lng,
     } = req.body;
     console.log(req.body);
     // let property= await Property.findOrCreate({where: {name,area,rooms, bathrooms,type, city,neighborhood, province, street, streetNumber, cp, description, transaction}});
@@ -39,14 +40,15 @@ async function addNewProperty(req, res, next) {
       city: city,
       neighborhood: neighborhood,
       province: province,
-      street: street,
-      streetNumber: streetNumber,
+      address: address,
       cp: cp,
       description: description,
       transaction: transaction,
       condition: condition,
       available: available,
       status: status,
+      lat: lat,
+      lng: lng,
     });
 
     const image = photos.map(
