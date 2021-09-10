@@ -19,14 +19,14 @@ import { useFormControls } from "./FormControls";
 const useStyle = makeStyles((theme) => ({
   form: {
     "& .MuiFormControl-root": {
-      width: "500px",
-      margin: theme.spacing(2),
+      width: "440px",
+      margin: theme.spacing(3),
     },
   },
   root: {
     width: "min-content",
-    margin: theme.spacing(5),
-    padding: theme.spacing(3),
+
+    padding: theme.spacing(4),
     display: "flex",
     flexDirection: "column",
     allingItems: "center",
@@ -48,7 +48,7 @@ export default function UserRegistrationForm(props) {
   const { userInfo } = useSelector((state) => state);
   const history = useHistory();
 
-  const [showPass, setShowPass]=useState(false)
+  const [showPass, setShowPass] = useState(false);
 
   const handleClickShowPassword = () => {
     setShowPass(!showPass);
@@ -65,9 +65,9 @@ export default function UserRegistrationForm(props) {
 
   return (
     <>
-      <Paper className={classes.root}>
+      <Paper className={classes.root} elevation={0}>
         <Container className={classes.header}>
-          {isAdmin ? "Registrar admin" : "Registrate"}
+          {isAdmin ? "Registrar admin" : "Regístrate"}
         </Container>
         <form
           className={classes.form}
@@ -127,34 +127,36 @@ export default function UserRegistrationForm(props) {
                   helperText: errors.whastapp,
                 })}
               />
-               <FormControl variant="outlined">
-              <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
-              <OutlinedInput
-                // variant="outlined"
-                label="Contraseña"
-                name="password"
-                type={showPass ? 'text' : 'password'}
-                value={user.password}
-                onChange={handleChange}
-                required
-                {...(errors.password && {
-                  error: true,
-                  helperText: errors.password,
-                })}
-                endAdornment={
-                  <InputAdornment position="end">
-                    <IconButton
-                      aria-label="toggle password visibility"
-                      onClick={handleClickShowPassword}
-                      onMouseDown={handleMouseDownPassword}
-                      edge="end"
-                    >
-                      {showPass ? <Visibility /> : <VisibilityOff />}
-                    </IconButton>
-                  </InputAdornment>
-                }
-              />
-              <em>{errors.password}</em>
+              <FormControl variant="outlined">
+                <InputLabel htmlFor="outlined-adornment-password">
+                  Password
+                </InputLabel>
+                <OutlinedInput
+                  // variant="outlined"
+                  label="Contraseña"
+                  name="password"
+                  type={showPass ? "text" : "password"}
+                  value={user.password}
+                  onChange={handleChange}
+                  required
+                  {...(errors.password && {
+                    error: true,
+                    helperText: errors.password,
+                  })}
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={handleClickShowPassword}
+                        onMouseDown={handleMouseDownPassword}
+                        edge="end"
+                      >
+                        {showPass ? <Visibility /> : <VisibilityOff />}
+                      </IconButton>
+                    </InputAdornment>
+                  }
+                />
+                <em>{errors.password}</em>
               </FormControl>
               <p>
                 <Button
