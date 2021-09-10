@@ -15,9 +15,11 @@ const {
   SEARCH,
   ADD_FAVORITES,
   DELETE_FAVORITE,
+  ALL_PROPERTIES
 } = require("../Constants/constants");
 
 const initialState = {
+  properties:[],
   userToken: "",
   error: false,
   isLoading: false,
@@ -142,6 +144,13 @@ export default function userReducer(state = initialState, action) {
         bathroom: null,
         price: [null, null],
         search: null,
+      };
+    }
+    //-----------------Properties---------------------
+    case ALL_PROPERTIES: {
+      return {
+        ...state,
+        properties: action.payload
       };
     }
 

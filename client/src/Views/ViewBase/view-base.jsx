@@ -21,7 +21,7 @@ export default function ViewBase({ carousel, filters, content }) {
         {carousel && (
           <Fragment>
             <div className="carousel-container">{carousel}</div>
-            <div className="Separador" style={{ width: "100%" }}>
+            {/* <div className="Separador" style={{ width: "100%" }}>
               <div className="container">
                 <p>DATOS 1</p>
               </div>
@@ -31,7 +31,7 @@ export default function ViewBase({ carousel, filters, content }) {
               <div className="container">
                 <p>DATOS 3</p>
               </div>
-            </div>
+            </div> */}
           </Fragment>
         )}
       </div>
