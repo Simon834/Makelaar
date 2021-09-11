@@ -21,8 +21,8 @@ export default function UserPanel() {
       rute: "/data",
     },
     {
-      title: "Mis propiedades",
-      rute: "/properties",
+      title: "Mis contratos",
+      rute: "/contrat",
     },
     {
       title: "Cerrar sesion",
@@ -39,7 +39,7 @@ export default function UserPanel() {
             routeAction={`/user/${userInfo.user?.id}`}
           />
         }
-        content={<UserBody />}
+        content={<UserBody id={userInfo.user?.id}/>}
       />
     </div>
   );

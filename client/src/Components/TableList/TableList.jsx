@@ -6,6 +6,7 @@ import {useHistory} from "react-router"
 
 export default function TableList({columns, rows}) {
     const history= useHistory();
+    console.log("contratos",rows)
     const rowsMod=rows.map(e=>{
         let newrow = e
         if(e.isAdmin){
