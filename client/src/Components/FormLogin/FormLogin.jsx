@@ -6,7 +6,7 @@ import { userLogIn } from "../../Redux/Actions/userActions";
 
 //material
 import TextField from "@material-ui/core/TextField";
-import { makeStyles, Button, Typography } from "@material-ui/core";
+import { makeStyles, Button, Typography, styled } from "@material-ui/core";
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import InputAdornment from '@material-ui/core/InputAdornment';
@@ -14,8 +14,8 @@ import IconButton from '@material-ui/core/IconButton';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
-
 import Link from "@material-ui/core/Link";
+import "./formLogin.css"
 
 const useStyle = makeStyles((theme) => ({
   form: {

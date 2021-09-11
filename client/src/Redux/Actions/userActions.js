@@ -32,7 +32,15 @@ export function userLogIn({email, password}){
                     //     type: LOGIN_ERROR,
                     //     payload: data.error
                     // });
-                     Swal.fire("Oh no!", "Usuario o contraseña incorrectos", "error");
+                     Swal.fire({
+                       icon: "error",
+                       title: "Oh no!",
+                       text: "Usuario o contraseña incorrectos",
+                    //    width: 1800 !important,
+                    //    customClass: {
+                    //      container: "my-swal",
+                    //    },
+                     });
                     break;
 
                 case 500:
@@ -46,7 +54,14 @@ export function userLogIn({email, password}){
          }
 
      }catch(err){
-         Swal.fire("Oh no!", "Usuario o Contraseña incorrectos", "error");
+                    Swal.fire({
+                      icon: "error",
+                      title: "Oh no!",
+                      text: "Usuario o contraseña incorrectos",
+                      customClass: {
+                        container: "my-swal",
+                      },
+                    });
         //  dispatch({
         //      type: LOGIN_ERROR,
         //      payload: err

@@ -54,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
 export default function TopBar() {
   const LoginModal = (props) => {
     return (
-      <Dialog open={showDialog} onClose={closeDialog}>
+      <Dialog open={showDialog} onClose={closeDialog} className={style.zIndexDialogRegister}>
         <DialogContent>
           <Button
             className={classes.button}
