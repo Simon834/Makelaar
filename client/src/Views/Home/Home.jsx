@@ -22,25 +22,30 @@ import {
 import { filterEstates } from "../../Functions/filters/filters";
 
 import { clearFilter } from "../../Redux/Actions/filterActions";
+import { getAllProperties } from "../../Redux/Actions/propertyActions";
 
 const inmuebles = require("../../inmuebles.json");
 
 export default function Home() {
-  const { concept, tipe, bedroom, bathroom, price, search } = useSelector(
+  const { concept, tipe, bedroom, bathroom, price, search,properties } = useSelector(
     (state) => state
   );
-  const [estates, setEstates] = useState(inmuebles);
+
+
+  const [estates, setEstates] = useState(properties);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     setEstates(
-      filterEstates(inmuebles, concept, tipe, bedroom, bathroom, price, search)
+      filterEstates(properties, concept, tipe, bedroom, bathroom, price, search)
     );
-  }, [concept, tipe, bedroom, bathroom, price, search]);
+  }, [concept, tipe, bedroom, bathroom, price, search,properties]);
 
   useEffect(() => {
     dispatch(clearFilter());
+    dispatch(getAllProperties());
+
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (

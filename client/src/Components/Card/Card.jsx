@@ -10,6 +10,7 @@ import {
   deleteFavorite,
 } from "../../Redux/Actions/favoriteActions";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 import style from "./Card.module.css";
 
@@ -54,6 +55,7 @@ const useStyles = makeStyles({
 export default function CardComponent(props) {
   const [fav, setFav] = useState(false);
   const favorites = useSelector((state) => state.favorites);
+  const history = useHistory();
 
   useEffect(() => {
       if (favorites.length > 0) {
@@ -80,7 +82,7 @@ export default function CardComponent(props) {
   };
 
   return (
-    <Card className={classes.root}>
+    <Card className={classes.root} onClick={()=>history.push(`/property/${props.id}`)}>
       {props.image ? (
         <CardMedia
           className={classes.media}
