@@ -15,7 +15,14 @@ export function forgot_password(email) {
         payload: data,
       });
     } catch (err) {
-      Swal.fire('Lo sentimos!', 'Email no registrado', 'error')
+         Swal.fire({
+           icon: "error",
+           title: "Lo sentimos!",
+           text: "Email no registrado",
+           customClass: {
+             container: "my-swal",
+           },
+         });
     }
   };
 }

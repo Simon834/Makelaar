@@ -5,7 +5,11 @@ require("dotenv").config();
 const BACK_SERVER =
   process.env.REACT_APP_BACK_SERVER || "http://localhost:3010";
 
+<<<<<<< HEAD
 export async function filterEstates(
+=======
+export function filterEstates(
+>>>>>>> dev
   estates,
   concept,
   tipe,
@@ -14,8 +18,12 @@ export async function filterEstates(
   price,
   search
 ) {
+<<<<<<< HEAD
   console.log(estates, "INMUEBLES");
   const estatesFiltred = await backFilters(
+=======
+  const estatesFiltred = backFilters(
+>>>>>>> dev
     estates,
     concept,
     tipe,
@@ -24,11 +32,15 @@ export async function filterEstates(
     price,
     search
   );
-  console.log("estados", estatesFiltred);
-  const ordenador_premium = estatesFiltred.sort(
-    (a, b) => b.premium - a.premium
-  );
-  return ordenador_premium;
+
+  if (estatesFiltred.length > 0) {
+    const ordenador_premium = estatesFiltred.sort(
+      (a, b) => b.premium - a.premium
+    );
+    return ordenador_premium;
+  }
+  console.log("estates filtered variable", estatesFiltred);
+  return estatesFiltred;
 }
 
 async function backFilters(estates, concept, tipe, bedroom, bathroom, price, search) {
@@ -36,16 +48,27 @@ async function backFilters(estates, concept, tipe, bedroom, bathroom, price, sea
     let resultado = estates.filter((estate) =>
       filterPrice(estate.price, price)
     );
-    console.log("entre aca primero", resultado);
     return resultado;
   } else if (price) {
+<<<<<<< HEAD
     const data = await llamadoBack(tipe, bedroom, bathroom, search, concept);
     console.log("ACA no entre", data);
+=======
+    const data = llamadoBack(tipe, bedroom, bathroom, search);
+>>>>>>> dev
 
-    return data.filter((estate) => filterPrice(estate.price, price));
+    if (data.length > 0) {
+      return data.filter((estate) => filterPrice(estate.price, price));
+    }
+    return data;
   } else {
+<<<<<<< HEAD
     const data = await llamadoBack(tipe, bedroom, bathroom, search, concept);
     console.log(data, "Data");
+=======
+    const data = llamadoBack(tipe, bedroom, bathroom, search);
+
+>>>>>>> dev
     return data;
   }
 }
@@ -69,7 +92,6 @@ function generateRoute(tipe, bedroom, bathroom, search, concept) {
   if (bedroom) aux.push(`bedrooms=${bedroom}&`);
   if (bathroom) aux.push(`bathrooms=${bathroom}&`);
   if (search) aux.push(`search=${search}&`);
-  console.log(aux, "AUX");
   let acumulador = aux.toString();
 
   for (let i = 0; i < aux.length - 1; i++) {
@@ -78,6 +100,7 @@ function generateRoute(tipe, bedroom, bathroom, search, concept) {
   }
   return acumulador;
 }
+<<<<<<< HEAD
 
 async function llamadoBack(tipe, bedroom, bathroom, search, concept) {
   try {
@@ -90,4 +113,10 @@ async function llamadoBack(tipe, bedroom, bathroom, search, concept) {
   } catch (err) {
     console.log(err);
   }
+=======
+async function llamadoBack(tipe, bedroom, bathroom, search) {
+  const ruta = generateRoute(tipe, bedroom, bathroom, search);
+  const backEstates = await axios.get(`${BACK_SERVER}/property/filter?${ruta}`);
+  return backEstates.data;
+>>>>>>> dev
 }

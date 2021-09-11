@@ -15,7 +15,7 @@ export default function Cards({ inmuebles }) {
             type={inm.type}
             bathroom={inm.bathrooms}
             bedroom={inm.rooms}
-            rooms={inm.rooms+inm.bathrooms+2}
+            rooms={inm.rooms + inm.bathrooms + 2}
             price={inm.price}
             address={inm.address}
             garage={inm.garage}

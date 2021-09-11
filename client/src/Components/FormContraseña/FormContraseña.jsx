@@ -5,7 +5,6 @@ import { Button } from "@material-ui/core";
 import { forgot_password } from "../../Redux/Actions/formsActions";
 import style from "./Styles.module.css";
 
-
 export function validate(input) {
   let errors = {};
   if (!input.email) {
@@ -50,7 +49,7 @@ export default function FormContraseña() {
   }
 
   return (
-    <div style={{ textAlign: "-webkit-center" }}>
+    <div style={{ textAlign: "-webkit-center", zIndex: -1, }}>
       <form className={style.form} onSubmit={(e) => handleSubmit(e)}>
         <p className={style.title}>¿Olvidaste tu contraseña?</p>
         <p className={style.text}>
