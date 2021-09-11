@@ -113,7 +113,10 @@ export const useFormControls = (isAdmin) => {
             Swal.fire({
               icon: "success",
               title: "Listo..!",
-              text: `El usuario: ${registeredUser.user.email}, se creo correctamente con los permisos de Admin`
+              text: `El usuario: ${registeredUser.user.email}, se creo correctamente con los permisos de Admin`,
+              customClass: {
+                container: "my-swal",
+              },
             });
             setUser(initialFormValues);
           } else {
@@ -128,6 +131,9 @@ export const useFormControls = (isAdmin) => {
               icon: "success",
               title: "Hola..!",
               text: `${registeredUser.user.name}, en tu email: ${registeredUser.user.email}, encontraras la confirmacion de creacion de tu cuenta`,
+              customClass: {
+                container: "my-swal",
+              },
             });
             setUser(initialFormValues);
           }
@@ -136,6 +142,9 @@ export const useFormControls = (isAdmin) => {
             icon: "warning",
             title: "Ups..!",
             text: `El email: ${user.email} ya se encuentra registrado, si no recuerda la contraseña intente recuperarla`,
+            customClass: {
+              container: "my-swal",
+            },
           });
         }
       } catch (err) {

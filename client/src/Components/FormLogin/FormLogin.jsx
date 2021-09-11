@@ -119,70 +119,6 @@ export default function FormLogin({ action }) {
 
 
   return (
-<<<<<<< HEAD
-    <div className="orderFormLogin">
-      <form
-        className={classes.form}
-        noValidate
-        autoComplete="off"
-        onSubmit={(e) => handleSubmit(e)}
-      >
-        <div>
-          <label htmlFor="email"></label>
-          <TextField
-            label="e-mail"
-            variant="outlined"
-            placeholder="email@makelaar.com"
-            type="email"
-            id="email"
-            value={input.email}
-            onChange={(e) => handleChange(e)}
-            {...(errors.email && {
-              error: true,
-              helperText: errors.email,
-            })}
-          />
-        </div>
-        <div>
-          <label htmlFor="password"></label>
-          <TextField
-            label="Password"
-            variant="outlined"
-            placeholder="Contraseña"
-            type="password"
-            id="password"
-            value={input.password}
-            onChange={(e) => handleChange(e)}
-            {...(errors.password && {
-              error: true,
-              helperText: errors.password,
-            })}
-          />
-        </div>
-
-        <div>
-          <p>
-            <Button
-              variant="contained"
-              color="primary"
-              type="submit"
-              className={classes.button}
-            >
-              INGRESAR
-            </Button>
-          </p>
-        </div>
-
-        <Typography className={classes.link}>
-          <Link href="/resetpassword">¿Olvidaste tu contraseña?</Link>
-        </Typography>
-
-        <Typography className={classes.link}>
-          <Link href="/register">REGISTRARSE</Link>
-        </Typography>
-      </form>
-    </div>
-=======
     <form
       className={classes.form}
       noValidate
@@ -276,6 +212,5 @@ export default function FormLogin({ action }) {
         <Link href="/register">REGISTRARSE</Link>
       </Typography> */}
     </form>
->>>>>>> dev
   );
 }

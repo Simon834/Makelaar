@@ -1,3 +1,7 @@
+.zIndexDialogRegister{
+  z-index: 1;
+}
+
 .containerTopBar {
   height: auto;
 }
