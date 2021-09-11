@@ -14,7 +14,12 @@ const useStyles = makeStyles((theme) => ({
         flexWrap: 'wrap',
         justifyContent: 'space-around',
         overflow: 'hidden',
+        width: "100%"
     },
+    paper:{
+        width: "100%"
+    }
+    ,
     imageList: {
         flexWrap: 'nowrap',
         transform: 'translateZ(0)',
@@ -35,6 +40,7 @@ const useStyles = makeStyles((theme) => ({
     button:{
         width:"100%"
     }
+    
 }));
 
 export default function UploadImage({images = [], setImages}) {
@@ -65,7 +71,7 @@ export default function UploadImage({images = [], setImages}) {
 
     return (
         <div className={classes.root}>
-            <Paper>
+            <Paper className={classes.paper}>
             <Button className={classes.button} variant="contained" color="primary" onClick={() => uploadImage()}>Subir imagenes</Button>
             <ImageList className={classes.imageList} cols={2.5}>
                 {images.map((item,pos) => (

@@ -58,6 +58,7 @@ const useStyles = makeStyles({
 });
 
 export default function FavoriteCard(props) {
+  console.log(props)
   const dispatch = useDispatch();
   const classes = useStyles();
   const handleOnClick = (id) => {

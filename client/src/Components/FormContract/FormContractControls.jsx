@@ -7,7 +7,7 @@ const initialFormValues = {
   endDate: "",
   amount: "",
   paymentDate: "",
-  file: "",
+  file: [],
   comments: "",
   UserId: "",
   PropertyId: "",
@@ -97,6 +97,13 @@ export function UseFormControls() {
     }
   };
 
+  function setFile(files) {
+    setContract({
+      ...contract,
+      file: files,
+    });
+  }
+
   return {
     contract,
     errors,
@@ -106,5 +113,6 @@ export function UseFormControls() {
     handleSelect,
     selectValues,
     setContract,
+    setFile
   };
 }

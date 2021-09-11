@@ -9,6 +9,8 @@ import Logout from '../Logout/Logout';
 import FormProperty from '../FormProperty/FormProperty';
 import UploadFile from '../Upload/UploadFile';
 import NewContractForm from '../FormContract/FormContract'
+import { allProperties } from '../../Functions/api/property';
+import { getAllContract } from '../../Functions/api/contract';
 
 const columnsUserList = [
     { field: 'name', headerName: 'Nombre', width: 150 },
@@ -21,27 +23,45 @@ const columnsUserList = [
 ]
 
 const columnsPropertyList = [
-    { field: 'title', headerName: 'Titulo', width: 350 },
-    { field: 'concept', headerName: 'Relación', width: 150 },
+    { field: 'name', headerName: 'Titulo', width: 350 },
+    { field: 'transaction', headerName: 'Relación', width: 150 },
     { field: 'address', headerName: 'Dirección', width: 150 },
     { field: 'type', headerName: 'Tipo', width: 150 },
     { field: 'price', headerName: 'Precio', width: 150 },
 
 ]
 
+const columnsContratList = [
+    { field: 'name', headerName: 'Titulo', width: 350 },
+    { field: 'UserId', headerName: 'Usuario', width: 150 },
+    { field: 'PropId', headerName: 'Propiedad', width: 150 },
+    { field: 'startDate', headerName: 'Inicio', width: 150 },
+    { field: 'endDate', headerName: 'Fin', width: 150 },
+    { field: 'amount', headerName: 'Monto', width: 150 },
+    { field: 'paymentDate', headerName: 'Pago', width: 150 },
+
+]
+
 export default function AdminBody() {
     const [userList, setUserList] = useState([])
+    const [prpList, setPropList] = useState([])
+    const [contList,setContList]=useState([])
 
-    async function getAllUser() {
+    async function get() {
         const allUsersApi = await getAllUserApi()
         setUserList(allUsersApi)
-
+        const allPropsApi = await allProperties()
+        setPropList(allPropsApi)
+        const allContrApi = await getAllContract()
+        setContList(allContrApi)
     }
 
     useEffect(() => {
-        getAllUser()
+        get()
     }// eslint-disable-next-line
         , [])
+
+    
 
     return (
         <div>
@@ -49,18 +69,19 @@ export default function AdminBody() {
             <Route path="/admin/:id/data">
                 <UserDetail />
             </Route>
+
             <Route path="/admin/:id/users">
                 <TableList columns={columnsUserList} rows={userList} />
+            </Route>
+            <Route path="/admin/:id/property">
+                <TableList columns={columnsPropertyList} rows={prpList} />
+            </Route>
+            <Route path="/admin/:id/contrat">
+                <TableList columns={columnsContratList} rows={contList} />
             </Route>
 
             <Route path="/admin/:id/newadmin">
                 <UserRegistrationForm isAdmin={true} />
-            </Route>
-            <Route path="/admin/:id/property">
-                <TableList columns={columnsPropertyList} rows={property} />
-            </Route>
-            <Route path="/admin/:id/logout">
-                <Logout/>
             </Route>
             <Route path="/admin/:id/newproperty">
                 <FormProperty />
@@ -68,8 +89,9 @@ export default function AdminBody() {
             <Route path="/admin/:id/newcontract">
                 <NewContractForm />
             </Route>
-            <Route path="/admin/:id/test">
-                <UploadFile />
+
+            <Route path="/admin/:id/logout">
+                <Logout/>
             </Route>
         </div>
     )

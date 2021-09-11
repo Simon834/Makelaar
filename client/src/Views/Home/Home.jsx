@@ -37,10 +37,13 @@ export default function Home() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    setEstates(
-      filterEstates(properties, concept, tipe, bedroom, bathroom, price, search)
-    );
-  }, [concept, tipe, bedroom, bathroom, price, search,properties]);
+    getEstates()
+  }, [concept, tipe, bedroom, bathroom, price, search, properties]);
+
+  async function getEstates(){
+    const estatesApi = await filterEstates(properties, concept, tipe, bedroom, bathroom, price, search)
+    setEstates(estatesApi)
+  }
 
   useEffect(() => {
     dispatch(clearFilter());

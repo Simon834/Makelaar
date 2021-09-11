@@ -7,13 +7,23 @@ import {useHistory} from "react-router"
 export default function TableList({columns, rows}) {
     const history= useHistory();
     const rowsMod=rows.map(e=>{
-        
+        let newrow = e
         if(e.isAdmin){
-            return {...e,isAdmin:"Si"}
+            newrow = {...newrow,isAdmin:"Si"}
         }else{
-            return {...e,isAdmin:"No", contract:"Ver contrato"}
+            newrow = {...newrow,isAdmin:"No", contract:"Ver contrato"}
         }
-        
+
+        if(e.User){
+            newrow = {...newrow,UserId:e.User.name}
+        }
+
+        if(e.Property){
+            newrow = {...newrow,PropId:e.Property.name}
+        }
+
+
+        return newrow
     })
 
       return (
