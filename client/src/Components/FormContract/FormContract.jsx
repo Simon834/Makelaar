@@ -53,7 +53,8 @@ export default function NewContractForm() {
     handleSelect,
     selectValues,
     setContract,
-    setFile
+    setFile, 
+    filesUp
   } = UseFormControls();
 
   const [userList, setUserList] = useState([]);
@@ -90,7 +91,7 @@ export default function NewContractForm() {
           onSubmit={handleSubmit}
         >
           <Grid container>
-            <Grid item xs={6}>
+            <Grid item xs={12}>
               <TextField
                 variant="outlined"
                 label="Titulo"
@@ -213,7 +214,7 @@ export default function NewContractForm() {
                 required
               />
 
-              <UploadFile files={contract.file} setFiles={setFile}/>
+              <UploadFile files={filesUp} setFiles={setFile}/>
 
               {/* <TextField
                 variant="outlined"

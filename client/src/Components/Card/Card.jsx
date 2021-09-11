@@ -93,9 +93,16 @@ export default function CardComponent(props) {
 
   return (
     <Card className={classes.root}>
-      {props.transaction ? (
+        {props.contrat ? (
+        <Alert severity="info" elevation={6} variant="filled">
+          {`Ocupada`}{" "}
+        </Alert>
+      ) : (
+        <></>
+      )}
+      {props.transaction && !props.contrat ? (
         <Alert severity="success" elevation={6} variant="filled">
-          {`${props.transaction} ${props.condition}`}{" "}
+          {`Disponible para ${props.transaction} ${props.condition}`}{" "}
         </Alert>
       ) : (
         <></>

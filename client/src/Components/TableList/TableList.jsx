@@ -6,6 +6,7 @@ import {useHistory} from "react-router"
 
 export default function TableList({columns, rows}) {
     const history= useHistory();
+    console.log("contratos",rows)
     const rowsMod=rows.map(e=>{
         let newrow = e
         if(e.isAdmin){
@@ -34,12 +35,14 @@ export default function TableList({columns, rows}) {
                     if(params.field==="contract"){
                         history.push(`/user/:id/${params.row.id}`)//aqui va la ruta de cada usuario en la seccion contratos
                     };
+                    if(params.field==="premium"){
+                        history.push(`/user/:id/${params.row.id}`)//aqui va la ruta de cada usuario en la seccion contratos
+                    };
                 }}
                 
                 rows={rowsMod}
                 columns={columns}
-                pageSize={10}
-                
+                pageSize={10}         
             />
             
         </div>

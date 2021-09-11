@@ -29,6 +29,7 @@ const columnsPropertyList = [
     { field: 'address', headerName: 'Dirección', width: 150 },
     { field: 'type', headerName: 'Tipo', width: 150 },
     { field: 'price', headerName: 'Precio', width: 150 },
+    { field: 'premium', headerName: 'Destacado', width: 150 },
 
 ]
 
