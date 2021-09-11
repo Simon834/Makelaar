@@ -2,7 +2,7 @@
     {
         "id": 1,
         "name": "Carlos Gonzalez",
-        "email": "cgonzalez@yahoo.com",
+        "email": "cgonzalez@yahootest.com",
         "phone": "4875123",
         "whatsapp": "3512854976",
         "password": "Ca123456",
@@ -13,7 +13,7 @@
       {
         "id": 2,
         "name": "Antonia Jimenez",
-        "email": "ajimenez@hotmail.com",
+        "email": "ajimenez@hotmailtest.com",
         "phone": "4785123",
         "whatsapp": "3512465987",
         "password": "An123456",
@@ -23,7 +23,7 @@
       {
         "id": 3,
         "name": "Sofia Sanchez",
-        "email": "ssanchez@hotmail.com",
+        "email": "ssanchez@hotmailtest.com",
         "phone": "4789561",
         "whatsapp": "3512469875",
         "password": "Ss123456",
@@ -33,7 +33,7 @@
       {
         "id": 4,
         "name": "Carlota Juarez",
-        "email": "cjuarez@hotmail.com",
+        "email": "cjuarez@hotmailtest.com",
         "phone": "4568791",
         "whatsapp": "3514785698",
         "password": "Ca123456",
@@ -43,7 +43,7 @@
       {
         "id": 5,
         "name": "Milagros Niro",
-        "email": "niromilagros@gmail.com",
+        "email": "niromilagros@gmailtest.com",
         "phone": "41789562",
         "whatsapp": "3512465879",
         "password": "Mi123456",
@@ -53,7 +53,7 @@
       {
         "id": 6,
         "name": "Eugenia Perez",
-        "email": "eugeperez@gmail.com",
+        "email": "eugeperez@gmailtest.com",
         "phone": "4123522",
         "whatsapp": "3512236547",
         "password": "Eu123456",
@@ -63,7 +63,7 @@
       {
         "id": 7,
         "name": "Jose Suarez",
-        "email": "josesuarez@gmail.com",
+        "email": "josesuarez@gmailtest.com",
         "phone": "47895614",
         "whatsapp": "351264789",
         "password": "Jo123456",
@@ -73,7 +73,7 @@
       {
         "id": 8,
         "name": "Tomas Juarez",
-        "email": "tomijuarez@gmail.com",
+        "email": "tomijuarez@gmailtest.com",
         "phone": "47895612",
         "whatsapp": "3512478545",
         "password": "To123456",
@@ -83,7 +83,7 @@
       {
         "id": 9,
         "name": "Franco Heredia",
-        "email": "fracnohc@gmail.com",
+        "email": "fracnohc@gmailtest.com",
         "phone": "45789565",
         "whatsapp": "351245698",
         "password": "Fa123456",
@@ -93,7 +93,7 @@
       {
         "id": 10,
         "name": "Juan Jimenez",
-        "email": "jjimenez@gmail.com",
+        "email": "jjimenez@gmailtest.com",
         "phone": "45465578",
         "whatsapp": "3512454658",
         "password": "Ju123456",
@@ -103,7 +103,7 @@
     {
         "id":"11" ,
         "name": "Virginia Espeche",
-        "email": "virginia.espeche@gmail.com",
+        "email": "virginia.espeche@gmailtest.com",
         "phone": "3854223366",
         "whatsapp":"3854223366",
         "password":"virginiaE123",
@@ -113,7 +113,7 @@
     {
         "id":"12" ,
         "name": "Victoria Espeche",
-        "email": "victoria.espeche@gmail.com",
+        "email": "victoria.espeche@gmailtest.com",
         "phone": "3854223377",
         "whatsapp":"3854223377",
         "password":"Ve123456",
@@ -123,7 +123,7 @@
     {
         "id":"13" ,
         "name": "Martina Mendez",
-        "email": "martina.mendez@gmail.com",
+        "email": "martina.mendez@gmailtest.com",
         "phone": "3854223123",
         "whatsapp":"3854223123",
         "password":"Mm123456",
@@ -133,7 +133,7 @@
     {
         "id":"13" ,
         "name": "Ines Alcorta",
-        "email": "ines.alcorta@gmail.com",
+        "email": "ines.alcorta@gmailtest.com",
         "phone": "3854223456",
         "whatsapp":"3854223456",
         "password":"Ia123456",
@@ -143,7 +143,7 @@
     {
         "id":"13" ,
         "name": "Josefina Prados",
-        "email": "josefina.prados@gmail.com",
+        "email": "josefina.prados@gmailtest.com",
         "phone": "3854223789",
         "whatsapp":"3854223789",
         "password":"Jp123456",
@@ -153,7 +153,7 @@
     {
         "id":"14" ,
         "name": "Guadalupe Salomon",
-        "email": "guadalupe.salomon@gmail.com",
+        "email": "guadalupe.salomon@gmailtest.com",
         "phone": "3854223369",
         "whatsapp":"3854223369",
         "password":"Gs123456",
@@ -163,7 +163,7 @@
     {
         "id":"15" ,
         "name": "Mariana Olivera",
-        "email": "mariana.olivera@gmail.com",
+        "email": "mariana.olivera@gmailtest.com",
         "phone": "3854223258",
         "whatsapp":"3854223258",
         "password":"Mo123456",
@@ -173,7 +173,7 @@
     {
         "id":"16" ,
         "name": "Sofia Juarez",
-        "email": "sofia.juarez@gmail.com",
+        "email": "sofia.juarez@gmailtest.com",
         "phone": "3854223147",
         "whatsapp":"3854223147",
         "password":"Sj123456",
@@ -183,7 +183,7 @@
     {
         "id":"17" ,
         "name": "Facundo Perez",
-        "email": "facundo.perez@gmail.com",
+        "email": "facundo.perez@gmailtest.com",
         "phone": "1234223377",
         "whatsapp":"1234223377",
         "password":"Fp123456",
@@ -193,7 +193,7 @@
     {
         "id":"18" ,
         "name": "Marcos Lopez",
-        "email": "marcos.lopez@gmail.com",
+        "email": "marcos.lopez@gmailtest.com",
         "phone": "4564223377",
         "whatsapp":"4564223377",
         "password":"Ml123456",
@@ -203,7 +203,7 @@
     {
         "id":"19" ,
         "name": "Ignacio Mulki",
-        "email": "ignacio.mulki@gmail.com",
+        "email": "ignacio.mulki@gmailtest.com",
         "phone": "7894223377",
         "whatsapp":"7894223377",
         "password":"Im123456",
@@ -214,11 +214,21 @@
     {
         "id":"20" ,
         "name": "Martin Diaz",
-        "email": "martin.diaz@gmail.com",
+        "email": "martin.diaz@gmailtest.com",
         "phone": "3854223399",
         "whatsapp":"3854223399",
         "password":"Md123456",
         "comments":"Comunicarse despues de las 14 hs",
         "isAdmin": false
+    },
+    {
+        "id":"21" ,
+        "name": "Mariano Miste",
+        "email": "admin@test.com",
+        "phone": "3854223399",
+        "whatsapp":"3854223399",
+        "password":"Qaz12345",
+        "comments":"Administrador",
+        "isAdmin": true
     }
 ]

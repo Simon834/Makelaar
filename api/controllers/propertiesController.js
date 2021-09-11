@@ -25,7 +25,7 @@ async function addNewProperty(req, res, next) {
       lng,
       price
     } = req.body;
-    console.log(req.body);
+    // console.log(req.body);
     // let property= await Property.findOrCreate({where: {name,area,rooms, bathrooms,type, city,neighborhood, province, street, streetNumber, cp, description, transaction}});
 
     // if(propertyValidation){

@@ -57,6 +57,7 @@ export default function PropertyDetail() {
           transaction={inm.transaction}
           type={inm.type}
           area={inm.area}
+          contrat={inm.Contract}
           hideImage={true}
         />
       </div>
