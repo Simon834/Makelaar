@@ -21,6 +21,7 @@ const useStyles = makeStyles({
 export default function PropertyDetail() {
   let { id } = useParams();
   const [inm, setInm] = useState({});
+  const [img, setImg] = useState("");
 
   useEffect(() => {
     getDetail(id);
@@ -28,7 +29,9 @@ export default function PropertyDetail() {
 
   async function getDetail(id) {
     const inmDetail = await propertyById(id);
+    console.log(inmDetail)
     setInm(inmDetail);
+    setImg(inmDetail.Images[0].url)
     return inmDetail;
   }
 
@@ -47,13 +50,15 @@ export default function PropertyDetail() {
           price={inm.price}
           address={inm.address}
           garage={inm.garage}
-          id={inm.id}
+          id={id*1}
+          image={img}
+          condition={inm.condition}
+          description={inm.description}
+          transaction={inm.transaction}
+          type={inm.type}
+          area={inm.area}
+          hideImage={true}
         />
-        <div>
-          <ContactForm
-            msg={`Hola, tengo interés en ${inm.name} en ${inm.address}, ¿podriamos coordinar una visita?`}
-          />
-        </div>
       </div>
       <div className={style.galery}>
         <GaleryImg images={inm.Images} />
@@ -62,6 +67,16 @@ export default function PropertyDetail() {
 
         <div className={style.map}>
           <GoogleMap lat={inm.lat} lng={inm.lng} />
+        </div>
+        <div className={style.contact}>
+          <ContactForm
+            msg={`Hola, tengo interés en ${inm.name} en ${inm.address}, ¿podriamos coordinar una visita?`}
+          />
+                    <img
+            className={style.img}
+            src="http://garbero.com.ar/wp-content/uploads/2019/03/telefono-03.jpg"
+            alt="imagen"
+          />
         </div>
     </div>
   );

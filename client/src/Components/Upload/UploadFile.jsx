@@ -17,8 +17,8 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export default function UploadFile({file, setFile}) {
-    const [files, setFiles] = useState([])
+export default function UploadFile({files, setFiles}) {
+    // const [files, setFiles] = useState([])
     const classes = useStyles();
 
     let fileArr = files || []

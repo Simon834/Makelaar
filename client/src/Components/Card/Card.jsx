@@ -11,6 +11,13 @@ import {
 } from "../../Redux/Actions/favoriteActions";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemText from "@material-ui/core/ListItemText";
+import ListItemAvatar from "@material-ui/core/ListItemAvatar";
+import Avatar from "@material-ui/core/Avatar";
+import HomeIcon from "@material-ui/icons/Home";
+import Alert from "@material-ui/lab/Alert";
 
 import style from "./Card.module.css";
 
@@ -58,8 +65,9 @@ export default function CardComponent(props) {
   const history = useHistory();
 
   useEffect(() => {
-      if (favorites.length > 0) {
-      const searFav = favorites.filter((e) => e.id === props.id);
+    if (favorites.length > 0) {
+      const searFav = favorites.filter((e) => e.id*1 === props.id*1);
+      console.log("favorites",favorites, "searFav",searFav, "id", props.id)
       if (searFav.length) {
         setFav(true);
       }
@@ -67,8 +75,10 @@ export default function CardComponent(props) {
     }
     if (favorites.length === 0) {
       localStorage.setItem("favorites", JSON.stringify([]));
-    }// eslint-disable-next-line
+    } // eslint-disable-next-line
   }, [favorites]);
+  
+  console.log("favorites",props )
 
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -78,16 +88,24 @@ export default function CardComponent(props) {
   };
   const handleDeleteFavorite = (id) => {
     dispatch(deleteFavorite(id));
-    setFav(false)
+    setFav(false);
   };
 
   return (
-    <Card className={classes.root} onClick={()=>history.push(`/property/${props.id}`)}>
-      {props.image ? (
+    <Card className={classes.root}>
+      {props.transaction ? (
+        <Alert severity="success" elevation={6} variant="filled">
+          {`${props.transaction} ${props.condition}`}{" "}
+        </Alert>
+      ) : (
+        <></>
+      )}
+      {!props.hideImage ? (
         <CardMedia
           className={classes.media}
           image={props.image}
           title={props.title}
+          onClick={() => history.push(`/property/${props.id}`)}
         />
       ) : (
         <></>
@@ -125,7 +143,36 @@ export default function CardComponent(props) {
             Dormitorios
             <span className={style.infoText}>{props.bedroom}</span>
           </span>
+          {props.type ?<>
+          <Divider flexItem={true} />
+          <img
+            className={style.imageTitle}
+            src="http://garbero.com.ar/wp-content/themes/realtyelite/img/ico-type.png"
+            alt="type"
+          />
+          <span className={style.infoTitle}>
+            Tipo
+            <span className={style.infoText}>{props.type}</span>
+          </span></>
+          :<></>}
+          
+          {props.area ?<>
+          <Divider flexItem={true} />
+          <img
+            className={style.imageTitle}
+            src="http://garbero.com.ar/wp-content/themes/realtyelite/img/ico-areasize.png"
+            alt="area"
+          />
+          <span className={style.infoTitle}>
+            Superficie
+            <span className={style.infoText}>{`${props.area} m2`}</span>
+          </span></>
+          :<></>}
+
         </Typography>
+        <Divider flexItem={true} />
+        <em>{props.description}</em>
+
         <Divider light />
         <div className={style.footerCard}>
           {/* <IconButton
@@ -143,7 +190,9 @@ export default function CardComponent(props) {
               type="checkbox"
               className={style.heart__checkbox}
               aria-label="add to favorites"
-              onClick={() => fav?handleDeleteFavorite(props.id):handleAddFavorite(props)     }
+              onClick={() =>
+                fav ? handleDeleteFavorite(props.id*1) : handleAddFavorite(props)
+              }
               checked={fav}
             />
             <div className={style.heart__icon} />

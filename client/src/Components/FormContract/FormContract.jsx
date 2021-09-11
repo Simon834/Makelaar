@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getAllUserApi } from "../../Functions/api/users";
 import { allProperties } from "../../Functions/api/property";
+import UploadFile from "../Upload/UploadFile";
 
 import {
   MenuItem,
@@ -38,6 +39,7 @@ const useStyle = makeStyles((theme) => ({
   header: {
     fontSize: "25px",
   },
+  
 }));
 
 export default function NewContractForm() {
@@ -51,6 +53,7 @@ export default function NewContractForm() {
     handleSelect,
     selectValues,
     setContract,
+    setFile
   } = UseFormControls();
 
   const [userList, setUserList] = useState([]);
@@ -209,14 +212,17 @@ export default function NewContractForm() {
                 })}
                 required
               />
-              <TextField
+
+              <UploadFile files={contract.file} setFiles={setFile}/>
+
+              {/* <TextField
                 variant="outlined"
                 label="Archivo adjunto"
                 name="file"
                 value={contract.file}
                 onChange={handleChange}
                 required
-              />
+              /> */}
               <TextField
                 variant="outlined"
                 label="Agregue un comentario (opcional)"

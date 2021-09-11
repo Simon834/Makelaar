@@ -29,10 +29,16 @@ export default function ViewProperty() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    setEstates(
-      filterEstates(properties, concept, tipe, bedroom, bathroom, price, search)
-    );
+    getEstates()
   }, [concept, tipe, bedroom, bathroom, price, search, properties]);
+
+  async function getEstates(){
+    const estatesApi = await filterEstates(properties, concept, tipe, bedroom, bathroom, price, search)
+    setEstates(estatesApi)
+  }
+
+
+
 
   useEffect(() => {
     dispatch(clearFilter());

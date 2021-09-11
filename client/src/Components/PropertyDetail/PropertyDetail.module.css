@@ -19,3 +19,11 @@
      height: 350px;
 }     
 
+.contact{
+    display: flex;
+    justify-content: center;
+}
+
+.img{
+    width: 40%;
+}

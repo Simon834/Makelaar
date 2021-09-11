@@ -3,7 +3,9 @@ import { addNewProperty } from "../../Functions/api/property";
 import Swal from "sweetalert2";
 import { geocodeByAddress, getLatLng } from "react-places-autocomplete";
 
+
 const resetValues = {
+  price:"",
   name: "",
   available: true,
   area: "",
@@ -44,7 +46,7 @@ export function Controls() {
     if ("name" in values)
       error.name = values.name ? "" : "Este campo es requerido";
     if (values.name) {
-      error.name = /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/.test(
+      error.name = /^[a-zA-Zñáéíóú]+(([',. -][a-zA-Zñáéíóú ])?[a-zA-Zñáéíóú]*)*$/.test(
         values.name
       )
         ? ""
@@ -59,6 +61,16 @@ export function Controls() {
         ? ""
         : "El numero de area no es valido";
     }
+
+    if ("price" in values)
+    error.available = values.price ? "" : "Este campo es requerido";
+  if (values.price) {
+    //Regex numero real
+    error.price = /^[+-]?\d+([,.]\d+)?$/.test(values.price)
+      ? ""
+      : "El numero de area no es valido";
+  }
+
 
     if ("rooms" in values)
       error.values = values.rooms ? "" : "Este campo es requerido";

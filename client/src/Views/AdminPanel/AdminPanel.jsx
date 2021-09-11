@@ -31,6 +31,10 @@ export default function AdminPanel() {
                 rute: "/property"
             },
             {
+                title: "Mis contratos",
+                rute: "/contrat",
+            },
+            {
                 title: "Nueva propiedad",
                 rute: "/newproperty"
             },
@@ -47,10 +51,6 @@ export default function AdminPanel() {
                 title: "Cerrar sesion",
                 rute: "/logout",
             },
-            {
-                title: "Test",
-                rute: "/test",
-            }
         ]
 
   return (

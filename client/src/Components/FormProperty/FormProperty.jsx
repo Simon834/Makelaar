@@ -132,6 +132,20 @@ export default function FormProperty() {
                 <TextField
                   className={classes.input}
                   variant="outlined"
+                  label="Precio"
+                  name="price"
+                  value={property.price}
+                  onChange={handleChange}
+                  {...(errors.price && {
+                    error: true,
+                    helperText: errors.price,
+                  })}
+                  required
+                />
+
+                <TextField
+                  className={classes.input}
+                  variant="outlined"
                   label="Area"
                   name="area"
                   value={property.area}

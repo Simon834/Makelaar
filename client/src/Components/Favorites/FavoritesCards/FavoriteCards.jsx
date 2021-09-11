@@ -49,7 +49,7 @@ export default function FavoriteCards() {
       localStorage.setItem("favorites", JSON.stringify([]));
     }// eslint-disable-next-line
   }, [inmuebles]);
-    
+
   return (
     <>
     { (inmuebles.length > 0)?  

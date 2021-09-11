@@ -1,4 +1,4 @@
-const { Contract } = require("../db");
+const { Contract,User,Property } = require("../db");
 
 async function newContract(req, res, next) {
   try {
@@ -13,18 +13,25 @@ async function newContract(req, res, next) {
       UserId,
       PropertyId,
     } = req.body;
-
+  
     let contract = await Contract.create({
       name: name,
       startDate: startDate,
       endDate: endDate,
       amount: amount,
       paymentDate: paymentDate,
-      file: file,
       comments: comments,
       PropertyId: PropertyId,
       UserId: UserId,
     });
+
+    if(file){
+      const files = file?.map(
+        async (f) => await contract.createFile({ url: f.url })
+      );
+
+      await Promise.all(files);
+    }
 
     res.json(contract);
   } catch (err) {
@@ -35,7 +42,9 @@ async function newContract(req, res, next) {
 
 async function getContracts(req, res, next) {
   try {
-    const contracts = await Contract.findAll();
+    const contracts = await Contract.findAll({
+      include: [{ model: User }, { model: Property }],
+    });
     if (!contracts.length) {
       return res.json({ msg: "No hay contratos registrados por el momento" });
     } else {
