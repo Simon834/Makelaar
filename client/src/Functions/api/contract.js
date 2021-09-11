@@ -26,6 +26,15 @@ export async function getAllContract() {
   }
 }
 
+export async function getContractById(id) {
+  try {
+    const response = await axios.get(`${BACK_SERVER}/contract/${id}`);
+    return response.data;
+  } catch (err) {
+    return err.response.status;
+  }
+}
+
 export async function editContract(editedContract, id) {
   try {
     const response = await axios.put(

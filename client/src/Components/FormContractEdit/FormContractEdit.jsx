@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { getAllUserApi } from "../../Functions/api/users";
 import { allProperties } from "../../Functions/api/property";
+import { getAllContract, getContractById } from "../../Functions/api/contract";
 import UploadFile from "../Upload/UploadFile";
 
 import {
@@ -41,7 +43,7 @@ const useStyle = makeStyles((theme) => ({
   },
 }));
 
-export default function NewContractForm() {
+export default function NewContractForm(props) {
   const classes = useStyle();
   const {
     handleChange,
@@ -54,6 +56,8 @@ export default function NewContractForm() {
     setContract,
     setFile,
   } = UseFormControls();
+
+  const { idcont } = useParams();
 
   const [userList, setUserList] = useState([]);
   const [propertyList, setPropertyList] = useState([]);
@@ -76,8 +80,16 @@ export default function NewContractForm() {
       const allPropertiesApi = await allProperties();
       setPropertyList(allPropertiesApi);
     }
+    
+    async function getContract(){
+        const oldContract = await getContractById(idcont);
+        console.log("XXXXXXXX", oldContract);
+        setContract(oldContract);
+    }
+    getContract();
     getAllUser();
     getAllProperties();
+
   }, []);
 
   return (
@@ -212,8 +224,6 @@ export default function NewContractForm() {
                 required
               />
 
-              <UploadFile files={contract.file} setFiles={setFile} />
-
               {/* <TextField
                 variant="outlined"
                 label="Archivo adjunto"
@@ -231,6 +241,7 @@ export default function NewContractForm() {
                 value={contract.comments}
                 onChange={handleChange}
               />
+              {contract.Files?.map(fl => <a href={fl.url} target="_blank">fl.name</a>)}
               <p>
                 <Button
                   variant="contained"

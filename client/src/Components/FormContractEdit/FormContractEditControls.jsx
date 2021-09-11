@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { editContract } from "../../Functions/api/contract";
+import Swal from "sweetalert2";
 
 const initialFormValues = {
   name: "",
@@ -89,10 +90,25 @@ export function UseFormControls(props) {
       Object.values(errors).every((x) => x === "") && formIsValid();
     if (isValid) {
       try {
-        const editedContract = await editContract(contract, props.match.params.idcont);
-        console.log(editedContract);
+        await editContract(contract, contract.id);
+            Swal.fire({
+              icon: "success",
+              title: "Perfecto..!",
+              text: "Tu contrato ha sido modificado con exito cheeee...!",
+              customClass: {
+                container: "my-swal",
+              },
+            });
       } catch (err) {
         console.log(err);
+            Swal.fire({
+              icon: "success",
+              title: "Ups..!",
+              text: "Tu contrato no ha podido ser modificado, intenta de nuevo",
+              customClass: {
+                container: "my-swal",
+              },
+        });
       }
     }
   };
