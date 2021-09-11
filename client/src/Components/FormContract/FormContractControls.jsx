@@ -17,6 +17,7 @@ export function UseFormControls() {
   const [contract, setContract] = useState(initialFormValues);
   const [errors, setErrors] = useState({});
   const [selectValues, setSelectValues] = useState({});
+  const [filesUp, setFilesUp] = useState([]);
 
   const validate = (fieldValues = contract) => {
     let temp = { ...errors };
@@ -89,7 +90,9 @@ export function UseFormControls() {
       Object.values(errors).every((x) => x === "") && formIsValid();
     if (isValid) {
       try {
-        const addedContract = await addContract(contract);
+        const contractSubmit = {...contract,file:filesUp }
+
+        const addedContract = await addContract(contractSubmit);
         console.log(addedContract);
       } catch (err) {
         console.log(err);
@@ -98,10 +101,7 @@ export function UseFormControls() {
   };
 
   function setFile(files) {
-    setContract({
-      ...contract,
-      file: files,
-    });
+    setFilesUp([...files]);
   }
 
   return {
@@ -113,6 +113,7 @@ export function UseFormControls() {
     handleSelect,
     selectValues,
     setContract,
-    setFile
+    setFile, 
+    filesUp
   };
 }

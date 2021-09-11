@@ -92,6 +92,7 @@ export default function FormProperty() {
     address,
     setAddress,
     handleSelect,
+    img
   } = Controls();
   console.log("PROPIEDAD", property);
 
@@ -369,7 +370,7 @@ export default function FormProperty() {
                   </RadioGroup>
                   {/* {console.log("PROPIEDADCHECK", property)} */}
                 </FormControl>
-                <UploadImage images={property.photos} setImages={setImage} />
+                <UploadImage images={img} setImages={setImage} />
                 <p>
                   <Button
                     variant="contained"

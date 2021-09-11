@@ -116,7 +116,7 @@ export default function TopBar() {
           >
             X
           </Button>
-          <UserRegistrationForm action={closeDialogRegister} />
+          <UserRegistrationForm isAdmin={false} action={closeDialogRegister} />
         </DialogContent>
       </Dialog>
     );

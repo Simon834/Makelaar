@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import {IconButton, Paper, Button, List ,ListItem, ListItemAvatar, Avatar,ListItemText,ListItemSecondaryAction } from '@material-ui/core';
 import {Delete as DeleteIcon, Folder as FolderIcon } from '@material-ui/icons';
+import { uploadConection } from '../../Functions/api/upload';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -11,6 +12,13 @@ const useStyles = makeStyles((theme) => ({
         flexWrap: 'wrap',
         justifyContent: 'space-around',
         overflow: 'hidden',
+        width: "100%",
+    },
+    paper: {
+      width: "100%" ,
+    },
+    list: {
+      width: "100%", 
     },
     button:{
         width:"100%"
@@ -18,20 +26,29 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function UploadFile({files, setFiles}) {
-    // const [files, setFiles] = useState([])
+    const [myWidget, setmyWidget] = useState({})
     const classes = useStyles();
 
     let fileArr = files || []
-    var myWidget = window.cloudinary.createUploadWidget({
+    
+    useEffect(() => {
+      var myWidgetConect = window.cloudinary.createUploadWidget({
         cloudName: 'makelaar',
         uploadPreset: 'amojar0m'
-    }, (error, result) => {
+      }, (error, result) => {
         if (!error && result && result.event === "success") {
-            fileArr.push({name: result.info.original_filename, url:result.info.url})
-            setFiles([...fileArr])
+          fileArr.push({name: result.info.original_filename, url:result.info.url})
+          setFiles([...fileArr])
         }
-    }
-    )
+      }
+      )
+      myWidgetConect.open();
+      myWidgetConect.close();
+      setmyWidget(myWidgetConect)
+    }, [])
+    
+
+
 
     async function uploadImage() {
         await myWidget.open()
@@ -48,7 +65,7 @@ export default function UploadFile({files, setFiles}) {
             <Paper>
             <Button className={classes.button} variant="contained" color="primary" onClick={() => uploadImage()}>Subir documento</Button>
             <div className={classes.demo}>
-            <List >
+            <List className={classes.list}>
               {files.map((e,pos)=>
                 <ListItem>
                   <ListItemAvatar>

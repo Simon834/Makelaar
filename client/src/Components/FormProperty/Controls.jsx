@@ -31,6 +31,8 @@ const resetValues = {
 export function Controls() {
   const [property, setProperty] = useState(resetValues);
 
+  const [img, setImg] = useState([]);
+
   const [errors, setErrors] = useState({});
 
   const [check, setCheck] = useState({});
@@ -201,8 +203,10 @@ export function Controls() {
 
     if (isValid) {
       try {
+        const propertySubmit={...property, photos: img}
+
         // console.log("PROPIEDAD CREADA",property)
-        const registeredProperty = await addNewProperty(property);
+        const registeredProperty = await addNewProperty(propertySubmit);
         if (registeredProperty) {
           Swal.fire("Listo!", "Se agrego una propiedad con exito!", "success");
         }
@@ -217,10 +221,9 @@ export function Controls() {
   }
 
   function setImage(images) {
-    setProperty({
-      ...property,
-      photos: images,
-    });
+    setImg([
+      ...images,
+    ]);
   }
   async function handleSelect(value) {
     const results = await geocodeByAddress(value);
@@ -247,5 +250,6 @@ export function Controls() {
     address,
     setAddress,
     handleSelect,
+    img
   };
 }
