@@ -9,6 +9,7 @@ import Logout from '../Logout/Logout';
 import FormProperty from '../FormProperty/FormProperty';
 import UploadFile from '../Upload/UploadFile';
 import NewContractForm from '../FormContract/FormContract'
+import EditContractForm from '../FormContractEdit/FormContractEdit'
 import { allProperties } from '../../Functions/api/property';
 import { getAllContract } from '../../Functions/api/contract';
 
@@ -89,7 +90,9 @@ export default function AdminBody() {
             <Route path="/admin/:id/newcontract">
                 <NewContractForm />
             </Route>
-
+            <Route path="/admin/:id/editcontract/:idcont">
+                <EditContractForm />
+            </Route>
             <Route path="/admin/:id/logout">
                 <Logout/>
             </Route>

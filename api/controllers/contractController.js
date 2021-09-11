@@ -68,4 +68,28 @@ async function getContractsById(req, res, next) {
   }
 }
 
-module.exports = { newContract, getContracts, getContractsById };
+async function editContract(req, res, next) {
+  const { name, startDate, endDate, amount, paymentDate, comments } =
+    req.body;
+  const id = req.params.id
+  try {
+    let foundContract = await Contract.findOne({ where: { id } });
+    
+    if(foundContract){
+      foundContract.name = name;
+      foundContract.startDate = startDate;
+      foundContract.endDate = endDate;
+      foundContract.amount = amount;
+      foundContract.paymentDate = paymentDate;
+      foundContract.comments = comments;
+
+      await foundContract.save();
+      return res.json({ msg: "tu información de contrato ha sido actualizada" })
+    }
+  } catch (err) {
+    console.log(err);
+    next(err);
+  }
+}
+
+module.exports = { newContract, getContracts, getContractsById, editContract };

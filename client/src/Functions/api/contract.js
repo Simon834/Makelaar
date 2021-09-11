@@ -25,3 +25,15 @@ export async function getAllContract() {
     return err.response.status;
   }
 }
+
+export async function editContract(editedContract, id) {
+  try {
+    const response = await axios.put(
+      `${BACK_SERVER}/contract/edit/${id}`,
+      editedContract
+    );
+    return response.data;
+  } catch (err) {
+    return err.response.status;
+  }
+}
