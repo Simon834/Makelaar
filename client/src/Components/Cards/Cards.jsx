@@ -20,6 +20,7 @@ export default function Cards({ inmuebles }) {
             address={inm.address}
             garage={inm.garage}
             id={inm.id}
+            contrat={inm.Contract}
           />
         </Grid>
       ))}
