@@ -1,4 +1,4 @@
-const { Property } = require("../db");
+const { Property, Image, Contract } = require("../db");
 const { Op } = require("sequelize");
 
 async function filterProperties(req, res, next) {
@@ -14,12 +14,12 @@ async function filterProperties(req, res, next) {
     transaction,
     condition,
     price,
+    type
   } = req.query;
   console.log(req.query);
   let filterArray = [{ status: "activo" }];
-
-  if (condition) filterArray.push({ condition: condition });
-  if (price) filterArray.push({ price: price });
+  if (type) filterArray.push({ type: type });
+  if (transaction) filterArray.push({ transaction: transaction });
   if (bedrooms) filterArray.push({ rooms: bedrooms * 1 });
   if (bathrooms) filterArray.push({ bathrooms: bathrooms });
   if (search) {
@@ -59,12 +59,13 @@ async function filterProperties(req, res, next) {
       where: {
         [Op.and]: filterArray,
       },
+      include: [{ model: Image }, { model: Contract }],
     });
-    console.log("FILERED FILTER", filterProperties);
+    //console.log("FILERED FILTER", filterProperties);
     if (filterProperties.length > 0) {
       return res.json(filterProperties);
     } else {
-      res.json("No properties");
+      res.json([]);
     }
   } catch (err) {
     next(err);

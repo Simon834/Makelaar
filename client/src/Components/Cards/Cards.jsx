@@ -3,6 +3,8 @@ import React from "react";
 import CardComponent from "../Card/Card";
 
 export default function Cards({ inmuebles }) {
+  console.log("inmuebles",inmuebles )
+  
   return (
     <Grid container spacing={6}>
       {inmuebles.map((inm) => (
