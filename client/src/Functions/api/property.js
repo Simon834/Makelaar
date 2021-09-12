@@ -42,3 +42,15 @@ export async function propertyById(id) {
   }
 }
 
+export async function editProperty(property) {
+  console.log("asdasdas", property);
+  try {
+    const editProperty = await axios.put(
+      `${BACK_SERVER}/property/editproperty`,
+      property
+    );
+    return editProperty.data;
+  } catch (err) {
+    throw err;
+  }
+}

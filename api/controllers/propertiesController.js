@@ -83,7 +83,7 @@ async function allProperties(req, res, next) {
 }
 
 async function idProperties(req, res, next) {
-  let id = req.params.id * 1;
+  let id = Number(req.params.id);
   console.log(id);
   try {
     const properties = await Property.findByPk(id, {
@@ -101,7 +101,21 @@ async function idProperties(req, res, next) {
 }
 
 async function updateProperty(req, res, next) {
-  const {id, name, available, area, rooms, bathrooms, type, description, firstImg, status, transaction, condition, premium, price} = req.body;
+  const {
+    id,
+    name,
+    available,
+    area,
+    rooms,
+    bathrooms,
+    type,
+    description,
+    status,
+    transaction,
+    condition,
+    premium,
+    price,
+  } = req.body;
   try {
     let property = await Property.findOne({ where: { id } });
 
@@ -113,13 +127,12 @@ async function updateProperty(req, res, next) {
       property.bathrooms = bathrooms;
       property.type = type;
       property.description = description;
-      property.firstImg = firstImg;
       property.status = status;
       property.transaction = transaction;
       property.condition = condition;
       property.premium = premium;
       property.price = price;
-      
+
       await property.save();
       return res.json({ msg: "Tu propiedad ha sido nodificada" });
     }
