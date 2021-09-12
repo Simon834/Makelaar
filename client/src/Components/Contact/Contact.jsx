@@ -10,6 +10,7 @@ import Instagram from "@material-ui/icons/Instagram";
 import TextField from "@material-ui/core/TextField";
 import style from "./Contact.module.css";
 import Swal from "sweetalert2";
+import phoneImg from "../../images/telefono-03.jpg"
 
 export default function Contact() {
   function sendEmail(e) {
@@ -133,7 +134,7 @@ export default function Contact() {
           </form>
           <img
             className={style.img}
-            src="http://garbero.com.ar/wp-content/uploads/2019/03/telefono-03.jpg"
+            src={phoneImg}
             alt="imagen"
           />
         </div>
