@@ -9,6 +9,7 @@ import { useParams } from "react-router";
 import { propertyById } from "../../Functions/api/property";
 import GoogleMap from "../GoogleMap/GoogleMap";
 import { useLocation } from "react-router-dom";
+import phoneImg from "../../images/telefono-03.jpg"
 
 
 import style from "./PropertyDetail.module.css";
@@ -78,7 +79,7 @@ export default function PropertyDetail() {
           />
                     <img
             className={style.img}
-            src="http://garbero.com.ar/wp-content/uploads/2019/03/telefono-03.jpg"
+            src={phoneImg}
             alt="imagen"
           />
         </div>

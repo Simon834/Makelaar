@@ -18,6 +18,12 @@ import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import Avatar from "@material-ui/core/Avatar";
 import HomeIcon from "@material-ui/icons/Home";
 import Alert from "@material-ui/lab/Alert";
+import icoRoom from "../../images/ico-amountrooms.png"
+import icoBeth from "../../images/ico-bathrooms.png"
+import icoBed from "../../images/ico-bedrooms.png"
+import icoType from "../../images/ico-type.png"
+import icoArea from "../../images/ico-areasize.png"
+
 
 import style from "./Card.module.css";
 
@@ -123,7 +129,7 @@ export default function CardComponent(props) {
         <Typography className={style.ContainerInfo}>
           <img
             className={style.imageTitle}
-            src="http://garbero.com.ar/wp-content/themes/realtyelite/img/ico-amountrooms.png"
+            src={icoRoom}
             alt="rooms"
           />
           <span className={style.infoTitle}>
@@ -133,7 +139,7 @@ export default function CardComponent(props) {
           <Divider flexItem={true} />
           <img
             className={style.imageTitle}
-            src="http://garbero.com.ar/wp-content/themes/realtyelite/img/ico-bathrooms.png"
+            src={icoBeth}
             alt="rooms"
           />
           <span className={style.infoTitle}>
@@ -143,7 +149,7 @@ export default function CardComponent(props) {
           <Divider flexItem={true} />
           <img
             className={style.imageTitle}
-            src="http://garbero.com.ar/wp-content/themes/realtyelite/img/ico-bedrooms.png"
+            src={icoBed}
             alt="rooms"
           />
           <span className={style.infoTitle}>
@@ -154,7 +160,7 @@ export default function CardComponent(props) {
           <Divider flexItem={true} />
           <img
             className={style.imageTitle}
-            src="http://garbero.com.ar/wp-content/themes/realtyelite/img/ico-type.png"
+            src={icoType}
             alt="type"
           />
           <span className={style.infoTitle}>
@@ -167,7 +173,7 @@ export default function CardComponent(props) {
           <Divider flexItem={true} />
           <img
             className={style.imageTitle}
-            src="http://garbero.com.ar/wp-content/themes/realtyelite/img/ico-areasize.png"
+            src={icoArea}
             alt="area"
           />
           <span className={style.infoTitle}>
