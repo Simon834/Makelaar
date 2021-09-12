@@ -45,7 +45,6 @@ export async function loguinUserApi(email, password) {
 
 
 export async function updateUser(user) {
-  console.log(user)
   try {
     const response = await axios.put(`${BACK_SERVER}/users/updateUser`, user);
     return response.data;
