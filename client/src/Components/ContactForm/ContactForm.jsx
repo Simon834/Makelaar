@@ -2,7 +2,7 @@ import React from 'react'
 import TextField from "@material-ui/core/TextField";
 import emailjs from "emailjs-com";
 import { Button } from "@material-ui/core";
-
+import Swal from "sweetalert2";
 import style from "./ContactForm.module.css";
 
 function sendEmail(e) {
@@ -17,16 +17,28 @@ function sendEmail(e) {
       )
       .then(
         (result) => {
-          alert("Email enviado con Exito");
+          Swal.fire({
+            icon: "success",
+            title: "Yeeey..!",
+            text: "Email enviado con Exito",
+            customClass: {
+              container: "my-swal",
+            },
+          });
           document.getElementById("name").value = "";
           document.getElementById("phone").value = "";
           document.getElementById("message").value = "";
           document.getElementById("email").value = "";
         },
         (error) => {
-          alert(
-            "Oh no ocurrio un error al eviar el email,intentelo nuevamente"
-          );
+            Swal.fire({
+              icon: "error",
+              title: "Ups..!",
+              text: "Oh no ocurrio un error al eviar el email,intentelo nuevamente",
+              customClass: {
+                container: "my-swal",
+              },
+            });
         }
       );
   }

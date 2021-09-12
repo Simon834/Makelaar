@@ -1,16 +1,17 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from "react";
 import { Route } from "react-router";
-import TableList from '../TableList/TableList';
-import UserRegistrationForm from '../UserRegistrationForm/UserRegistrationFrom';
-import { getAllUserApi } from '../../Functions/api/users';
-import property from '../../inmuebles.json'
-import UserDetail from '../UserDetail/UserDetail';
-import Logout from '../Logout/Logout';
-import FormProperty from '../FormProperty/FormProperty';
-import UploadFile from '../Upload/UploadFile';
-import NewContractForm from '../FormContract/FormContract'
-import { allProperties } from '../../Functions/api/property';
-import { getAllContract } from '../../Functions/api/contract';
+import TableList from "../TableList/TableList";
+import UserRegistrationForm from "../UserRegistrationForm/UserRegistrationFrom";
+import { getAllUserApi } from "../../Functions/api/users";
+import property from "../../inmuebles.json";
+import UserDetail from "../UserDetail/UserDetail";
+import Logout from "../Logout/Logout";
+import FormProperty from "../FormProperty/FormProperty";
+import UploadFile from "../Upload/UploadFile";
+import NewContractForm from "../FormContract/FormContract";
+import EditContractForm from "../FormContractEdit/FormContractEdit";
+import { allProperties } from "../../Functions/api/property";
+import { getAllContract } from "../../Functions/api/contract";
 import EditProperty from "../EditProperty/EditProperty";
 
 const columnsUserList = [
@@ -87,6 +88,9 @@ export default function AdminBody() {
       <Route path="/admin/:id/newcontract">
         <NewContractForm />
       </Route>
+      <Route path="/admin/:id/editcontract/:idcont">
+        <EditContractForm />
+      </Route>
       <Route path="/admin/:id/editproperty/:idprop">
         <EditProperty />
       </Route>
@@ -96,4 +100,3 @@ export default function AdminBody() {
     </div>
   );
 }
-
