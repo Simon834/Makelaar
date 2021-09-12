@@ -14,7 +14,6 @@ export async function filterEstates(
   price,
   search
 ) {
-  console.log(estates, "INMUEBLES");
   const estatesFiltred = await backFilters(
     estates,
     concept,
@@ -24,9 +23,9 @@ export async function filterEstates(
     price,
     search
   );
-  console.log("estados", estatesFiltred);
+  console.log(estatesFiltred)
   const ordenador_premium = estatesFiltred.sort(
-    (a, b) => b.premium - a.premium
+    (a, b) =>  !!a.Contract - !!b.Contract
   );
   return ordenador_premium;
 }
@@ -36,24 +35,24 @@ async function backFilters(estates, concept, tipe, bedroom, bathroom, price, sea
     let resultado = estates.filter((estate) =>
       filterPrice(estate.price, price)
     );
-    console.log("entre aca primero", resultado);
+
     return resultado;
   } else if (price) {
     const data = await llamadoBack(tipe, bedroom, bathroom, search, concept);
-    console.log("ACA no entre", data);
+
 
     return data.filter((estate) => filterPrice(estate.price, price));
   } else {
     const data = await llamadoBack(tipe, bedroom, bathroom, search, concept);
-    console.log(data, "Data");
+
     return data;
   }
 }
 
 function filterPrice(estatePrice, price) {
   if (price[0]) {
-    return estatePrice * 1 > price[0]
-      ? estatePrice * 1 < price[1]
+    return estatePrice * 1 > price[0]*1000
+      ? estatePrice * 1 < price[1]*1000
         ? true
         : false
       : false;

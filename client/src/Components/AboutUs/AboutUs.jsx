@@ -1,8 +1,7 @@
 import React from "react";
 import styles from "./AboutUs.module.css";
-import logo from "../../images/logo-color.png";
-import HomeIcon from "@material-ui/icons/Home";
-import WorkIcon from "@material-ui/icons/Work";
+import logo from "../../images/logo-white-horizontal.png";
+import image from "../../images/land9.jpg"
 
 export default function AboutUs() {
   return (
@@ -10,11 +9,11 @@ export default function AboutUs() {
       <div className={styles.container}>
         <img
           className={styles.image}
-          src="https://image.freepik.com/foto-gratis/manos-agente-cliente-estrechandose-mano-despues-firmar-contrato-comprar-apartamento-nuevo_1150-14836.jpg"
+          src="https://i.ibb.co/M928sHD/land9.jpg"
           alt="imagen"
         />
-        <h2 className={styles.h2text}>Sobre nosotros</h2>
         <div className={styles.textContainer}>
+        <h2 className={styles.h2text}>Sobre nosotros</h2>
           <p>
             Somos un equipo de especialistas trabajando dia a dia para ofrecerle
             las mejores opciones para la{" "}
@@ -37,8 +36,8 @@ export default function AboutUs() {
             estás buscando. Aquí encontrarás información sobre venta y
             alquileres de departamentos, casas, locales y terrenos.
           </p>
-        </div>
         <img className={styles.image2} src={logo} alt="imagenlogo" />
+        </div>
       </div>
     </>
   );

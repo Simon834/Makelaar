@@ -21,12 +21,9 @@ import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
 
 import FormControl from "@material-ui/core/FormControl";
-import FormLabel from "@material-ui/core/FormLabel";
-import CheckBoxOutlineBlankIcon from "@material-ui/icons/CheckBoxOutlineBlank";
-import CheckBoxIcon from "@material-ui/icons/CheckBox";
+
 import { Controls } from "./Controls";
 import GoogleMap from "../GoogleMap/GoogleMap";
-import { StylesContext } from "@material-ui/styles";
 
 const transaction = ["Alquiler", "Venta", "Alquiler Temporario"];
 const type = ["Casa", "Departamento", "Local", "Duplex", "Terreno"];
@@ -35,21 +32,21 @@ const condition = ["A estrenar", "1 a 5 años", "5 a 10 años", "Mas de 10 años
 const useStyle = makeStyles((theme) => ({
   form: {
     "& .MuiFormControl-root": {
-      width: "500px",
+      width: "25ch",
       margin: theme.spacing(2),
     },
   },
   root: {
-    width: "min-content",
-    margin: theme.spacing(5),
-    padding: theme.spacing(3),
+    width: "100%",
+    // margin: theme.spacing(5),
     display: "flex",
     flexDirection: "column",
     allingItems: "center",
     justifyContent: "center",
+    
   },
   button: {
-    marginLeft: theme.spacing(27),
+    width: "100%",
   },
   header: {
     fontSize: "25px",
@@ -62,19 +59,27 @@ const useStyle = makeStyles((theme) => ({
     flexDirection: "row",
   },
   input: {
-    width: "50%",
+    width: "25ch",
+  },
+  name: {
+    width: "100%",
   },
   mapContainer: {
     objectFit: "cover",
-    maxWidth: "500px",
-    maxHeight: "300px",
-    height: "300px",
-    marginLeft: "3%",
-    marginBottom: "3%",
+    minWidth: "350px",
+    maxWidth: "350px",
+    maxHeight: "400px",
+    height: "400px",
+
+    marginBottom: "10%",
   },
   suggestionsContainer: {
     marginLeft: "3%",
     marginBottom: "3%",
+  },
+  grid: {
+    display: "flex",
+    flexDirection: "columns",
   },
 }));
 
@@ -92,7 +97,7 @@ export default function FormProperty() {
     address,
     setAddress,
     handleSelect,
-    img
+    img,
   } = Controls();
   console.log("PROPIEDAD", property);
 
@@ -106,10 +111,10 @@ export default function FormProperty() {
           onSubmit={handleSubmit}
         >
           <Grid container>
-            <Grid item xs={12}>
+            <Grid item className={classes.grid}>
               <FormGroup>
                 <TextField
-                  className={classes.input}
+                  className={classes.name}
                   // autoComplete='off'
                   // inputProps={{
                   //     autocomplete: 'off',
@@ -186,6 +191,22 @@ export default function FormProperty() {
                   })}
                 />
 
+                <TextField
+                  variant="outlined"
+                  label="Descripcion del Inmueble"
+                  name="description"
+                  value={property.description}
+                  multiline
+                  minRows={8}
+                  onChange={handleChange}
+                  required
+                  {...(errors.description && {
+                    error: true,
+                    helperText: errors.description,
+                  })}
+                />
+              </FormGroup>
+              <FormGroup>
                 <FormControl component="fieldset">
                   <Typography>Tipo de Propiedad</Typography>
                   <RadioGroup aria-label="type" name="type" value={check.type}>
@@ -219,9 +240,31 @@ export default function FormProperty() {
                         />
                       ))}
                   </RadioGroup>
-                  {/* {console.log("PROPIEDADCHECK", property)} */}
+                  </FormControl>
+                  <FormControl component="fieldset">
+                    <Typography>
+                      Que tipo de actividad desea realizar?
+                    </Typography>
+                    <RadioGroup
+                      aria-label="transaction"
+                      name="transaction"
+                      value={check.transaction}
+                    >
+                      {transaction &&
+                        transaction.map((t) => (
+                          <FormControlLabel
+                            value={t}
+                            control={<Radio />}
+                            onChange={handleCheck}
+                            label={t}
+                          />
+                        ))}
+                    </RadioGroup>
+                    {/* {console.log("PROPIEDADCHECK", property)} */}
+                  
                 </FormControl>
-
+              </FormGroup>
+              <FormGroup>
                 <TextField
                   variant="outlined"
                   label="Ciudad"
@@ -234,9 +277,7 @@ export default function FormProperty() {
                     helperText: errors.city,
                   })}
                 />
-              </FormGroup>
 
-              <FormGroup>
                 <TextField
                   variant="outlined"
                   label="Barrio"
@@ -262,7 +303,19 @@ export default function FormProperty() {
                     helperText: errors.province,
                   })}
                 />
-
+                <TextField
+                  variant="outlined"
+                  label="Codigo Postal"
+                  name="cp"
+                  type="number"
+                  value={property.cp}
+                  onChange={handleChange}
+                  required
+                  {...(errors.cp && {
+                    error: true,
+                    helperText: errors.cp,
+                  })}
+                />
                 <PlacesAutocomplete
                   value={address}
                   onChange={setAddress}
@@ -279,6 +332,8 @@ export default function FormProperty() {
                         variant="outlined"
                         label="Dirección"
                         name="address"
+                        multiline
+                        minRows={4}
                         value={property.address}
                         required
                         {...getInputProps({
@@ -314,77 +369,30 @@ export default function FormProperty() {
                     </div>
                   )}
                 </PlacesAutocomplete>
-
+              </FormGroup>
+              <FormGroup>
                 <div className={classes.mapContainer}>
                   <h5>Seleccioná la ubicacion exacta:</h5>
                   <GoogleMap lat={property.lat} lng={property.lng} />
                 </div>
 
-                <TextField
-                  variant="outlined"
-                  label="Codigo Postal"
-                  name="cp"
-                  type="number"
-                  value={property.cp}
-                  onChange={handleChange}
-                  required
-                  {...(errors.cp && {
-                    error: true,
-                    helperText: errors.cp,
-                  })}
-                />
-
-                <TextField
-                  variant="outlined"
-                  label="Descripcion del Inmueble"
-                  name="description"
-                  value={property.description}
-                  onChange={handleChange}
-                  required
-                  {...(errors.description && {
-                    error: true,
-                    helperText: errors.description,
-                  })}
-                />
-
                 {/* CARGAR IMG PPAL */}
 
                 {/* CARGAR FOTOS */}
 
-                <FormControl component="fieldset">
-                  <Typography>Que tipo de actividad desea realizar?</Typography>
-                  <RadioGroup
-                    aria-label="transaction"
-                    name="transaction"
-                    value={check.transaction}
-                  >
-                    {transaction &&
-                      transaction.map((t) => (
-                        <FormControlLabel
-                          value={t}
-                          control={<Radio />}
-                          onChange={handleCheck}
-                          label={t}
-                        />
-                      ))}
-                  </RadioGroup>
-                  {/* {console.log("PROPIEDADCHECK", property)} */}
-                </FormControl>
                 <UploadImage images={img} setImages={setImage} />
-                <p>
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    type="submit"
-                    className={classes.button}
-                    disabled={!formValid()}
-                  >
-                    Enviar
-                  </Button>
-                </p>
               </FormGroup>
             </Grid>
           </Grid>
+          <Button
+            variant="contained"
+            color="primary"
+            type="submit"
+            className={classes.button}
+            disabled={!formValid()}
+          >
+            Enviar
+          </Button>
         </form>
       </Paper>
     </>

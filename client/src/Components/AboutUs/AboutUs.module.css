@@ -8,8 +8,8 @@
 
 .image {
   border-radius: 6px;
-  width: 550px;
-  height: 100%;
+  width: 100vw;
+
 }
 
 .image2 {
@@ -21,17 +21,28 @@
   margin: 40px;
   font-weight: 600;
   text-transform: uppercase;
-  color: #4c3c90;
   font-size: 30px;
+  color: white
 }
 
 .textContainer {
+  background-color:rgba(0, 0, 0, 0.637);
+  float: left;
+  position:absolute;
   width: 800px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 20px;
+  margin-left: 40%;
+  
 }
 
 .textContainer p {
   font-size: 18px;
   font-weight: 400;
+  color: white
 }
 
 .Icon {

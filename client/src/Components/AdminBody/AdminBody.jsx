@@ -30,10 +30,11 @@ const columnsPropertyList = [
   { field: "type", headerName: "Tipo", width: 150 },
   { field: "price", headerName: "Precio", width: 150 },
   { field: "premium", headerName: "Destacado", width: 150 },
+  { field: "contract", headerName: "Contratos", width: 150 },
 ];
 
 const columnsContratList = [
-  { field: "name", headerName: "Titulo", width: 350 },
+  { field: "name", headerName: "Titulo", width: 150 },
   { field: "UserId", headerName: "Usuario", width: 150 },
   { field: "PropId", headerName: "Propiedad", width: 150 },
   { field: "startDate", headerName: "Inicio", width: 150 },
@@ -88,12 +89,15 @@ export default function AdminBody() {
       <Route path="/admin/:id/newcontract">
         <NewContractForm />
       </Route>
+
       <Route path="/admin/:id/editcontract/:idcont">
         <EditContractForm />
       </Route>
+
       <Route path="/admin/:id/editproperty/:idprop">
         <EditProperty />
       </Route>
+      
       <Route path="/admin/:id/logout">
         <Logout />
       </Route>

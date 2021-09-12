@@ -17,15 +17,15 @@ export async function allProperties() {
     const allProperties = await axios.get(
       `${BACK_SERVER}/property/allProperties`
     );
-    const allPropertiesSort= allProperties.data.sort((a,b)=>{
+    // const allPropertiesSort= allProperties.data.sort((a,b)=>{
       
-      if(a.Contract && !b.Contract ){
-        return 1
-      }
-      return -1
-    })
-    console.log("sort",allPropertiesSort)
-    return allPropertiesSort;
+    //   if(a.Contract && !b.Contract ){
+    //     return 1
+    //   }
+    //   return -1
+    // })
+    
+    return allProperties.data;
   } catch (err) {
     throw err;
   }

@@ -42,13 +42,14 @@ const useStyles = makeStyles((theme) => ({
   button: {
     color: "white",
     fontWeight: "bold",
-    fontSize: "12px",
+    fontSize: "10px",
     marginBottom: "20px",
     marginTop: "12px",
     padding: "6px",
     float: "right",
   },
   icon: {
+    fontSize: "18px",
     "&:hover": {
       backgroundColor: "transparent",
     },
@@ -159,7 +160,9 @@ export default function TopBar() {
       <div className={style.containerContact}>
         <IconButton className={classes.icon}>
           <WhatsAppIcon className={classes.icon} />
-          <Typography>+549 11456982365</Typography>
+          <Typography  >
+            <p className={style.mail}>+549 11456982365</p>
+            </Typography>
         </IconButton>
 
         <IconButton className={classes.icon}>
