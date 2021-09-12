@@ -12,6 +12,6 @@ router.post("/addProperty", addNewProperty);
 router.get("/filter", filterProperties);
 router.get("/allProperties", allProperties);
 router.get("/:id", idProperties);
-router.put("/updateProperty", updateProperty);
+router.put("/editproperty", updateProperty);
 
 module.exports = router;
