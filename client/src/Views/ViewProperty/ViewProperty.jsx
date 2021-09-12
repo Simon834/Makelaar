@@ -18,6 +18,7 @@ import {
 } from "../../Redux/Constants/constants";
 import { filterEstates } from "../../Functions/filters/filters";
 import { clearFilter } from "../../Redux/Actions/filterActions";
+import { getAllProperties } from "../../Redux/Actions/propertyActions";
 
 const inmuebles = require("../../inmuebles.json");
 
@@ -37,11 +38,10 @@ export default function ViewProperty() {
     setEstates(estatesApi)
   }
 
-
-
-
   useEffect(() => {
+    window.scrollTo(0, 0);
     dispatch(clearFilter());
+    dispatch(getAllProperties());
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (

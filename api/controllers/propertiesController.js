@@ -23,7 +23,8 @@ async function addNewProperty(req, res, next) {
       photos,
       lat,
       lng,
-      price
+      price, 
+      premium
     } = req.body;
     // console.log(req.body);
     // let property= await Property.findOrCreate({where: {name,area,rooms, bathrooms,type, city,neighborhood, province, street, streetNumber, cp, description, transaction}});
@@ -50,7 +51,8 @@ async function addNewProperty(req, res, next) {
       status: status || "activo",
       lat: lat,
       lng: lng,
-      price: price
+      price: price,
+      premium: premium
     });
     if(photos){
       const image = photos?.map(

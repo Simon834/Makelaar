@@ -12,20 +12,20 @@
 .containerContact {
   width: 600px;
   float: left;
-  line-height: 70px;
+  line-height: 0px;
   text-align: left;
 }
 
 .containerIcons {
   float: right;
   width: 400px;
-  line-height: 70px;
+  line-height: 0px;
   text-align: right;
   padding-right: 150px;
 }
 
 .mail {
-  font-size: 1rem;
+  font-size: 0.8rem;
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
   font-weight: 400;
   line-height: 1.5;

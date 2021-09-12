@@ -42,10 +42,11 @@ export default function Home() {
 
   async function getEstates(){
     const estatesApi = await filterEstates(properties, concept, tipe, bedroom, bathroom, price, search)
-    setEstates(estatesApi)
+    setEstates(estatesApi.filter(e=>e.premium && !e.Contract))
   }
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     dispatch(clearFilter());
     dispatch(getAllProperties());
 

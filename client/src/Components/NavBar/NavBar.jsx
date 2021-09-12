@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect } from "react";
 import { NavLink, Link } from "react-router-dom";
-import logo from "../../images/logo-color.png";
+import logo from "../../images/logo-color-horizontal.png";
 import style from "./NavBar.module.css";
 import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
@@ -29,16 +29,16 @@ export default function NavBar() {
       </div>
       <div>
         <div className={style.links}>
-          <NavLink className={style.texto} to="/">
+          <NavLink className={style.texto} activeClassName={style.selected} exact  to="/">
             Inicio
           </NavLink>
-          <NavLink className={style.texto} to="/property">
+          <NavLink className={style.texto} activeClassName={style.selected} to="/property">
             Propiedades
           </NavLink>
-          <NavLink className={style.texto} to="/about">
+          <NavLink className={style.texto} activeClassName={style.selected} to="/about">
             Nosotros
           </NavLink>
-          <NavLink className={style.texto} to="/contact">
+          <NavLink className={style.texto} activeClassName={style.selected} to="/contact">
             Contacto
           </NavLink>
         </div>

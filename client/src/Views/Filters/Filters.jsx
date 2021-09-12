@@ -2,6 +2,7 @@ import "./filters.css";
 import Button from '@material-ui/core/Button'
 import { useDispatch } from 'react-redux';
 import { clearFilter } from "../../Redux/Actions/filterActions";
+import Divider from '@material-ui/core/Divider';
 
 export default function Filter({
     searchBar,
@@ -30,7 +31,8 @@ export default function Filter({
                 {street && <div className="street-container">{street}</div>}
                 {bedrooms && <div className="bedrooms-container">{bedrooms}</div>}
                 {bathrooms && <div className="bathrooms-container">{bathrooms}</div>}
-            <Button variant="contained" color="primary" onClick={()=>dispatch(clearFilter())} >Limpiar filtros</Button>
+                <Divider variant="inset" component="li"/>
+                <Button className="booton-container" variant="contained" color="primary" onClick={()=>dispatch(clearFilter())} >Limpiar filtros</Button>
             </div>
         </div>
     );

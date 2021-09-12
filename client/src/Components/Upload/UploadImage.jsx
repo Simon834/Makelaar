@@ -15,7 +15,9 @@ const useStyles = makeStyles((theme) => ({
     flexWrap: "wrap",
     justifyContent: "space-around",
     overflow: "hidden",
-    width: "100%",
+  
+    minWidth: "350px",
+    maxWidth: "350px",
   },
   paper: {
     width: "100%",
