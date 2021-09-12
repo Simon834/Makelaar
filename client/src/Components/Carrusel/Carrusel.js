@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./Slider.css";
 import images from "./Carruselimg.json";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+
 export default function Carrusel() {
   const [slideIndex, setSlideIndex] = useState(1);
   function nextSlide() {
@@ -13,7 +14,7 @@ export default function Carrusel() {
   }
 
   useEffect(() => {
-    setTimeout(nextSlide, 5000);
+    setTimeout(nextSlide, 5000);// eslint-disable-next-line
   }, [slideIndex]);
 
   return (

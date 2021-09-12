@@ -25,7 +25,7 @@ export default function FilterModel({list, title, constant, value}) {
   const [open, setOpen] = React.useState(false);
 
   useEffect(() => {
-    setConcept(value)
+    setConcept(value)// eslint-disable-next-line
   }, [value])
 
 

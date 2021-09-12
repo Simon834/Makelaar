@@ -5,6 +5,9 @@ import Facebook from "@material-ui/icons/Facebook";
 import Instagram from "@material-ui/icons/Instagram";
 import logo from "../../images/logo-white-horizontal.png";
 import style from "./Footer.module.css"
+import { preload } from "../../Functions/api/precarga"
+
+
 
 export default function Footer() {
   return (
@@ -42,9 +45,11 @@ export default function Footer() {
         <div className={style.linea} />
 
         <div className={style.logo_footer}>
-          <img className={style.img} src={logo} alt="logo" />
+          <img className={style.img} src={logo} alt="logo" onClick={e=>preload()}/>
+          <em onClick={e=>preload()}>+</em>
         </div>
-      </div>
+
+       </div>
     </Fragment>
   );
 }

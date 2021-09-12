@@ -14,11 +14,12 @@ const {
   RESET_FILTER,
   SEARCH,
   ADD_FAVORITES,
-  DELETE_FAVORITE
-
+  DELETE_FAVORITE,
+  ALL_PROPERTIES
 } = require("../Constants/constants");
 
 const initialState = {
+  properties:[],
   userToken: "",
   error: false,
   isLoading: false,
@@ -145,12 +146,21 @@ export default function userReducer(state = initialState, action) {
         search: null,
       };
     }
+    //-----------------Properties---------------------
+    case ALL_PROPERTIES: {
+      return {
+        ...state,
+        properties: action.payload
+      };
+    }
 
     //-----------------Favorites---------------------
     case ADD_FAVORITES: {
-      const alreadyFavorite = state.favorites.find(fav => fav.id === action.payload.id) 
+      const alreadyFavorite = state.favorites.find(
+        (fav) => fav.id === action.payload.id
+      );
       console.log(alreadyFavorite);
-      if (alreadyFavorite){
+      if (alreadyFavorite) {
         return state;
       } else {
         return {
@@ -160,11 +170,13 @@ export default function userReducer(state = initialState, action) {
       }
     }
     case DELETE_FAVORITE: {
-        const deletedFavorite = state.favorites.filter(fav => fav.id !== action.payload);
+      const deletedFavorite = state.favorites.filter(
+        (fav) => fav.id !== action.payload
+      );
       return {
         ...state,
-        favorites: deletedFavorite
-      }
+        favorites: deletedFavorite,
+      };
     }
     default:
       return state;

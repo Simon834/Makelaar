@@ -6,6 +6,7 @@ import InputBase from '@material-ui/core/InputBase';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
+import ClearIcon from '@material-ui/icons/Clear';
 import DirectionsIcon from '@material-ui/icons/Directions';
 import { useDispatch } from 'react-redux';
 import { searchAction } from '../../Redux/Actions/filterActions';
@@ -62,7 +63,7 @@ export default function CustomizedInputBase() {
       </IconButton>
       <Divider className={classes.divider} orientation="vertical" />
       <IconButton color="primary" className={classes.iconButton} aria-label="directions" onClick={e=>resetSearch(e)}>
-        <DirectionsIcon />
+        <ClearIcon />
       </IconButton>
     </Paper>
   );

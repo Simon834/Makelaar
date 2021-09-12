@@ -1,44 +1,65 @@
 .container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    font-family: 'Roboto', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-family: "Roboto", sans-serif;
+  height: 100vh;
 }
 
 .image {
-    border-radius: 6px;
-    width: 550px;
-    height: 100%;
+  border-radius: 6px;
+  
+  height: 100vh;
+
 }
 
 .image2 {
-    margin: 40px;
-    margin-top: 60px
+  margin: 40px;
+  margin-top: 60px;
 }
 
 .h2text {
-    margin: 40px;
-    font-weight: 600;
-    text-transform: uppercase;
-    color: #4C3C90;
-    font-size: 30px;
+  margin: 40px;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 30px;
+  color: white
 }
-
 
 .textContainer {
-    width: 800px;
+  background-color:rgba(0, 0, 0, 0.637);
+  float: left;
+  position:absolute;
+  width: 800px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 20px;
+  margin-left: 40%;
+  
 }
 
-.textContainer p{
-    font-size: 18px;
-    font-weight: 400;
+.textContainer p {
+  font-size: 18px;
+  font-weight: 400;
+  color: white;
+  text-align: justify
 }
 
 .Icon {
-color: #C63B8E;
-width: 100%;
-height: 40px;
-margin-bottom: 25px;
-margin-left: 47%;
+  color: #c63b8e;
+  width: 100%;
+  height: 40px;
+  margin-bottom: 25px;
+  margin-left: 47%;
+}
+@media (max-width: 800px) {
+  .image {
+    width: 80%;
+  }
+  .textContainer {
+    width: auto;
+  }
 }

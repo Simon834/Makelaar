@@ -21,7 +21,7 @@ async function logIn(req, res, next) {
                 email: email
             }
         })
-             if (!user) {
+        if (!user) {
             res.status(404).json({ msg: "Usuario con este correo no encontrado" })
         } else {
             //comparo las contraseñas
@@ -51,30 +51,36 @@ async function logIn(req, res, next) {
 //registro
 async function signUp(req, res, next) {
     try {
-        console.log(req.body)
+
         //encriptamos pass
         const { name, email, password, isAdmin, whatsapp } = req.body
         let hashPassword = await bcrypt.hashSync(password, Number.parseInt(authConfig.rounds))
 
-        //crear usuario, a traves de formulario de front
-        let user = await User.create({
-            name: name,
-            email: email,
-            password: hashPassword,
-            isAdmin: isAdmin,
-            whatsapp: whatsapp
+        let userValidation = await User.findOne({ where: { email } });
+        if (userValidation) {
+            res.status(409).json({ msg: "Usuario existente" })
+        }
+        else {
 
-        })
+            //crear usuario, a traves de formulario de front
+            let user = await User.create({
+                name: name,
+                email: email,
+                password: hashPassword,
+                isAdmin: isAdmin,
+                whatsapp: whatsapp
+            })
 
-        //creamos el token
-        let token = await jwt.sign({ user: user }, authConfig.secret, { expiresIn: authConfig.expires });
+            //creamos el token
+            let token = await jwt.sign({ user: user }, authConfig.secret, { expiresIn: authConfig.expires });
 
-        sendUserEmail(newUser(user.name, user.email), user.email) //envía el mail al crear el usuario
+            sendUserEmail(newUser(user.name, user.email), user.email) //envía el mail al crear el usuario
 
-        res.json({
-            user: user,
-            token: token
-        })
+            res.json({
+                user: user,
+                token: token
+            })
+        }
 
     } catch (err) {
         console.log(next(err))
@@ -83,3 +89,4 @@ async function signUp(req, res, next) {
 }
 
 module.exports = { logIn, signUp }
+

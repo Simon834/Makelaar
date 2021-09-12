@@ -1,0 +1,243 @@
+[
+
+    {
+      
+        "PropertyId":1,
+        "UserId":1,
+        "name": "Alquiler",
+        "startDate": "02/02/2018",
+        "endDate":"02/02/2020" ,
+        "amount": "275.000",
+        "paymentDate":"02/02/2018" ,
+        "comments": "alquiler por dos años",
+        "file":[{"name": "Alquiler", "url":"https://vivienda.buenosaires.gob.ar/inquilinos/modelo-contrato-alquileres-vivienda#top"}]
+      },
+      {
+        
+          "PropertyId":2,
+          "UserId":2,
+          "name": "Venta",
+          "startDate": "03/03/2021",
+          "endDate":"03/03/2021" ,
+          "amount": "575.000",
+          "paymentDate":"03/03/2021" ,
+          "comments": "Venta Casa",
+          "file":[{"name": "Venta", "url":"https://vivienda.buenosaires.gob.ar/inquilinos/modelo-contrato-alquileres-vivienda#top"}]
+        },
+        {
+        
+          "PropertyId":3,
+          "UserId":3,
+          "name": "Alquiler",
+          "startDate": "05/05/2019",
+          "endDate":"02/02/2020" ,
+          "amount": "3.000",
+          "paymentDate":"02/02/2020" ,
+          "comments": "Alquiler por un año",
+          "file":[{"name": "alquiler", "url":"https://vivienda.buenosaires.gob.ar/inquilinos/modelo-contrato-alquileres-vivienda#top"}]
+        },
+        {
+        
+          "PropertyId":4,
+          "UserId":4,
+          "name": "Alquiler",
+          "startDate": "02/02/2018",
+          "endDate":"02/02/2021" ,
+          "amount": "4.000",
+          "paymentDate":"02/02/2021" ,
+          "comments": "Alquiler por 3 años",
+          "file":[{"name": "alquiler", "url":"https://vivienda.buenosaires.gob.ar/inquilinos/modelo-contrato-alquileres-vivienda#top"}]
+        },
+        {
+        
+          "PropertyId":5,
+          "UserId":5,
+          "name": "Venta",
+          "startDate": "03/02/2021",
+          "endDate":"03/02/2021" ,
+          "amount": "400.000",
+          "paymentDate":"03/02/2021" ,
+          "comments": "Venta casa en cerro",
+          "file":[{"name": "Venta", "url":"https://vivienda.buenosaires.gob.ar/inquilinos/modelo-contrato-alquileres-vivienda#top"}]
+        },
+        {
+        
+          "PropertyId":6,
+          "UserId":6,
+          "name": "Venta",
+          "startDate": "01/02/2020",
+          "endDate":"01/02/2020" ,
+          "amount": "800.000",
+          "paymentDate":"01/02/2020" ,
+          "comments": "Venta casa urca",
+          "file":[{"name": "Venta", "url":"https://vivienda.buenosaires.gob.ar/inquilinos/modelo-contrato-alquileres-vivienda#top"}]
+        },
+        {
+          
+            "PropertyId":7,
+            "UserId":7,
+            "name": "Alquiler",
+            "startDate": "10/02/2018",
+            "endDate":"10/02/2020" ,
+            "amount": "5.000",
+            "paymentDate":"10/02/2020" ,
+            "comments": "Alquiler duplex",
+            "file":[{"name": "alquiler", "url":"https://vivienda.buenosaires.gob.ar/inquilinos/modelo-contrato-alquileres-vivienda#top"}]
+          },
+          {
+          
+            "PropertyId":8,
+            "UserId":8,
+            "name": "Alquiler",
+            "startDate": "02/02/2018",
+            "endDate":"02/02/2020" ,
+            "amount": "900.000",
+            "paymentDate":"02/02/2020" ,
+            "comments": "ALquiler depto",
+            "file":[{"name": "alquiler", "url":"https://vivienda.buenosaires.gob.ar/inquilinos/modelo-contrato-alquileres-vivienda#top"}]
+          },
+          {
+          
+            "PropertyId":9,
+            "UserId":9,
+            "name": "Venta",
+            "startDate": "02/03/2020",
+            "endDate":"02/03/2020" ,
+            "amount": "850.000",
+            "paymentDate":"02/03/2020" ,
+            "comments": "venta casa",
+            "file":[{"name": "Venta", "url":"https://vivienda.buenosaires.gob.ar/inquilinos/modelo-contrato-alquileres-vivienda#top"}]
+          },
+          {
+          
+            "PropertyId":10,
+            "UserId":1,
+            "name": "Alquiler",
+            "startDate": "03/02/2018",
+            "endDate":"03/02/2020" ,
+            "amount": "900.000",
+            "paymentDate":"03/02/2020" ,
+            "comments": "Alquiler casa",
+            "file":[{"name": "alquiler", "url":"https://vivienda.buenosaires.gob.ar/inquilinos/modelo-contrato-alquileres-vivienda#top"}]
+          },
+    {
+      
+      "PropertyId":11,
+      "UserId":12,
+      "name": "venta",
+      "startDate": "06/06/2021",
+      "endDate":"06/06/2021" ,
+      "amount": "75.000",
+      "paymentDate": "06/06/2021",
+      "comments": " venta casa",
+      "file":[{"name": "Venta", "url":"https://vivienda.buenosaires.gob.ar/inquilinos/modelo-contrato-alquileres-vivienda#top"}]
+    },
+    {
+      
+        "PropertyId":12,
+        "UserId":12,
+        "name": "venta",
+        "startDate": "02/08/2020",
+        "endDate":"02/08/2020" ,
+        "amount": "90.000",
+        "paymentDate": "02/08/2020",
+        "comments": "venta casa",
+        "file":[{"name": "Venta", "url":"https://vivienda.buenosaires.gob.ar/inquilinos/modelo-contrato-alquileres-vivienda#top"}]
+      },
+      {
+      
+        "PropertyId":13,
+        "UserId":13,
+        "name": "venta",
+        "startDate": "10/11/2020",
+        "endDate":"10/11/2020" ,
+        "amount": "90.000",
+        "paymentDate": "10/11/2020",
+        "comments": " venta casa",
+        "file":[{"name": "Venta", "url":"https://vivienda.buenosaires.gob.ar/inquilinos/modelo-contrato-alquileres-vivienda#top"}]
+      },
+      {
+      
+        "PropertyId":14,
+        "UserId":14,
+        "name": "alquiler",
+        "startDate": "10/07/2021",
+        "endDate":"10/07/2025" ,
+        "amount": "90.000",
+        "paymentDate": "10/07/2021",
+        "comments": "alquiler casa",
+        "file":[{"name": "alquiler", "url":"https://vivienda.buenosaires.gob.ar/inquilinos/modelo-contrato-alquileres-vivienda#top"}]
+      },
+      {
+      
+        "PropertyId":15,
+        "UserId":15,
+        "name": "alquiler",
+        "startDate": "05/05/2021",
+        "endDate":"05/05/2024" ,
+        "amount": "90.000",
+        "paymentDate": "05/05/2021",
+        "comments": "alquiler casa",
+        "file":[{"name": "alquiler", "url":"https://vivienda.buenosaires.gob.ar/inquilinos/modelo-contrato-alquileres-vivienda#top"}]
+      },
+      {
+      
+        "PropertyId":16,
+        "UserId":16,
+        "name": "venta",
+        "startDate": "11/10/2020",
+        "endDate":"11/10/2020" ,
+        "amount": "90.000",
+        "paymentDate": "11/10/2020",
+        "comments": "venta casa",
+        "file":[{"name": "Venta", "url":"https://vivienda.buenosaires.gob.ar/inquilinos/modelo-contrato-alquileres-vivienda#top"}]
+      },
+      {
+      
+        "PropertyId":17,
+        "UserId":17,
+        "name": "alquiler",
+        "startDate": "11/10/2021",
+        "endDate":"11/10/2025" ,
+        "amount": "90.000",
+        "paymentDate": "10/02/2022",
+        "comments": "alquiler casa",
+        "file":[{"name": "alquiler", "url":"https://vivienda.buenosaires.gob.ar/inquilinos/modelo-contrato-alquileres-vivienda#top"}]
+      },
+      {
+      
+        "PropertyId":18,
+        "UserId":18,
+        "name": "venta",
+        "startDate": "11/10/2020",
+        "endDate":"11/10/2020" ,
+        "amount": "100.000",
+        "paymentDate": "11/10/2020",
+        "comments": "alquiler casa",
+        "file":[{"name": "Venta", "url":"https://vivienda.buenosaires.gob.ar/inquilinos/modelo-contrato-alquileres-vivienda#top"}]
+      },
+      {
+      
+        "PropertyId":19,
+        "UserId":19,
+        "name": "venta",
+        "startDate": "10/10/2020",
+        "endDate":"10/10/2020" ,
+        "amount": "80.000",
+        "paymentDate": "10/10/2020",
+        "comments": "venta casa",
+        "file":[{"name": "Venta", "url":"https://vivienda.buenosaires.gob.ar/inquilinos/modelo-contrato-alquileres-vivienda#top"}]
+      },
+      {
+      
+        "PropertyId":20,
+        "UserId":20,
+        "name": "venta",
+        "startDate": "02/03/2021",
+        "endDate":"02/03/2021" ,
+        "amount": "80.000",
+        "paymentDate": "02/03/2021",
+        "comments": "venta casa",
+        "file":[{"name": "Venta", "url":"https://vivienda.buenosaires.gob.ar/inquilinos/modelo-contrato-alquileres-vivienda#top"}]
+      }
+]

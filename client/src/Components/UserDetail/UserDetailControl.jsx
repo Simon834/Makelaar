@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
-import { updateUser } from "../../Functions/api/users";
+// import { updateUser } from "../../Functions/api/users";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router";
 import { logOutUser } from "../../Redux/Actions/userActions";
+import Swal from "sweetalert2";
 
 export const UserDetailControl = () => {
   let { userInfo } = useSelector((state) => state);
@@ -23,7 +24,7 @@ export const UserDetailControl = () => {
         whatsapp: userInfo.user.whatsapp,
       });
     }
-  }, [userInfo]);
+  }, [userInfo]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const validate = (fieldValues = user) => {
     let temp = { ...errors };
@@ -101,13 +102,11 @@ export const UserDetailControl = () => {
     const isValid =
       Object.values(errors).every((x) => x === "") && formIsValid();
     if (isValid) {
-      const registeredUser = await updateUser(user);
+      // const registeredUser = await updateUser(user);
       //console.log(registeredUser);
       dispatch(logOutUser());
       history.push(`/`);
-      alert(
-        `Tus datos han sido actualizados correctamente, vuelva a iniciar seción`
-      );
+      Swal.fire("Perfecto!", "Tus datos han sido actualizados correctamente, vuelva a iniciar seción", "success");
     }
   };
 

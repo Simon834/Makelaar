@@ -1,15 +1,19 @@
-const { User } = require("../db");
+const { User, Contract, Property } = require("../db");
 const bcrypt = require("bcrypt");
 const authConfig = require("../config/auth");
 
 const { recoveryPass } = require("../email/emailModels/recoveryPass");
 const { sendUserEmail } = require("../email/userEmail");
 
+const { include } = require("sequelize");
+
 async function getUserById(req, res, next) {
   const userId = req.params.id;
   console.log("me ejecuto");
   try {
-    const user = await User.findByPk(userId);
+    const user = await User.findByPk(userId, {
+      include: { model: Contract, include: Property },
+    });
     if (user) {
       res.json(user);
     } else {
@@ -23,7 +27,10 @@ async function getUserById(req, res, next) {
 
 async function allUsers(req, res, next) {
   try {
-    const users = await User.findAll();
+    const users = await User.findAll({
+      include: Contract,
+    });
+    console.log(users);
     if (!users.length) {
       return res.json({ msg: "No hay usuarios registrados por el momento" });
     } else {

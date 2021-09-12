@@ -1,14 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 
 import { userLogIn } from "../../Redux/Actions/userActions";
 
 //material
 import TextField from "@material-ui/core/TextField";
-import { makeStyles, Button, Typography } from "@material-ui/core";
-
+import { makeStyles, Button, Typography, styled } from "@material-ui/core";
+import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import IconButton from '@material-ui/core/IconButton';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
 import Link from "@material-ui/core/Link";
+import "./formLogin.css"
 
 const useStyle = makeStyles((theme) => ({
   form: {
@@ -57,16 +64,17 @@ export function validate(input) {
   return errors;
 }
 
-export default function FormLogin({action}) {
+export default function FormLogin({ action }) {
   const dispatch = useDispatch();
-  const history = useHistory()
-  const { userInfo } = useSelector(state => state)
-
+  const history = useHistory();
+  const { userInfo } = useSelector((state) => state);
+  const [showPass, setShowPass]=useState(false)
   const classes = useStyle();
 
   const [input, setInput] = useState({
     email: "",
     password: "",
+    showPassword: false
   });
 
   const [errors, setErrors] = useState({});
@@ -74,17 +82,14 @@ export default function FormLogin({action}) {
   useEffect(() => {
     if (userInfo.token) {
       if (userInfo.user.isAdmin) {
-        history.push(`/admin/${userInfo.user.id}/data`)
-        action()
+        history.push(`/admin/${userInfo.user.id}/data`);
+        action();
       } else {
-        history.push(`/user/${userInfo.user.id}/data`)
-        action()
+        history.push(`/user/${userInfo.user.id}/data`);
+        action();
       }
     }
-  }
-    , [userInfo])
-
-
+  }, [userInfo]); // eslint-disable-line react-hooks/exhaustive-deps
 
   function handleChange(e) {
     e.persist();
@@ -100,11 +105,18 @@ export default function FormLogin({action}) {
     );
   }
 
-
   function handleSubmit(e) {
     e.preventDefault();
     dispatch(userLogIn(input));
   }
+
+  const handleClickShowPassword = () => {
+    setShowPass(!showPass);
+  };
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
+
 
   return (
     <form
@@ -130,12 +142,45 @@ export default function FormLogin({action}) {
         />
       </div>
       <div>
-        <label htmlFor="password"></label>
-        <TextField
+        <FormControl variant="outlined">
+          <InputLabel htmlFor="outlined-adornment-password">
+            Password
+          </InputLabel>
+          <OutlinedInput
+            // variant="outlined"
+            label="Contraseña"
+            name="password"
+            id="password"
+            type={showPass ? "text" : "password"}
+            value={input.password}
+            onChange={(e) => handleChange(e)}
+            required
+            {...(errors.password && {
+              error: true,
+              helperText: errors.password,
+            })}
+            endAdornment={
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={handleClickShowPassword}
+                  onMouseDown={handleMouseDownPassword}
+                  edge="end"
+                >
+                  {showPass ? <Visibility /> : <VisibilityOff />}
+                </IconButton>
+              </InputAdornment>
+            }
+          />
+          <em>{errors.password}</em>
+        </FormControl>
+
+        {/* <label htmlFor="password"></label>
+           <TextField
           label="Password"
           variant="outlined"
           placeholder="Contraseña"
-          type="password"
+          type={input.showPassword ? 'text' : 'password'}
           id="password"
           value={input.password}
           onChange={(e) => handleChange(e)}
@@ -143,7 +188,7 @@ export default function FormLogin({action}) {
             error: true,
             helperText: errors.password,
           })}
-        />
+        />*/}
       </div>
 
       <div>
@@ -158,14 +203,14 @@ export default function FormLogin({action}) {
           </Button>
         </p>
       </div>
-
+      {/* 
       <Typography className={classes.link}>
         <Link href="/resetpassword">¿Olvidaste tu contraseña?</Link>
-      </Typography>
+      </Typography> */}
 
-      <Typography className={classes.link}>
+      {/* <Typography className={classes.link}>
         <Link href="/register">REGISTRARSE</Link>
-      </Typography>
+      </Typography> */}
     </form>
   );
 }

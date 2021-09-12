@@ -1,0 +1,30 @@
+.conteiner{
+    display: flex;
+    justify-content: center;
+}
+
+.info{
+    padding: 5px;
+    width: 50%;
+
+}
+
+.galery{
+    padding: 5px;
+    width: 48vw; 
+}
+
+.map{
+    margin-top: 10px; 
+    width: 100%; 
+     height: 350px;
+}     
+
+.contact{
+    display: flex;
+    justify-content: center;
+}
+
+.img{
+    width: 40%;
+}

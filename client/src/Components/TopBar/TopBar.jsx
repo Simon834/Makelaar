@@ -1,255 +1,220 @@
-import React, { useState, useEffect, useRef } from 'react';
-import WhatsAppIcon from '@material-ui/icons/WhatsApp';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
-import MailOutlineIcon from '@material-ui/icons/MailOutline';
-import PermIdentityIcon from '@material-ui/icons/PermIdentity';
-import Tooltip from '@material-ui/core/Tooltip';
+import React, { useState } from "react";
+import WhatsAppIcon from "@material-ui/icons/WhatsApp";
+import IconButton from "@material-ui/core/IconButton";
+import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core/styles";
+import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
+import MailOutlineIcon from "@material-ui/icons/MailOutline";
+import PermIdentityIcon from "@material-ui/icons/PermIdentity";
+import Tooltip from "@material-ui/core/Tooltip";
 import { Dialog, DialogContent, DialogActions } from "@material-ui/core";
 import { Button } from "@material-ui/core";
-import FormLogin from '../FormLogin/FormLogin';
-import FavoriteCards from '../Favorites/FavoritesCards/FavoriteCards';
+import FormLogin from "../FormLogin/FormLogin";
+import FavoriteCards from "../Favorites/FavoritesCards/FavoriteCards";
+import FormContraseña from "../FormContraseña/FormContraseña";
+import UserRegistrationForm from "../UserRegistrationForm/UserRegistrationFrom";
 
-import style from './TopBar.module.css';
-
-
-
-
+import style from "./TopBar.module.css";
 
 const useStyles = makeStyles((theme) => ({
+  paperList: {
+    width: 500,
+  },
 
-    paperList: {
-        width: 500
+  menuList: {
+    width: "min-content",
+    flexDirection: "row",
+    display: "flex",
+    margin: theme.spacing(5),
+    flexWrap: "wrap",
+    justifyContent: "space-around",
+    overflow: "hidden",
+  },
+  imgList: {
+    width: "100%",
+    height: 400,
+  },
+  
+  daialogFav:{
+    width: "600px",
+  },
+
+  button: {
+    color: "white",
+    fontWeight: "bold",
+    fontSize: "10px",
+    marginBottom: "20px",
+    marginTop: "12px",
+    padding: "6px",
+    float: "right",
+  },
+  icon: {
+    fontSize: "18px",
+    "&:hover": {
+      backgroundColor: "transparent",
     },
-
-    menuList: {
-        width: 'min-content',
-        flexDirection: 'row',
-        display: 'flex',
-        margin: theme.spacing(5),
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'space-around',
-        overflow: 'hidden',
-
-    },
-    imgList: {
-
-        width: '100%',
-        height: 400,
-    },
-
-    button: {
-        color: "white",
-        fontWeight: "bold",
-        fontSize: "12px",
-        marginBottom: "20px",
-        marginTop: "12px",
-        padding: "6px",
-        marginLeft: theme.spacing(40),
-        float: "right",
-    },
-
+  },
 }));
 
 export default function TopBar() {
-
-    const [open, setOpen] = useState(false);
-    const anchorRef = useRef(null);
-
-    const [showDialog, setShowDialog] = useState(false);
-
-    const openDialog = () => setShowDialog(true);
-    const closeDialog = () => setShowDialog(false);
-
-    //
-    const [showFav, setShowFav] = useState(false);
-
-    const openFav = () => setShowFav(true);
-    const closeFav = () => setShowFav(false);
-
-    const handleToggle = () => {
-        setOpen((prevOpen) => !prevOpen);
-    };
-
-    const classes = useStyles();
-
+  const LoginModal = (props) => {
     return (
+      <Dialog open={showDialog} onClose={closeDialog} className={style.zIndexDialogRegister}>
+        <DialogContent>
+          <Button
+            className={classes.button}
+            size="small"
+            variant="contained"
+            color="primary"
+            type="submit"
+            onClick={closeDialog}
+          >
+            X
+          </Button>
+          <FormLogin action={closeDialog} />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={openDialogReset} autoFocus color="primary">
+            ¿Olvidaste tu contraseña?
+          </Button>
+          <Button onClick={openDialogRegister} autoFocus color="primary">
+            Regístrate
+          </Button>
+        </DialogActions>
+      </Dialog>
+    );
+  };
+  const ResetModal = (props) => {
+    return (
+      <Dialog open={showDialogReset} onClose={closeDialogReset}>
+        <DialogContent>
+          <Button
+            className={classes.button}
+            size="small"
+            variant="contained"
+            color="primary"
+            type="submit"
+            onClick={closeDialogReset}
+          >
+            X
+          </Button>
+          <FormContraseña action={closeDialogReset} />
+        </DialogContent>
+      </Dialog>
+    );
+  };
+  const RegisterModal = (props) => {
+    return (
+      <Dialog open={showDialogRegister} onClose={closeDialogRegister}>
+        <DialogContent>
+          <Button
+            className={classes.button}
+            size="small"
+            variant="contained"
+            color="primary"
+            type="submit"
+            onClick={closeDialogRegister}
+          >
+            X
+          </Button>
+          <UserRegistrationForm isAdmin={false} action={closeDialogRegister} />
+        </DialogContent>
+      </Dialog>
+    );
+  };
 
+  ///// -- Login dialog
+  const [showDialog, setShowDialog] = useState(false);
 
-        <div className={style.containerTopBar}>
-            <div className={style.containerContact}>
-                <IconButton>
-                    <WhatsAppIcon />
-                    <Typography >+549 11456982365</Typography>
-                </IconButton>
+  const openDialog = () => setShowDialog(true);
+  const closeDialog = () => setShowDialog(false);
 
-                <IconButton>
-                    <MailOutlineIcon />
-                    <Typography >
-                        <a href="mailto:info_makelaar@yahoo.com" className={style.mail}>info_makelaar@yahoo.com</a></Typography>
-                </IconButton>
-            </div>
+  ///// --Reset password dialog.
+  const [showDialogReset, setShowDialogReset] = useState(false);
 
-            <div className={style.containerIcons}>
-                <Tooltip title="favoritos">
-                    <IconButton
+  const openDialogReset = () => setShowDialogReset(true);
 
-                        arial-label="app" >
-                        <FavoriteBorderIcon onClick={openFav}/>
-                        <Dialog open={showFav} onClose={closeFav}>
-                            <DialogContent>
-                                <Button className={classes.button}
-                                    size="small"
-                                    variant="contained"
-                                    color="primary"
-                                    type="submit"
-                                    className={classes.button}
-                                    onClick={closeFav}
-                                >
-                                    X
-                                </Button>
-                                <FavoriteCards />
-                            </DialogContent>
-                        </Dialog>
-                    </IconButton>
-                </Tooltip>
+  const closeDialogReset = () => setShowDialogReset(false);
 
-                <Tooltip title="Ingresar">
-                    <IconButton arial-label="app">
-                        <PermIdentityIcon onClick={openDialog} />
-                        <Dialog open={showDialog} onClose={closeDialog}>
-                            <DialogContent>
-                                <Button className={classes.button}
-                                    size="small"
-                                    variant="contained"
-                                    color="primary"
-                                    type="submit"
-                                    className={classes.button}
-                                    onClick={closeDialog}
-                                >
-                                    X
-                                </Button>
-                                <FormLogin action={closeDialog} />
-                            </DialogContent>
-                        </Dialog>
-                    </IconButton>
-                </Tooltip>
-            </div>
+  ///// -- Register dialog
 
-        </div>
+  const [showDialogRegister, setShowDialogRegister] = useState(false);
 
-    )
+  const openDialogRegister = () => setShowDialogRegister(true);
+
+  const closeDialogRegister = () => setShowDialogRegister(false);
+  ////
+  const [showFav, setShowFav] = useState(false);
+
+  const openFav = () => setShowFav(true);
+  const closeFav = () => setShowFav(false);
+
+  // const handleToggle = () => {
+  //     setOpen((prevOpen) => !prevOpen);
+  // };
+
+  const classes = useStyles();
+
+  return (
+    <div className={style.containerTopBar}>
+      <div className={style.containerContact}>
+        <IconButton className={classes.icon}>
+          <WhatsAppIcon className={classes.icon} />
+          <Typography  >
+            <p className={style.mail}>+549 11456982365</p>
+            </Typography>
+        </IconButton>
+
+        <IconButton className={classes.icon}>
+          <MailOutlineIcon className={classes.icon} />
+          <Typography>
+            <a href="mailto:info_makelaar@yahoo.com" className={style.mail}>
+              info_makelaar@yahoo.com
+            </a>
+          </Typography>
+        </IconButton>
+      </div>
+
+      <div className={style.containerIcons}>
+        <Tooltip title="favoritos">
+          <IconButton className={classes.icon} arial-label="app">
+            <FavoriteBorderIcon onClick={openFav} className={classes.icon} />
+            <Dialog open={showFav} onClose={closeFav}>
+              <DialogContent className={classes.daialogFav}>
+                <Button
+                  className={classes.button}
+                  size="small"
+                  variant="contained"
+                  color="primary"
+                  type="submit"
+                  onClick={closeFav}
+                >
+                  X
+                </Button>
+                <FavoriteCards />
+              </DialogContent>
+            </Dialog>
+          </IconButton>
+        </Tooltip>
+
+        <Tooltip title="Ingresar">
+          <IconButton arial-label="app" className={classes.icon}>
+            <PermIdentityIcon onClick={openDialog} className={classes.icon} />
+            <LoginModal
+              open={openDialog}
+              handleClose={() => setShowDialog(false)}
+            />
+            <ResetModal
+              open={openDialogReset}
+              handleClose={() => setShowDialogReset(false)}
+            />
+            <RegisterModal
+              open={openDialogRegister}
+              handleClose={() => setShowDialogRegister(false)}
+            />
+          </IconButton>
+        </Tooltip>
+      </div>
+    </div>
+  );
 }
-
-
-//   //ESTO ES DEL DIALOG DEL LOGIN
-
-
-//   ////////////////////////////////
-
-//   return (
-//     <div className="containerTopBar">
-//       <div className="containerContact">
-//         <IconButton>
-//           <WhatsAppIcon />
-//           <Typography>+549 11456982365</Typography>
-//         </IconButton>
-
-//         <IconButton>
-//           <MailOutlineIcon />
-//           <Typography>makelaar@gmail.com</Typography>
-//         </IconButton>
-//       </div>
-
-//       <div className="containerIcons">
-//         <Tooltip title="Favoritos">
-//           <IconButton
-//             ref={anchorRef}
-//             aria-controls={open ? "menu-list-grow" : undefined}
-//             aria-haspopup="true"
-//             onClick={handleToggle}
-//             arial-label="app"
-//           >
-//             <FavoriteBorderIcon />
-//           </IconButton>
-//         </Tooltip>
-//         <Popper
-//           open={open}
-//           anchorEl={anchorRef.current}
-//           role={undefined}
-//           transition
-//           disablePortal
-//         >
-//           {({ TransitionProps, placement }) => (
-//             <Grow
-//               {...TransitionProps}
-//               style={{
-//                 transformOrigin:
-//                   placement === "bottom" ? "center top" : "center bottom",
-//               }}
-//             >
-//               <Paper>
-//                 <ClickAwayListener onClickAway={handleClose}>
-//                   <MenuList className={classes.menuList}>
-//                     <ImageList
-//                       rowHeight={180}
-//                       className={classes.imgList}
-//                       autoFocusItem={open}
-//                       onKeyDown={handleListKeyDown}
-//                     >
-//                       {itemData &&
-//                         itemData.map((item) => (
-//                           <ImageListItem
-//                             className={classes.imgItem}
-//                             cols={1}
-//                             style={{ height: "auto" }}
-//                             key={item.url}
-//                           >
-//                             <img src={item.url} alt="img" />
-//                             <ImageListItemBar
-//                               title="title"
-//                               subtitle="by: Makelaar"
-//                               actionIcon={
-//                                 <IconButton aria-label="title">
-//                                   <InfoIcon />
-//                                 </IconButton>
-//                               }
-//                             />
-//                           </ImageListItem>
-//                         ))}
-//                     </ImageList>
-//                   </MenuList>
-//                 </ClickAwayListener>
-//               </Paper>
-//             </Grow>
-//           )}
-//         </Popper>
-
-//         <Tooltip title="Ingresar">
-//           <IconButton arial-label="app">
-//             <PermIdentityIcon onClick={openDialog} />
-//             <Dialog open={showDialog} onClose={closeDialog}>
-//               <DialogContent>
-//                 <Button
-//                   size="small"
-//                   variant="contained"
-//                   color="primary"
-//                   type="submit"
-//                   className={classes.button}
-//                   onClick={closeDialog}
-//                 >
-//                   X
-//                 </Button>
-//                 <FormLogin action={closeDialog}/>
-//               </DialogContent>
-//             </Dialog>
-//           </IconButton>
-//         </Tooltip>
-//       </div>
-//     </div>
-//   );
-// }
-

@@ -1,6 +1,6 @@
 .filters-fixed{
     position: sticky;
-    top: 0px
+    top: 0px;
 }
 .searchbar-container{
     /* border: 3px solid rgb(115, 126, 20); */
@@ -19,6 +19,7 @@
 .price-container{
     /* border: 3px solid rgb(21, 255, 0); */
     height: 65px;
+    padding: 1rem 0 6rem 0;
 }
 
 .city-container{
@@ -49,4 +50,8 @@
 .bathrooms-container{
     /* border: 3px solid rgb(10, 143, 17); */
     height: 65px;
+}
+
+.booton-container{
+    width: 80%;
 }

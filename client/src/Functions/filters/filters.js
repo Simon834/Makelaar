@@ -1,49 +1,93 @@
-export function filterEstates(estates, concept, tipe, bedroom, bathroom, price, search) {
+import axios from "axios";
 
-    const estatesFiltred = estates.filter((estate) => (
-        filterProp(estate.concept, concept) &&
-        filterProp(estate.type, tipe) &&
-        filterProp(estate.bedroom, bedroom) &&
-        filterProp(estate.bathroom, bathroom) &&
-        filterPrice(estate.price, price) &&
-        searchFilter(estate,search)
-        
-        ))
+require("dotenv").config();
 
-    return estatesFiltred
+const BACK_SERVER =
+  process.env.REACT_APP_BACK_SERVER || "http://localhost:3010";
 
+export async function filterEstates(
+  estates,
+  concept,
+  tipe,
+  bedroom,
+  bathroom,
+  price,
+  search
+) {
+  const estatesFiltred = await backFilters(
+    estates,
+    concept,
+    tipe,
+    bedroom,
+    bathroom,
+    price,
+    search
+  );
+  console.log(estatesFiltred)
+  const ordenador_premium = estatesFiltred.sort(
+    (a, b) =>  !!a.Contract - !!b.Contract
+  );
+  return ordenador_premium;
 }
 
-function filterProp(estateProp, prop) {
-    if (prop) {
-        return estateProp === prop ? true : false
-    }
-    else {
-        return true
-    }
+async function backFilters(estates, concept, tipe, bedroom, bathroom, price, search) {
+  if (!search && !concept && !tipe && !bedroom && !bathroom) {
+    let resultado = estates.filter((estate) =>
+      filterPrice(estate.price, price)
+    );
+
+    return resultado;
+  } else if (price) {
+    const data = await llamadoBack(tipe, bedroom, bathroom, search, concept);
+
+
+    return data.filter((estate) => filterPrice(estate.price, price));
+  } else {
+    const data = await llamadoBack(tipe, bedroom, bathroom, search, concept);
+
+    return data;
+  }
 }
 
 function filterPrice(estatePrice, price) {
-    if (price[0]) {
-        return estatePrice * 1 > price[0] ? estatePrice * 1 < price[1] ? true : false : false
-    }
-    else {
-        return true
-    }
+  if (price[0]) {
+    return estatePrice * 1 > price[0]*1000
+      ? estatePrice * 1 < price[1]*1000
+        ? true
+        : false
+      : false;
+  } else {
+    return true;
+  }
 }
 
-function searchFilter(estate,search){
-    console.log(estate)
-    if(search){
-    return (
-    estate.title?.toUpperCase().includes(search.toUpperCase()) || 
-    estate.address?.toUpperCase().includes(search.toUpperCase()) ||
-    estate.type?.toUpperCase().includes(search.toUpperCase()) ||
-    estate.price?.toUpperCase().includes(search.toUpperCase()) ||
-    estate.area?.toUpperCase().includes(search.toUpperCase()))}
-    else {
-        return true
-    }
+function generateRoute(tipe, bedroom, bathroom, search, concept) {
+  let aux = [];
+  if (tipe) aux.push(`type=${tipe}&`);
+  if (concept) aux.push(`transaction=${concept}&`);
+  if (bedroom) aux.push(`bedrooms=${bedroom}&`);
+  if (bathroom) aux.push(`bathrooms=${bathroom}&`);
+  if (search) aux.push(`search=${search}&`);
+  console.log(aux, "AUX");
+  let acumulador = aux.toString();
 
+  for (let i = 0; i < aux.length - 1; i++) {
+    if (i === 0) acumulador = acumulador + aux[i];
+    acumulador = acumulador + "&" + aux[i];
+  }
+  return acumulador;
 }
 
+async function llamadoBack(tipe, bedroom, bathroom, search, concept) {
+  try {
+    const ruta = generateRoute(tipe, bedroom, bathroom, search, concept);
+    const backEstates = await axios.get(`${BACK_SERVER}/property/filter?${ruta}`);
+    
+    console.log(backEstates.data, "LA DATA DEL GET");
+    return backEstates.data;
+
+  
+  } catch (err) {
+    console.log(err);
+  }
+}

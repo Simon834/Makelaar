@@ -10,6 +10,8 @@ import DeleteIcon from '@material-ui/icons/Delete';
 const useStyles = makeStyles({
   root: {
     width: "80%",
+    color: "rgb(105, 97, 97)",
+    paddingLeft: "0.5rem"
   },
 });
 
@@ -24,7 +26,7 @@ export default function FilterPrice({valuePrice}) {
 
   useEffect(() => {
     if(!valuePrice[0] && !valuePrice[1]){
-    setValue([10, 20])}
+    setValue([10, 20])}// eslint-disable-next-line
   }, [valuePrice])
 
   const handleChange = (event, newValue) => {

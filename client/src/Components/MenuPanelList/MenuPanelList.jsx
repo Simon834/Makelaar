@@ -9,12 +9,21 @@ const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
         backgroundColor: theme.palette.background.paper,
-        display: 'flex',
         height: "100%",
+        margin:0
        },
     tabs: {
         borderRight: `1px solid ${theme.palette.divider}`,
-        
+        fontSize:20,
+        "& .MuiTab-root": {
+            fontSize: "1.1rem"
+        },
+        "& .MuiTab-wrapper": {
+            alignItems: "end"
+        },
+        "& .MuiTabs-flexContainer": {
+            alignItems: "end"
+        }
     },
 }));
 
@@ -39,7 +48,6 @@ export default function MenuPanelList({ list, routeAction }) {
                 orientation="vertical"
                 value={value}
                 onChange={handleChange}
-                aria-label="Vertical tabs example"
                 className={classes.tabs}
                 TabIndicatorProps={{style: {background:'#4C3C90'}}}
             >
