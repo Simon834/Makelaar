@@ -4,6 +4,8 @@ import { getAllUserApi } from "../../Functions/api/users";
 import { allProperties } from "../../Functions/api/property";
 import { getAllContract, getContractById } from "../../Functions/api/contract";
 import UploadFile from "../Upload/UploadFile";
+import {IconButton, List ,ListItem, ListItemAvatar, Avatar,ListItemText,ListItemSecondaryAction } from '@material-ui/core';
+import {Delete as DeleteIcon, Folder as FolderIcon } from '@material-ui/icons';
 
 import {
   MenuItem,
@@ -41,9 +43,11 @@ const useStyle = makeStyles((theme) => ({
   header: {
     fontSize: "25px",
   },
+  list: {
+    width: "100%",} 
 }));
 
-export default function NewContractForm(props) {
+export default function NewContractForm({user}) {
   const classes = useStyle();
   const {
     handleChange,
@@ -114,9 +118,11 @@ export default function NewContractForm(props) {
                   helperText: errors.name,
                 })}
                 required
+                disabled={!!user}
               />
               <FormControl className={classes.formControl}>
                 <Select
+                disabled={!!user}
                   onChange={handleSelect}
                   name="UserId"
                   value={contract.UserId}
@@ -141,6 +147,7 @@ export default function NewContractForm(props) {
               </FormControl>
               <FormControl className={classes.formControl}>
                 <Select
+                disabled={!!user}
                   name="PropertyId"
                   onChange={handleSelect}
                   value={contract.PropertyId}
@@ -168,6 +175,7 @@ export default function NewContractForm(props) {
                 <FormHelperText>Seleccione la propiedad</FormHelperText>
               </FormControl>
               <TextField
+              disabled={!!user}
                 InputLabelProps={{ shrink: true }}
                 variant="outlined"
                 label="Fecha de inicio"
@@ -182,6 +190,7 @@ export default function NewContractForm(props) {
                 })}
               />
               <TextField
+              disabled={!!user}
                 variant="outlined"
                 InputLabelProps={{ shrink: true }}
                 label="Fecha de cierre"
@@ -196,6 +205,7 @@ export default function NewContractForm(props) {
                 })}
               />
               <TextField
+              disabled={!!user}
                 variant="outlined"
                 label="Monto a pagar"
                 name="amount"
@@ -210,6 +220,7 @@ export default function NewContractForm(props) {
                 })}
               />
               <TextField
+              disabled={!!user}
                 variant="outlined"
                 InputLabelProps={{ shrink: true }}
                 label="Fecha de pago"
@@ -233,6 +244,7 @@ export default function NewContractForm(props) {
                 required
               /> */}
               <TextField
+              disabled={!!user}
                 variant="outlined"
                 label="Agregue un comentario (opcional)"
                 multiline
@@ -241,9 +253,29 @@ export default function NewContractForm(props) {
                 value={contract.comments}
                 onChange={handleChange}
               />
-              {contract.Files?.map(fl => <a href={fl.url} target="_blank">fl.name</a>)}
+                <List className={classes.list}>
+                  {console.log(contract.Files)}
+              {contract.Files?.map((e,pos)=>
+                <ListItem onClick={()=>window.open(e.url, '_blank')}>
+                  <ListItemAvatar>
+                    <Avatar>
+                      <FolderIcon />
+                    </Avatar>
+                  </ListItemAvatar>
+                  <ListItemText
+                    primary={e.url}
+                    />
+                    
+                </ListItem>,
+              )}
+            </List>
+
+
+              {/* {contract.Files?.map(fl => <a href={fl.url} target="_blank">fl.name</a>)} */}
               <p>
+                {user?<></>:
                 <Button
+                  
                   variant="contained"
                   color="primary"
                   type="submit"
@@ -251,7 +283,7 @@ export default function NewContractForm(props) {
                   disabled={!formIsValid()}
                 >
                   Enviar
-                </Button>
+                </Button>}
               </p>
             </Grid>
           </Grid>

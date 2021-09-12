@@ -42,6 +42,9 @@ export default function Cards({ inmuebles }) {
             garage={inm.garage}
             id={inm.id}
             contrat={inm.Contract}
+            transaction={inm.transaction}
+            condition=""
+
           />
         </Grid>
       ))}

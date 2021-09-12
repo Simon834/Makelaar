@@ -5,7 +5,7 @@ import { useParams } from 'react-router';
 
  
 
-export default function TableList({columns, rows}) {
+export default function TableList({columns, rows, user}) {
     const history= useHistory();
     console.log("contratos",rows)
     const {id}=useParams()
@@ -19,6 +19,7 @@ export default function TableList({columns, rows}) {
         if(e.Property) newrow = {...newrow,PropId:e.Property.name}
         if(e.premium) newrow = {...newrow,premium: "Destacado"}
         if(!e.premium) newrow = {...newrow,premium: ""}
+        if(e.startDate && user ) newrow = {...newrow,contract:"Ver contrato"}    
         
         return newrow
     })
@@ -29,7 +30,10 @@ export default function TableList({columns, rows}) {
 
                 onCellClick={(params, event) => {
                     console.log(params)
-                    if(params.field==="contract"){
+                    if(params.field==="contract" && user){
+                        history.push(`/user/${id}/editcontract/${params.row.id}`)//aqui va la ruta de cada usuario en la seccion contratos
+                    }
+                    if(params.field==="contract" && !user){
                         history.push(`/admin/${id}/editcontract/${params.row.id}`)//aqui va la ruta de cada usuario en la seccion contratos
                     }
                     else if(params.row.User){
