@@ -9,6 +9,7 @@ import Cards from "../Cards/Cards";
 import Logout from "../Logout/Logout";
 import TableList from "../TableList/TableList";
 import { getUserByIdApi } from "../../Functions/api/users";
+import EditContractForm from "../FormContractEdit/FormContractEdit";
 
 export default function UserBody({id}) {
 
@@ -32,7 +33,7 @@ export default function UserBody({id}) {
   }
 
   const columnsContratList = [
-    { field: 'name', headerName: 'Titulo', width: 350 },
+    { field: 'name', headerName: 'Titulo', width: 150},
     { field: 'PropId', headerName: 'Propiedad', width: 150 },
     { field: 'startDate', headerName: 'Inicio', width: 150 },
     { field: 'endDate', headerName: 'Fin', width: 150 },
@@ -47,10 +48,13 @@ export default function UserBody({id}) {
         <UserDetail />
       </Route>
       <Route path="/user/:id/contrat">
-          <TableList columns={columnsContratList} rows={userInfo.Contracts}/>
+          <TableList columns={columnsContratList} rows={userInfo.Contracts} user={true}/>
       </Route>
       <Route path="/user/:id/logout">
         <Logout/>
+      </Route>
+      <Route path="/user/:id/editcontract/:idcont">
+        <EditContractForm user={true}/>
       </Route>
     </div>
   );

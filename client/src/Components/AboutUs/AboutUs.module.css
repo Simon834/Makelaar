@@ -4,11 +4,13 @@
   justify-content: center;
   flex-direction: column;
   font-family: "Roboto", sans-serif;
+  height: 100vh;
 }
 
 .image {
   border-radius: 6px;
-  width: 100vw;
+  
+  height: 100vh;
 
 }
 
@@ -42,7 +44,8 @@
 .textContainer p {
   font-size: 18px;
   font-weight: 400;
-  color: white
+  color: white;
+  text-align: justify
 }
 
 .Icon {
