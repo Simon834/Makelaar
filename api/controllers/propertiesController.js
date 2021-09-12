@@ -83,7 +83,7 @@ async function allProperties(req, res, next) {
 }
 
 async function idProperties(req, res, next) {
-  let id = req.params.id * 1;
+  let id = Number(req.params.id);
   console.log(id);
   try {
     const properties = await Property.findByPk(id, {
