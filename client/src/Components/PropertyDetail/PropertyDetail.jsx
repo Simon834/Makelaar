@@ -8,6 +8,8 @@ import CardComponent from "../Card/Card";
 import { useParams } from "react-router";
 import { propertyById } from "../../Functions/api/property";
 import GoogleMap from "../GoogleMap/GoogleMap";
+import { useLocation } from "react-router-dom";
+
 
 import style from "./PropertyDetail.module.css";
 
@@ -24,6 +26,7 @@ export default function PropertyDetail() {
   const [img, setImg] = useState("");
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     getDetail(id);
   }, []);
 

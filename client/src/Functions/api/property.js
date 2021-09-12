@@ -17,7 +17,15 @@ export async function allProperties() {
     const allProperties = await axios.get(
       `${BACK_SERVER}/property/allProperties`
     );
-    return allProperties.data;
+    const allPropertiesSort= allProperties.data.sort((a,b)=>{
+      
+      if(a.Contract && !b.Contract ){
+        return 1
+      }
+      return -1
+    })
+    console.log("sort",allPropertiesSort)
+    return allPropertiesSort;
   } catch (err) {
     throw err;
   }
