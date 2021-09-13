@@ -2,10 +2,51 @@ import React, { useState, useEffect } from 'react'
 import { DataGrid } from '@material-ui/data-grid';
 import {useHistory} from "react-router"
 import { useParams } from 'react-router';
+import { makeStyles } from '@material-ui/styles';
+import { createTheme, darken, lighten } from '@material-ui/core/styles';
 
+
+  
+  const defaultTheme = createTheme();
+  const useStyles = makeStyles(
+    (theme) => {
+        
+      return {
+        root: {
+          '& .super-app-theme--activo': {
+            backgroundColor: theme.palette.success.light,
+            '&:hover': {
+              backgroundColor: theme.palette.grey[300],
+            },
+          },
+          '& .super-app-theme--ocupado': {
+            backgroundColor: theme.palette.warning.light,
+            '&:hover': {
+              backgroundColor: theme.palette.grey[300],
+            },
+          },
+          '& .super-app-theme--eliminado': {
+            backgroundColor: theme.palette.error.light,
+            '&:hover': {
+              backgroundColor: theme.palette.grey[300],
+            },
+          },
+          
+          '& .super-app-theme--destacado': {
+            backgroundColor: theme.palette.primary.light,
+            '&:hover': {
+              backgroundColor: theme.palette.grey[300],
+            },
+          },
+        },
+      };
+    },
+    { defaultTheme },
+  );
  
 
 export default function TableList({columns, rows, user}) {
+    const classes = useStyles();
     const history= useHistory();
     console.log("contratos",rows)
     const {id}=useParams()
@@ -25,11 +66,11 @@ export default function TableList({columns, rows, user}) {
     })
 
       return (
-        <div style={{ height: 500, width: '70vw' }}>
+        <div style={{ height: 500, width: '70vw' }} className={classes.root}>
             <DataGrid
 
                 onCellClick={(params, event) => {
-                    console.log(params)
+                    
                     if(params.field==="contract" && user){
                         history.push(`/user/${id}/editcontract/${params.row.id}`)//aqui va la ruta de cada usuario en la seccion contratos
                     }
@@ -47,6 +88,18 @@ export default function TableList({columns, rows, user}) {
                 rows={rowsMod}
                 columns={columns}
                 pageSize={10}
+                getRowClassName={(params) =>{
+                    if(params.row.isAdmin==="Si"){
+                        return `super-app-theme--ocupado`
+                    } 
+                    if(params.row.Contract?.id && params.row.status === "activo"){
+                        return `super-app-theme--ocupado`
+                    } 
+                    else if(params.row.premium && params.row.status === "activo"){return `super-app-theme--destacado`}
+                    else {return `super-app-theme--${params.row.status}`}
+
+                }
+                  }
                      
             />
             
