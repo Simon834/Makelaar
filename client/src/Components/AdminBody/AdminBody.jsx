@@ -31,6 +31,7 @@ const columnsPropertyList = [
   { field: "price", headerName: "Precio", width: 150 },
   { field: "premium", headerName: "Destacado", width: 150 },
   { field: "contract", headerName: "Contratos", width: 150 },
+  { field: "status", headerName: "Estado", width: 150 },
 ];
 
 const columnsContratList = [
