@@ -35,7 +35,7 @@ export default function ViewProperty() {
 
   async function getEstates(){
     const estatesApi = await filterEstates(properties, concept, tipe, bedroom, bathroom, price, search)
-    setEstates(estatesApi)
+    setEstates(estatesApi.filter(e=>e.status==="activo"))
   }
 
   useEffect(() => {

@@ -42,7 +42,7 @@ export default function Home() {
 
   async function getEstates(){
     const estatesApi = await filterEstates(properties, concept, tipe, bedroom, bathroom, price, search)
-    setEstates(estatesApi.filter(e=>e.premium && !e.Contract))
+    setEstates(estatesApi.filter(e=>e.premium && !e.Contract && e.status==="activo"))
   }
 
   useEffect(() => {

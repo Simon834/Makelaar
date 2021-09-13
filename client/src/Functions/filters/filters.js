@@ -83,8 +83,8 @@ async function llamadoBack(tipe, bedroom, bathroom, search, concept) {
     const ruta = generateRoute(tipe, bedroom, bathroom, search, concept);
     const backEstates = await axios.get(`${BACK_SERVER}/property/filter?${ruta}`);
     
-    console.log(backEstates.data, "LA DATA DEL GET");
-    return backEstates.data;
+    console.log("LA DATA DEL GET", backEstates.data );
+    return backEstates.data.filter(e=>e.status==="activo");
 
   
   } catch (err) {
