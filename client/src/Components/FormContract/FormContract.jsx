@@ -76,7 +76,7 @@ export default function NewContractForm() {
 
     async function getAllProperties() {
       const allPropertiesApi = await allProperties();
-      setPropertyList(allPropertiesApi);
+      setPropertyList(allPropertiesApi.filter(e=>!e.Contract&&e.status==="activo"));
     }
     getAllUser();
     getAllProperties();

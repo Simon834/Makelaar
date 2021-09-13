@@ -24,6 +24,7 @@ import { Controls } from "./EditPropertyControls";
 const transaction = ["Alquiler", "Venta", "Alquiler Temporario"];
 const type = ["Casa", "Departamento", "Local", "Duplex", "Terreno"];
 const condition = ["A estrenar", "1 a 5 años", "5 a 10 años", "Mas de 10 años"];
+const status = ["activo", "eliminado", "pendiente"];
 
 const useStyle = makeStyles((theme) => ({
   form: {
@@ -266,6 +267,23 @@ export default function EditProperty() {
                   >
                     {transaction &&
                       transaction.map((t) => (
+                        <MenuItem value={t} onChange={handleSelect} label={t}>
+                          {t}
+                        </MenuItem>
+                      ))}
+                  </Select>
+                </FormControl>
+
+                <FormControl component="fieldset">
+                  <Typography>Estado</Typography>
+                  <Select
+                    onChange={handleSelect}
+                    aria-label="status"
+                    name="status"
+                    value={property.status}
+                  >
+                    {status &&
+                      status.map((t) => (
                         <MenuItem value={t} onChange={handleSelect} label={t}>
                           {t}
                         </MenuItem>
