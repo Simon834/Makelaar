@@ -95,7 +95,7 @@ export function UseFormControls(props) {
               icon: "success",
               title: "Perfecto..!",
               text: "Tu contrato ha sido modificado con exito",
-                confirmButtonColor: "#4c3c90",
+              confirmButtonColor: "#4c3c90",
               customClass: {
                 container: "my-swal",
               },
@@ -103,13 +103,14 @@ export function UseFormControls(props) {
       } catch (err) {
         console.log(err);
             Swal.fire({
-              icon: "success",
+              icon: "error",
               title: "Ups..!",
               text: "Tu contrato no ha podido ser modificado, intenta de nuevo",
+              confirmButtonColor: "#4c3c90",
               customClass: {
                 container: "my-swal",
               },
-        });
+            });
       }
     }
   };

@@ -25,14 +25,30 @@ export default function Contact() {
       )
       .then(
         (result) => {
-          Swal.fire("Perfecto!", "Tu mensaje ha sido enviado con éxito!", "success");
+          Swal.fire({
+              icon: "success",
+              title: "Perfecto..!",
+              text: "Tu mensaje ha sido enviado con éxito!",
+                confirmButtonColor: "#4c3c90",
+              customClass: {
+                container: "my-swal",
+              },
+            });
           document.getElementById("name").value = "";
           document.getElementById("phone").value = "";
           document.getElementById("message").value = "";
           document.getElementById("email").value = "";
         },
         (error) => {
-          Swal.fire("Oh no!", "ocurrio un error al eviar el email,intentelo nuevamente", "error");
+          Swal.fire({
+            icon: "error",
+            title: "Oh no!",
+            text: "Ocurrió un error al eviar el email,intentelo nuevamente!",
+            confirmButtonColor: "#4c3c90",
+            customClass: {
+              container: "my-swal",
+            },
+          });
         }
       );
   }

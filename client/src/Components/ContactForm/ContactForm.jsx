@@ -20,7 +20,8 @@ function sendEmail(e) {
           Swal.fire({
             icon: "success",
             title: "Yeeey..!",
-            text: "Email enviado con Exito",
+            text: "TEmail enviado con Exito!",
+            confirmButtonColor: "#4c3c90",
             customClass: {
               container: "my-swal",
             },
@@ -35,10 +36,12 @@ function sendEmail(e) {
               icon: "error",
               title: "Ups..!",
               text: "Oh no ocurrio un error al eviar el email,intentelo nuevamente",
+              confirmButtonColor: "#4c3c90",
               customClass: {
                 container: "my-swal",
               },
             });
+            
         }
       );
   }
