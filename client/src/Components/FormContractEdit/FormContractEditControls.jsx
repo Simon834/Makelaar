@@ -94,7 +94,8 @@ export function UseFormControls(props) {
             Swal.fire({
               icon: "success",
               title: "Perfecto..!",
-              text: "Tu contrato ha sido modificado con exito cheeee...!",
+              text: "Tu contrato ha sido modificado con exito",
+                confirmButtonColor: "#4c3c90",
               customClass: {
                 container: "my-swal",
               },
