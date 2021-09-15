@@ -93,7 +93,7 @@ export default function EditProperty({ id, update }) {
     toggleChecked,
   } = Controls(update);
 
-  const idProps = props.id;
+  const idProps = id;
 
   const { idprop } = useParams();
 
