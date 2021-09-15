@@ -95,7 +95,7 @@ export default function Home() {
           />
         }
         carousel={<Carrusel />}
-        content={<ChatSocket />}
+        content={<Cards inmuebles={estates}/>}
       />
     </div>
   );
