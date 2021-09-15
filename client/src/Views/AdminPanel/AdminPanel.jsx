@@ -44,7 +44,7 @@ export default function AdminPanel() {
               rute: "/newcontract"
             },
             {
-                title: "Crear admin",
+                title: "Crear usuario",
                 rute: "/newadmin"
             },
             {

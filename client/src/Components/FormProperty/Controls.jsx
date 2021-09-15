@@ -27,7 +27,7 @@ const resetValues = {
   lng: -64.183037,
 };
 
-export function Controls() {
+export function Controls(update) {
   const [property, setProperty] = useState(resetValues);
 
   const [img, setImg] = useState([]);
@@ -213,8 +213,10 @@ export function Controls() {
       }
     }
     setProperty(resetValues);
+    setImage([]);
+    update();
     // console.log("PROPIEDAD RESETTTT", property)
-    setCheck(false);
+    setCheck({});
     // console.log("CHECK ESTADO", check);
   }
 

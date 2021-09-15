@@ -10,7 +10,15 @@ export function getAllProperties() {
         payload: data,
       });
     } catch (err) {
-      Swal.fire("Lo sentimos!", "No se pudieron cargar las propiedades", "error");
+      Swal.fire({
+        icon: "error",
+        title: "Lo sentimos..!",
+        text: `No se pudieron cargar las propiedades`,
+        confirmButtonColor: "#4c3c90",
+        customClass: {
+          container: "my-swal",
+        },
+      });      
     }
   };
 }

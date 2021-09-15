@@ -77,7 +77,7 @@ const useStyle = makeStyles((theme) => ({
   },
 }));
 
-export default function EditProperty() {
+export default function EditProperty({update}) {
   const classes = useStyle();
   const {
     handleChange,
@@ -93,7 +93,7 @@ export default function EditProperty() {
     toggleChecked,
   } = Controls();
 
-  const { idprop } = useParams();
+  const { idprop } = useParams(update);
 
   async function getPropertyId() {
     const propertyId = await propertyById(idprop);

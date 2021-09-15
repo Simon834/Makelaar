@@ -106,7 +106,15 @@ export const UserDetailControl = () => {
       //console.log(registeredUser);
       dispatch(logOutUser());
       history.push(`/`);
-      Swal.fire("Perfecto!", "Tus datos han sido actualizados correctamente, vuelva a iniciar seción", "success");
+      Swal.fire({
+        icon: "success",
+        title: "Perfecto..!",
+        text: "Tus datos han sido actualizados correctamente, vuelva a iniciar seción",
+        confirmButtonColor: "#4c3c90",
+        customClass: {
+          container: "my-swal",
+        },
+      });
     }
   };
 
