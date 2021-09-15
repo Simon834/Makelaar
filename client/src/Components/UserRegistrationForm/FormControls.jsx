@@ -134,6 +134,7 @@ export const useFormControls = (isAdmin, update) => {
               icon: "success",
               title: "Listo..!",
               text: `El usuario: ${registeredUser.user.email}, se creo correctamente con los permisos de Admin`,
+              confirmButtonColor: "#4c3c90",
               customClass: {
                 container: "my-swal",
               },
@@ -152,6 +153,7 @@ export const useFormControls = (isAdmin, update) => {
               icon: "success",
               title: "Hola..!",
               text: `${registeredUser.user.name}, en tu email: ${registeredUser.user.email}, encontraras la confirmacion de creacion de tu cuenta`,
+              confirmButtonColor: "#4c3c90",
               customClass: {
                 container: "my-swal",
               },
@@ -163,6 +165,7 @@ export const useFormControls = (isAdmin, update) => {
             icon: "warning",
             title: "Ups..!",
             text: `El email: ${user.email} ya se encuentra registrado, si no recuerda la contraseña intente recuperarla`,
+            confirmButtonColor: "#4c3c90",
             customClass: {
               container: "my-swal",
             },

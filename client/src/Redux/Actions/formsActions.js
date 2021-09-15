@@ -23,6 +23,7 @@ export function forgot_password(email) {
            icon: "error",
            title: "Lo sentimos!",
            text: "Email no registrado",
+           confirmButtonColor: "#4c3c90",
            customClass: {
              container: "my-swal",
            },

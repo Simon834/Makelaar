@@ -94,7 +94,8 @@ export function UseFormControls(update) {
             Swal.fire({
               icon: "success",
               title: "Perfecto..!",
-              text: "Tu contrato ha sido modificado con exito!",
+              text: "Tu contrato ha sido modificado con exito",
+              confirmButtonColor: "#4c3c90",
               customClass: {
                 container: "my-swal",
               },
@@ -105,11 +106,12 @@ export function UseFormControls(update) {
             Swal.fire({
               icon: "error",
               title: "Ups..!",
-              text: "Tu contrato no ha podido ser modificado, intenta de nuevo",
+              text: "Tu contrato no ha podido ser modificado, intenta de nuevo por favor",
+              confirmButtonColor: "#4c3c90",
               customClass: {
                 container: "my-swal",
               },
-        });
+            });
       }
     }
   };

@@ -191,11 +191,15 @@ export function Controls(update) {
         const propertySubmit = { ...property };
         const editedProperty = await editProperty(propertySubmit);
         if (editedProperty) {
-          Swal.fire(
-            "Listo!",
-            "Se actualizo la propiedad con exito!",
-            "success"
-          );
+          Swal.fire({
+            icon: "success",
+            title: "Listo..!",
+            text: "Se actualizo la propiedad con exito!",
+            confirmButtonColor: "#4c3c90",
+            customClass: {
+              container: "my-swal",
+            },
+          });
         }
         update()
       } catch (err) {
