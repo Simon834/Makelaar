@@ -1,21 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-
 import { userLogIn } from "../../Redux/Actions/userActions";
 
 //material
 import TextField from "@material-ui/core/TextField";
-import { makeStyles, Button} from "@material-ui/core";
-import Visibility from '@material-ui/icons/Visibility';
-import VisibilityOff from '@material-ui/icons/VisibilityOff';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import IconButton from '@material-ui/core/IconButton';
-import OutlinedInput from '@material-ui/core/OutlinedInput';
-import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
-// import Link from "@material-ui/core/Link";
-import "./formLogin.css"
+import { makeStyles, Button } from "@material-ui/core";
+import Visibility from "@material-ui/icons/Visibility";
+import VisibilityOff from "@material-ui/icons/VisibilityOff";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import IconButton from "@material-ui/core/IconButton";
+import OutlinedInput from "@material-ui/core/OutlinedInput";
+import FormControl from "@material-ui/core/FormControl";
+import InputLabel from "@material-ui/core/InputLabel";
+import "./formLogin.css";
 
 const useStyle = makeStyles((theme) => ({
   form: {
@@ -68,13 +66,13 @@ export default function FormLogin({ action }) {
   const dispatch = useDispatch();
   const history = useHistory();
   const { userInfo } = useSelector((state) => state);
-  const [showPass, setShowPass]=useState(false)
+  const [showPass, setShowPass] = useState(false);
   const classes = useStyle();
 
   const [input, setInput] = useState({
     email: "",
     password: "",
-    showPassword: false
+    showPassword: false,
   });
 
   const [errors, setErrors] = useState({});
@@ -91,8 +89,7 @@ export default function FormLogin({ action }) {
     }
   }, [userInfo]); // eslint-disable-line react-hooks/exhaustive-deps
 
-
-  console.log("USERINFO", userInfo)
+  console.log("USERINFO", userInfo);
   function handleChange(e) {
     e.persist();
     setInput({
@@ -118,7 +115,6 @@ export default function FormLogin({ action }) {
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
-
 
   return (
     <form
