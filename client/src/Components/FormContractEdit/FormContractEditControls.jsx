@@ -14,7 +14,7 @@ const initialFormValues = {
   PropertyId: "",
 };
 
-export function UseFormControls(props) {
+export function UseFormControls(update) {
   const [contract, setContract] = useState(initialFormValues);
   const [errors, setErrors] = useState({});
   const [selectValues, setSelectValues] = useState({});
@@ -100,6 +100,7 @@ export function UseFormControls(props) {
                 container: "my-swal",
               },
             });
+            update()
       } catch (err) {
         console.log(err);
             Swal.fire({

@@ -28,7 +28,7 @@ const resetValues = {
   lng: -64.183037,
 };
 
-export function Controls() {
+export function Controls(update) {
   const [property, setProperty] = useState(resetValues);
 
   const [img, setImg] = useState([]);
@@ -175,7 +175,7 @@ export function Controls() {
       [e.target.name]: e.target.value,
     });
     setCheck({ ...check, [e.target.name]: e.target.value });
-    console.log("ESTADO HANDLECHECK", check);
+    // console.log("ESTADO HANDLECHECK", check);
   }
   function formValid(values = property) {
     const isValid =
@@ -215,8 +215,10 @@ export function Controls() {
       }
     }
     setProperty(resetValues);
+    setImage([])
+    update()
     // console.log("PROPIEDAD RESETTTT", property)
-    setCheck(false);
+    setCheck({});
     // console.log("CHECK ESTADO", check);
   }
 

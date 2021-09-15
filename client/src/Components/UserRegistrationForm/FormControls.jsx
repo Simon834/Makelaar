@@ -13,7 +13,7 @@ const initialFormValues = {
   isAdmin: "",
 };
 
-export const useFormControls = (isAdmin) => {
+export const useFormControls = (isAdmin, update) => {
   const [user, setUser] = useState({
     name: "",
     email: "",
@@ -21,8 +21,8 @@ export const useFormControls = (isAdmin) => {
     phone: "",
     whatsapp: "",
     password: "",
+    isAdmin:false,
     confirmPassword: "",
-    isAdmin,
   });
   const [errors, setErrors] = useState({});
 
@@ -140,6 +140,7 @@ export const useFormControls = (isAdmin) => {
               },
             });
             setUser(initialFormValues);
+            update()
           } else {
             dispatch(
               userLogIn({
@@ -176,11 +177,23 @@ export const useFormControls = (isAdmin) => {
     }
   };
 
+  const handleSwitch = (e) => {
+    
+    setUser({
+      ...user,
+      isAdmin: !user.isAdmin,
+    });
+   
+  };
+
+
+
   return {
     user,
     errors,
     handleChange,
     handleSubmit,
     formIsValid,
+    handleSwitch
   };
 };
