@@ -11,21 +11,17 @@ import {
 } from "../../Redux/Actions/favoriteActions";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
-import ListItemAvatar from "@material-ui/core/ListItemAvatar";
-import Avatar from "@material-ui/core/Avatar";
-import HomeIcon from "@material-ui/icons/Home";
 import Alert from "@material-ui/lab/Alert";
-import icoRoom from "../../images/ico-amountrooms.png"
-import icoBeth from "../../images/ico-bathrooms.png"
-import icoBed from "../../images/ico-bedrooms.png"
-import icoType from "../../images/ico-type.png"
-import icoArea from "../../images/ico-areasize.png"
-
-
+import icoRoom from "../../images/ico-amountrooms.png";
+import icoBeth from "../../images/ico-bathrooms.png";
+import icoBed from "../../images/ico-bedrooms.png";
+import icoType from "../../images/ico-type.png";
+import icoArea from "../../images/ico-areasize.png";
+import EditIcon from "@material-ui/icons/Edit";
 import style from "./Card.module.css";
+import EditProperty from "../../Components/EditProperty/EditProperty";
+import { Dialog, DialogContent } from "@material-ui/core";
+import { Button } from "@material-ui/core";
 
 const useStyles = makeStyles({
   root: {
@@ -63,17 +59,71 @@ const useStyles = makeStyles({
       backgroundColor: "transparent",
     },
   },
+  dialogEdit: {
+    height: "800px",
+    width: "37.5rem",
+  },
+
+  button: {
+    color: "white",
+    fontWeight: "bold",
+    fontSize: "10px",
+    marginBottom: "15px",
+    marginTop: "2px",
+    padding: "8px",
+    float: "right",
+  },
 });
 
 export default function CardComponent(props) {
   const [fav, setFav] = useState(false);
   const favorites = useSelector((state) => state.favorites);
   const history = useHistory();
+  const { userInfo } = useSelector((state) => state);
+  const [userIsAdmin, setUserIsAdmin] = useState(false);
+
+  /////////modal
+
+  let idProp = props.id;
+
+  const OpenModalEdit = () => {
+    return (
+      <Dialog open={showDialogEdit} onClose={closeDialogEdit}>
+        <DialogContent className={classes.dialogEdit}>
+          <Button
+            className={classes.button}
+            size="small"
+            variant="contained"
+            color="primary"
+            type="submit"
+            onClick={closeDialogEdit}
+          >
+            X
+          </Button>
+          <EditProperty id={idProp} />
+        </DialogContent>
+      </Dialog>
+    );
+  };
+
+  const [showDialogEdit, setShowDialogEdit] = useState(false);
+
+  const openDialogEdit = () => setShowDialogEdit(true);
+
+  const closeDialogEdit = () => setShowDialogEdit(false);
+
+  ///////////
+
+  useEffect(() => {
+    if (userInfo.token) {
+      setUserIsAdmin(userInfo.user.isAdmin);
+    }
+  }, [userInfo]);
 
   useEffect(() => {
     if (favorites.length > 0) {
-      const searFav = favorites.filter((e) => e.id*1 === props.id*1);
-      console.log("favorites",favorites, "searFav",searFav, "id", props.id)
+      const searFav = favorites.filter((e) => e.id * 1 === props.id * 1);
+      console.log("favorites", favorites, "searFav", searFav, "id", props.id);
       if (searFav.length) {
         setFav(true);
       }
@@ -83,8 +133,8 @@ export default function CardComponent(props) {
       localStorage.setItem("favorites", JSON.stringify([]));
     } // eslint-disable-next-line
   }, [favorites]);
-  
-  console.log("favorites",props )
+
+  console.log("favorites", props);
 
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -99,7 +149,7 @@ export default function CardComponent(props) {
 
   return (
     <Card className={classes.root}>
-        {props.contrat ? (
+      {props.contrat ? (
         <Alert severity="info" elevation={6} variant="filled">
           {`Ocupada`}{" "}
         </Alert>
@@ -127,61 +177,48 @@ export default function CardComponent(props) {
         <Typography className={classes.title}>{props.title}</Typography>
         <Typography className={classes.address}>{props.address}</Typography>
         <Typography className={style.ContainerInfo}>
-          <img
-            className={style.imageTitle}
-            src={icoRoom}
-            alt="rooms"
-          />
+          <img className={style.imageTitle} src={icoRoom} alt="rooms" />
           <span className={style.infoTitle}>
             Ambientes
             <span className={style.infoText}>{props.rooms}</span>
           </span>
           <Divider flexItem={true} />
-          <img
-            className={style.imageTitle}
-            src={icoBeth}
-            alt="rooms"
-          />
+          <img className={style.imageTitle} src={icoBeth} alt="rooms" />
           <span className={style.infoTitle}>
             Baños
             <span className={style.infoText}>{props.bathroom}</span>
           </span>
           <Divider flexItem={true} />
-          <img
-            className={style.imageTitle}
-            src={icoBed}
-            alt="rooms"
-          />
+          <img className={style.imageTitle} src={icoBed} alt="rooms" />
           <span className={style.infoTitle}>
             Dormitorios
             <span className={style.infoText}>{props.bedroom}</span>
           </span>
-          {props.type ?<>
-          <Divider flexItem={true} />
-          <img
-            className={style.imageTitle}
-            src={icoType}
-            alt="type"
-          />
-          <span className={style.infoTitle}>
-            Tipo
-            <span className={style.infoText}>{props.type}</span>
-          </span></>
-          :<></>}
-          
-          {props.area ?<>
-          <Divider flexItem={true} />
-          <img
-            className={style.imageTitle}
-            src={icoArea}
-            alt="area"
-          />
-          <span className={style.infoTitle}>
-            Superficie
-            <span className={style.infoText}>{`${props.area} m2`}</span>
-          </span></>
-          :<></>}
+          {props.type ? (
+            <>
+              <Divider flexItem={true} />
+              <img className={style.imageTitle} src={icoType} alt="type" />
+              <span className={style.infoTitle}>
+                Tipo
+                <span className={style.infoText}>{props.type}</span>
+              </span>
+            </>
+          ) : (
+            <></>
+          )}
 
+          {props.area ? (
+            <>
+              <Divider flexItem={true} />
+              <img className={style.imageTitle} src={icoArea} alt="area" />
+              <span className={style.infoTitle}>
+                Superficie
+                <span className={style.infoText}>{`${props.area} m2`}</span>
+              </span>
+            </>
+          ) : (
+            <></>
+          )}
         </Typography>
         <Divider flexItem={true} />
         <em>{props.description}</em>
@@ -197,18 +234,30 @@ export default function CardComponent(props) {
               aria-label="add to favorites"
               onClick={() => handleOnClick(props)}
             /> */}
-
-          <div className={style.heart}>
-            <input
-              type="checkbox"
-              className={style.heart__checkbox}
-              aria-label="add to favorites"
-              onClick={() =>
-                fav ? handleDeleteFavorite(props.id*1) : handleAddFavorite(props)
-              }
-              checked={fav}
-            />
-            <div className={style.heart__icon} />
+          <div className={style.iconsContainer}>
+            <div className={style.heart}>
+              <input
+                type="checkbox"
+                className={style.heart__checkbox}
+                aria-label="add to favorites"
+                onClick={() =>
+                  fav
+                    ? handleDeleteFavorite(props.id * 1)
+                    : handleAddFavorite(props)
+                }
+                checked={fav}
+              />
+              <div className={style.heart__icon} />
+            </div>
+            {userIsAdmin && (
+              <div className={style.edit__icon}>
+                <EditIcon onClick={openDialogEdit} />
+                <OpenModalEdit
+                  open={openDialogEdit}
+                  handleClose={() => setShowDialogEdit(false)}
+                />
+              </div>
+            )}
           </div>
           {/* </IconButton> */}
           <span className={style.priceTxt}>Precio ${props.price}</span>
