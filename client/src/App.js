@@ -11,6 +11,7 @@ import ViewAbout from "./Views/ViewAbout/ViewAbout";
 import ViewResetPassword from "./Views/ViewResetPassword/ViewResetPassword";
 import VierwRegister from "./Views/ViewRegister/VierwRegister";
 import ViewPropertyDetail from "./Views/ViewPropertyDetail/ViewPropertyDetail";
+import Chat from "./Components/chat/cha";
 
  
 
@@ -21,7 +22,7 @@ function App() {
       <Route exact path="/" component={Home} />
       <Route path="/admin" component={AdminPanel} />
       <Route path="/user" component={UserPanel}/>
-      <Route path="/contact" component={ViewContact}/>
+      <Route path="/contact" component={Chat}/>
       <Route exact path="/property" component={ViewProperty}/>
       <Route path="/about" component={ViewAbout}/>
       <Route path="/resetpassword" component={ViewResetPassword}/>
