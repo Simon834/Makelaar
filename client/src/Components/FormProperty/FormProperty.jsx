@@ -43,7 +43,6 @@ const useStyle = makeStyles((theme) => ({
     flexDirection: "column",
     allingItems: "center",
     justifyContent: "center",
-    
   },
   button: {
     width: "100%",
@@ -84,7 +83,7 @@ const useStyle = makeStyles((theme) => ({
 }));
 
 export default function FormProperty(props) {
-  const update = props.update
+  const update = props.update;
   const classes = useStyle();
   const {
     handleChange,
@@ -99,8 +98,7 @@ export default function FormProperty(props) {
     setAddress,
     handleSelect,
     img,
-  } = Controls(update);
-  console.log("PROPIEDAD", property);
+  } = Controls();
 
   return (
     <>
@@ -241,31 +239,81 @@ export default function FormProperty(props) {
                         />
                       ))}
                   </RadioGroup>
-                  </FormControl>
-                  <FormControl component="fieldset">
-                    <Typography>
-                      Que tipo de actividad desea realizar?
-                    </Typography>
-                    <RadioGroup
-                      aria-label="transaction"
-                      name="transaction"
-                      value={check.transaction}
-                    >
-                      {transaction &&
-                        transaction.map((t) => (
-                          <FormControlLabel
-                            value={t}
-                            control={<Radio />}
-                            onChange={handleCheck}
-                            label={t}
-                          />
-                        ))}
-                    </RadioGroup>
-                    {/* {console.log("PROPIEDADCHECK", property)} */}
-                  
+                </FormControl>
+                <FormControl component="fieldset">
+                  <Typography>Que tipo de actividad desea realizar?</Typography>
+                  <RadioGroup
+                    aria-label="transaction"
+                    name="transaction"
+                    value={check.transaction}
+                  >
+                    {transaction &&
+                      transaction.map((t) => (
+                        <FormControlLabel
+                          value={t}
+                          control={<Radio />}
+                          onChange={handleCheck}
+                          label={t}
+                        />
+                      ))}
+                  </RadioGroup>
+                  {/* {console.log("PROPIEDADCHECK", property)} */}
                 </FormControl>
               </FormGroup>
               <FormGroup>
+                <PlacesAutocomplete
+                  value={address}
+                  onChange={setAddress}
+                  onSelect={handleSelect}
+                >
+                  {({
+                    getInputProps,
+                    suggestions,
+                    getSuggestionItemProps,
+                    loading,
+                  }) => (
+                    <div>
+                      <TextField
+                        variant="outlined"
+                        label="Dirección"
+                        name="address"
+                        multiline
+                        minRows={4}
+                        value={property.address}
+                        required
+                        {...getInputProps({
+                          placeholder: "Busca una dirección ...",
+                          className: "location-search-input",
+                        })}
+                      />
+
+                      <div className={classes.suggestionsContainer}>
+                        {loading && <div>Loading...</div>}
+                        {suggestions.map((suggestion) => {
+                          const className = suggestion.active
+                            ? "suggestion-item--active"
+                            : "suggestion-item";
+                          // inline style for demonstration purpose
+                          const style = suggestion.active
+                            ? { backgroundColor: "#E1535E", cursor: "pointer" }
+                            : { backgroundColor: "#ffffff", cursor: "pointer" };
+                          return (
+                            <>
+                              <div
+                                {...getSuggestionItemProps(suggestion, {
+                                  className,
+                                  style,
+                                })}
+                              >
+                                <span>{suggestion.description}</span>
+                              </div>
+                            </>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  )}
+                </PlacesAutocomplete>
                 <TextField
                   variant="outlined"
                   label="Ciudad"
@@ -317,59 +365,6 @@ export default function FormProperty(props) {
                     helperText: errors.cp,
                   })}
                 />
-                <PlacesAutocomplete
-                  value={address}
-                  onChange={setAddress}
-                  onSelect={handleSelect}
-                >
-                  {({
-                    getInputProps,
-                    suggestions,
-                    getSuggestionItemProps,
-                    loading,
-                  }) => (
-                    <div>
-                      <TextField
-                        variant="outlined"
-                        label="Dirección"
-                        name="address"
-                        multiline
-                        minRows={4}
-                        value={property.address}
-                        required
-                        {...getInputProps({
-                          placeholder: "Busca una dirección ...",
-                          className: "location-search-input",
-                        })}
-                      />
-
-                      <div className={classes.suggestionsContainer}>
-                        {loading && <div>Loading...</div>}
-                        {suggestions.map((suggestion) => {
-                          const className = suggestion.active
-                            ? "suggestion-item--active"
-                            : "suggestion-item";
-                          // inline style for demonstration purpose
-                          const style = suggestion.active
-                            ? { backgroundColor: "#fafafa", cursor: "pointer" }
-                            : { backgroundColor: "#ffffff", cursor: "pointer" };
-                          return (
-                            <>
-                              <div
-                                {...getSuggestionItemProps(suggestion, {
-                                  className,
-                                  style,
-                                })}
-                              >
-                                <span>{suggestion.description}</span>
-                              </div>
-                            </>
-                          );
-                        })}
-                      </div>
-                    </div>
-                  )}
-                </PlacesAutocomplete>
               </FormGroup>
               <FormGroup>
                 <div className={classes.mapContainer}>
