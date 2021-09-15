@@ -90,7 +90,7 @@ export function UseFormControls() {
       Object.values(errors).every((x) => x === "") && formIsValid();
     if (isValid) {
       try {
-        const contractSubmit = {...contract,file:filesUp }
+        const contractSubmit = { ...contract, file: filesUp };
 
         const addedContract = await addContract(contractSubmit);
         console.log(addedContract);
@@ -113,7 +113,7 @@ export function UseFormControls() {
     handleSelect,
     selectValues,
     setContract,
-    setFile, 
-    filesUp
+    setFile,
+    filesUp,
   };
 }

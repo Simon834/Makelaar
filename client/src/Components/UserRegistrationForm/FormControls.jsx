@@ -1,7 +1,6 @@
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { registerUser } from "../../Functions/api/users";
-import { useHistory } from "react-router-dom";
 import { userLogIn } from "../../Redux/Actions/userActions";
 import Swal from "sweetalert2";
 
@@ -18,9 +17,11 @@ export const useFormControls = (isAdmin) => {
   const [user, setUser] = useState({
     name: "",
     email: "",
+    confirmEmail: "",
     phone: "",
     whatsapp: "",
     password: "",
+    confirmPassword: "",
     isAdmin,
   });
   const [errors, setErrors] = useState({});
@@ -47,6 +48,15 @@ export const useFormControls = (isAdmin) => {
           ? ""
           : "El email no es valido";
     }
+    if ("confirmEmail" in fieldValues) {
+      temp.confirmEmail = fieldValues.confirmEmail ? "" : "Confirma tu email";
+      if (fieldValues.confirmEmail) {
+        temp.confirmEmail =
+          fieldValues.confirmEmail === user.email
+            ? ""
+            : "Los email no coinciden";
+      }
+    }
 
     if (fieldValues.phone) {
       temp.phone = /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/.test(
@@ -66,12 +76,24 @@ export const useFormControls = (isAdmin) => {
     }
     if ("password" in fieldValues) {
       temp.password = fieldValues.password ? "" : "Este campo es requerido";
+
       if (fieldValues.password)
         temp.password = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/.test(
           fieldValues.password
         )
           ? ""
           : "La contraseña debe tener minimo 8 caracteres, 1 número, y 1 mayúscula";
+    }
+    if ("confirmPassword" in fieldValues) {
+      temp.confirmPassword = fieldValues.confirmPassword
+        ? ""
+        : "Confirma tu contraseña";
+      if (fieldValues.confirmPassword) {
+        temp.confirmPassword =
+          fieldValues.confirmPassword === user.password
+            ? ""
+            : "Las contraseñas no coinciden";
+      }
     }
 
     setErrors({
@@ -97,8 +119,6 @@ export const useFormControls = (isAdmin) => {
 
     return isValid;
   };
-
-  let history = useHistory();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
