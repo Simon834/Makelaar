@@ -27,6 +27,7 @@ export default function AdminBody() {
   const history = useHistory();
   const { columnsUserList, columnsPropertyList, columnsContratList } =
     adminConstant(id, history);
+  const [load, setLoad]=useState(true)
 
   async function get() {
     const allUsersApi = await getAllUserApi();
@@ -44,8 +45,12 @@ export default function AdminBody() {
     () => {
       get();
     }, // eslint-disable-next-line
-    []
+    [load]
   );
+  
+function updateList(){
+  setLoad(!load)
+}
 
   return (
     <div>
@@ -78,21 +83,21 @@ export default function AdminBody() {
       </Route>
 
       <Route path="/admin/:id/newadmin">
-        <UserRegistrationForm isAdmin={true} />
+        <UserRegistrationForm isAdmin={true} update={updateList}/>
       </Route>
       <Route path="/admin/:id/newproperty">
-        <FormProperty />
+        <FormProperty update={updateList}/>
       </Route>
       <Route path="/admin/:id/newcontract">
-        <NewContractForm />
+        <NewContractForm update={updateList}/>
       </Route>
 
       <Route path="/admin/:id/editcontract/:idcont">
-        <EditContractForm />
+        <EditContractForm update={updateList}/>
       </Route>
 
       <Route path="/admin/:id/editproperty/:idprop">
-        <EditProperty />
+        <EditProperty update={updateList}/>
       </Route>
 
       <Route path="/admin/:id/logout">

@@ -77,7 +77,7 @@ const useStyle = makeStyles((theme) => ({
   },
 }));
 
-export default function EditProperty() {
+export default function EditProperty({update}) {
   const classes = useStyle();
   const {
     handleChange,
@@ -91,7 +91,7 @@ export default function EditProperty() {
     setChecked,
     handleSwitch,
     toggleChecked,
-  } = Controls();
+  } = Controls(update);
 
   const { idprop } = useParams();
 
