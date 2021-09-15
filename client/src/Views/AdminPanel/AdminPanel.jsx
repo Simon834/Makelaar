@@ -5,6 +5,8 @@ import { useHistory } from "react-router";
 import ViewBase from "../ViewBase/view-base";
 import MenuPanelList from "../../Components/MenuPanelList/MenuPanelList";
 import AdminBody from "../../Components/AdminBody/AdminBody";
+import LateralMenu from "../../Components/LateralMenu/LateralMenu";
+import { menuList } from "./constant";
 
 export default function AdminPanel() {
   const { userInfo } = useSelector((state) => state);
@@ -16,54 +18,22 @@ export default function AdminPanel() {
     }
   }, [userInfo]); // eslint-disable-line react-hooks/exhaustive-deps
 
-    const list =
-        [
-            {
-                title: "Mis datos",
-                rute: "/data"
-            },
-            {
-                title: "Mis usuarios",
-                rute: "/users"
-            },
-            {
-                title: "Mis propiedades",
-                rute: "/property"
-            },
-            {
-                title: "Mis contratos",
-                rute: "/contrat",
-            },
-            {
-                title: "Nueva propiedad",
-                rute: "/newproperty"
-            },
-            
-            {
-              title: "Nuevo contrato",
-              rute: "/newcontract"
-            },
-            {
-                title: "Crear admin",
-                rute: "/newadmin"
-            },
-            {
-                title: "Cerrar sesion",
-                rute: "/logout",
-            },
-        ]
-
+  
   return (
+    // <div>
+    //   <ViewBase
+    //     filters={
+    //       <MenuPanelList
+    //         list={list}
+    //         routeAction={`/admin/${userInfo.user?.id}`}
+    //       />
+    //     }
+    //     content={<AdminBody />}
+    //   />
+    // </div>
+
     <div>
-      <ViewBase
-        filters={
-          <MenuPanelList
-            list={list}
-            routeAction={`/admin/${userInfo.user?.id}`}
-          />
-        }
-        content={<AdminBody />}
-      />
+      <LateralMenu list={menuList} routeAction={`/admin/${userInfo.user?.id}`}/>
     </div>
   );
 }

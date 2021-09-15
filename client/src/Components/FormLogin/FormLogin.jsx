@@ -82,7 +82,7 @@ export default function FormLogin({ action }) {
   useEffect(() => {
     if (userInfo.token) {
       if (userInfo.user.isAdmin) {
-        history.push(`/admin/${userInfo.user.id}/data`);
+        history.push(`/admin/${userInfo.user.id}/dashboard`);
         action();
       } else {
         history.push(`/user/${userInfo.user.id}/data`);

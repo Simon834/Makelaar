@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { DataGrid } from '@material-ui/data-grid';
+import { DataGrid,esES } from '@material-ui/data-grid';
 import {useHistory} from "react-router"
 import { useParams } from 'react-router';
 import { makeStyles } from '@material-ui/styles';
@@ -38,17 +38,30 @@ import { createTheme, darken, lighten } from '@material-ui/core/styles';
               backgroundColor: theme.palette.grey[300],
             },
           },
+          '& .super-app-theme--white': {
+            backgroundColor: theme.palette.background.paper,
+            '&:hover': {
+              backgroundColor: theme.palette.grey[300],
+            },
+          },
+
+          '& .super-app-theme--header': {
+            backgroundColor: theme.palette.primary.light,
+            
+          },
         },
+        header:{ 
+          backgroundColor: theme.palette.primary.light,
+          }
       };
     },
-    { defaultTheme },
+     { defaultTheme },
   );
  
 
 export default function TableList({columns, rows, user}) {
     const classes = useStyles();
     const history= useHistory();
-    console.log("contratos",rows)
     const {id}=useParams()
     const rowsMod=rows.map(e=>{
         let newrow = e
@@ -66,16 +79,13 @@ export default function TableList({columns, rows, user}) {
     })
 
       return (
-        <div style={{ height: 500, width: '70vw' }} className={classes.root}>
+        <div style={{ height: 500 }} className={classes.root}>
             <DataGrid
 
                 onCellClick={(params, event) => {
                     
                     if(params.field==="contract" && user){
                         history.push(`/user/${id}/editcontract/${params.row.id}`)//aqui va la ruta de cada usuario en la seccion contratos
-                    }
-                    if(params.field==="contract" && !user){
-                        history.push(`/admin/${id}/editcontract/${params.row.id}`)//aqui va la ruta de cada usuario en la seccion contratos
                     }
                     else if(params.row.User){
                         history.push(`/admin/${id}/editcontract/${params.row.id}`)//aqui va la ruta de cada usuario en la seccion contratos
@@ -88,6 +98,7 @@ export default function TableList({columns, rows, user}) {
                 rows={rowsMod}
                 columns={columns}
                 pageSize={10}
+                localeText={esES.props.MuiDataGrid.localeText}
                 getRowClassName={(params) =>{
                     if(params.row.isAdmin==="Si"){
                         return `super-app-theme--ocupado`
@@ -96,7 +107,8 @@ export default function TableList({columns, rows, user}) {
                         return `super-app-theme--ocupado`
                     } 
                     else if(params.row.premium && params.row.status === "activo"){return `super-app-theme--destacado`}
-                    else {return `super-app-theme--${params.row.status}`}
+                    else if(params.row.status){return `super-app-theme--${params.row.status}`}
+                    else{return `super-app-theme--white`}
 
                 }
                   }
