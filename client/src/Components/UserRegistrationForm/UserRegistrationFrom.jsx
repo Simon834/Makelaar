@@ -11,7 +11,15 @@ import OutlinedInput from "@material-ui/core/OutlinedInput";
 import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
 
-import { Container, Grid, makeStyles, Paper, Button } from "@material-ui/core";
+import {
+  Container,
+  Grid,
+  makeStyles,
+  Paper,
+  Button,
+  FormControlLabel,
+  Switch,
+} from "@material-ui/core";
 import { useFormControls } from "./FormControls";
 
 //import "./Styles.css";
@@ -42,9 +50,16 @@ const useStyle = makeStyles((theme) => ({
 
 export default function UserRegistrationForm(props) {
   const isAdmin = props.isAdmin;
+  const update = props.update;
   const classes = useStyle();
-  const { handleChange, handleSubmit, formIsValid, errors, user } =
-    useFormControls(isAdmin);
+  const {
+    handleChange,
+    handleSubmit,
+    formIsValid,
+    errors,
+    user,
+    handleSwitch,
+  } = useFormControls(isAdmin, update);
   const { userInfo } = useSelector((state) => state);
   const history = useHistory();
 
@@ -63,11 +78,12 @@ export default function UserRegistrationForm(props) {
     }
   }, [userInfo]); // eslint-disable-line react-hooks/exhaustive-deps
 
+  console.log(user);
   return (
     <>
       <Paper className={classes.root} elevation={0}>
         <Container className={classes.header}>
-          {isAdmin ? "Registrar admin" : "Regístrate"}
+          {isAdmin ? "Registrar usuario" : "Regístrate"}
         </Container>
         <form
           className={classes.form}
@@ -76,6 +92,22 @@ export default function UserRegistrationForm(props) {
         >
           <Grid container>
             <Grid item xs={6}>
+              {isAdmin ? (
+                <FormControlLabel
+                  className={classes.switch}
+                  label="Admin"
+                  control={
+                    <Switch
+                      checked={user.isAdmin}
+                      value={user.isAdmin}
+                      onChange={handleSwitch}
+                    />
+                  }
+                />
+              ) : (
+                <></>
+              )}
+
               <TextField
                 variant="outlined"
                 label="Nombre"

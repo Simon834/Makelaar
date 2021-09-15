@@ -83,7 +83,8 @@ const useStyle = makeStyles((theme) => ({
   },
 }));
 
-export default function FormProperty() {
+export default function FormProperty(props) {
+  const update = props.update
   const classes = useStyle();
   const {
     handleChange,
@@ -98,7 +99,7 @@ export default function FormProperty() {
     setAddress,
     handleSelect,
     img,
-  } = Controls();
+  } = Controls(update);
   console.log("PROPIEDAD", property);
 
   return (

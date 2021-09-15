@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { addContract } from "../../Functions/api/contract";
+import Swal from "sweetalert2";
 
 const initialFormValues = {
   name: "",
@@ -93,15 +94,34 @@ export function UseFormControls() {
         const contractSubmit = { ...contract, file: filesUp };
 
         const addedContract = await addContract(contractSubmit);
+        Swal.fire({
+          icon: "success",
+          title: "Perfecto..!",
+          text: "Tu contrato ha sido creado con exito!",
+          customClass: {
+            container: "my-swal",
+          },
+        });
+        setContract(initialFormValues)
+        setFilesUp([])
         console.log(addedContract);
       } catch (err) {
         console.log(err);
+        Swal.fire({
+          icon: "error",
+          title: "Ups..!",
+          text: "Tu contrato no ha podido ser creado, intenta de nuevo",
+          customClass: {
+            container: "my-swal",
+          },
+    });
       }
     }
   };
 
   function setFile(files) {
     setFilesUp([...files]);
+    
   }
 
   return {

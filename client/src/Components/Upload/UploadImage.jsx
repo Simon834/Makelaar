@@ -47,11 +47,11 @@ const useStyles = makeStyles((theme) => ({
 export default function UploadImage({ images = [], setImages }) {
   const [myWidget, setmyWidget] = useState({});
   const classes = useStyles();
-
-  let imgArr = images || [];
+  const [imgArr, setImgArr]=useState(images)
 
   useEffect(() => {
     // const myWidgetConect = uploadConection(imgArr,setImages)
+    setImgArr(images)
     var myWidgetConect = window.cloudinary.createUploadWidget(
       {
         cloudName: "makelaar",
@@ -67,7 +67,7 @@ export default function UploadImage({ images = [], setImages }) {
     myWidgetConect.open();
     myWidgetConect.close();
     setmyWidget(myWidgetConect);
-  }, []);
+  }, [images]);
 
   async function uploadImage() {
     await myWidget.open();

@@ -27,7 +27,7 @@ const resetValues = {
   lng: -64.183037,
 };
 
-export function Controls() {
+export function Controls(update) {
   const [property, setProperty] = useState(resetValues);
 
   const [img, setImg] = useState([]);
@@ -187,7 +187,7 @@ export function Controls() {
 
     if (isValid) {
       try {
-        console.log(property);
+        // console.log(property);
         const propertySubmit = { ...property };
         const editedProperty = await editProperty(propertySubmit);
         if (editedProperty) {
@@ -197,6 +197,7 @@ export function Controls() {
             "success"
           );
         }
+        update()
       } catch (err) {
         console.log(err);
       }

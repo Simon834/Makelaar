@@ -14,7 +14,7 @@ const initialFormValues = {
   PropertyId: "",
 };
 
-export function UseFormControls(props) {
+export function UseFormControls(update) {
   const [contract, setContract] = useState(initialFormValues);
   const [errors, setErrors] = useState({});
   const [selectValues, setSelectValues] = useState({});
@@ -94,15 +94,16 @@ export function UseFormControls(props) {
             Swal.fire({
               icon: "success",
               title: "Perfecto..!",
-              text: "Tu contrato ha sido modificado con exito cheeee...!",
+              text: "Tu contrato ha sido modificado con exito!",
               customClass: {
                 container: "my-swal",
               },
             });
+            update()
       } catch (err) {
         console.log(err);
             Swal.fire({
-              icon: "success",
+              icon: "error",
               title: "Ups..!",
               text: "Tu contrato no ha podido ser modificado, intenta de nuevo",
               customClass: {
