@@ -28,10 +28,10 @@ const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: "flex",
+    display: 'flex',
   },
   appBar: {
-    transition: theme.transitions.create(["margin", "width"], {
+    transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
   appBarShift: {
     width: `calc(100% - ${drawerWidth}px)`,
     marginLeft: drawerWidth,
-    transition: theme.transitions.create(["margin", "width"], {
+    transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen,
     }),
@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(2),
   },
   hide: {
-    display: "none",
+    display: 'none',
   },
   drawer: {
     width: drawerWidth,
@@ -58,24 +58,24 @@ const useStyles = makeStyles((theme) => ({
     width: drawerWidth,
   },
   drawerHeader: {
-    display: "flex",
-    alignItems: "center",
+    display: 'flex',
+    alignItems: 'center',
     padding: theme.spacing(0, 1),
     // necessary for content to be below app bar
     ...theme.mixins.toolbar,
-    justifyContent: "flex-end",
+    justifyContent: 'flex-end',
   },
   content: {
     flexGrow: 1,
     padding: theme.spacing(3),
-    transition: theme.transitions.create("margin", {
+    transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
     marginLeft: -drawerWidth,
   },
   contentShift: {
-    transition: theme.transitions.create("margin", {
+    transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen,
     }),
@@ -108,6 +108,7 @@ export default function LateralMenu({ list, routeAction }) {
 
   return (
     <div className={classes.root}>
+      
       <CssBaseline />
       <AppBar
         position="fixed"
@@ -115,9 +116,7 @@ export default function LateralMenu({ list, routeAction }) {
           [classes.appBarShift]: open,
         })}
       >
-            
         <Toolbar>
-        
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -126,10 +125,9 @@ export default function LateralMenu({ list, routeAction }) {
             className={clsx(classes.menuButton, open && classes.hide)}
           >
             <MenuIcon />
-            
           </IconButton>
           <Typography variant="h6" noWrap>
-            Tablero administración Makelaar
+            Administración Makelaar
           </Typography>
         </Toolbar>
       </AppBar>
@@ -143,13 +141,9 @@ export default function LateralMenu({ list, routeAction }) {
         }}
       >
         <div className={classes.drawerHeader}>
-            <img src={logo} alt="logo" style={{width:"150px"}}/>
+        <img src={logo} alt="logo" style={{width:"150px"}}/>
           <IconButton onClick={handleDrawerClose}>
-            {theme.direction === "ltr" ? (
-              <ChevronLeftIcon />
-            ) : (
-              <ChevronRightIcon />
-            )}
+            {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
           </IconButton>
         </div>
         <Divider />

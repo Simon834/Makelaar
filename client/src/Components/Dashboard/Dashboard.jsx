@@ -1,4 +1,7 @@
 import React from "react";
+import { useParams } from "react-router";
+import { useHistory } from "react-router";
+
 import {
   Grid,
   makeStyles,
@@ -8,6 +11,7 @@ import {
   Icon,
   Card,
 } from "@material-ui/core";
+
 import CardIcon from "./Card/CardIcon";
 import CardHeader from "./Card/CardHeader";
 import CardFooter from "./Card/CardFooter";
@@ -19,6 +23,10 @@ import DescriptionIcon from "@material-ui/icons/Description";
 import HomeWorkIcon from "@material-ui/icons/HomeWork";
 
 import PieChart from "./Chart/PieChart";
+import BarChart from "./Chart/BarChart";
+import TableList from "../TableList/TableList";
+
+import { dashConstant } from "./constant";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -31,12 +39,16 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Dashboard({inmNum, userNum, contNum, inmTot}) {
+export default function Dashboard({inmNum, userNum, contNum, inmTot, userList, prpList, contList}) {
   const classes = useStyles();
   const pieChart={
     series:[inmNum,inmTot-inmNum],
     labels:["Disponibles","Ocupadas"]
   }
+  const { id } = useParams();
+  const history = useHistory();
+  const { columnsUserList, columnsPropertyList, columnsContratList } =
+  dashConstant(id, history);
 
   return (
     <div>
@@ -131,7 +143,7 @@ export default function Dashboard({inmNum, userNum, contNum, inmTot}) {
         </GridItem>
 
         <Grid item xs={12} md={6} lg={8}>
-          <h1>Grafico de ingresos</h1>
+            <BarChart series={pieChart.series} labels={pieChart.labels}/>
         </Grid>
 
         <Grid item xs={12} md={6} lg={4}>
@@ -139,27 +151,13 @@ export default function Dashboard({inmNum, userNum, contNum, inmTot}) {
         </Grid>
 
         <Grid item xs={12} md={6} lg={8}>
-          <h1>Inmuebles</h1>
+        <h2>Propiedades</h2>
+        <TableList columns={columnsPropertyList} rows={prpList} />
         </Grid>
 
         <Grid item xs={12} md={6} lg={4}>
-          <h1>Contratos</h1>
-        </Grid>
-
-        <Grid item xs={12} md={6} lg={8}>
-          <h1>Algo 1</h1>
-        </Grid>
-
-        <Grid item xs={12} md={6} lg={4}>
-          <h1>Algo 2</h1>
-        </Grid>
-
-        <Grid item xs={12} md={6} lg={4}>
-          <h1>Algo 3</h1>
-        </Grid>
-
-        <Grid item xs={12} md={6} lg={8}>
-          <h1>Algo 4</h1>
+        <h2>Contratos</h2>
+        <TableList columns={columnsContratList} rows={contList} />
         </Grid>
       </GridContainer>
     </div>

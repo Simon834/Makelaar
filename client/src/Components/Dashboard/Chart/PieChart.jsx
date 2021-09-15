@@ -5,10 +5,9 @@ import {CardContent,Typography,Card} from '@material-ui/core';
 export default function PieChart({series, labels}) {
  
     let  options= {
-        
-            labels: labels
-          
-          
+       labels: labels,
+       
+       legend: {position: 'bottom'}
         }
 
     return (
@@ -25,7 +24,7 @@ export default function PieChart({series, labels}) {
                                     series={series}
                                     type= 'pie'
                                     width="100%"
-                                    height="400px"
+                                    height="300px"
 
                                 />
                             </div>

@@ -8,17 +8,21 @@ import { uploadConection } from '../../Functions/api/upload';
 const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
-
+        padding: theme.spacing(2),
         flexWrap: 'wrap',
         justifyContent: 'space-around',
         overflow: 'hidden',
-        width: "100%",
+        minWidth: "100%",
+        maxWidth: "100%",
     },
     paper: {
-      width: "100%" ,
+   
+      minWidth: "100%",
+      maxWidth: "100%",
     },
     list: {
-      width: "100%", 
+      minWidth: "100%",
+      maxWidth: "100%",
     },
     button:{
         width:"100%"
@@ -62,7 +66,7 @@ export default function UploadFile({files, setFiles}) {
 
     return (
         <div className={classes.root}>
-            <Paper>
+            <Paper lassName={classes.paper}>
             <Button className={classes.button} variant="contained" color="primary" onClick={() => uploadImage()}>Subir documento</Button>
             <div className={classes.demo}>
             <List className={classes.list}>

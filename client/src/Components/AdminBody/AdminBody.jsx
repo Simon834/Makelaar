@@ -55,6 +55,9 @@ export default function AdminBody() {
           userNum={userList.length}
           contNum={contList.length}
           inmTot={prpList.length}
+          userList={userList}
+          prpList={prpList}
+          contList={contList}
         />
       </Route>
       <Route path="/admin/:id/data">
