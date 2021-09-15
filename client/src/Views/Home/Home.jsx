@@ -106,7 +106,7 @@ export default function Home() {
           />
         }
         carousel={<Carrusel />}
-        content={<FormPago />}
+        content={<Cards inmuebles={estates}/>}
       />
     </div>
   );
