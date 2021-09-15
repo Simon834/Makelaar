@@ -4,3 +4,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
   font-family: "Roboto";
 }
+.bg-action, .bg-action-hover:hover {
+  background-color: #4C3C90 !important;
+}

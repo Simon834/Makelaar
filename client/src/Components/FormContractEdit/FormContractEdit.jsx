@@ -47,7 +47,7 @@ const useStyle = makeStyles((theme) => ({
     width: "100%",} 
 }));
 
-export default function NewContractForm({user}) {
+export default function NewContractForm({user, update}) {
   const classes = useStyle();
   const {
     handleChange,
@@ -59,7 +59,7 @@ export default function NewContractForm({user}) {
     selectValues,
     setContract,
     setFile,
-  } = UseFormControls();
+  } = UseFormControls(update);
 
   const { idcont } = useParams();
 
@@ -87,7 +87,7 @@ export default function NewContractForm({user}) {
     
     async function getContract(){
         const oldContract = await getContractById(idcont);
-        console.log("XXXXXXXX", oldContract);
+        // console.log("XXXXXXXX", oldContract);
         setContract(oldContract);
     }
     getContract();

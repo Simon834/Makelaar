@@ -3,15 +3,23 @@ import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 import TextField from "@material-ui/core/TextField";
-import Visibility from '@material-ui/icons/Visibility';
-import VisibilityOff from '@material-ui/icons/VisibilityOff';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import IconButton from '@material-ui/core/IconButton';
-import OutlinedInput from '@material-ui/core/OutlinedInput';
-import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
+import Visibility from "@material-ui/icons/Visibility";
+import VisibilityOff from "@material-ui/icons/VisibilityOff";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import IconButton from "@material-ui/core/IconButton";
+import OutlinedInput from "@material-ui/core/OutlinedInput";
+import FormControl from "@material-ui/core/FormControl";
+import InputLabel from "@material-ui/core/InputLabel";
 
-import { Container, Grid, makeStyles, Paper, Button } from "@material-ui/core";
+import {
+  Container,
+  Grid,
+  makeStyles,
+  Paper,
+  Button,
+  FormControlLabel,
+  Switch,
+} from "@material-ui/core";
 import { useFormControls } from "./FormControls";
 
 //import "./Styles.css";
@@ -42,9 +50,16 @@ const useStyle = makeStyles((theme) => ({
 
 export default function UserRegistrationForm(props) {
   const isAdmin = props.isAdmin;
+  const update = props.update;
   const classes = useStyle();
-  const { handleChange, handleSubmit, formIsValid, errors, user } =
-    useFormControls(isAdmin);
+  const {
+    handleChange,
+    handleSubmit,
+    formIsValid,
+    errors,
+    user,
+    handleSwitch,
+  } = useFormControls(isAdmin, update);
   const { userInfo } = useSelector((state) => state);
   const history = useHistory();
 
@@ -63,11 +78,12 @@ export default function UserRegistrationForm(props) {
     }
   }, [userInfo]); // eslint-disable-line react-hooks/exhaustive-deps
 
+  console.log(user);
   return (
     <>
       <Paper className={classes.root} elevation={0}>
         <Container className={classes.header}>
-          {isAdmin ? "Registrar admin" : "Regístrate"}
+          {isAdmin ? "Registrar usuario" : "Regístrate"}
         </Container>
         <form
           className={classes.form}
@@ -76,6 +92,22 @@ export default function UserRegistrationForm(props) {
         >
           <Grid container>
             <Grid item xs={6}>
+              {isAdmin ? (
+                <FormControlLabel
+                  className={classes.switch}
+                  label="Admin"
+                  control={
+                    <Switch
+                      checked={user.isAdmin}
+                      value={user.isAdmin}
+                      onChange={handleSwitch}
+                    />
+                  }
+                />
+              ) : (
+                <></>
+              )}
+
               <TextField
                 variant="outlined"
                 label="Nombre"
@@ -99,6 +131,19 @@ export default function UserRegistrationForm(props) {
                 {...(errors.email && {
                   error: true,
                   helperText: errors.email,
+                })}
+                required
+              />
+              <TextField
+                variant="outlined"
+                label="Confirma tu Email"
+                name="confirmEmail"
+                type="email"
+                value={user.confirmEmail}
+                onChange={handleChange}
+                {...(errors.confirmEmail && {
+                  error: true,
+                  helperText: errors.confirmEmail,
                 })}
                 required
               />
@@ -129,7 +174,7 @@ export default function UserRegistrationForm(props) {
               />
               <FormControl variant="outlined">
                 <InputLabel htmlFor="outlined-adornment-password">
-                  Password
+                  Contraseña
                 </InputLabel>
                 <OutlinedInput
                   // variant="outlined"
@@ -157,6 +202,37 @@ export default function UserRegistrationForm(props) {
                   }
                 />
                 <em>{errors.password}</em>
+              </FormControl>
+              <FormControl variant="outlined">
+                <InputLabel htmlFor="outlined-adornment-password">
+                  Confirma tu Contraseña
+                </InputLabel>
+                <OutlinedInput
+                  // variant="outlined"
+                  label="confirmaContraseña"
+                  name="confirmPassword"
+                  type={showPass ? "text" : "password"}
+                  value={user.confirmPassword}
+                  onChange={handleChange}
+                  required
+                  {...(errors.confirmPassword && {
+                    error: true,
+                    helperText: errors.confirmPassword,
+                  })}
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={handleClickShowPassword}
+                        onMouseDown={handleMouseDownPassword}
+                        edge="end"
+                      >
+                        {showPass ? <Visibility /> : <VisibilityOff />}
+                      </IconButton>
+                    </InputAdornment>
+                  }
+                />
+                <em>{errors.confirmPassword}</em>
               </FormControl>
               <p>
                 <Button
