@@ -27,29 +27,38 @@ import { getAllProperties } from "../../Redux/Actions/propertyActions";
 const inmuebles = require("../../inmuebles.json");
 
 export default function Home() {
-  const { concept, tipe, bedroom, bathroom, price, search,properties } = useSelector(
-    (state) => state
-  );
-
+  const { concept, tipe, bedroom, bathroom, price, search, properties } =
+    useSelector((state) => state);
 
   const [estates, setEstates] = useState(properties);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    getEstates()
+    getEstates();
   }, [concept, tipe, bedroom, bathroom, price, search, properties]);
 
-  async function getEstates(){
-    const estatesApi = await filterEstates(properties, concept, tipe, bedroom, bathroom, price, search)
-    setEstates(estatesApi.filter(e=>e.premium && !e.Contract && e.status==="activo"))
+  async function getEstates() {
+    const estatesApi = await filterEstates(
+      properties,
+      concept,
+      tipe,
+      bedroom,
+      bathroom,
+      price,
+      search
+    );
+    setEstates(
+      estatesApi.filter(
+        (e) => e.premium && !e.Contract && e.status === "activo"
+      )
+    );
   }
 
   useEffect(() => {
     window.scrollTo(0, 0);
     dispatch(clearFilter());
     dispatch(getAllProperties());
-
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (

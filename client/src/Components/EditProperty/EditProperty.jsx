@@ -77,7 +77,7 @@ const useStyle = makeStyles((theme) => ({
   },
 }));
 
-export default function EditProperty() {
+export default function EditProperty(props) {
   const classes = useStyle();
   const {
     handleChange,
@@ -93,11 +93,18 @@ export default function EditProperty() {
     toggleChecked,
   } = Controls();
 
+  const idProps = props.id;
+
   const { idprop } = useParams();
 
   async function getPropertyId() {
-    const propertyId = await propertyById(idprop);
-    setProperty(propertyId);
+    if (idProps) {
+      const propertyId = await propertyById(idProps);
+      setProperty(propertyId);
+    } else {
+      const propertyId = await propertyById(idprop);
+      setProperty(propertyId);
+    }
   }
 
   useEffect(() => {
@@ -106,206 +113,200 @@ export default function EditProperty() {
 
   return (
     <>
-      <Paper className={classes.root}>
-        <Container className={classes.header}>Modificá tu propiedad</Container>
-        <form
-          className={classes.form}
-          autoComplete="off"
-          onSubmit={handleSubmit}
-        >
-          <Grid container>
-            <Grid item xs={12}>
-              <FormControlLabel
-                className={classes.switch}
-                label="Destacado"
-                control={
-                  <Switch
-                    checked={property.premium}
-                    value={property.premium}
-                    onChange={handleSwitch}
-                  />
-                }
+      <Container className={classes.header}>Modificá tu propiedad</Container>
+      <form className={classes.form} autoComplete="off" onSubmit={handleSubmit}>
+        <Grid container>
+          <Grid item xs={12}>
+            <FormControlLabel
+              className={classes.switch}
+              label="Destacado"
+              control={
+                <Switch
+                  checked={property.premium}
+                  value={property.premium}
+                  onChange={handleSwitch}
+                />
+              }
+            />
+            <FormGroup>
+              <TextField
+                className={classes.input}
+                // autoComplete='off'
+                // inputProps={{
+                //     autocomplete: 'off',
+                //     form: {
+                //       autocomplete: 'off',
+                //     },
+                //   }}
+                variant="outlined"
+                label="Nombre"
+                name="name"
+                onBlur={handleChange}
+                value={property.name}
+                onChange={handleChange}
+                {...(errors.name && {
+                  error: true,
+                  helperText: errors.name,
+                })}
+                required
               />
-              <FormGroup>
-                <TextField
-                  className={classes.input}
-                  // autoComplete='off'
-                  // inputProps={{
-                  //     autocomplete: 'off',
-                  //     form: {
-                  //       autocomplete: 'off',
-                  //     },
-                  //   }}
-                  variant="outlined"
-                  label="Nombre"
-                  name="name"
-                  onBlur={handleChange}
-                  value={property.name}
-                  onChange={handleChange}
-                  {...(errors.name && {
-                    error: true,
-                    helperText: errors.name,
-                  })}
-                  required
-                />
-                <TextField
-                  className={classes.input}
-                  variant="outlined"
-                  label="Precio"
-                  name="price"
-                  value={property.price}
-                  onChange={handleChange}
-                  {...(errors.price && {
-                    error: true,
-                    helperText: errors.price,
-                  })}
-                  required
-                />
+              <TextField
+                className={classes.input}
+                variant="outlined"
+                label="Precio"
+                name="price"
+                value={property.price}
+                onChange={handleChange}
+                {...(errors.price && {
+                  error: true,
+                  helperText: errors.price,
+                })}
+                required
+              />
 
-                <TextField
-                  className={classes.input}
-                  variant="outlined"
-                  label="Area"
-                  name="area"
-                  value={property.area}
-                  onChange={handleChange}
-                  {...(errors.area && {
-                    error: true,
-                    helperText: errors.area,
-                  })}
-                  required
-                />
+              <TextField
+                className={classes.input}
+                variant="outlined"
+                label="Area"
+                name="area"
+                value={property.area}
+                onChange={handleChange}
+                {...(errors.area && {
+                  error: true,
+                  helperText: errors.area,
+                })}
+                required
+              />
 
-                <TextField
-                  variant="outlined"
-                  label="Habitaciones"
-                  name="rooms"
-                  type="number"
-                  value={property.rooms}
-                  onChange={handleChange}
-                  {...(errors.rooms && {
-                    error: true,
-                    helperText: errors.rooms,
-                  })}
-                  required
-                />
+              <TextField
+                variant="outlined"
+                label="Habitaciones"
+                name="rooms"
+                type="number"
+                value={property.rooms}
+                onChange={handleChange}
+                {...(errors.rooms && {
+                  error: true,
+                  helperText: errors.rooms,
+                })}
+                required
+              />
 
-                <TextField
-                  variant="outlined"
-                  label="Baños"
-                  name="bathrooms"
-                  type="number"
-                  value={property.bathrooms}
-                  onChange={handleChange}
-                  required
-                  {...(errors.bathrooms && {
-                    error: true,
-                    helperText: errors.bathrooms,
-                  })}
-                />
+              <TextField
+                variant="outlined"
+                label="Baños"
+                name="bathrooms"
+                type="number"
+                value={property.bathrooms}
+                onChange={handleChange}
+                required
+                {...(errors.bathrooms && {
+                  error: true,
+                  helperText: errors.bathrooms,
+                })}
+              />
 
-                <FormControl component="fieldset">
-                  <Typography>Tipo de Propiedad</Typography>
-                  <Select
-                    onChange={handleSelect}
-                    aria-label="type"
-                    name="type"
-                    value={property.type}
-                  >
-                    {type &&
-                      type.map((t) => (
-                        <MenuItem value={t} control={<Radio />} label={t}>
-                          {t}
-                        </MenuItem>
-                      ))}
-                  </Select>
-                </FormControl>
+              <FormControl component="fieldset">
+                <Typography>Tipo de Propiedad</Typography>
+                <Select
+                  onChange={handleSelect}
+                  aria-label="type"
+                  name="type"
+                  value={property.type}
+                >
+                  {type &&
+                    type.map((t) => (
+                      <MenuItem value={t} control={<Radio />} label={t}>
+                        {t}
+                      </MenuItem>
+                    ))}
+                </Select>
+              </FormControl>
 
-                <FormControl component="fieldset">
-                  <Typography>Condicion de la Propiedad</Typography>
-                  {/* <FormLabel component="legend">Condicion de la Propiedad</FormLabel> */}
-                  <Select
-                    onChange={handleSelect}
-                    aria-label="condition"
-                    name="condition"
-                    value={property.condition}
-                  >
-                    {condition &&
-                      condition.map((t) => (
-                        <MenuItem value={t} onChange={handleSelect} label={t}>
-                          {t}
-                        </MenuItem>
-                      ))}
-                  </Select>
-                  {/* {console.log("PROPIEDADCHECK", property)} */}
-                </FormControl>
-              </FormGroup>
+              <FormControl component="fieldset">
+                <Typography>Condicion de la Propiedad</Typography>
+                {/* <FormLabel component="legend">Condicion de la Propiedad</FormLabel> */}
+                <Select
+                  onChange={handleSelect}
+                  aria-label="condition"
+                  name="condition"
+                  value={property.condition}
+                >
+                  {condition &&
+                    condition.map((t) => (
+                      <MenuItem value={t} onChange={handleSelect} label={t}>
+                        {t}
+                      </MenuItem>
+                    ))}
+                </Select>
+                {/* {console.log("PROPIEDADCHECK", property)} */}
+              </FormControl>
+            </FormGroup>
 
-              <FormGroup>
-                <TextField
-                  variant="outlined"
-                  label="Descripcion del Inmueble"
-                  name="description"
-                  multiline
-                  minRows={8}
-                  value={property.description}
-                  onChange={handleChange}
-                  required
-                  {...(errors.description && {
-                    error: true,
-                    helperText: errors.description,
-                  })}
-                />
+            <FormGroup>
+              <TextField
+                variant="outlined"
+                label="Descripcion del Inmueble"
+                name="description"
+                multiline
+                minRows={8}
+                value={property.description}
+                onChange={handleChange}
+                required
+                {...(errors.description && {
+                  error: true,
+                  helperText: errors.description,
+                })}
+              />
 
-                <FormControl component="fieldset">
-                  <Typography>Que tipo de actividad desea realizar?</Typography>
-                  <Select
-                    onChange={handleSelect}
-                    aria-label="transaction"
-                    name="transaction"
-                    value={property.transaction}
-                  >
-                    {transaction &&
-                      transaction.map((t) => (
-                        <MenuItem value={t} onChange={handleSelect} label={t}>
-                          {t}
-                        </MenuItem>
-                      ))}
-                  </Select>
-                </FormControl>
+              <FormControl component="fieldset">
+                <Typography>Que tipo de actividad desea realizar?</Typography>
+                <Select
+                  onChange={handleSelect}
+                  aria-label="transaction"
+                  name="transaction"
+                  value={property.transaction}
+                >
+                  {transaction &&
+                    transaction.map((t) => (
+                      <MenuItem value={t} onChange={handleSelect} label={t}>
+                        {t}
+                      </MenuItem>
+                    ))}
+                </Select>
+              </FormControl>
 
-                <FormControl component="fieldset">
-                  <Typography>Estado</Typography>
-                  <Select
-                    onChange={handleSelect}
-                    aria-label="status"
-                    name="status"
-                    value={property.status}
-                  >
-                    {status &&
-                      status.map((t) => (
-                        <MenuItem value={t} onChange={handleSelect} label={t}>
-                          {t}
-                        </MenuItem>
-                      ))}
-                  </Select>
-                </FormControl>
-                <p>
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    type="submit"
-                    className={classes.button}
-                    disabled={!formValid()}
-                  >
-                    Enviar
-                  </Button>
-                </p>
-              </FormGroup>
-            </Grid>
+              <FormControl component="fieldset">
+                <Typography>Estado</Typography>
+                <Select
+                  onChange={handleSelect}
+                  aria-label="status"
+                  name="status"
+                  value={property.status}
+                >
+                  {status &&
+                    status.map((t) => (
+                      <MenuItem value={t} onChange={handleSelect} label={t}>
+                        {t}
+                      </MenuItem>
+                    ))}
+                </Select>
+              </FormControl>
+              <p>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  type="submit"
+                  className={classes.button}
+                  disabled={!formValid()}
+                >
+                  Enviar
+                </Button>
+              </p>
+            </FormGroup>
           </Grid>
-        </form>
-      </Paper>
+        </Grid>
+      </form>
     </>
   );
 }

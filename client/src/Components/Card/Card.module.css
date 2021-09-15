@@ -45,8 +45,6 @@
   --size: 1em;
   width: var(--size);
   height: var(--size);
-  /* margin-top: auto;
-  margin-bottom: 0.5rem; */
 }
 
 .heart__checkbox {
@@ -83,6 +81,29 @@
   top: 0;
   left: 0;
   transition: transform 200ms ease-out;
+}
+
+.iconsContainer {
+  display: flex;
+  flex-direction: row;
+align-items: baseline
+
+}
+
+.edit__icon {
+  cursor: pointer;
+  position: relative;
+  --size: 1em;
+  width: var(--size);
+  height: var(--size);
+  margin-left: 40px;
+  transition: transform 100ms ease-out;
+}
+
+.edit__icon:hover {
+  transform: scale(1.2) ;
+  color: green;
+  
 }
 
 .heart__icon::before,

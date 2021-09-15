@@ -1,6 +1,10 @@
 .my-swal{
   z-index: 99999 !important;
 }
+.swal2-container {
+  z-index: 99999 !important;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
