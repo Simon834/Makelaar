@@ -22,7 +22,7 @@ function App() {
       <Route exact path="/" component={Home} />
       <Route path="/admin" component={AdminPanel} />
       <Route path="/user" component={UserPanel}/>
-      <Route path="/contact" component={Chat}/>
+      <Route path="/contact" component={ViewContact}/>
       <Route exact path="/property" component={ViewProperty}/>
       <Route path="/about" component={ViewAbout}/>
       <Route path="/resetpassword" component={ViewResetPassword}/>
