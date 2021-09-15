@@ -91,7 +91,7 @@ export function UseFormControls() {
       Object.values(errors).every((x) => x === "") && formIsValid();
     if (isValid) {
       try {
-        const contractSubmit = {...contract,file:filesUp }
+        const contractSubmit = { ...contract, file: filesUp };
 
         const addedContract = await addContract(contractSubmit);
         Swal.fire({
@@ -133,7 +133,7 @@ export function UseFormControls() {
     handleSelect,
     selectValues,
     setContract,
-    setFile, 
-    filesUp
+    setFile,
+    filesUp,
   };
 }

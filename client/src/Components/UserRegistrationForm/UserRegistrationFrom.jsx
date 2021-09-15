@@ -136,6 +136,19 @@ export default function UserRegistrationForm(props) {
               />
               <TextField
                 variant="outlined"
+                label="Confirma tu Email"
+                name="confirmEmail"
+                type="email"
+                value={user.confirmEmail}
+                onChange={handleChange}
+                {...(errors.confirmEmail && {
+                  error: true,
+                  helperText: errors.confirmEmail,
+                })}
+                required
+              />
+              <TextField
+                variant="outlined"
                 label="Telefono"
                 name="phone"
                 type="number"
@@ -161,7 +174,7 @@ export default function UserRegistrationForm(props) {
               />
               <FormControl variant="outlined">
                 <InputLabel htmlFor="outlined-adornment-password">
-                  Password
+                  Contraseña
                 </InputLabel>
                 <OutlinedInput
                   // variant="outlined"
@@ -189,6 +202,37 @@ export default function UserRegistrationForm(props) {
                   }
                 />
                 <em>{errors.password}</em>
+              </FormControl>
+              <FormControl variant="outlined">
+                <InputLabel htmlFor="outlined-adornment-password">
+                  Confirma tu Contraseña
+                </InputLabel>
+                <OutlinedInput
+                  // variant="outlined"
+                  label="confirmaContraseña"
+                  name="confirmPassword"
+                  type={showPass ? "text" : "password"}
+                  value={user.confirmPassword}
+                  onChange={handleChange}
+                  required
+                  {...(errors.confirmPassword && {
+                    error: true,
+                    helperText: errors.confirmPassword,
+                  })}
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={handleClickShowPassword}
+                        onMouseDown={handleMouseDownPassword}
+                        edge="end"
+                      >
+                        {showPass ? <Visibility /> : <VisibilityOff />}
+                      </IconButton>
+                    </InputAdornment>
+                  }
+                />
+                <em>{errors.confirmPassword}</em>
               </FormControl>
               <p>
                 <Button
