@@ -29,11 +29,12 @@ useEffect(() => {
   }, [mensajes]);
 
   let count = 0;
+
   const submit = (e) => {
     e.preventDefault();
-    count = count +1
-    socket.emit("mensaje", name, mensaje, count);
-    console.log("MENSAJE ENVIADO", count)
+    count = count + 1
+    socket.emit("mensaje", name, mensaje);
+    console.log("MENSAJE ENVIADO", mensaje)
     setMensaje("");
      console.log("SE EJECUTO SUBMIT")
   };

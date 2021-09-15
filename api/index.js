@@ -10,6 +10,7 @@ const http = require('http');
 const server = http.createServer(app);
 // const socketio = require('socket.io');
 
+
 const socketio = require("socket.io")(server, {
   cors: {
     origin: ["http://localhost:3000"],
@@ -29,7 +30,13 @@ socketio.on('connection', socket =>{
     
     socketio.emit("mensajes",{
       name: "Makelaar",
-      mensaje:` Bienvenida ${name} estas interesada en conocer nuestros horarios de atencion?`
+      mensaje:` Bienvenido/a ${name} responda:
+      Con el numero 1 si esta interesado/a en Alquilar o Vender una propiedad
+      Con el numero 2 si esta interesado/a en Comprar o Alquilar una propiedad
+      Con el numero 3 si esta interesado/a en Realizar un pago mediante este medio
+      Con el numero 4 si tiene otra consulta
+      
+      `
     })
 
     socket.broadcast.emit("mensajes", {
@@ -38,8 +45,8 @@ socketio.on('connection', socket =>{
     });
   });
 
-  socket.on('mensaje', (name, mensaje, count)=>{
-    console.log("COUNT", count)
+  socket.on('mensaje', (name, mensaje)=>{
+   
     socketio.emit('mensajes', {name, mensaje})
     mensaje = mensaje.toLowerCase();
     console.log("MENSAJE RECIBIDO", mensaje)
@@ -50,35 +57,52 @@ socketio.on('connection', socket =>{
     //     mensaje:` Bienvenida ${name} en que podemos ayudarte?`
     //   })
     // }
-if(count === 1){
 
-  if(mensaje.includes("no")){
+
+  if(mensaje.includes(1)){
     socketio.emit("mensajes",{
       name: "Makelaar",
-      mensaje:` Estas interesado/a en el precio de alguno de nuestros inmuebles?`
+      mensaje:` Podes encontrarnos en nuestras oficina en Donaciano del Campillo Nº 2195 o via telefonica (549) 11456982365 de Lunes a Viernes de 08hs a 20hs, a traves de nuestras redes sociales: Facebook e Instagram como: makelaar.inmobiliaria o enviarnos un correo electronico a info_makelaar@yahoo.com para comunicarte con un responsable del area. Gracias`
     })
-  }else{
+  }
+  if(mensaje.includes(2)){
     socketio.emit("mensajes",{
       name: "Makelaar",
-      mensaje:`Podes encontrarnos en nuestras oficina en Donaciano del Campillo Nº 2195 o via telefonica (549) 11456982365 de Lunes a Viernes de 08hs a 20hs. Tambien podes contactarnos a traves de nuestras redes sociales: Facebook e Instagram como: makelaar.inmobiliaria o enviarnos un correo electronico a info_makelaar@yahoo.com con tu consulta. Gracias`
+      mensaje:`Podes encontrar todas las propiedades en Alquiler en venta en el siguiente link: http://localhost:3000/property `,
     })
     
   }
-}
+  if(mensaje.includes(3)){
+    socketio.emit("mensajes",{
+      name: "Makelaar",
+      mensaje:`Para realizar el pago podes dirigirte al siguiente link: LINKPAGO `,
+      })
+    
+  }
 
-if(count ===2){
-if(mensaje.includes("si")){
-  socketio.emit("mensajes",{
-    name: "Makelaar",
-    mensaje:`Podes encontrar el precio de nuestras propiedades en este link http://localhost:3000/property`
-  })
-}else{
-  socketio.emit("mensajes",{
-    name: "Makelaar",
-    mensaje:`Estas interesado en vender o alquilar una propiedad?`
-  })
-}
-}
+  if(mensaje.includes(4)){
+    socketio.emit("mensajes",{
+      name: "Makelaar",
+      mensaje:` Podes encontrarnos en nuestras oficina en Donaciano del Campillo Nº 2195 o via telefonica (549) 11456982365 de Lunes a Viernes de 08hs a 20hs, a traves de nuestras redes sociales: Facebook e Instagram como: makelaar.inmobiliaria o enviarnos un correo electronico a info_makelaar@yahoo.com para comunicarte con un responsable del area. Gracias `,
+      })
+    
+  }
+  
+
+
+// if(count ===2){
+// if(mensaje.includes("si")){
+//   socketio.emit("mensajes",{
+//     name: "Makelaar",
+//     mensaje:`Podes encontrar el precio de nuestras propiedades en este link http://localhost:3000/property`
+//   })
+// }else{
+//   socketio.emit("mensajes",{
+//     name: "Makelaar",
+//     mensaje:`Estas interesado en vender o alquilar una propiedad?`
+//   })
+// }
+// }
 
   });
 
