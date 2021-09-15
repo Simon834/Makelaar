@@ -75,7 +75,7 @@ export default function PropertyDetail() {
         </div>
         <div className={style.contact}>
           <ContactForm
-            msg={`Hola, tengo interés en ${inm.name} en ${inm.address}, ¿podriamos coordinar una visita?`}
+            msg={`Hola, tengo interés en ${inm.name} en ${inm.address}, ¿Podemos coordinar una visita?`}
           />
                     <img
             className={style.img}

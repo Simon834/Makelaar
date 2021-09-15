@@ -36,11 +36,13 @@ export function userLogIn({email, password}){
                        icon: "error",
                        title: "Oh no!",
                        text: "Usuario o contraseña incorrectos",
-                    //    width: 1800 !important,
-                    //    customClass: {
-                    //      container: "my-swal",
-                    //    },
+                       confirmButtonColor: "#4c3c90",
+                       //    width: 1800 !important,
+                          customClass: {
+                            container: "my-swal",
+                          },
                      });
+                     
                     break;
 
                 case 500:
@@ -48,7 +50,16 @@ export function userLogIn({email, password}){
                     //     type: LOGIN_ERROR,
                     //     payload: data.error
                     // });
-                    Swal.fire("Oh no!", "Error en el servidor", "error");
+                    Swal.fire({
+                      icon: "error",
+                      title: "Oh no!",
+                      text: "Error en el servidor",
+                      confirmButtonColor: "#4c3c90",
+                      //    width: 1800 !important,
+                      customClass: {
+                        container: "my-swal",
+                      },
+                    });
                     break;
                     default: break;
          }
@@ -58,6 +69,7 @@ export function userLogIn({email, password}){
                       icon: "error",
                       title: "Oh no!",
                       text: "Usuario o contraseña incorrectos",
+                      confirmButtonColor: "#4c3c90",
                       customClass: {
                         container: "my-swal",
                       },

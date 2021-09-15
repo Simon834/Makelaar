@@ -39,7 +39,6 @@ const useStyle = makeStyles((theme) => ({
   header: {
     fontSize: "25px",
   },
-  
 }));
 
 export default function NewContractForm() {
@@ -53,19 +52,23 @@ export default function NewContractForm() {
     handleSelect,
     selectValues,
     setContract,
-    setFile, 
-    filesUp
+    setFile,
+    filesUp,
   } = UseFormControls();
 
   const [userList, setUserList] = useState([]);
   const [propertyList, setPropertyList] = useState([]);
 
   useEffect(() => {
-    setContract({
-      ...contract,
-      UserId: selectValues.UserId,
-      PropertyId: selectValues.PropertyId,
-    });
+    let prop = propertyList.find((p) => p.id === selectValues.PropertyId);
+    if (prop) {
+      setContract({
+        ...contract,
+        UserId: selectValues.UserId,
+        PropertyId: selectValues.PropertyId,
+        amount: prop.price,
+      });
+    }
   }, [selectValues]);
 
   useEffect(() => {
@@ -76,7 +79,9 @@ export default function NewContractForm() {
 
     async function getAllProperties() {
       const allPropertiesApi = await allProperties();
-      setPropertyList(allPropertiesApi.filter(e=>!e.Contract&&e.status==="activo"));
+      setPropertyList(
+        allPropertiesApi.filter((e) => !e.Contract && e.status === "activo")
+      );
     }
     getAllUser();
     getAllProperties();
@@ -214,7 +219,7 @@ export default function NewContractForm() {
                 required
               />
 
-              <UploadFile files={filesUp} setFiles={setFile}/>
+              <UploadFile files={filesUp} setFiles={setFile} />
 
               {/* <TextField
                 variant="outlined"
