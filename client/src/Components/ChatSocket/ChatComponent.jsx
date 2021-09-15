@@ -2,33 +2,21 @@ import React,{useState, useEffect, useRef}  from 'react';
 import ChatSocket from './ChatSocket';
 import {socket} from './ChatSocket';
 
+
 export default function ChatComponent({name}){
 
     // const [msg, setMsg] = useState("");
     // const [allMsg, setAllMsg] = useState([]);
     const [mensaje, setMensaje] = useState("");
-  const [mensajes, setMensajes] = useState([]);
+   const [mensajes, setMensajes] = useState([]);
 
-    // useEffect(()=>{
-    //     socket.emit('conectado', name)
-    // },[name]);
-
+  
     useEffect(() => {
         socket.emit("conectado", name);
+       
       }, [name]);
 
-//     useEffect(()=>{
-// socket.on('allMsg', msg=>{
-//     setAllMsg([...allMsg, msg])
-//     console.log("TODOS LOS MSG", allMsg)
-// })
-// return ()=>{socket.off()}
-//     }, [allMsg])
 
-//     function submit(e){
-//         e.preventDefault();
-//         socket.emit('msg', name, msg)
-//     }
 useEffect(() => {
     socket.on("mensajes", (mensaje) => {
       setMensajes([...mensajes, mensaje]);
@@ -40,10 +28,12 @@ useEffect(() => {
     };
   }, [mensajes]);
 
+  let count = 0;
   const submit = (e) => {
     e.preventDefault();
-    socket.emit("mensaje", name, mensaje);
-    console.log("MENSAJE ENVIADO", mensaje)
+    count = count +1
+    socket.emit("mensaje", name, mensaje, count);
+    console.log("MENSAJE ENVIADO", count)
     setMensaje("");
      console.log("SE EJECUTO SUBMIT")
   };
