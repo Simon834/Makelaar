@@ -16,23 +16,27 @@ import { uploadConection } from "../../Functions/api/upload";
 import { translationEs, stylesColor } from "./uploadConfig";
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    display: "flex",
-
-    flexWrap: "wrap",
-    justifyContent: "space-around",
-    overflow: "hidden",
-    width: "100%",
-  },
-  paper: {
-    width: "100%",
-  },
-  list: {
-    width: "100%",
-  },
-  button: {
-    width: "100%",
-  },
+    root: {
+        display: 'flex',
+        padding: theme.spacing(2),
+        flexWrap: 'wrap',
+        justifyContent: 'space-around',
+        overflow: 'hidden',
+        minWidth: "100%",
+        maxWidth: "100%",
+    },
+    paper: {
+   
+      minWidth: "100%",
+      maxWidth: "100%",
+    },
+    list: {
+      minWidth: "100%",
+      maxWidth: "100%",
+    },
+    button:{
+        width:"100%"
+    }
 }));
 
 export default function UploadFile({ files, setFiles }) {
@@ -78,41 +82,32 @@ export default function UploadFile({ files, setFiles }) {
     setFiles(fileDel);
   }
 
-  return (
-    <div className={classes.root}>
-      <Paper>
-        <Button
-          className={classes.button}
-          variant="contained"
-          color="primary"
-          onClick={() => uploadImage()}
-        >
-          Subir documento
-        </Button>
-        <div className={classes.demo}>
-          <List className={classes.list}>
-            {files.map((e, pos) => (
-              <ListItem>
-                <ListItemAvatar>
-                  <Avatar>
-                    <FolderIcon />
-                  </Avatar>
-                </ListItemAvatar>
-                <ListItemText primary={e.name} />
-                <ListItemSecondaryAction>
-                  <IconButton
-                    edge="end"
-                    aria-label="delete"
-                    onClick={() => deleteFile(pos)}
-                  >
-                    <DeleteIcon />
-                  </IconButton>
-                </ListItemSecondaryAction>
-              </ListItem>
-            ))}
-          </List>
+    return (
+        <div className={classes.root}>
+            <Paper className={classes.paper}>
+            <Button className={classes.button} variant="contained" color="primary" onClick={() => uploadImage()}>Subir documento</Button>
+            <div className={classes.demo}>
+            <List className={classes.list}>
+              {files.map((e,pos)=>
+                <ListItem>
+                  <ListItemAvatar>
+                    <Avatar>
+                      <FolderIcon />
+                    </Avatar>
+                  </ListItemAvatar>
+                  <ListItemText
+                    primary={e.name}
+                    />
+                  <ListItemSecondaryAction>
+                    <IconButton edge="end" aria-label="delete" onClick={()=>deleteFile(pos)} >
+                      <DeleteIcon />
+                    </IconButton>
+                  </ListItemSecondaryAction>
+                </ListItem>,
+              )}
+            </List>
+          </div>
+            </Paper>
         </div>
-      </Paper>
-    </div>
   );
 }
