@@ -1,123 +1,162 @@
 [
-
-    {
-      
-        "PropertyId":1,
-        "UserId":1,
-        "name": "Alquiler",
-        "startDate": "02/02/2018",
-        "endDate":"02/02/2020" ,
-        "amount": "275.000",
-        "paymentDate":"02/02/2018" ,
-        "comments": "alquiler por dos años",
-        "file":[{"name": "Alquiler", "url":"http://abogadostucuman.com/Uploads/Articulos/Docs/7f19007997434.pdf"}]
-      },
+  {
+    "PropertyId": 1,
+    "UserId": 1,
+    "name": "Alquiler",
+    "startDate": "02/02/2018",
+    "endDate": "02/02/2030",
+    "amount": "275.000",
+    "paymentDate": "02/02/2018",
+    "comments": "alquiler por dos años",
+    "file": [
       {
-        
-          "PropertyId":2,
-          "UserId":2,
-          "name": "Venta",
-          "startDate": "03/03/2021",
-          "endDate":"03/03/2021" ,
-          "amount": "575.000",
-          "paymentDate":"03/03/2021" ,
-          "comments": "Venta Casa",
-          "file":[{"name": "Venta", "url":"http://abogadostucuman.com/Uploads/Articulos/Docs/7f19007997434.pdf"}]
-        },
-        {
-        
-          "PropertyId":3,
-          "UserId":3,
-          "name": "Alquiler",
-          "startDate": "05/05/2019",
-          "endDate":"02/02/2020" ,
-          "amount": "3.000",
-          "paymentDate":"02/02/2020" ,
-          "comments": "Alquiler por un año",
-          "file":[{"name": "alquiler", "url":"http://abogadostucuman.com/Uploads/Articulos/Docs/7f19007997434.pdf"}]
-        },
-        {
-        
-          "PropertyId":4,
-          "UserId":4,
-          "name": "Alquiler",
-          "startDate": "02/02/2018",
-          "endDate":"02/02/2021" ,
-          "amount": "4.000",
-          "paymentDate":"02/02/2021" ,
-          "comments": "Alquiler por 3 años",
-          "file":[{"name": "alquiler", "url":"http://abogadostucuman.com/Uploads/Articulos/Docs/7f19007997434.pdf"}]
-        },
-        {
-        
-          "PropertyId":5,
-          "UserId":5,
-          "name": "Venta",
-          "startDate": "03/02/2021",
-          "endDate":"03/02/2021" ,
-          "amount": "400.000",
-          "paymentDate":"03/02/2021" ,
-          "comments": "Venta casa en cerro",
-          "file":[{"name": "Venta", "url":"http://abogadostucuman.com/Uploads/Articulos/Docs/7f19007997434.pdf"}]
-        },
-        {
-        
-          "PropertyId":6,
-          "UserId":6,
-          "name": "Venta",
-          "startDate": "01/02/2020",
-          "endDate":"01/02/2020" ,
-          "amount": "800.000",
-          "paymentDate":"01/02/2020" ,
-          "comments": "Venta casa urca",
-          "file":[{"name": "Venta", "url":"http://abogadostucuman.com/Uploads/Articulos/Docs/7f19007997434.pdf"}]
-        },
-        {
-          
-            "PropertyId":7,
-            "UserId":7,
-            "name": "Alquiler",
-            "startDate": "10/02/2018",
-            "endDate":"10/02/2020" ,
-            "amount": "5.000",
-            "paymentDate":"10/02/2020" ,
-            "comments": "Alquiler duplex",
-            "file":[{"name": "alquiler", "url":"http://abogadostucuman.com/Uploads/Articulos/Docs/7f19007997434.pdf"}]
-          },
-          {
-          
-            "PropertyId":8,
-            "UserId":8,
-            "name": "Alquiler",
-            "startDate": "02/02/2018",
-            "endDate":"02/02/2020" ,
-            "amount": "900.000",
-            "paymentDate":"02/02/2020" ,
-            "comments": "ALquiler depto",
-            "file":[{"name": "alquiler", "url":"http://abogadostucuman.com/Uploads/Articulos/Docs/7f19007997434.pdf"}]
-          },
-          {
-          
-            "PropertyId":9,
-            "UserId":9,
-            "name": "Venta",
-            "startDate": "02/03/2020",
-            "endDate":"02/03/2020" ,
-            "amount": "850.000",
-            "paymentDate":"02/03/2020" ,
-            "comments": "venta casa",
-            "file":[{"name": "Venta", "url":"http://abogadostucuman.com/Uploads/Articulos/Docs/7f19007997434.pdf"}]
-          },
-          {
-          
-            "PropertyId":10,
-            "UserId":1,
-            "name": "Alquiler",
-            "startDate": "03/02/2018",
-            "endDate":"03/02/2020" ,
-            "amount": "900.000",
-            "paymentDate":"03/02/2020" ,
-            "comments": "Alquiler casa",
-            "file":[{"name": "alquiler", "url":"http://abogadostucuman.com/Uploads/Articulos/Docs/7f19007997434.pdf"}]
-          }
+        "name": "Alquiler",
+        "url": "http://abogadostucuman.com/Uploads/Articulos/Docs/7f19007997434.pdf"
+      }
+    ]
+  },
+  {
+    "PropertyId": 2,
+    "UserId": 2,
+    "name": "Venta",
+    "startDate": "03/03/2021",
+    "endDate": "03/03/2021",
+    "amount": "575.000",
+    "paymentDate": "03/03/2021",
+    "comments": "Venta Casa",
+    "file": [
+      {
+        "name": "Venta",
+        "url": "http://abogadostucuman.com/Uploads/Articulos/Docs/7f19007997434.pdf"
+      }
+    ]
+  },
+  {
+    "PropertyId": 3,
+    "UserId": 3,
+    "name": "Alquiler",
+    "startDate": "05/05/2019",
+    "endDate": "02/02/2020",
+    "amount": "3.000",
+    "paymentDate": "02/02/2020",
+    "comments": "Alquiler por un año",
+    "file": [
+      {
+        "name": "alquiler",
+        "url": "http://abogadostucuman.com/Uploads/Articulos/Docs/7f19007997434.pdf"
+      }
+    ]
+  },
+  {
+    "PropertyId": 4,
+    "UserId": 4,
+    "name": "Alquiler",
+    "startDate": "02/02/2018",
+    "endDate": "02/02/2021",
+    "amount": "4.000",
+    "paymentDate": "02/02/2021",
+    "comments": "Alquiler por 3 años",
+    "file": [
+      {
+        "name": "alquiler",
+        "url": "http://abogadostucuman.com/Uploads/Articulos/Docs/7f19007997434.pdf"
+      }
+    ]
+  },
+  {
+    "PropertyId": 5,
+    "UserId": 5,
+    "name": "Venta",
+    "startDate": "03/02/2021",
+    "endDate": "03/02/2021",
+    "amount": "400.000",
+    "paymentDate": "03/02/2021",
+    "comments": "Venta casa en cerro",
+    "file": [
+      {
+        "name": "Venta",
+        "url": "http://abogadostucuman.com/Uploads/Articulos/Docs/7f19007997434.pdf"
+      }
+    ]
+  },
+  {
+    "PropertyId": 6,
+    "UserId": 6,
+    "name": "Venta",
+    "startDate": "01/02/2020",
+    "endDate": "01/02/2020",
+    "amount": "800.000",
+    "paymentDate": "01/02/2020",
+    "comments": "Venta casa urca",
+    "file": [
+      {
+        "name": "Venta",
+        "url": "http://abogadostucuman.com/Uploads/Articulos/Docs/7f19007997434.pdf"
+      }
+    ]
+  },
+  {
+    "PropertyId": 7,
+    "UserId": 7,
+    "name": "Alquiler",
+    "startDate": "10/02/2018",
+    "endDate": "10/02/2020",
+    "amount": "5.000",
+    "paymentDate": "10/02/2020",
+    "comments": "Alquiler duplex",
+    "file": [
+      {
+        "name": "alquiler",
+        "url": "http://abogadostucuman.com/Uploads/Articulos/Docs/7f19007997434.pdf"
+      }
+    ]
+  },
+  {
+    "PropertyId": 8,
+    "UserId": 8,
+    "name": "Alquiler",
+    "startDate": "02/02/2018",
+    "endDate": "02/02/2020",
+    "amount": "900.000",
+    "paymentDate": "02/02/2020",
+    "comments": "ALquiler depto",
+    "file": [
+      {
+        "name": "alquiler",
+        "url": "http://abogadostucuman.com/Uploads/Articulos/Docs/7f19007997434.pdf"
+      }
+    ]
+  },
+  {
+    "PropertyId": 9,
+    "UserId": 9,
+    "name": "Venta",
+    "startDate": "02/03/2020",
+    "endDate": "02/03/2020",
+    "amount": "850.000",
+    "paymentDate": "02/03/2020",
+    "comments": "venta casa",
+    "file": [
+      {
+        "name": "Venta",
+        "url": "http://abogadostucuman.com/Uploads/Articulos/Docs/7f19007997434.pdf"
+      }
+    ]
+  },
+  {
+    "PropertyId": 10,
+    "UserId": 1,
+    "name": "Alquiler",
+    "startDate": "03/02/2018",
+    "endDate": "03/02/2020",
+    "amount": "900.000",
+    "paymentDate": "03/02/2020",
+    "comments": "Alquiler casa",
+    "file": [
+      {
+        "name": "alquiler",
+        "url": "http://abogadostucuman.com/Uploads/Articulos/Docs/7f19007997434.pdf"
+      }
+    ]
+  }
 ]

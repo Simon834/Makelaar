@@ -5,10 +5,9 @@ import { useHistory } from "react-router";
 
 const useStyle = makeStyles((theme) => ({
   message: {
-    width: "30rem",
     marginLeft: "1rem",
-    padding: theme.spacing(4),
-    fontSize: "1.3rem",
+    padding: "3rem",
+    fontSize: "1.4rem",
   },
 
   container: {
@@ -26,45 +25,50 @@ const useStyle = makeStyles((theme) => ({
   },
   ok: {
     float: "right",
+    padding: "0.5rem",
+    marginBottom: "1rem",
   },
   cancel: {
     float: "left",
+    padding: "0.5rem",
+    marginBottom: "1rem",
   },
 }));
 
-export default function Logout() {
+export default function Logout({ action, auth }) {
   const classes = useStyle();
-  const dispatch = useDispatch()
-  const history = useHistory()
+  const dispatch = useDispatch();
+  const history = useHistory();
   return (
     <div>
-      <Paper className={classes.container}>
-        <Grid className={classes.message}>
-          ¿Estas seguro que deseas cerrar tu sesión?
-        </Grid>
-        <Grid classname={classes.buttonContainer}>
-          <Button
-            variant="contained"
-            color="secondary"
-            className={classes.cancel}
-            onClick={() => {
-              history.goBack()
-            }}
-          >
-            Cancelar
-          </Button>
-          <Button
-            variant="contained"
-            color="primary"
-            className={classes.ok}
-            onClick={() => {
-              dispatch(logOutUser())
-              history.push(`/`)
-            }}>
-            Si, cerrar sesión!
-          </Button>
-        </Grid>
-      </Paper>
+      <Grid className={classes.message}>
+        ¿Estás seguro que deseas cerrar tu sesión?
+      </Grid>
+      <Grid classname={classes.buttonContainer}>
+        <Button
+          variant="contained"
+          color="secondary"
+          className={classes.cancel}
+          onClick={() => {
+            action();
+          }}
+        >
+          Cancelar
+        </Button>
+        <Button
+          variant="contained"
+          color="primary"
+          className={classes.ok}
+          onClick={() => {
+            dispatch(logOutUser());
+            action();
+            auth(false);
+            history.push("/");
+          }}
+        >
+          Si, cerrar sesión!
+        </Button>
+      </Grid>
     </div>
   );
 }
