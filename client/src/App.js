@@ -11,7 +11,7 @@ import ViewAbout from "./Views/ViewAbout/ViewAbout";
 import ViewResetPassword from "./Views/ViewResetPassword/ViewResetPassword";
 import VierwRegister from "./Views/ViewRegister/VierwRegister";
 import ViewPropertyDetail from "./Views/ViewPropertyDetail/ViewPropertyDetail";
-import Chat from "./Components/chat/cha";
+// import Chat from "./Components/chat/cha";
 
  
 

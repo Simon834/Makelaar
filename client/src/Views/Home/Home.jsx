@@ -24,7 +24,8 @@ import { filterEstates } from "../../Functions/filters/filters";
 import { clearFilter } from "../../Redux/Actions/filterActions";
 import { getAllProperties } from "../../Redux/Actions/propertyActions";
 import ChatSocket from "../../Components/ChatSocket/ChatSocket";
-
+import Chat from '../../Components/Chat/cha';
+import FormPago from "../../Components/FormPago/FormPago"
 const inmuebles = require("../../inmuebles.json");
 
 export default function Home() {
@@ -104,7 +105,7 @@ export default function Home() {
           />
         }
         carousel={<Carrusel />}
-        content={<Cards inmuebles={estates}/>}
+        content={<FormPago/>}
       />
     </div>
   );
