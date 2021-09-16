@@ -7,10 +7,10 @@ import { addContract } from "./contract"
 
 export async function preload(){
     if(window.confirm("Desea iniciar la precarga?")){
-
-    await Promise.all(propertyPreload())
-    await Promise.all(userPreload())
-    await Promise.all(contratPreload())
+   
+    await Promise.all(propertyPreload());
+    await Promise.all(contratPreload());
+    await Promise.all(userPreload());
     window.alert("Precarga finalizada")}
 }
 
