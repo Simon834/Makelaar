@@ -2,11 +2,9 @@ import { useState, useEffect } from "react";
 import { updateUser } from "../../Functions/api/users";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router";
-import { logOutUser } from "../../Redux/Actions/userActions";
 import Swal from "sweetalert2";
 
-export const UserDetailControl = () => {
-  let { userInfo } = useSelector((state) => state);
+export const UserInfoControl = (userInfo, update) => {
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -102,14 +100,13 @@ export const UserDetailControl = () => {
     const isValid =
       Object.values(errors).every((x) => x === "") && formIsValid();
     if (isValid) {
-      const registeredUser = await updateUser(user);
-      //console.log(registeredUser);
-      dispatch(logOutUser());
-      history.push(`/`);
+      const registeredUser=await updateUser(user);
+      update()
+      
       Swal.fire({
         icon: "success",
         title: "Perfecto..!",
-        text: "Tus datos han sido actualizados correctamente, vuelva a iniciar seción",
+        text: "Datos actualizados correctamente",
         confirmButtonColor: "#4c3c90",
         customClass: {
           container: "my-swal",

@@ -33,7 +33,6 @@ export default function MenuPanelList({ list, routeAction }) {
 
     const history = useHistory()
 
-    console.log(list)
     function routeHandle(rute) {
         history.push(`${routeAction}${rute}`)
     }
