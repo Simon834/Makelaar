@@ -144,4 +144,33 @@ async function updateProperty(req, res, next) {
   }
 }
 
-module.exports = { addNewProperty, allProperties, updateProperty, idProperties };
+async function deleteProperty(req, res, next){
+  try{
+    const id = req.query.id
+    const propertyToDelete = await Property.findByPk(id, {
+      include: Contract
+    })
+    if(propertyToDelete.deleted){
+      const idCont = propertyToDelete.Contract.id
+      const contractToDelete = await Contract.findByPk(idCont);
+      await contractToDelete.destroy();
+      await propertyToDelete.destroy();
+      res.send("La propiedad ha sido borrada definitivamente");
+    }else{
+      propertyToDelete.deleted = true;
+      await propertyToDelete.save();
+      res.send("la propiedad se encuentra en papelera de reciclaje");
+    }
+  }catch(err){
+    return next(err);
+  }
+}
+
+
+module.exports = {
+  addNewProperty,
+  allProperties,
+  updateProperty,
+  idProperties,
+  deleteProperty,
+};

@@ -103,9 +103,17 @@ async function updateUser(req, res, next) {
   }
 }
 
+async function deleteUser(req, res, next){
+  const id = req.query.id;
+  const userToDelete = User.findByPk(id);
+  userToDelete.destroy();
+  res.send("Usuario borrado con éxito")
+}
+
 module.exports = {
   getUserById,
   allUsers,
   resetPassword,
   updateUser,
+  deleteUser,
 };

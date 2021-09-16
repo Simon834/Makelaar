@@ -5,6 +5,7 @@ const {
   allProperties,
   idProperties,
   updateProperty,
+  deleteProperty,
   // deleteProperty,
 } = require("../controllers/propertiesController");
 const { filterProperties } = require("../controllers/filterControllers");
@@ -14,6 +15,7 @@ router.get("/filter", filterProperties);
 router.get("/allProperties", allProperties);
 router.get("/:id", idProperties);
 router.put("/editproperty", updateProperty);
+router.delete("/delete", deleteProperty);
 // router.delete("/delete", deleteProperty);
 
 module.exports = router;
