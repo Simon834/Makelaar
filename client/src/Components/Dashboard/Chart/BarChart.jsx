@@ -9,6 +9,11 @@ export default function BarChart({series, labels}) {
     
     let state = {
         options: {
+            colors: ["#C63B8E",
+                "#4C3C90",
+                "#D3D65B",
+                "#E1A554",
+                "#E1535E"],
             stroke: {  curve: 'smooth', },
             yaxis: {labels: {formatter: (value) => { return value+" $" },},},
             chart: {

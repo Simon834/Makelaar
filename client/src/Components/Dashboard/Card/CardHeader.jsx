@@ -13,6 +13,7 @@ import styles from "./cardHeaderStyle.js";
 const useStyles = makeStyles(styles);
 
 export default function CardHeader(props) {
+  console.log(props)
   const classes = useStyles();
   const { className, children, color, plain, stats, icon, ...rest } = props;
   const cardHeaderClasses = classNames({

@@ -23,6 +23,7 @@ import DescriptionIcon from "@material-ui/icons/Description";
 import SettingsIcon from "@material-ui/icons/Settings";
 import AdminBody from "../AdminBody/AdminBody";
 import logo from '../../images/logo-color-horizontal.png'
+import TopBar from "../TopBar/TopBar";
 
 const drawerWidth = 240;
 
@@ -107,15 +108,15 @@ export default function LateralMenu({ list, routeAction }) {
   };
 
   return (
+
     <div className={classes.root}>
-      
       <CssBaseline />
       <AppBar
         position="fixed"
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
         })}
-      >
+        >
         <Toolbar>
           <IconButton
             color="inherit"
@@ -123,12 +124,12 @@ export default function LateralMenu({ list, routeAction }) {
             onClick={handleDrawerOpen}
             edge="start"
             className={clsx(classes.menuButton, open && classes.hide)}
-          >
+            >
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
             Administración Makelaar
-          </Typography>
+           </Typography>
         </Toolbar>
       </AppBar>
       <Drawer

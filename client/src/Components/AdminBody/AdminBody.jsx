@@ -11,6 +11,7 @@ import TableList from "../TableList/TableList";
 import UserDetail from "../UserDetail/UserDetail";
 import Logout from "../Logout/Logout";
 import FormProperty from "../FormProperty/FormProperty";
+import UserInfo from "../UserInfo/UserInfo";
 
 import { getAllUserApi } from "../../Functions/api/users";
 import { allProperties } from "../../Functions/api/property";
@@ -25,9 +26,16 @@ export default function AdminBody() {
   const [contList, setContList] = useState([]);
   const { id } = useParams();
   const history = useHistory();
-  const { columnsUserList, columnsPropertyList, columnsContratList } =
-    adminConstant(id, history);
-  const [load, setLoad]=useState(true)
+
+  const {
+    columnsUserList,
+    columnsPropertyList,
+    columnsContratList,
+    userReference,
+    propertyReference,
+    contractReference,
+  } = adminConstant(id, history);
+  const [load, setLoad] = useState(true);
 
   async function get() {
     const allUsersApi = await getAllUserApi();
@@ -47,10 +55,10 @@ export default function AdminBody() {
     }, // eslint-disable-next-line
     [load]
   );
-  
-function updateList(){
-  setLoad(!load)
-}
+
+  function updateList() {
+    setLoad(!load);
+  }
 
   return (
     <div>
@@ -71,33 +79,49 @@ function updateList(){
 
       <Route path="/admin/:id/users">
         <h2>Usuarios</h2>
-        <TableList columns={columnsUserList} rows={userList} />
+        <TableList
+          columns={columnsUserList}
+          rows={userList}
+          reference={userReference}
+        />
       </Route>
       <Route path="/admin/:id/property">
         <h2>Propiedades</h2>
-        <TableList columns={columnsPropertyList} rows={prpList} />
+        <TableList
+          columns={columnsPropertyList}
+          rows={prpList}
+          reference={propertyReference}
+        />
       </Route>
       <Route path="/admin/:id/contrat">
         <h2>Contratos</h2>
-        <TableList columns={columnsContratList} rows={contList} />
+        <TableList
+          columns={columnsContratList}
+          rows={contList}
+          reference={contractReference}
+        />
       </Route>
 
       <Route path="/admin/:id/newadmin">
-        <UserRegistrationForm isAdmin={true} update={updateList}/>
+        <UserRegistrationForm isAdmin={true} update={updateList} />
       </Route>
       <Route path="/admin/:id/newproperty">
-        <FormProperty update={updateList}/>
+        <FormProperty update={updateList} />
       </Route>
       <Route path="/admin/:id/newcontract">
-        <NewContractForm update={updateList}/>
+        <NewContractForm update={updateList} />
       </Route>
 
       <Route path="/admin/:id/editcontract/:idcont">
-        <EditContractForm update={updateList}/>
+        <EditContractForm update={updateList} />
       </Route>
 
       <Route path="/admin/:id/editproperty/:idprop">
-        <EditProperty update={updateList}/>
+        <EditProperty update={updateList} />
+      </Route>
+
+      <Route path="/admin/:id/user/:iduser">
+        <UserInfo userInfo={userList} update={updateList} />
       </Route>
 
       <Route path="/admin/:id/logout">

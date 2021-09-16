@@ -6,7 +6,11 @@ export default function PieChart({series, labels}) {
  
     let  options= {
        labels: labels,
-       
+       colors: ["#C63B8E",
+                "#4C3C90",
+                "#D3D65B",
+                "#E1A554",
+                "#E1535E"],
        legend: {position: 'bottom'}
         }
 

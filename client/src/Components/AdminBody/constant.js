@@ -1,11 +1,6 @@
 import Button from "@material-ui/core/Button";
 
-
-
-
 export function adminConstant(id, history) {
-  
-  
   const columnsUserList = [
     {
       field: "name",
@@ -36,7 +31,7 @@ export function adminConstant(id, history) {
       headerName: "Admin",
       flex: 1,
       headerClassName: "super-app-theme--header",
-    }
+    },
   ];
 
   const columnsPropertyList = [
@@ -154,5 +149,28 @@ export function adminConstant(id, history) {
     },
   ];
 
-  return { columnsUserList, columnsPropertyList, columnsContratList };
+  const userReference = [
+    { name: "Administrador", color: "super-app-theme--ocupado" }
+  ];
+
+  const propertyReference = [
+    { name: "Activo", color: "super-app-theme--activo" },
+    { name: "Destacado", color: "super-app-theme--destacado" },
+    { name: "Ocupado", color: "super-app-theme--ocupado" },
+    { name: "Eliminado", color: "super-app-theme--eliminado" },
+  ];
+
+  const contractReference = [
+    { name: "Activo", color: "super-app-theme--activo" },
+    { name: "Caducado", color: "super-app-theme--eliminado" },
+  ];
+
+  return {
+    columnsUserList,
+    columnsPropertyList,
+    columnsContratList,
+    userReference,
+    propertyReference,
+    contractReference,
+  };
 }

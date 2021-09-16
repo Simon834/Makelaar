@@ -7,6 +7,7 @@ import MenuPanelList from "../../Components/MenuPanelList/MenuPanelList";
 import AdminBody from "../../Components/AdminBody/AdminBody";
 import LateralMenu from "../../Components/LateralMenu/LateralMenu";
 import { menuList } from "./constant";
+import TopBar from "../../Components/TopBar/TopBar";
 
 export default function AdminPanel() {
   const { userInfo } = useSelector((state) => state);
@@ -18,7 +19,6 @@ export default function AdminPanel() {
     }
   }, [userInfo]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  
   return (
     // <div>
     //   <ViewBase
@@ -32,8 +32,12 @@ export default function AdminPanel() {
     //   />
     // </div>
 
-    <div>
-      <LateralMenu list={menuList} routeAction={`/admin/${userInfo.user?.id}`}/>
-    </div>
+      <div>
+         <LateralMenu
+          list={menuList}
+          routeAction={`/admin/${userInfo.user?.id}`}
+        />
+      </div>
+
   );
 }

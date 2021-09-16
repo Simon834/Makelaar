@@ -241,7 +241,7 @@ export default function NewContractForm() {
                 required
               />
             </Grid>
-            <Grid itemclassName={classes.grid}  xs={12} sm={12} md={12}>
+            <Grid item className={classes.grid}  xs={12} sm={12} md={12}>
               <UploadFile files={filesUp} setFiles={setFile} className={classes.upload}/>
             </Grid>
             <Grid item className={classes.grid} xs={12} sm={12} md={12}>

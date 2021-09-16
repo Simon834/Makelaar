@@ -84,7 +84,7 @@ export default function UploadFile({ files, setFiles }) {
 
     return (
         <div className={classes.root}>
-            <Paper lassName={classes.paper}>
+            <Paper className={classes.paper}>
             <Button className={classes.button} variant="contained" color="primary" onClick={() => uploadImage()}>Subir documento</Button>
             <div className={classes.demo}>
             <List className={classes.list}>

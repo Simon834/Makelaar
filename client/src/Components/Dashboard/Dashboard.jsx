@@ -1,6 +1,7 @@
 import React from "react";
 import { useParams } from "react-router";
 import { useHistory } from "react-router";
+import { Button } from "@material-ui/core";
 
 import {
   Grid,
@@ -39,16 +40,30 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Dashboard({inmNum, userNum, contNum, inmTot, userList, prpList, contList}) {
+export default function Dashboard({
+  inmNum,
+  userNum,
+  contNum,
+  inmTot,
+  userList,
+  prpList,
+  contList,
+}) {
   const classes = useStyles();
-  const pieChart={
-    series:[inmNum,inmTot-inmNum],
-    labels:["Disponibles","Ocupadas"]
-  }
+  const pieChart = {
+    series: [inmNum, inmTot - inmNum],
+    labels: ["Disponibles", "Ocupadas"],
+  };
   const { id } = useParams();
   const history = useHistory();
-  const { columnsUserList, columnsPropertyList, columnsContratList } =
-  dashConstant(id, history);
+  const {
+    columnsUserList,
+    columnsPropertyList,
+    columnsContratList,
+    userReference,
+    propertyReference,
+    contractReference,
+  } = dashConstant(id, history);
 
   return (
     <div>
@@ -57,21 +72,17 @@ export default function Dashboard({inmNum, userNum, contNum, inmTot, userList, p
           <Card>
             <CardHeader color="warning" stats icon>
               <CardIcon color="warning">
-              <Icon>
+                <Icon>
                   <ApartmentIcon />
-              </Icon>
+                </Icon>
               </CardIcon>
-              <p className={classes.cardCategory}>Inmuebles <br/> disponibles</p>
-              <h1 className={classes.cardTitle}>
-                {inmNum}
-              </h1>
+              <p className={classes.cardCategory}>
+                Inmuebles <br /> disponibles
+              </p>
+              <h1 className={classes.cardTitle}>{inmNum}</h1>
             </CardHeader>
             <CardFooter stats>
-              <div className={classes.stats}>
-                <a href="#pablo" onClick={(e) => e.preventDefault()}>
-                  Ver inmuebles
-                </a>
-              </div>
+              <div className={classes.stats}></div>
             </CardFooter>
           </Card>
         </GridItem>
@@ -83,17 +94,13 @@ export default function Dashboard({inmNum, userNum, contNum, inmTot, userList, p
                   <PersonIcon />
                 </Icon>
               </CardIcon>
-              <p className={classes.cardCategory}>Usuarios <br/> registrados</p>
-              <h1 className={classes.cardTitle}>
-                {userNum}
-              </h1>
+              <p className={classes.cardCategory}>
+                Usuarios <br /> registrados
+              </p>
+              <h1 className={classes.cardTitle}>{userNum}</h1>
             </CardHeader>
             <CardFooter stats>
-              <div className={classes.stats}>
-                <a href="#pablo" onClick={(e) => e.preventDefault()}>
-                  Ver usuarios
-                </a>
-              </div>
+              <div className={classes.stats}></div>
             </CardFooter>
           </Card>
         </GridItem>
@@ -105,17 +112,13 @@ export default function Dashboard({inmNum, userNum, contNum, inmTot, userList, p
                   <DescriptionIcon />
                 </Icon>
               </CardIcon>
-              <p className={classes.cardCategory}>Contratos <br/> vigentes</p>
-              <h1 className={classes.cardTitle}>
-              {contNum} 
-              </h1>
+              <p className={classes.cardCategory}>
+                Contratos <br /> vigentes
+              </p>
+              <h1 className={classes.cardTitle}>{contNum}</h1>
             </CardHeader>
             <CardFooter stats>
-              <div className={classes.stats}>
-                <a href="#pablo" onClick={(e) => e.preventDefault()}>
-                  Ver contratos
-                </a>
-              </div>
+              <div className={classes.stats}></div>
             </CardFooter>
           </Card>
         </GridItem>
@@ -127,37 +130,33 @@ export default function Dashboard({inmNum, userNum, contNum, inmTot, userList, p
                   <HomeWorkIcon />
                 </Icon>
               </CardIcon>
-              <p className={classes.cardCategory}>Total <br/> inmuebles</p>
-              <h1 className={classes.cardTitle}>
-              {inmTot} 
-              </h1>
+              <p className={classes.cardCategory}>
+                Total <br /> inmuebles
+              </p>
+              <h1 className={classes.cardTitle}>{inmTot}</h1>
             </CardHeader>
             <CardFooter stats>
-              <div className={classes.stats}>
-                <a href="#pablo" onClick={(e) => e.preventDefault()}>
-                  Ver inmuebles
-                </a>
-              </div>
+              <div className={classes.stats}></div>
             </CardFooter>
           </Card>
         </GridItem>
 
         <Grid item xs={12} md={6} lg={8}>
-            <BarChart series={pieChart.series} labels={pieChart.labels}/>
+          <BarChart series={pieChart.series} labels={pieChart.labels} />
         </Grid>
 
         <Grid item xs={12} md={6} lg={4}>
-          <PieChart series={pieChart.series} labels={pieChart.labels}/>
+          <PieChart series={pieChart.series} labels={pieChart.labels} />
         </Grid>
 
         <Grid item xs={12} md={6} lg={8}>
-        <h2>Propiedades</h2>
-        <TableList columns={columnsPropertyList} rows={prpList} />
+          <h2>Propiedades</h2>
+          <TableList columns={columnsPropertyList} rows={prpList} reference={propertyReference}/>
         </Grid>
 
         <Grid item xs={12} md={6} lg={4}>
-        <h2>Contratos</h2>
-        <TableList columns={columnsContratList} rows={contList} />
+          <h2>Contratos</h2>
+          <TableList columns={columnsContratList} rows={contList} reference={contractReference}/>
         </Grid>
       </GridContainer>
     </div>
