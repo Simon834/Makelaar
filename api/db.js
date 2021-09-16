@@ -52,7 +52,7 @@ const { User, Property, Image, Contract, File } = db.models;
 
 //Relaciones
 //contract-property
-Property.hasOne(Contract);
+Property.hasMany(Contract);
 Contract.belongsTo(Property, {foreignKey: "PropertyId"})
 
 //contract-user

@@ -1,5 +1,7 @@
 require("dotenv").config();
+const cron = require('node-cron');
 const { db } = require("./db");
+const {updateContractCron} = require('./cron/contractCron')
 
 const app = require("./app");
 // const server = require("./app");
@@ -113,8 +115,12 @@ socketio.on('connection', socket =>{
 
 
 
-db.sync({ force:true }).then(async () => {
+db.sync({ force:false }).then(async () => {
   server.listen(PORT, () => {
     console.log(`%s listening at ${PORT}`);
+    cron.schedule('30 * * * *', () => {
+      updateContractCron()
+      console.log('update contract state');
+    });
   });
 });

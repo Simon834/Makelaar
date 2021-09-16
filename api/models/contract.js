@@ -28,6 +28,9 @@ module.exports = (db) => {
       type: DataTypes.DATEONLY,
       allowNull: false,
     },
+    status: {
+      type: DataTypes.ENUM("activo", "eliminado", "pendiente","vencido"),
+    },
     comments: {
       //para agregar aclaraciones si es necesario
       type: DataTypes.TEXT,
