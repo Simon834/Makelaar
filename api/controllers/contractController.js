@@ -103,6 +103,15 @@ async function deleteContract(req, res, next) {
   const mes = fecha.getMonth() + 1;
   const año = fecha.getFullYear();
   const dia = fecha.getDate();
+  
+  const modifyAndDelete = async (contract) => {
+    contract.Property.available = true;
+      await contract.Property.save();
+      contract.destroy();
+      return res.json({
+        msg: "se elimino su contrato exitosamente",
+      })
+  }
 
   try {
     const contract = await Contract.findByPk(idContract, {
@@ -110,27 +119,30 @@ async function deleteContract(req, res, next) {
         model: Property,
       },
     });
+  
+    
     const finContrato = contract.endDate;
-    if (
-      finContrato.slice(0, 4) <= año &&
-      finContrato.slice(5, 7) <= mes &&
-      finContrato.slice(8, 10) < dia
-    ) {
-      contract.Property.available = true;
-      await contract.Property.save();
-      contract.destroy();
-      return res.json({
-        msg: "se elimino su contrato exitosamente",
-      });
+
+    if(finContrato.slice(0, 4) <= año){
+      if(finContrato.slice(0, 4) < año){
+        return modifyAndDelete(contract);
+      }if(finContrato.slice(5, 7) <= mes){
+        if(finContrato.slice(5, 7) < mes){
+          return modifyAndDelete(contract);
+        }if(finContrato.slice(8, 10) < dia){
+          return modifyAndDelete(contract);
+        }
+      }
     } else {
       return res.json({
-        msg: "disculpe el contrato aun no expito",
+        msg: "disculpe el contrato aun no expiró",
       });
     }
   } catch (err) {
     next(err);
   }
 }
+
 module.exports = {
   newContract,
   getContracts,
