@@ -44,10 +44,15 @@ const useStyle = makeStyles((theme) => ({
     fontSize: "25px",
   },
   list: {
-    width: "100%",} 
+    width: "100%",
+  },
+  ButtonsConfirm: {
+    display: "flex",
+    flexDirection: "row",
+  },
 }));
 
-export default function NewContractForm({user, update}) {
+export default function NewContractForm({ user, update }) {
   const classes = useStyle();
   const {
     handleChange,
@@ -59,20 +64,40 @@ export default function NewContractForm({user, update}) {
     selectValues,
     setContract,
     setFile,
+    setEmail,
+    handleClickConfirm,
+    handleClickCancel,
   } = UseFormControls(update);
 
   const { idcont } = useParams();
 
   const [userList, setUserList] = useState([]);
   const [propertyList, setPropertyList] = useState([]);
+  const [auth, setAuth] = useState(false);
+
+  let userEmail = userList.find((p) => p.id === contract.UserId);
 
   useEffect(() => {
-    setContract({
-      ...contract,
-      UserId: selectValues.UserId,
-      PropertyId: selectValues.PropertyId,
-    });
-  }, [selectValues]);
+    if (userEmail) {
+      setEmail(userEmail.email);
+    }
+  }, [contract]);
+
+  useEffect(() => {
+    console.log("STATUS", contract.status);
+    if (
+      user &&
+      (contract.status === "pendiente" || contract.status === "modificado")
+    ) {
+      setAuth(true);
+    }
+    if (
+      user &&
+      (contract.status === "rechazado" || contract.status === "activo")
+    ) {
+      setAuth(false);
+    }
+  }, [contract]);
 
   useEffect(() => {
     async function getAllUser() {
@@ -84,17 +109,18 @@ export default function NewContractForm({user, update}) {
       const allPropertiesApi = await allProperties();
       setPropertyList(allPropertiesApi);
     }
-    
-    async function getContract(){
-        const oldContract = await getContractById(idcont);
-        // console.log("XXXXXXXX", oldContract);
-        setContract(oldContract);
+
+    async function getContract() {
+      const oldContract = await getContractById(idcont);
+      // console.log("XXXXXXXX", oldContract);
+      setContract(oldContract);
     }
     getContract();
     getAllUser();
     getAllProperties();
-
   }, []);
+
+  console.log("AUTH", auth);
 
   return (
     <>
@@ -122,7 +148,7 @@ export default function NewContractForm({user, update}) {
               />
               <FormControl className={classes.formControl}>
                 <Select
-                disabled={!!user}
+                  disabled={!!user}
                   onChange={handleSelect}
                   name="UserId"
                   value={contract.UserId}
@@ -147,7 +173,7 @@ export default function NewContractForm({user, update}) {
               </FormControl>
               <FormControl className={classes.formControl}>
                 <Select
-                disabled={!!user}
+                  disabled={!!user}
                   name="PropertyId"
                   onChange={handleSelect}
                   value={contract.PropertyId}
@@ -175,7 +201,7 @@ export default function NewContractForm({user, update}) {
                 <FormHelperText>Seleccione la propiedad</FormHelperText>
               </FormControl>
               <TextField
-              disabled={!!user}
+                disabled={!!user}
                 InputLabelProps={{ shrink: true }}
                 variant="outlined"
                 label="Fecha de inicio"
@@ -190,7 +216,7 @@ export default function NewContractForm({user, update}) {
                 })}
               />
               <TextField
-              disabled={!!user}
+                disabled={!!user}
                 variant="outlined"
                 InputLabelProps={{ shrink: true }}
                 label="Fecha de cierre"
@@ -205,7 +231,7 @@ export default function NewContractForm({user, update}) {
                 })}
               />
               <TextField
-              disabled={!!user}
+                disabled={!!user}
                 variant="outlined"
                 label="Monto a pagar"
                 name="amount"
@@ -220,7 +246,7 @@ export default function NewContractForm({user, update}) {
                 })}
               />
               <TextField
-              disabled={!!user}
+                disabled={!!user}
                 variant="outlined"
                 InputLabelProps={{ shrink: true }}
                 label="Fecha de pago"
@@ -234,17 +260,8 @@ export default function NewContractForm({user, update}) {
                 })}
                 required
               />
-
-              {/* <TextField
-                variant="outlined"
-                label="Archivo adjunto"
-                name="file"
-                value={contract.file}
-                onChange={handleChange}
-                required
-              /> */}
               <TextField
-              disabled={!!user}
+                disabled={!!user}
                 variant="outlined"
                 label="Agregue un comentario (opcional)"
                 multiline
@@ -253,37 +270,54 @@ export default function NewContractForm({user, update}) {
                 value={contract.comments}
                 onChange={handleChange}
               />
-                <List className={classes.list}>
-                  {console.log(contract.Files)}
-              {contract.Files?.map((e,pos)=>
-                <ListItem onClick={()=>window.open(e.url, '_blank')}>
-                  <ListItemAvatar>
-                    <Avatar>
-                      <FolderIcon />
-                    </Avatar>
-                  </ListItemAvatar>
-                  <ListItemText
-                    primary={e.url}
-                    />
-                    
-                </ListItem>,
-              )}
-            </List>
-
-
-              {/* {contract.Files?.map(fl => <a href={fl.url} target="_blank">fl.name</a>)} */}
+              <List className={classes.list}>
+                {console.log(contract.Files)}
+                {contract.Files?.map((e, pos) => (
+                  <ListItem onClick={() => window.open(e.url, "_blank")}>
+                    <ListItemAvatar>
+                      <Avatar>
+                        <FolderIcon />
+                      </Avatar>
+                    </ListItemAvatar>
+                    <ListItemText primary={e.url} />
+                  </ListItem>
+                ))}
+              </List>
               <p>
-                {user?<></>:
-                <Button
-                  
-                  variant="contained"
-                  color="primary"
-                  type="submit"
-                  className={classes.button}
-                  disabled={!formIsValid()}
-                >
-                  Enviar
-                </Button>}
+                {auth ? (
+                  <div className={classes.ButtonsConfirm}>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      onClick={handleClickConfirm}
+                      className={classes.button}
+                    >
+                      Confirmar
+                    </Button>
+
+                    <Button
+                      variant="contained"
+                      color="secondary"
+                      onClick={handleClickCancel}
+                      className={classes.button}
+                    >
+                      Rechazar
+                    </Button>
+                  </div>
+                ) : null}
+                {user ? (
+                  <></>
+                ) : (
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    type="submit"
+                    className={classes.button}
+                    disabled={!formIsValid()}
+                  >
+                    Enviar
+                  </Button>
+                )}
               </p>
             </Grid>
           </Grid>
