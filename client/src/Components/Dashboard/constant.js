@@ -53,31 +53,6 @@ export function dashConstant(id, history) {
       flex: 0.6,
       headerClassName: "super-app-theme--header",
     },
-    {
-      field: "contract",
-      headerName: "Contratos",
-      flex: 1,
-      headerClassName: "super-app-theme--header",
-      renderCell: (params) => {
-        if (params.row.Contract?.id) {
-          return (
-            <strong>
-              <Button
-                variant="contained"
-                color="primary"
-                size="small"
-                style={{ marginLeft: 16 }}
-                onClick={() =>
-                  history.push(`/admin/${id}/editcontract/${params.row.id}`)
-                }
-              >
-                Ver contrato
-              </Button>
-            </strong>
-          );
-        }
-      },
-    },
   ];
 
   const columnsContratList = [

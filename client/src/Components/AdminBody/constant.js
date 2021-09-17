@@ -1,5 +1,3 @@
-import Button from "@material-ui/core/Button";
-
 export function adminConstant(id, history) {
   const columnsUserList = [
     {
@@ -76,32 +74,7 @@ export function adminConstant(id, history) {
       headerName: "Estado",
       flex: 0.8,
       headerClassName: "super-app-theme--header",
-    },
-    {
-      field: "contract",
-      headerName: "Contratos",
-      flex: 1,
-      headerClassName: "super-app-theme--header",
-      renderCell: (params) => {
-        if (params.row.Contract?.id) {
-          return (
-            <strong>
-              <Button
-                variant="contained"
-                color="primary"
-                size="small"
-                style={{ marginLeft: 16 }}
-                onClick={() =>
-                  history.push(`/admin/${id}/editcontract/${params.row.id}`)
-                }
-              >
-                Ver contrato
-              </Button>
-            </strong>
-          );
-        }
-      },
-    },
+    }
   ];
 
   const columnsContratList = [

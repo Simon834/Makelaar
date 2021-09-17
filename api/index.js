@@ -148,7 +148,7 @@ req.end();
 db.sync({ force:false }).then(async () => {
   server.listen(PORT, () => {
     console.log(`%s listening at ${PORT}`);
-    cron.schedule('3 * * * *', () => {
+    cron.schedule('44 * * * *', () => {
       updateContractCron()
       console.log('update contract state');
     });

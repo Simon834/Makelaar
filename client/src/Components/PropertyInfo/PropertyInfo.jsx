@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { propertyById } from "../../Functions/api/property";
 import { propertyInfoConstant } from "./constant";
+import UploadImage from "../Upload/UploadImage";
 
 import {
   Container,
@@ -109,6 +110,9 @@ export default function PropertyInfo({ id, update }) {
     setChecked,
     handleSwitch,
     toggleChecked,
+    img,
+    setImage
+
   } = Controls(update);
 
   const idProps = id;
@@ -122,8 +126,10 @@ export default function PropertyInfo({ id, update }) {
           setProperty(propertyId);
         } else {
             const propertyId = await propertyById(idprop);
-            
             setProperty(propertyId);
+            setImage(propertyId.Images.map(i=>i.url))
+            console.log("prop",propertyId,img)
+
     }
   }
 
@@ -328,6 +334,10 @@ export default function PropertyInfo({ id, update }) {
               <div className={classes.mapContainer}>
                 <GoogleMap lat={property.lat} lng={property.lng} />
               </div>
+            </Grid>
+            <Grid item className={classes.grid} xs={12} sm={12} md={12}>
+              <UploadImage images={img} setImages={setImage} className={classes.upload}/>
+              {/* </FormGroup> */}
             </Grid>
           <Grid item className={classes.grid} xs={12} sm={12} md={12}>
             <Button

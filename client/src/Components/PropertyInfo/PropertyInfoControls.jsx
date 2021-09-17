@@ -27,7 +27,7 @@ const resetValues = {
 
 export function Controls(update) {
   const [property, setProperty] = useState({});
-  console.log("prop",property )
+
   const [img, setImg] = useState([]);
 
   const [errors, setErrors] = useState({});
@@ -186,7 +186,7 @@ export function Controls(update) {
     if (isValid) {
       try {
         // console.log(property);
-        const propertySubmit = { ...property };
+        const propertySubmit = { ...property, photos: img };
         const editedProperty = await editProperty(propertySubmit);
         if (editedProperty) {
           Swal.fire({
@@ -220,6 +220,10 @@ export function Controls(update) {
     });
   };
 
+  function setImage(images) {
+    setImg([...images]);
+  }
+
   return {
     property,
     check,
@@ -236,5 +240,6 @@ export function Controls(update) {
     setChecked,
     toggleChecked,
     handleSwitch,
+    setImage
   };
 }
