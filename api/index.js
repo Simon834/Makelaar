@@ -113,12 +113,42 @@ socketio.on('connection', socket =>{
   })
 })
 
+const https = require("https");
+
+const data = JSON.stringify({
+    name: "John"
+})
+
+const options = {
+    hostname: "hookb.in",
+    port: 443,
+    path: "/E7lxQbZXknuVjY66jqRZ",
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Content-Length": data.length
+    }
+}
+
+const req = https.request(options, (res) => {
+    console.log(`status: ${res.statusCode}`);
+});
+
+req.write(data);
+req.end();
+
+
+
+
+
+
+
 
 
 db.sync({ force:false }).then(async () => {
   server.listen(PORT, () => {
     console.log(`%s listening at ${PORT}`);
-    cron.schedule('30 * * * *', () => {
+    cron.schedule('3 * * * *', () => {
       updateContractCron()
       console.log('update contract state');
     });

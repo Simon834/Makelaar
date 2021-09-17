@@ -29,7 +29,7 @@ module.exports = (db) => {
       allowNull: false,
     },
     status: {
-      type: DataTypes.ENUM("activo", "eliminado", "pendiente","vencido"),
+      type: DataTypes.ENUM("activo", "eliminado", "pendiente", "vencido"),
     },
     comments: {
       //para agregar aclaraciones si es necesario

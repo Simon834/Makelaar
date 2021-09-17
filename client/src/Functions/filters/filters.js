@@ -25,7 +25,7 @@ export async function filterEstates(
   );
   console.log(estatesFiltred)
   const ordenador_premium = estatesFiltred.sort(
-    (a, b) =>  !!a.Contract - !!b.Contract
+    (a, b) =>  !!a.Contracts.length - !!b.Contracts.length
   );
   return ordenador_premium;
 }
