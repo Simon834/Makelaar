@@ -36,6 +36,7 @@ export default function AdminPanel() {
          <LateralMenu
           list={menuList}
           routeAction={`/admin/${userInfo.user?.id}`}
+          body={<AdminBody/>}
         />
       </div>
 
