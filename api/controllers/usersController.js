@@ -27,9 +27,8 @@ async function getUserById(req, res, next) {
 async function allUsers(req, res, next) {
   try {
     const users = await User.findAll({
-      include: Contract,
+      include: { model: Contract, include: Property },
     });
-    // console.log(users);
     if (!users.length) {
       return res.json({ msg: "No hay usuarios registrados por el momento" });
     } else {
@@ -102,9 +101,17 @@ async function updateUser(req, res, next) {
   }
 }
 
+async function deleteUser(req, res, next) {
+  const id = req.query.id;
+  const userToDelete = User.findByPk(id);
+  userToDelete.destroy();
+  res.send("Usuario borrado con éxito");
+}
+
 module.exports = {
   getUserById,
   allUsers,
   resetPassword,
   updateUser,
+  deleteUser,
 };

@@ -1,52 +1,53 @@
 require("dotenv").config();
+const cron = require('node-cron');
 const { db } = require("./db");
+const {updateContractCron} = require('./cron/contractCron')
 
 const app = require("./app");
 // const server = require("./app");
 const PORT = process.env.PORT || 3010;
 
 //socketIo conexion
-const http = require('http');
+const http = require("http");
 const server = http.createServer(app);
 // const socketio = require('socket.io');
 
 const socketio = require("socket.io")(server, {
   cors: {
     origin: ["http://localhost:3000"],
-    methods: ["GET", "POST", "PUT", "DELETE"]
+    methods: ["GET", "POST", "PUT", "DELETE"],
   },
   // transports: ["websocket"],
 });
 
 // const io = socketio(server);
 
-socketio.on('connection', socket =>{
+socketio.on("connection", (socket) => {
   //se ejecuta esta funcion cada vez q un usuario se conecta
   let name;
 
-  socket.on('conectado', (nam)=>{
-    name= nam
-    
-    socketio.emit("mensajes",{
+  socket.on("conectado", (nam) => {
+    name = nam;
+
+    socketio.emit("mensajes", {
       name: "Makelaar",
-      mensaje:` Bienvenido/a ${name} responda:
+      mensaje: ` Bienvenido/a ${name} responda:
       Con el numero 1 si esta interesado/a en Alquilar o Vender una propiedad
       Con el numero 2 si esta interesado/a en Comprar o Alquilar una propiedad
       Con el numero 3 si esta interesado/a en Realizar un pago mediante este medio
       Con el numero 4 si tiene otra consulta
       
-      `
-    })
+      `,
+    });
 
     socket.broadcast.emit("mensajes", {
       name: name,
-      mensaje: `${name} ha entrado en la sala del chat`, 
+      mensaje: `${name} ha entrado en la sala del chat`,
     });
   });
 
-  socket.on('mensaje', (name, mensaje)=>{
-   
-    socketio.emit('mensajes', {name, mensaje})
+  socket.on("mensaje", (name, mensaje) => {
+    socketio.emit("mensajes", { name, mensaje });
     mensaje = mensaje.toLowerCase();
     // console.log("MENSAJE RECIBIDO", mensaje)
 
@@ -82,15 +83,20 @@ socketio.on('connection', socket =>{
 
   });
 
-  socket.on('disconnect', ()=>{
-    socketio.emit('mensajes', {server: "server", mensaje: `${name} ha abandonado la sala`})
-  })
-})
-
-
+  socket.on("disconnect", () => {
+    socketio.emit("mensajes", {
+      server: "server",
+      mensaje: `${name} ha abandonado la sala`,
+    });
+  });
+});
 
 db.sync({ force:false }).then(async () => {
   server.listen(PORT, () => {
     console.log(`%s listening at ${PORT}`);
+    cron.schedule('44 * * * *', () => {
+      updateContractCron()
+      console.log('update contract state');
+    });
   });
 });

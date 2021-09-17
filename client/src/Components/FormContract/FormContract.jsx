@@ -19,13 +19,12 @@ import { UseFormControls } from "./FormContractControls";
 const useStyle = makeStyles((theme) => ({
   form: {
     "& .MuiFormControl-root": {
-      width: "650px",
+      width: "100%",
       margin: theme.spacing(2),
     },
   },
   root: {
-    width: "min-content",
-    margin: theme.spacing(5),
+    width: "100%",
     padding: theme.spacing(3),
     display: "flex",
     flexDirection: "column",
@@ -38,6 +37,17 @@ const useStyle = makeStyles((theme) => ({
   },
   header: {
     fontSize: "25px",
+  },
+  grid: {
+    display: "flex",
+    flexDirection: "columns",
+  },
+  upload:{
+    padding: theme.spacing(2),
+  },
+  button: {
+    width: "100%",
+    
   },
 }));
 
@@ -61,6 +71,16 @@ export default function NewContractForm() {
 
   useEffect(() => {
     let prop = propertyList.find((p) => p.id === selectValues.PropertyId);
+    let user = userList.find((p) => p.id === selectValues.UserId);
+
+    if (user) {
+      setContract({
+        ...contract,
+        UserId: selectValues.UserId,
+        PropertyId: selectValues.PropertyId,
+        email: user.email,
+      });
+    }
     if (prop) {
       setContract({
         ...contract,
@@ -87,6 +107,9 @@ export default function NewContractForm() {
     getAllProperties();
   }, []);
 
+  console.log("contract", contract);
+
+
   return (
     <>
       <Paper className={classes.root}>
@@ -96,7 +119,7 @@ export default function NewContractForm() {
           onSubmit={handleSubmit}
         >
           <Grid container>
-            <Grid item xs={12}>
+            <Grid item className={classes.grid} xs={12} sm={12} md={12}>
               <TextField
                 variant="outlined"
                 label="Titulo"
@@ -110,6 +133,8 @@ export default function NewContractForm() {
                 })}
                 required
               />
+            </Grid>
+            <Grid item className={classes.grid} xs={12} sm={6} md={6}>
               <FormControl className={classes.formControl}>
                 <Select
                   onChange={handleSelect}
@@ -134,6 +159,8 @@ export default function NewContractForm() {
                 </Select>
                 <FormHelperText>Seleccione el usuario</FormHelperText>
               </FormControl>
+            </Grid>
+            <Grid item  className={classes.grid} xs={12} sm={6} md={6}>
               <FormControl className={classes.formControl}>
                 <Select
                   name="PropertyId"
@@ -162,6 +189,8 @@ export default function NewContractForm() {
                 </Select>
                 <FormHelperText>Seleccione la propiedad</FormHelperText>
               </FormControl>
+            </Grid>
+            <Grid item className={classes.grid} xs={12} sm={6} md={6}>
               <TextField
                 InputLabelProps={{ shrink: true }}
                 variant="outlined"
@@ -176,6 +205,8 @@ export default function NewContractForm() {
                   helperText: errors.startDate,
                 })}
               />
+            </Grid>
+            <Grid item className={classes.grid} xs={12} sm={6} md={6}>
               <TextField
                 variant="outlined"
                 InputLabelProps={{ shrink: true }}
@@ -190,6 +221,8 @@ export default function NewContractForm() {
                   helperText: errors.endDate,
                 })}
               />
+            </Grid>
+            <Grid item className={classes.grid} xs={12} sm={6} md={6}>
               <TextField
                 variant="outlined"
                 label="Monto a pagar"
@@ -204,6 +237,8 @@ export default function NewContractForm() {
                   helperText: errors.amount,
                 })}
               />
+            </Grid>
+            <Grid item className={classes.grid} xs={12} sm={6} md={6}>
               <TextField
                 variant="outlined"
                 InputLabelProps={{ shrink: true }}
@@ -218,9 +253,11 @@ export default function NewContractForm() {
                 })}
                 required
               />
-
-              <UploadFile files={filesUp} setFiles={setFile} />
-
+            </Grid>
+            <Grid item className={classes.grid}  xs={12} sm={12} md={12}>
+              <UploadFile files={filesUp} setFiles={setFile} className={classes.upload}/>
+            </Grid>
+            <Grid item className={classes.grid} xs={12} sm={12} md={12}>
               {/* <TextField
                 variant="outlined"
                 label="Archivo adjunto"
@@ -238,7 +275,9 @@ export default function NewContractForm() {
                 value={contract.comments}
                 onChange={handleChange}
               />
-              <p>
+            </Grid>
+            <Grid item className={classes.grid} xs={12} sm={12} md={12}>
+       
                 <Button
                   variant="contained"
                   color="primary"
@@ -248,7 +287,7 @@ export default function NewContractForm() {
                 >
                   Enviar
                 </Button>
-              </p>
+    
             </Grid>
           </Grid>
         </form>

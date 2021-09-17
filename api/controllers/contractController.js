@@ -1,4 +1,7 @@
 const { Contract, User, Property, File, Payment} = require("../db");
+const { sendUserEmail } = require("../email/userEmail");
+const { confirmContract } = require("../email/emailModels/confirmContract");
+const { newContractEmail } = require("../email/emailModels/newContract");
 
 async function newContract(req, res, next) {
   try {
@@ -12,6 +15,7 @@ async function newContract(req, res, next) {
       comments,
       UserId,
       PropertyId,
+      email,
     } = req.body;
 
     let contract = await Contract.create({
@@ -32,6 +36,8 @@ async function newContract(req, res, next) {
 
       await Promise.all(files);
     }
+
+    sendUserEmail(newContractEmail(name, UserId, contract.id), email);
 
     res.json(contract);
   } catch (err) {
@@ -71,11 +77,19 @@ async function getContractsById(req, res, next) {
 }
 
 async function editContract(req, res, next) {
-  const { name, startDate, endDate, amount, paymentDate, comments } = req.body;
+  const {
+    name,
+    startDate,
+    endDate,
+    amount,
+    paymentDate,
+    comments,
+    status,
+    email,
+  } = req.body;
   const id = Number(req.params.id);
   try {
     let foundContract = await Contract.findOne({ where: { id } });
-    // console.log(foundContract);
     if (foundContract) {
       foundContract.name = name;
       foundContract.startDate = startDate;
@@ -83,8 +97,14 @@ async function editContract(req, res, next) {
       foundContract.amount = amount;
       foundContract.paymentDate = paymentDate;
       foundContract.comments = comments;
+      foundContract.status = status;
 
       await foundContract.save();
+      sendUserEmail(
+        confirmContract(name, foundContract.UserId, foundContract.id),
+        email
+      );
+
       return res.json({
         msg: "tu información de contrato ha sido actualizada",
       });
@@ -104,33 +124,46 @@ async function deleteContract(req, res, next) {
   const año = fecha.getFullYear();
   const dia = fecha.getDate();
 
+  const modifyAndDelete = async (contract) => {
+    contract.Property.available = true;
+    await contract.Property.save();
+    contract.destroy();
+    return res.json({
+      msg: "se elimino su contrato exitosamente",
+    });
+  };
+
   try {
     const contract = await Contract.findByPk(idContract, {
       include: {
         model: Property,
       },
     });
+
     const finContrato = contract.endDate;
-    if (
-      finContrato.slice(0, 4) <= año &&
-      finContrato.slice(5, 7) <= mes &&
-      finContrato.slice(8, 10) < dia
-    ) {
-      contract.Property.available = true;
-      await contract.Property.save();
-      contract.destroy();
-      return res.json({
-        msg: "se elimino su contrato exitosamente",
-      });
+
+    if (finContrato.slice(0, 4) <= año) {
+      if (finContrato.slice(0, 4) < año) {
+        return modifyAndDelete(contract);
+      }
+      if (finContrato.slice(5, 7) <= mes) {
+        if (finContrato.slice(5, 7) < mes) {
+          return modifyAndDelete(contract);
+        }
+        if (finContrato.slice(8, 10) < dia) {
+          return modifyAndDelete(contract);
+        }
+      }
     } else {
       return res.json({
-        msg: "disculpe el contrato aun no expito",
+        msg: "disculpe el contrato aun no expiró",
       });
     }
   } catch (err) {
     next(err);
   }
 }
+
 module.exports = {
   newContract,
   getContracts,

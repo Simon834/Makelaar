@@ -96,5 +96,9 @@ module.exports = (db) => {
       type: DataTypes.FLOAT,
       allowNull: false,
     },
+    deleted: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
+    }
   });
 };

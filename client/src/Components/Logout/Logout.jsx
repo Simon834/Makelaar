@@ -39,6 +39,25 @@ export default function Logout({ action, auth }) {
   const classes = useStyle();
   const dispatch = useDispatch();
   const history = useHistory();
+  const handleCancel = () => {
+    if (action) {
+      action();
+    } else {
+      history.push("/");
+    }
+  };
+
+  const handleLogout = () => {
+    if (action) {
+      dispatch(logOutUser());
+      action();
+      auth(false);
+      history.push("/");
+    } else {
+      dispatch(logOutUser());
+      history.push("/");
+    }
+  };
   return (
     <div>
       <Grid className={classes.message}>
@@ -50,7 +69,7 @@ export default function Logout({ action, auth }) {
           color="secondary"
           className={classes.cancel}
           onClick={() => {
-            action();
+            handleCancel();
           }}
         >
           Cancelar
@@ -60,10 +79,7 @@ export default function Logout({ action, auth }) {
           color="primary"
           className={classes.ok}
           onClick={() => {
-            dispatch(logOutUser());
-            action();
-            auth(false);
-            history.push("/");
+            handleLogout();
           }}
         >
           Si, cerrar sesión!

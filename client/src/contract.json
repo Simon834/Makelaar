@@ -4,10 +4,11 @@
     "UserId": 1,
     "name": "Alquiler",
     "startDate": "02/02/2018",
-    "endDate": "02/02/2030",
+    "endDate": "02/02/2020",
     "amount": "275.000",
     "paymentDate": "02/02/2018",
     "comments": "alquiler por dos años",
+    "status": "activo",
     "file": [
       {
         "name": "Alquiler",
@@ -24,6 +25,7 @@
     "amount": "575.000",
     "paymentDate": "03/03/2021",
     "comments": "Venta Casa",
+    "status": "activo",
     "file": [
       {
         "name": "Venta",
@@ -35,11 +37,12 @@
     "PropertyId": 3,
     "UserId": 3,
     "name": "Alquiler",
-    "startDate": "05/05/2019",
+    "startDate": "10/12/2019",
     "endDate": "02/02/2020",
     "amount": "3.000",
     "paymentDate": "02/02/2020",
     "comments": "Alquiler por un año",
+    "status": "activo",
     "file": [
       {
         "name": "alquiler",
@@ -51,11 +54,12 @@
     "PropertyId": 4,
     "UserId": 4,
     "name": "Alquiler",
-    "startDate": "02/02/2018",
-    "endDate": "02/02/2021",
+    "startDate": "10/11/2018",
+    "endDate": "02/05/2022",
     "amount": "4.000",
     "paymentDate": "02/02/2021",
     "comments": "Alquiler por 3 años",
+    "status": "activo",
     "file": [
       {
         "name": "alquiler",
@@ -72,6 +76,7 @@
     "amount": "400.000",
     "paymentDate": "03/02/2021",
     "comments": "Venta casa en cerro",
+    "status": "activo",
     "file": [
       {
         "name": "Venta",
@@ -88,6 +93,7 @@
     "amount": "800.000",
     "paymentDate": "01/02/2020",
     "comments": "Venta casa urca",
+    "status": "activo",
     "file": [
       {
         "name": "Venta",
@@ -99,11 +105,12 @@
     "PropertyId": 7,
     "UserId": 7,
     "name": "Alquiler",
-    "startDate": "10/02/2018",
+    "startDate": "10/02/2022",
     "endDate": "10/02/2020",
     "amount": "5.000",
     "paymentDate": "10/02/2020",
     "comments": "Alquiler duplex",
+    "status": "pendiente",
     "file": [
       {
         "name": "alquiler",
@@ -120,6 +127,7 @@
     "amount": "900.000",
     "paymentDate": "02/02/2020",
     "comments": "ALquiler depto",
+    "status": "pendiente",
     "file": [
       {
         "name": "alquiler",
@@ -131,11 +139,12 @@
     "PropertyId": 9,
     "UserId": 9,
     "name": "Venta",
-    "startDate": "02/03/2020",
+    "startDate": "02/03/2022",
     "endDate": "02/03/2020",
     "amount": "850.000",
     "paymentDate": "02/03/2020",
     "comments": "venta casa",
+    "status": "pendiente",
     "file": [
       {
         "name": "Venta",
@@ -152,6 +161,7 @@
     "amount": "900.000",
     "paymentDate": "03/02/2020",
     "comments": "Alquiler casa",
+    "status": "pendiente",
     "file": [
       {
         "name": "alquiler",
