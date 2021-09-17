@@ -61,6 +61,16 @@ export default function NewContractForm() {
 
   useEffect(() => {
     let prop = propertyList.find((p) => p.id === selectValues.PropertyId);
+    let user = userList.find((p) => p.id === selectValues.UserId);
+
+    if (user) {
+      setContract({
+        ...contract,
+        UserId: selectValues.UserId,
+        PropertyId: selectValues.PropertyId,
+        email: user.email,
+      });
+    }
     if (prop) {
       setContract({
         ...contract,
@@ -86,6 +96,9 @@ export default function NewContractForm() {
     getAllUser();
     getAllProperties();
   }, []);
+
+  console.log("contract", contract);
+
 
   return (
     <>

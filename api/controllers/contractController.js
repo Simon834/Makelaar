@@ -1,5 +1,7 @@
 const { Contract,User,Property, File } = require("../db");
-
+const { sendUserEmail } = require("../email/userEmail");
+const { confirmContract } = require("../email/emailModels/confirmContract");
+const { newContractEmail } = require("../email/emailModels/newContract");
 
 async function newContract(req, res, next) {
   try {
@@ -13,8 +15,9 @@ async function newContract(req, res, next) {
       comments,
       UserId,
       PropertyId,
+      email,
     } = req.body;
-  
+
     let contract = await Contract.create({
       name: name,
       startDate: startDate,
@@ -26,13 +29,15 @@ async function newContract(req, res, next) {
       UserId: UserId,
     });
 
-    if(file){
+    if (file) {
       const files = file?.map(
         async (f) => await contract.createFile({ url: f.url })
       );
 
       await Promise.all(files);
     }
+
+    sendUserEmail(newContractEmail(name, UserId, contract.id), email);
 
     res.json(contract);
   } catch (err) {
@@ -58,8 +63,8 @@ async function getContracts(req, res, next) {
 async function getContractsById(req, res, next) {
   const contractId = req.params.id;
   try {
-    const contract = await Contract.findByPk(contractId,{
-      include: File
+    const contract = await Contract.findByPk(contractId, {
+      include: File,
     });
     if (contract) {
       res.json(contract);
@@ -72,22 +77,37 @@ async function getContractsById(req, res, next) {
 }
 
 async function editContract(req, res, next) {
-  const { name, startDate, endDate, amount, paymentDate, comments } =
-    req.body;
-  const id = Number(req.params.id)
+  const {
+    name,
+    startDate,
+    endDate,
+    amount,
+    paymentDate,
+    comments,
+    status,
+    email,
+  } = req.body;
+  const id = Number(req.params.id);
   try {
     let foundContract = await Contract.findOne({ where: { id } });
-    console.log(foundContract)
-    if(foundContract){
+    if (foundContract) {
       foundContract.name = name;
       foundContract.startDate = startDate;
       foundContract.endDate = endDate;
       foundContract.amount = amount;
       foundContract.paymentDate = paymentDate;
       foundContract.comments = comments;
+      foundContract.status = status;
 
       await foundContract.save();
-      return res.json({ msg: "tu información de contrato ha sido actualizada" })
+      sendUserEmail(
+        confirmContract(name, foundContract.UserId, foundContract.id),
+        email
+      );
+
+      return res.json({
+        msg: "tu información de contrato ha sido actualizada",
+      });
     }
   } catch (err) {
     console.log(err);

@@ -30,7 +30,6 @@ async function allUsers(req, res, next) {
     const users = await User.findAll({
       include: Contract,
     });
-    console.log(users);
     if (!users.length) {
       return res.json({ msg: "No hay usuarios registrados por el momento" });
     } else {
