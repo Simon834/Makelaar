@@ -53,7 +53,14 @@ export default function Home() {
     );
     setEstates(
       estatesApi.filter(
-        (e) => e.premium && !e.Contract && e.status === "activo"
+        (e) => {
+          let contract
+          if(e.Contracts.length){
+            contract=e.Contracts[e.Contracts.length - 1].status !== "activo"
+          }else{
+            contract=true
+          }
+          return e.premium && contract && e.status === "activo"}
       )
     );
   }

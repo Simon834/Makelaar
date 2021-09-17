@@ -12,6 +12,8 @@ const initialFormValues = {
   comments: "",
   UserId: "",
   PropertyId: "",
+  status: "pendiente",
+  email: "",
 };
 
 export function UseFormControls() {

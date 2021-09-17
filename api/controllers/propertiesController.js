@@ -1,4 +1,4 @@
-const { Property, Image, Contract } = require("../db");
+const { Property, Image, Contract, User } = require("../db");
 const axios = require("axios");
 var mercadopago = require("mercadopago");
 mercadopago.configure({
@@ -138,7 +138,7 @@ async function idProperties(req, res, next) {
   console.log(id);
   try {
     const properties = await Property.findByPk(id, {
-      include: [{ model: Image }, { model: Contract }],
+      include: [{ model: Image }, { model: Contract, include: User }],
     });
     if (properties) {
       return res.json(properties);

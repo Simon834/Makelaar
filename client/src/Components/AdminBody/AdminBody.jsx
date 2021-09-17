@@ -6,7 +6,7 @@ import Dashboard from "../Dashboard/Dashboard";
 import UserRegistrationForm from "../UserRegistrationForm/UserRegistrationFrom";
 import NewContractForm from "../FormContract/FormContract";
 import EditContractForm from "../FormContractEdit/FormContractEdit";
-import EditProperty from "../EditProperty/EditProperty";
+import PropertyInfo from "../PropertyInfo/PropertyInfo"
 import TableList from "../TableList/TableList";
 import UserDetail from "../UserDetail/UserDetail";
 import Logout from "../Logout/Logout";
@@ -24,6 +24,7 @@ export default function AdminBody() {
   const [prpList, setPropList] = useState([]);
   const [prpDisp, setPrpDisp] = useState([]);
   const [contList, setContList] = useState([]);
+  const [contActiveList, setContActiveList] = useState([]);
   const { id } = useParams();
   const history = useHistory();
 
@@ -43,10 +44,11 @@ export default function AdminBody() {
     const allPropsApi = await allProperties();
     setPropList(allPropsApi);
     setPrpDisp(
-      allPropsApi.filter((p) => p.status === "activo" && p.Contract === null)
+      allPropsApi.filter((p) => p.status === "activo" && !p.Contracts.some(e=>e.status==="activo"))
     );
     const allContrApi = await getAllContract();
     setContList(allContrApi);
+    setContActiveList(allContrApi.filter(c=>c.status==="activo"))
   }
 
   useEffect(
@@ -66,7 +68,7 @@ export default function AdminBody() {
         <Dashboard
           inmNum={prpDisp.length}
           userNum={userList.length}
-          contNum={contList.length}
+          contNum={contActiveList.length}
           inmTot={prpList.length}
           userList={userList}
           prpList={prpList}
@@ -117,7 +119,7 @@ export default function AdminBody() {
       </Route>
 
       <Route path="/admin/:id/editproperty/:idprop">
-        <EditProperty update={updateList} />
+        <PropertyInfo update={updateList} />
       </Route>
 
       <Route path="/admin/:id/user/:iduser">
