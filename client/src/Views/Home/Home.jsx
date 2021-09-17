@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
+import FormPago from "../../Components/FormPago/FormPago";
+
 import ViewBase from "../ViewBase/view-base";
 import Carrusel from "../../Components/Carrusel/Carrusel";
 import Cards from "../../Components/Cards/Cards";

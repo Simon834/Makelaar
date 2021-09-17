@@ -1,4 +1,4 @@
-const { Contract,User,Property, File } = require("../db");
+const { Contract, User, Property, File } = require("../db");
 const { sendUserEmail } = require("../email/userEmail");
 const { confirmContract } = require("../email/emailModels/confirmContract");
 const { newContractEmail } = require("../email/emailModels/newContract");
@@ -115,4 +115,59 @@ async function editContract(req, res, next) {
   }
 }
 
-module.exports = { newContract, getContracts, getContractsById, editContract };
+async function deleteContract(req, res, next) {
+  const idContract = req.query.id;
+
+  const tiempoTranscurrido = Date.now();
+  const fecha = new Date(tiempoTranscurrido);
+  const mes = fecha.getMonth() + 1;
+  const año = fecha.getFullYear();
+  const dia = fecha.getDate();
+
+  const modifyAndDelete = async (contract) => {
+    contract.Property.available = true;
+    await contract.Property.save();
+    contract.destroy();
+    return res.json({
+      msg: "se elimino su contrato exitosamente",
+    });
+  };
+
+  try {
+    const contract = await Contract.findByPk(idContract, {
+      include: {
+        model: Property,
+      },
+    });
+
+    const finContrato = contract.endDate;
+
+    if (finContrato.slice(0, 4) <= año) {
+      if (finContrato.slice(0, 4) < año) {
+        return modifyAndDelete(contract);
+      }
+      if (finContrato.slice(5, 7) <= mes) {
+        if (finContrato.slice(5, 7) < mes) {
+          return modifyAndDelete(contract);
+        }
+        if (finContrato.slice(8, 10) < dia) {
+          return modifyAndDelete(contract);
+        }
+      }
+    } else {
+      return res.json({
+        msg: "disculpe el contrato aun no expiró",
+      });
+    }
+  } catch (err) {
+    next(err);
+  }
+}
+
+module.exports = {
+  newContract,
+  getContracts,
+  getContractsById,
+  editContract,
+  deleteContract,
+};

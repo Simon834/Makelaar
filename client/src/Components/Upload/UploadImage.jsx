@@ -8,6 +8,7 @@ import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
 import Paper from "@material-ui/core/Paper";
 import { uploadConection } from "../../Functions/api/upload";
+import { translationEs, stylesColor } from "./uploadConfig";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -15,9 +16,10 @@ const useStyles = makeStyles((theme) => ({
     flexWrap: "wrap",
     justifyContent: "space-around",
     overflow: "hidden",
-  
-    minWidth: "350px",
-    maxWidth: "350px",
+    padding: theme.spacing(2),
+    minWidth: "100%",
+    maxWidth: "100%",
+
   },
   paper: {
     width: "100%",
@@ -56,6 +58,10 @@ export default function UploadImage({ images = [], setImages }) {
       {
         cloudName: "makelaar",
         uploadPreset: "amojar0m",
+        language: "es",
+        buttonClass: "bg-action",
+        text: translationEs,
+        styles:stylesColor
       },
       (error, result) => {
         if (!error && result && result.event === "success") {
