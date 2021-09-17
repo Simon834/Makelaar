@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
+
 import ViewBase from "../ViewBase/view-base";
 import Carrusel from "../../Components/Carrusel/Carrusel";
-import Cards from "../../Components/Cards/Cards";
-// import FavoriteCard from "../../Components/Favorites/FavoriteCard";
-// import FavoriteCards from "../../Components/Favorites/FavoritesCards/FavoriteCards";
+ import Cards from "../../Components/Cards/Cards";
+import FavoriteCard from "../../Components/Favorites/FavoriteCard";
+import FavoriteCards from "../../Components/Favorites/FavoritesCards/FavoriteCards";
 
 import Filter from "../Filters/Filters";
 import SearchBar from "../../Components/SearchBar/SearchBar";
@@ -23,9 +24,9 @@ import { filterEstates } from "../../Functions/filters/filters";
 
 import { clearFilter } from "../../Redux/Actions/filterActions";
 import { getAllProperties } from "../../Redux/Actions/propertyActions";
-import ChatSocket from "../../Components/ChatSocket/ChatSocket";
-import Chat from '../../Components/Chat/cha';
-import FormPago from "../../Components/FormPago/FormPago"
+// import ChatSocket from "../../Components/ChatSocket/ChatSocket";
+// import Chat from '../../Components/Chat/cha';
+// import FormPago from "../../Components/FormPago/FormPago"
 const inmuebles = require("../../inmuebles.json");
 
 export default function Home() {
@@ -105,7 +106,7 @@ export default function Home() {
           />
         }
         carousel={<Carrusel />}
-        content={<FormPago/>}
+        content={<Cards inmuebles={estates}/>}
       />
     </div>
   );

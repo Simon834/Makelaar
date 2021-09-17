@@ -10,7 +10,6 @@ const http = require('http');
 const server = http.createServer(app);
 // const socketio = require('socket.io');
 
-
 const socketio = require("socket.io")(server, {
   cors: {
     origin: ["http://localhost:3000"],
@@ -49,15 +48,7 @@ socketio.on('connection', socket =>{
    
     socketio.emit('mensajes', {name, mensaje})
     mensaje = mensaje.toLowerCase();
-    console.log("MENSAJE RECIBIDO", mensaje)
-
-    // if(mensaje.includes("hola"||"buenas tardes" || "buenos dias" ||"buenas noches")){
-    //   socketio.emit("mensajes",{
-    //     name: "Makelaar",
-    //     mensaje:` Bienvenida ${name} en que podemos ayudarte?`
-    //   })
-    // }
-
+    // console.log("MENSAJE RECIBIDO", mensaje)
 
   if(mensaje.includes(1)){
     socketio.emit("mensajes",{
@@ -89,21 +80,6 @@ socketio.on('connection', socket =>{
   }
   
 
-
-// if(count ===2){
-// if(mensaje.includes("si")){
-//   socketio.emit("mensajes",{
-//     name: "Makelaar",
-//     mensaje:`Podes encontrar el precio de nuestras propiedades en este link http://localhost:3000/property`
-//   })
-// }else{
-//   socketio.emit("mensajes",{
-//     name: "Makelaar",
-//     mensaje:`Estas interesado en vender o alquilar una propiedad?`
-//   })
-// }
-// }
-
   });
 
   socket.on('disconnect', ()=>{
@@ -113,7 +89,7 @@ socketio.on('connection', socket =>{
 
 
 
-db.sync({ force:true }).then(async () => {
+db.sync({ force:false }).then(async () => {
   server.listen(PORT, () => {
     console.log(`%s listening at ${PORT}`);
   });

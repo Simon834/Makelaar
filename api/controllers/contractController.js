@@ -1,4 +1,4 @@
-const { Contract, User, Property, File } = require("../db");
+const { Contract, User, Property, File, Payment} = require("../db");
 
 async function newContract(req, res, next) {
   try {
@@ -58,7 +58,7 @@ async function getContractsById(req, res, next) {
   const contractId = req.params.id;
   try {
     const contract = await Contract.findByPk(contractId, {
-      include: File,
+      include:[ { model: Payment, include: User},{model:File}], 
     });
     if (contract) {
       res.json(contract);
@@ -75,7 +75,7 @@ async function editContract(req, res, next) {
   const id = Number(req.params.id);
   try {
     let foundContract = await Contract.findOne({ where: { id } });
-    console.log(foundContract);
+    // console.log(foundContract);
     if (foundContract) {
       foundContract.name = name;
       foundContract.startDate = startDate;

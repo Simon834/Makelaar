@@ -5,13 +5,15 @@ const {
   allProperties,
   idProperties,
   updateProperty,
-  paymentProperty,
-
   // deleteProperty,
 } = require("../controllers/propertiesController");
-const { filterProperties } = require("../controllers/filterControllers");
 
-router.get("/paymenttt", paymentProperty);
+const {createPreference, newNotification, getAllPayments} = require("../controllers/paymentsControllers")
+const { filterProperties } = require("../controllers/filterControllers");
+ 
+router.get("/allPayments", getAllPayments)
+router.post("/payment", createPreference);
+router.post("/notifications", newNotification)
 router.post("/addProperty", addNewProperty);
 router.get("/filter", filterProperties);
 router.get("/allProperties", allProperties);
