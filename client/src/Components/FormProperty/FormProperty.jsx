@@ -389,7 +389,6 @@ export default function FormProperty(props) {
               {/* </FormGroup>
               <FormGroup> */}
               <div className={classes.mapContainer}>
-                <h5>Seleccioná la ubicacion exacta:</h5>
                 <GoogleMap lat={property.lat} lng={property.lng} />
               </div>
             </Grid>

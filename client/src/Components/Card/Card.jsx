@@ -85,6 +85,7 @@ export default function CardComponent(props) {
   /////////modal
 
   let idProp = props.id;
+  console.log(props,"card")
 
   const OpenModalEdit = () => {
     return (
@@ -123,7 +124,7 @@ export default function CardComponent(props) {
   useEffect(() => {
     if (favorites.length > 0) {
       const searFav = favorites.filter((e) => e.id * 1 === props.id * 1);
-      console.log("favorites", favorites, "searFav", searFav, "id", props.id);
+   
       if (searFav.length) {
         setFav(true);
       }
@@ -133,8 +134,6 @@ export default function CardComponent(props) {
       localStorage.setItem("favorites", JSON.stringify([]));
     } // eslint-disable-next-line
   }, [favorites]);
-
-  console.log("favorites", props);
 
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -149,20 +148,16 @@ export default function CardComponent(props) {
 
   return (
     <Card className={classes.root}>
-      {props.contrat ? (
+      {props.contrat?.status === "activo" ? (
         <Alert severity="info" elevation={6} variant="filled">
-          {`Ocupada`}{" "}
+          {`Ocupada hasta ${props.contrat.endDate}`}{" "}
         </Alert>
       ) : (
-        <></>
-      )}
-      {props.transaction && !props.contrat ? (
         <Alert severity="success" elevation={6} variant="filled">
-          {`Disponible para ${props.transaction} ${props.condition}`}{" "}
-        </Alert>
-      ) : (
-        <></>
+        {`Disponible para ${props.transaction} ${props.condition}`}{" "}
+      </Alert>
       )}
+      
       {!props.hideImage ? (
         <CardMedia
           className={classes.media}

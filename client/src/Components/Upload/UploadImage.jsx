@@ -51,6 +51,7 @@ export default function UploadImage({ images = [], setImages }) {
   const classes = useStyles();
   const [imgArr, setImgArr]=useState(images)
 
+
   useEffect(() => {
     // const myWidgetConect = uploadConection(imgArr,setImages)
     setImgArr(images)
@@ -66,14 +67,21 @@ export default function UploadImage({ images = [], setImages }) {
       (error, result) => {
         if (!error && result && result.event === "success") {
           imgArr.push(result.info.url);
-          setImages([...imgArr]);
+          setImgArr([...imgArr]);
         }
       }
     );
     myWidgetConect.open();
     myWidgetConect.close();
     setmyWidget(myWidgetConect);
-  }, [images]);
+  }, []);
+
+  useEffect(() => {
+   
+    setImages([...images,...imgArr])
+
+  }, [imgArr])
+
 
   async function uploadImage() {
     await myWidget.open();
@@ -82,7 +90,7 @@ export default function UploadImage({ images = [], setImages }) {
   function deleteImg(pos) {
     let imgDel = [...images];
     imgDel.splice(pos, 1);
-    imgArr.splice(pos, 1);
+    setImgArr([...imgArr.splice(pos, 1)])
     setImages(imgDel);
   }
 
