@@ -1,4 +1,4 @@
-const { Contract, User, Property, File } = require("../db");
+const { Contract, User, Property, File, Payment} = require("../db");
 const { sendUserEmail } = require("../email/userEmail");
 const { confirmContract } = require("../email/emailModels/confirmContract");
 const { newContractEmail } = require("../email/emailModels/newContract");
@@ -64,7 +64,7 @@ async function getContractsById(req, res, next) {
   const contractId = req.params.id;
   try {
     const contract = await Contract.findByPk(contractId, {
-      include: File,
+      include:[ { model: Payment, include: User},{model:File}], 
     });
     if (contract) {
       res.json(contract);

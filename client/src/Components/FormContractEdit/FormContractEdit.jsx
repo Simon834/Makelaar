@@ -6,6 +6,7 @@ import { getAllContract, getContractById } from "../../Functions/api/contract";
 import UploadFile from "../Upload/UploadFile";
 import {IconButton, List ,ListItem, ListItemAvatar, Avatar,ListItemText,ListItemSecondaryAction } from '@material-ui/core';
 import {Delete as DeleteIcon, Folder as FolderIcon } from '@material-ui/icons';
+import BtnPayment from "../BtnPayment/BtnPayment";
 
 import {
   MenuItem,
@@ -19,6 +20,7 @@ import {
   Button,
 } from "@material-ui/core";
 import { UseFormControls } from "./FormContractEditControls";
+
 
 const useStyle = makeStyles((theme) => ({
   form: {
@@ -284,6 +286,17 @@ export default function NewContractForm({ user, update }) {
                 ))}
               </List>
               <p>
+                {user? <BtnPayment id={idcont} title={contract.name} description={`Pago contrato ${contract.name} por ${contract.PropertyId}`} price={contract.amount}/>:
+                <Button
+                  
+                  variant="contained"
+                  color="primary"
+                  type="submit"
+                  className={classes.button}
+                  disabled={!formIsValid()}
+                >
+                  Enviar
+                </Button>}
                 {auth ? (
                   <div className={classes.ButtonsConfirm}>
                     <Button
@@ -305,19 +318,7 @@ export default function NewContractForm({ user, update }) {
                     </Button>
                   </div>
                 ) : null}
-                {user ? (
-                  <></>
-                ) : (
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    type="submit"
-                    className={classes.button}
-                    disabled={!formIsValid()}
-                  >
-                    Enviar
-                  </Button>
-                )}
+                
               </p>
             </Grid>
           </Grid>

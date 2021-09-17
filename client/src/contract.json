@@ -168,5 +168,37 @@
         "url": "http://abogadostucuman.com/Uploads/Articulos/Docs/7f19007997434.pdf"
       }
     ]
+  },
+  {
+    "PropertyId": 11,
+    "UserId": 22,
+    "name": "Alquiler",
+    "startDate": "03/02/2018",
+    "endDate": "03/02/2022",
+    "amount": "15000",
+    "paymentDate": "03/02/2020",
+    "comments": "Alquiler casa",
+    "file": [
+      {
+        "name": "alquiler",
+        "url": "http://abogadostucuman.com/Uploads/Articulos/Docs/7f19007997434.pdf"
+      }
+    ]
+  },
+  {
+    "PropertyId": 12,
+    "UserId": 23,
+    "name": "Alquiler",
+    "startDate": "03/02/2018",
+    "endDate": "03/02/2022",
+    "amount": "18000",
+    "paymentDate": "03/02/2020",
+    "comments": "Alquiler casa",
+    "file": [
+      {
+        "name": "alquiler",
+        "url": "http://abogadostucuman.com/Uploads/Articulos/Docs/7f19007997434.pdf"
+      }
+    ]
   }
 ]

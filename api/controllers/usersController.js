@@ -1,18 +1,17 @@
-const { User, Contract, Property } = require("../db");
+const { User, Contract, Property, Payment } = require("../db");
 const bcrypt = require("bcrypt");
 const authConfig = require("../config/auth");
 
 const { recoveryPass } = require("../email/emailModels/recoveryPass");
 const { sendUserEmail } = require("../email/userEmail");
 
-const { include } = require("sequelize");
 
 async function getUserById(req, res, next) {
   const userId = req.params.id;
-  console.log("me ejecuto");
+  // console.log("me ejecuto");
   try {
     const user = await User.findByPk(userId, {
-      include: { model: Contract, include: Property },
+      include:[ { model: Contract, include: Property }, { model: Payment, include:Contract}],
     });
     if (user) {
       res.json(user);
@@ -49,7 +48,7 @@ async function resetPassword(req, res, next) {
       Math.random() * 1000000000,
       1000000000
     ).toString();
-    console.log(newPass);
+    // console.log(newPass);
     let password = await bcrypt.hashSync(
       newPass,
       Number.parseInt(authConfig.rounds)
