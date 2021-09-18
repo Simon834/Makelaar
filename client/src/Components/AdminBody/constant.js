@@ -32,6 +32,47 @@ export function adminConstant(id, history) {
     },
   ];
 
+  const columnsPaymentList = [
+    {
+      field: "idPay",
+      headerName: "N° Pago",
+      flex: 1,
+      headerClassName: "super-app-theme--header",
+    },
+    {
+      field: "User",
+      headerName: "Usuario",
+      flex: 1,
+      headerClassName: "super-app-theme--header",
+    },
+    {
+      field: "Contract",
+      headerName: "Contrato",
+      flex: 1,
+      headerClassName: "super-app-theme--header",
+    },
+    {
+      field: "amount",
+      headerName: "Monto",
+      flex: 1,
+      headerClassName: "super-app-theme--header",
+    },
+    {
+      field: "status",
+      headerName: "Estado",
+      flex: 1,
+      headerClassName: "super-app-theme--header",
+    },
+    {
+      field: "createdAt",
+      headerName: "Fecha",
+      flex: 1,
+      headerClassName: "super-app-theme--header",
+    }
+
+  ];
+
+
   const columnsPropertyList = [
     {
       field: "name",
@@ -145,5 +186,6 @@ export function adminConstant(id, history) {
     userReference,
     propertyReference,
     contractReference,
+    columnsPaymentList
   };
 }

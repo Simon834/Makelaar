@@ -5,13 +5,15 @@ const authConfig = require("../config/auth");
 const { recoveryPass } = require("../email/emailModels/recoveryPass");
 const { sendUserEmail } = require("../email/userEmail");
 
-
 async function getUserById(req, res, next) {
   const userId = req.params.id;
   // console.log("me ejecuto");
   try {
     const user = await User.findByPk(userId, {
-      include:[ { model: Contract, include: Property }, { model: Payment, include:Contract}],
+      include: [
+        { model: Contract, include: [{ model: Property }, { model: Payment }] },
+        { model: Payment, include: Contract },
+      ],
     });
     if (user) {
       res.json(user);

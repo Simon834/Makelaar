@@ -20,3 +20,25 @@ const BACK_SERVER =
         return err;
     }
   }
+
+  export async function getAllPayment(){
+    try{
+         let response = await axios.get( `${BACK_SERVER}/property/allPayments`)
+        response = response.data
+        return response
+    }catch(err){
+        console.log(err);
+        return err;
+    }
+  }
+
+  export async function setPayment(data){
+    try{
+         let response = await axios.post( `${BACK_SERVER}/property/addpayment`,data)
+        response = response.data
+        return response
+    }catch(err){
+        console.log(err);
+        return err;
+    }
+  }

@@ -12,12 +12,13 @@ async function onClick(e){
 }
 
     return (
-        <div>
+        <div style={{width:"100%"}}>
                 <Button
                   variant="contained"
                   color="primary"
                   type="submit" 
                   onClick={onClick}
+                  style={{width:"100%"}}
                 >
                   Pagar
                 </Button>

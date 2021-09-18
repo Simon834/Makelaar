@@ -85,12 +85,6 @@ export function userConstant(id, history) {
       headerClassName: "super-app-theme--header",
     },
     {
-      field: "UserId",
-      headerName: "Usuario",
-      flex: 1,
-      headerClassName: "super-app-theme--header",
-    },
-    {
       field: "PropId",
       headerName: "Propiedad",
       flex: 1,
