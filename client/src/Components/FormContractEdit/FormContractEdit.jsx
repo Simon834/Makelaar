@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getAllUserApi } from "../../Functions/api/users";
-import { allProperties } from "../../Functions/api/property"; // eslint-disable-next-line
-import { getAllContract, getContractById } from "../../Functions/api/contract"; // eslint-disable-next-line
+import { allProperties } from "../../Functions/api/property";
+import Alert from "@material-ui/lab/Alert";
+import TableList from "../TableList/TableList";
+import { contractEditConstant } from "./constant";
+
+import { getAllContract, getContractById } from "../../Functions/api/contract";
 import UploadFile from "../Upload/UploadFile";
 import {
-  // eslint-disable-next-line
   IconButton,
   List,
   ListItem,
@@ -33,18 +36,24 @@ import { UseFormControls } from "./FormContractEditControls";
 const useStyle = makeStyles((theme) => ({
   form: {
     "& .MuiFormControl-root": {
-      width: "650px",
+      width: "100%",
       margin: theme.spacing(2),
     },
   },
   root: {
-    width: "min-content",
+    width: "100%",
     margin: theme.spacing(5),
     padding: theme.spacing(3),
     display: "flex",
     flexDirection: "column",
     allingItems: "center",
     justifyContent: "center",
+    "& .makeStyles-root-11": {
+      width: "100%",
+    },
+  },
+  button: {
+    width: "100%",
   },
   header: {
     fontSize: "25px",
@@ -54,8 +63,16 @@ const useStyle = makeStyles((theme) => ({
   },
   buttons: {
     display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-around",
+    flexDirection: "columns",
+    width: "100%",
+  },
+  grid: {
+    display: "flex",
+    flexDirection: "columns",
+    padding: theme.spacing(2),
+  },
+  title: {
+    paddingLeft: theme.spacing(4),
   },
 }));
 
@@ -76,7 +93,11 @@ export default function NewContractForm({ user, update }) {
     handleClickCancel,
   } = UseFormControls(update);
 
+  const { columnsPaymentList } = contractEditConstant();
+
   const { idcont } = useParams();
+
+  console.log("contrato", contract);
 
   const [userList, setUserList] = useState([]);
   const [propertyList, setPropertyList] = useState([]);
@@ -106,21 +127,26 @@ export default function NewContractForm({ user, update }) {
     } // eslint-disable-next-line
   }, [contract]);
 
+  async function getAllUser() {
+    const allUsersApi = await getAllUserApi();
+    setUserList(allUsersApi);
+  }
+
+  async function getAllProperties() {
+    const allPropertiesApi = await allProperties();
+    setPropertyList(allPropertiesApi);
+  }
+
+  async function getContract() {
+    const oldContract = await getContractById(idcont);
+    // console.log("XXXXXXXX", oldContract);
+    setContract(oldContract);
+  }
+
   useEffect(() => {
-    async function getAllUser() {
-      const allUsersApi = await getAllUserApi();
-      setUserList(allUsersApi);
-    }
-
-    async function getAllProperties() {
-      const allPropertiesApi = await allProperties();
-      setPropertyList(allPropertiesApi);
-    }
-
-    async function getContract() {
-      const oldContract = await getContractById(idcont);
-      // console.log("XXXXXXXX", oldContract);
-      setContract(oldContract);
+    if (!user) {
+      getAllUser();
+      getAllProperties();
     }
     getContract();
     getAllUser();
@@ -137,8 +163,9 @@ export default function NewContractForm({ user, update }) {
           autoComplete="off"
           onSubmit={handleSubmit}
         >
+          <h1 className={classes.title}>Contrato</h1>
           <Grid container>
-            <Grid>
+            <Grid item className={classes.grid} xs={12} sm={6} md={3}>
               <TextField
                 variant="outlined"
                 label="Titulo"
@@ -153,6 +180,8 @@ export default function NewContractForm({ user, update }) {
                 required
                 disabled={!!user}
               />
+            </Grid>
+            <Grid item className={classes.grid} xs={12} sm={6} md={4}>
               <FormControl className={classes.formControl}>
                 <Select
                   disabled={!!user}
@@ -176,8 +205,10 @@ export default function NewContractForm({ user, update }) {
                     </MenuItem>
                   ))}
                 </Select>
-                <FormHelperText>Seleccione el usuario</FormHelperText>
+                <FormHelperText>Usuario</FormHelperText>
               </FormControl>
+            </Grid>
+            <Grid item className={classes.grid} xs={12} sm={6} md={5}>
               <FormControl className={classes.formControl}>
                 <Select
                   disabled={!!user}
@@ -205,8 +236,10 @@ export default function NewContractForm({ user, update }) {
                     </MenuItem>
                   )}
                 </Select>
-                <FormHelperText>Seleccione la propiedad</FormHelperText>
+                <FormHelperText>Propiedad</FormHelperText>
               </FormControl>
+            </Grid>
+            <Grid item className={classes.grid} xs={12} sm={6} md={3}>
               <TextField
                 disabled={!!user}
                 InputLabelProps={{ shrink: true }}
@@ -222,6 +255,8 @@ export default function NewContractForm({ user, update }) {
                   helperText: errors.startDate,
                 })}
               />
+            </Grid>
+            <Grid item className={classes.grid} xs={12} sm={6} md={3}>
               <TextField
                 disabled={!!user}
                 variant="outlined"
@@ -237,6 +272,8 @@ export default function NewContractForm({ user, update }) {
                   helperText: errors.endDate,
                 })}
               />
+            </Grid>
+            <Grid item className={classes.grid} xs={12} sm={6} md={3}>
               <TextField
                 disabled={!!user}
                 variant="outlined"
@@ -252,6 +289,8 @@ export default function NewContractForm({ user, update }) {
                   helperText: errors.amount,
                 })}
               />
+            </Grid>
+            <Grid item className={classes.grid} xs={12} sm={6} md={3}>
               <TextField
                 disabled={!!user}
                 variant="outlined"
@@ -267,18 +306,81 @@ export default function NewContractForm({ user, update }) {
                 })}
                 required
               />
+            </Grid>
+            <Grid item className={classes.grid} xs={12} sm={12} md={12}>
               <TextField
                 disabled={!!user}
                 variant="outlined"
                 label="Agregue un comentario (opcional)"
                 multiline
-                rows={4}
+                rows={3}
                 name="comments"
                 value={contract.comments}
                 onChange={handleChange}
               />
+            </Grid>
+
+            <Grid item className={classes.grid} xs={12} sm={12} md={12}>
+              {auth ? (
+                <div className={classes.ButtonsConfirm}>
+                  <Grid item className={classes.grid} xs={12} sm={6} md={6}>
+                    <Alert
+                      severity="warning"
+                      elevation={6}
+                      variant="filled"
+                      style={{ width: "100%" }}
+                    >
+                      {" "}
+                      Hay cambios en el contrato
+                    </Alert>
+                  </Grid>
+                  <Grid item className={classes.grid} xs={12} sm={6} md={3}>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      onClick={handleClickConfirm}
+                      className={classes.buttonConfirm}
+                    >
+                      Confirmar
+                    </Button>
+                  </Grid>
+                  <Grid item className={classes.grid} xs={12} sm={6} md={3}>
+                    <Button
+                      variant="contained"
+                      color="secondary"
+                      onClick={handleClickCancel}
+                      className={classes.buttonReject}
+                    >
+                      Rechazar
+                    </Button>
+                  </Grid>
+                </div>
+              ) : null}
+            </Grid>
+            <Grid item className={classes.grid} xs={12} sm={12} md={12}>
+              {user ? (
+                <BtnPayment
+                  id={idcont}
+                  title={contract.name}
+                  description={`Pago contrato ${contract.name} por ${contract.PropertyId}`}
+                  price={contract.amount}
+                  className={classes.button}
+                />
+              ) : (
+                <Button
+                  variant="contained"
+                  color="primary"
+                  type="submit"
+                  className={classes.button}
+                  disabled={!formIsValid()}
+                >
+                  Enviar
+                </Button>
+              )}
+            </Grid>
+            <Grid item className={classes.grid} xs={12} sm={12} md={12}>
               <List className={classes.list}>
-                {console.log(contract.Files)}
+                <h2>Documentos</h2>
                 {contract.Files?.map((e, pos) => (
                   <ListItem onClick={() => window.open(e.url, "_blank")}>
                     <ListItemAvatar>
@@ -290,48 +392,13 @@ export default function NewContractForm({ user, update }) {
                   </ListItem>
                 ))}
               </List>
-              <p>
-                {user ? (
-                  <BtnPayment
-                    id={idcont}
-                    title={contract.name}
-                    description={`Pago contrato ${contract.name} por ${contract.PropertyId}`}
-                    price={contract.amount}
-                    className={classes.buttonPayment}
-                  />
-                ) : (
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    type="submit"
-                    className={classes.button}
-                    disabled={!formIsValid()}
-                  >
-                    Enviar
-                  </Button>
-                )}
-                {auth ? (
-                  <div className={classes.buttons}>
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      onClick={handleClickConfirm}
-                      className={classes.buttonConfirm}
-                    >
-                      Confirmar
-                    </Button>
-
-                    <Button
-                      variant="contained"
-                      color="secondary"
-                      onClick={handleClickCancel}
-                      className={classes.buttonReject}
-                    >
-                      Rechazar
-                    </Button>
-                  </div>
-                ) : null}
-              </p>
+            </Grid>
+            <Grid item className={classes.grid} xs={12} sm={12} md={12}>
+              <TableList
+                columns={columnsPaymentList}
+                rows={contract?.Payments || []}
+                reference={[]}
+              />
             </Grid>
           </Grid>
         </form>

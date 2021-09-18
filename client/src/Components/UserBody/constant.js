@@ -1,4 +1,4 @@
-export function adminConstant(id, history) {
+export function userConstant(id, history) {
   const columnsUserList = [
     {
       field: "name",
@@ -31,47 +31,6 @@ export function adminConstant(id, history) {
       headerClassName: "super-app-theme--header",
     },
   ];
-
-  const columnsPaymentList = [
-    {
-      field: "idPay",
-      headerName: "N° Pago",
-      flex: 1,
-      headerClassName: "super-app-theme--header",
-    },
-    {
-      field: "User",
-      headerName: "Usuario",
-      flex: 1,
-      headerClassName: "super-app-theme--header",
-    },
-    {
-      field: "Contract",
-      headerName: "Contrato",
-      flex: 1,
-      headerClassName: "super-app-theme--header",
-    },
-    {
-      field: "amount",
-      headerName: "Monto",
-      flex: 1,
-      headerClassName: "super-app-theme--header",
-    },
-    {
-      field: "status",
-      headerName: "Estado",
-      flex: 1,
-      headerClassName: "super-app-theme--header",
-    },
-    {
-      field: "createdAt",
-      headerName: "Fecha",
-      flex: 1,
-      headerClassName: "super-app-theme--header",
-    }
-
-  ];
-
 
   const columnsPropertyList = [
     {
@@ -122,12 +81,6 @@ export function adminConstant(id, history) {
     {
       field: "name",
       headerName: "Titulo",
-      flex: 1,
-      headerClassName: "super-app-theme--header",
-    },
-    {
-      field: "UserId",
-      headerName: "Usuario",
       flex: 1,
       headerClassName: "super-app-theme--header",
     },
@@ -186,6 +139,5 @@ export function adminConstant(id, history) {
     userReference,
     propertyReference,
     contractReference,
-    columnsPaymentList
   };
 }

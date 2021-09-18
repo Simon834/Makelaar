@@ -14,16 +14,14 @@ export default function BtnPayment({ id, title, description, price }) {
     return response;
   }
 
-  const classes = useStyle();
-
   return (
-    <div>
+    <div style={{ width: "100%" }}>
       <Button
         variant="contained"
         color="primary"
         type="submit"
         onClick={onClick}
-        className={classes.button}
+        style={{ width: "100%" }}
       >
         Pagar
       </Button>
