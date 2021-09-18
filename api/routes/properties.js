@@ -11,7 +11,7 @@ const {
   // deleteProperty,
 } = require("../controllers/propertiesController");
 
-const {createPreference, newNotification, getAllPayments} = require("../controllers/paymentsControllers")
+const {createPreference, newNotification, getAllPayments, addAllPayments} = require("../controllers/paymentsControllers")
 const { filterProperties } = require("../controllers/filterControllers");
  
 router.get("/allPayments", getAllPayments)
@@ -23,5 +23,6 @@ router.get("/allProperties", allProperties);
 router.get("/:id", idProperties);
 router.put("/editproperty", updateProperty);
 router.delete("/delete", deleteProperty);
+router.post("/addpayment", addAllPayments);
 
 module.exports = router;

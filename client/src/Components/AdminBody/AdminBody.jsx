@@ -16,12 +16,15 @@ import UserInfo from "../UserInfo/UserInfo";
 import { getAllUserApi } from "../../Functions/api/users";
 import { allProperties } from "../../Functions/api/property";
 import { getAllContract } from "../../Functions/api/contract";
+import { getAllPayment } from "../../Functions/api/payments";
 
 import { adminConstant } from "./constant";
+
 
 export default function AdminBody() {
   const [userList, setUserList] = useState([]);
   const [prpList, setPropList] = useState([]);
+  const [payList, setPayList] = useState([]);
   const [prpDisp, setPrpDisp] = useState([]);
   const [contList, setContList] = useState([]);
   const [contActiveList, setContActiveList] = useState([]);
@@ -35,6 +38,7 @@ export default function AdminBody() {
     userReference,
     propertyReference,
     contractReference,
+    columnsPaymentList
   } = adminConstant(id, history);
   const [load, setLoad] = useState(true);
 
@@ -49,6 +53,9 @@ export default function AdminBody() {
     const allContrApi = await getAllContract();
     setContList(allContrApi);
     setContActiveList(allContrApi.filter(c=>c.status==="activo"))
+    const payments  =await getAllPayment()
+    console.log(payments)
+    setPayList(payments)
   }
 
   useEffect(
@@ -100,6 +107,15 @@ export default function AdminBody() {
         <TableList
           columns={columnsContratList}
           rows={contList}
+          reference={contractReference}
+        />
+      </Route>
+
+      <Route path="/admin/:id/payment">
+        <h2>Pagos</h2>
+        <TableList
+          columns={columnsPaymentList}
+          rows={payList}
           reference={contractReference}
         />
       </Route>

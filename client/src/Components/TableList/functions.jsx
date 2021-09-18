@@ -36,6 +36,8 @@ export function rowData(rows, user){
     if (e.premium) newrow = { ...newrow, premium: "Destacado" };
     if (!e.premium) newrow = { ...newrow, premium: "" };
     if (e.startDate && user) newrow = { ...newrow, contract: "Ver contrato" };
+    if(e.Contract?.name) newrow = { ...newrow, Contract: e.Contract.name, ContractId:e.Contract.id};
+    if(e.User?.name) newrow = { ...newrow, User: e.User.name, UserId:e.User.id} ;
 
     return newrow;
   });

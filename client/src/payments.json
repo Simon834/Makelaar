@@ -1,0 +1,60 @@
+[
+    {
+        "idPay": 13545,
+       "status":"approved",
+       "userEmail": "cgonzalez@yahootest.com",
+       "amount": 20000,
+       "ContractId": 10
+      },
+      {
+        "idPay": 13546,
+       "status":"approved",
+       "userEmail": "cgonzalez@yahootest.com",
+       "amount": 20000,
+       "ContractId": 10
+      },
+      {
+        "idPay": 13547,
+       "status":"approved",
+       "userEmail": "cgonzalez@yahootest.com",
+       "amount": 20000,
+       "ContractId": 10
+      },
+      {
+        "idPay": 13548,
+       "status":"approved",
+       "userEmail": "cgonzalez@yahootest.com",
+       "amount": 20000,
+       "ContractId": 10
+      }, 
+      {
+        "idPay": 13545,
+       "status":"approved",
+       "userEmail": "cgonzalez@yahootest.com",
+       "amount": 20000,
+       "ContractId": 3
+      },
+      {
+        "idPay": 13546,
+       "status":"approved",
+       "userEmail": "cgonzalez@yahootest.com",
+       "amount": 20000,
+       "ContractId": 3
+      },
+      {
+        "idPay": 13547,
+       "status":"approved",
+       "userEmail": "cgonzalez@yahootest.com",
+       "amount": 20000,
+       "ContractId": 3
+      },
+      {
+        "idPay": 13548,
+       "status":"approved",
+       "userEmail": "cgonzalez@yahootest.com",
+       "amount": 20000,
+       "ContractId": 3
+      }
+
+
+]
