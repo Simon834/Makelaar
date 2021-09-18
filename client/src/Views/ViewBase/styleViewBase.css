@@ -69,6 +69,10 @@
 .right {
   width: 80%;
 }
+.map-container {
+  /* border: 3px solid rgb(185, 46, 104); */
+  height: 38rem;
+}
 
 @media (max-width: 1000px) {
   .body-container {
