@@ -1,11 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getAllUserApi } from "../../Functions/api/users";
-import { allProperties } from "../../Functions/api/property";
-import { getAllContract, getContractById } from "../../Functions/api/contract";
+import { allProperties } from "../../Functions/api/property"; // eslint-disable-next-line
+import { getAllContract, getContractById } from "../../Functions/api/contract"; // eslint-disable-next-line
 import UploadFile from "../Upload/UploadFile";
-import {IconButton, List ,ListItem, ListItemAvatar, Avatar,ListItemText,ListItemSecondaryAction } from '@material-ui/core';
-import {Delete as DeleteIcon, Folder as FolderIcon } from '@material-ui/icons';
+import {
+  // eslint-disable-next-line
+  IconButton,
+  List,
+  ListItem,
+  ListItemAvatar,
+  Avatar,
+  ListItemText, // eslint-disable-next-line
+  ListItemSecondaryAction,
+} from "@material-ui/core"; // eslint-disable-next-line
+import { Delete as DeleteIcon, Folder as FolderIcon } from "@material-ui/icons";
 import BtnPayment from "../BtnPayment/BtnPayment";
 
 import {
@@ -20,7 +29,6 @@ import {
   Button,
 } from "@material-ui/core";
 import { UseFormControls } from "./FormContractEditControls";
-
 
 const useStyle = makeStyles((theme) => ({
   form: {
@@ -38,19 +46,16 @@ const useStyle = makeStyles((theme) => ({
     allingItems: "center",
     justifyContent: "center",
   },
-  button: {
-    marginTop: theme.spacing(2),
-    marginLeft: theme.spacing(36),
-  },
   header: {
     fontSize: "25px",
   },
   list: {
     width: "100%",
   },
-  ButtonsConfirm: {
+  buttons: {
     display: "flex",
     flexDirection: "row",
+    justifyContent: "space-around",
   },
 }));
 
@@ -62,9 +67,9 @@ export default function NewContractForm({ user, update }) {
     formIsValid,
     errors,
     contract,
-    handleSelect,
+    handleSelect, // eslint-disable-next-line
     selectValues,
-    setContract,
+    setContract, // eslint-disable-next-line
     setFile,
     setEmail,
     handleClickConfirm,
@@ -82,7 +87,7 @@ export default function NewContractForm({ user, update }) {
   useEffect(() => {
     if (userEmail) {
       setEmail(userEmail.email);
-    }
+    } // eslint-disable-next-line
   }, [contract]);
 
   useEffect(() => {
@@ -98,7 +103,7 @@ export default function NewContractForm({ user, update }) {
       (contract.status === "rechazado" || contract.status === "activo")
     ) {
       setAuth(false);
-    }
+    } // eslint-disable-next-line
   }, [contract]);
 
   useEffect(() => {
@@ -119,7 +124,7 @@ export default function NewContractForm({ user, update }) {
     }
     getContract();
     getAllUser();
-    getAllProperties();
+    getAllProperties(); // eslint-disable-next-line
   }, []);
 
   console.log("AUTH", auth);
@@ -133,7 +138,7 @@ export default function NewContractForm({ user, update }) {
           onSubmit={handleSubmit}
         >
           <Grid container>
-            <Grid item xs={6}>
+            <Grid>
               <TextField
                 variant="outlined"
                 label="Titulo"
@@ -286,24 +291,32 @@ export default function NewContractForm({ user, update }) {
                 ))}
               </List>
               <p>
-                {user? <BtnPayment id={idcont} title={contract.name} description={`Pago contrato ${contract.name} por ${contract.PropertyId}`} price={contract.amount}/>:
-                <Button
-                  
-                  variant="contained"
-                  color="primary"
-                  type="submit"
-                  className={classes.button}
-                  disabled={!formIsValid()}
-                >
-                  Enviar
-                </Button>}
+                {user ? (
+                  <BtnPayment
+                    id={idcont}
+                    title={contract.name}
+                    description={`Pago contrato ${contract.name} por ${contract.PropertyId}`}
+                    price={contract.amount}
+                    className={classes.buttonPayment}
+                  />
+                ) : (
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    type="submit"
+                    className={classes.button}
+                    disabled={!formIsValid()}
+                  >
+                    Enviar
+                  </Button>
+                )}
                 {auth ? (
-                  <div className={classes.ButtonsConfirm}>
+                  <div className={classes.buttons}>
                     <Button
                       variant="contained"
                       color="primary"
                       onClick={handleClickConfirm}
-                      className={classes.button}
+                      className={classes.buttonConfirm}
                     >
                       Confirmar
                     </Button>
@@ -312,13 +325,12 @@ export default function NewContractForm({ user, update }) {
                       variant="contained"
                       color="secondary"
                       onClick={handleClickCancel}
-                      className={classes.button}
+                      className={classes.buttonReject}
                     >
                       Rechazar
                     </Button>
                   </div>
                 ) : null}
-                
               </p>
             </Grid>
           </Grid>
