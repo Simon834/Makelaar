@@ -1,58 +1,7 @@
 const { Property, Image, Contract, User } = require("../db");
-const axios = require("axios");
-var mercadopago = require("mercadopago");
-mercadopago.configure({
-  access_token:
-    "TEST-4999577064972768-083017-189cd12957cc9c05828173197e7cadb6-184968728",
-});
-//creacion propiedad
-
-async function paymentProperty(req, res, next) {
-  const { title, price, img, description } = req.query;
-  try {
-    let preference = {
-      items: [
-        {
-          id: "item-ID-1234",
-          title: "Mi producto",
-          currency_id: "ARS",
-          picture_url:
-            "https://www.mercadopago.com/org-img/MP3/home/logomp3.gif",
-          description: "Descripción del Item",
-          category_id: "art",
-          quantity: 1,
-          unit_price: 1,
-          reason: "Plan Gym Gold",
-          auto_recurring: {
-            frequency: "1",
-            frequency_type: "months",
-            transaction_amount: 1100,
-            currency_id: "ARS",
-            repetitions: 12,
-            billing_day: 10,
-            billing_day_proportional: false,
-            free_trial: {
-              frequency_type: "months",
-              frequency: "1",
-            },
-          },
-        },
-      ],
-
-      statement_descriptor: "MINEGOCIO",
-      external_reference: "Reference_1234",
-    };
-    const respuesta = await mercadopago.preferences.create(preference);
-    return res.send(respuesta.response.init_point);
-  } catch (err) {
-    console.log(err);
-    next(err);
-  }
-}
 
 async function addNewProperty(req, res, next) {
   try {
-    //photos, firstImg los recibe por body???
     const {
       name,
       area,
@@ -75,12 +24,6 @@ async function addNewProperty(req, res, next) {
       price,
       premium,
     } = req.body;
-    // console.log(req.body);
-    // let property= await Property.findOrCreate({where: {name,area,rooms, bathrooms,type, city,neighborhood, province, street, streetNumber, cp, description, transaction}});
-
-    // if(propertyValidation){
-    //     res.status(409).json({ msg: "Esta propieda ya fue creada" })
-    // }else{
 
     let newProperty = await Property.create({
       name: name,
@@ -193,28 +136,27 @@ async function updateProperty(req, res, next) {
   }
 }
 
-async function deleteProperty(req, res, next){
-  try{
-    const id = req.query.id
+async function deleteProperty(req, res, next) {
+  try {
+    const id = req.query.id;
     const propertyToDelete = await Property.findByPk(id, {
-      include: Contract
-    })
-    if(propertyToDelete.deleted){
-      const idCont = propertyToDelete.Contract.id
+      include: Contract,
+    });
+    if (propertyToDelete.deleted) {
+      const idCont = propertyToDelete.Contract.id;
       const contractToDelete = await Contract.findByPk(idCont);
       await contractToDelete.destroy();
       await propertyToDelete.destroy();
       res.send("La propiedad ha sido borrada definitivamente");
-    }else{
+    } else {
       propertyToDelete.deleted = true;
       await propertyToDelete.save();
       res.send("la propiedad se encuentra en papelera de reciclaje");
     }
-  }catch(err){
+  } catch (err) {
     return next(err);
   }
 }
-
 
 module.exports = {
   addNewProperty,
@@ -222,5 +164,4 @@ module.exports = {
   updateProperty,
   idProperties,
   deleteProperty,
-  paymentProperty,
 };

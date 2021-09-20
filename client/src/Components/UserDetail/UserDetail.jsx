@@ -19,25 +19,26 @@ const useStyles = makeStyles((theme) => ({
   form: {
     "& .MuiFormControl-root": {
       margin: theme.spacing(2),
+      display: "flex",
+      width: "100%",
     },
   },
   root: {
-    width: "80%",
-    margin: theme.spacing(5),
+    width: "100%",
     padding: theme.spacing(3),
     display: "flex",
-    flexDirection: "column",
+    flexDirection: "row",
     allingItems: "center",
     justifyContent: "center",
   },
   paperLeft: {
     padding: theme.spacing(2),
     margin: theme.spacing(1),
-    width: 150,
     alignContent: "center",
     textAlign: "center",
     backgroundColor: "#E1535E",
     color: "#fff",
+    marginTop:theme.spacing(2)
   },
   "& .MuiGrid-root": {
     width: 150,
@@ -49,6 +50,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
     color: theme.palette.text.primary,
     paddingTop: 10,
+    width: "100%",
   },
   gridRight: {
     display: "flex",
@@ -57,17 +59,18 @@ const useStyles = makeStyles((theme) => ({
   icon: {
     alingSelf: "flex-end",
     color: "#E1535E",
-    marginTop: "10%",
+   
   },
   btn: {
     "&:hover": {
       backgroundColor: "transparent",
     },
   },
-  gridContainer: { display: "flex", flexDirection: "column" },
+  gridContainer: { display: "flex", flexDirection: "row" },
+  
   paper: {
     display: "flex",
-    flexDirection: "column",
+    flexDirection: "row",
     alignItems: "center",
   },
 }));
@@ -89,11 +92,11 @@ export default function UserDetail() {
           autoComplete="off"
           onSubmit={handleSubmit}
         >
-          <Grid className={classes.gridContainer} container spacing={1}>
-            <Grid item xs={3} className={classes.botonWidth}>
+          <Grid container>
+          <Grid item className={classes.grid} xs={12} sm={6} md={3}>
               <Paper className={classes.paperLeft}>Nombre</Paper>
-            </Grid>
-            <Grid className={classes.gridRight} item>
+              </Grid>
+              <Grid item className={classes.grid} xs={12} sm={9} md={9}>
               <Paper className={classes.paperRight}>
                 <div className={classes.paper}>
                   <TextField
@@ -115,11 +118,11 @@ export default function UserDetail() {
                   </Button>
                 </div>
               </Paper>
-            </Grid>
-            <Grid item xs={3}>
+              </Grid>
+              <Grid item className={classes.grid} xs={12} sm={6} md={3}>
               <Paper className={classes.paperLeft}>Email</Paper>
-            </Grid>
-            <Grid item xs={9}>
+              </Grid>
+              <Grid item className={classes.grid} xs={12} sm={9} md={9}>
               <Paper className={classes.paperRight}>
                 <div className={classes.paper}>
                   <TextField
@@ -133,11 +136,11 @@ export default function UserDetail() {
                   </Tooltip>
                 </div>
               </Paper>
-            </Grid>
-            <Grid item xs={3}>
+              </Grid>
+              <Grid item className={classes.grid} xs={12} sm={6} md={3}>
               <Paper className={classes.paperLeft}>Telefono</Paper>
-            </Grid>
-            <Grid item xs={9}>
+              </Grid>
+              <Grid item className={classes.grid} xs={12} sm={9} md={9}>
               <Paper className={classes.paperRight}>
                 <div className={classes.paper}>
                   <TextField
@@ -158,11 +161,11 @@ export default function UserDetail() {
                   </Button>
                 </div>
               </Paper>
-            </Grid>
-            <Grid item xs={3}>
+              </Grid>
+              <Grid item className={classes.grid} xs={12} sm={6} md={3}>
               <Paper className={classes.paperLeft}>WhatsApp</Paper>
-            </Grid>
-            <Grid item xs={9}>
+              </Grid>
+              <Grid item className={classes.grid} xs={12} sm={9} md={9}>
               <Paper className={classes.paperRight}>
                 <div className={classes.paper}>
                   <TextField
@@ -185,11 +188,11 @@ export default function UserDetail() {
                   </Button>
                 </div>
               </Paper>
-            </Grid>
-            <Grid item xs={3}>
+              </Grid>
+              <Grid item className={classes.grid} xs={12} sm={6} md={3}>
               <Paper className={classes.paperLeft}>Password</Paper>
-            </Grid>
-            <Grid item xs={9}>
+              </Grid>
+              <Grid item className={classes.grid} xs={12} sm={9} md={9}>
               <Paper className={classes.paperRight}>
                 <div className={classes.paper}>
                   <TextField

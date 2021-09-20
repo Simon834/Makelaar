@@ -230,5 +230,17 @@
         "password":"Qaz12345",
         "comments":"Administrador",
         "isAdmin": true
-    }
+    },
+    {
+      "id":"22" ,
+      "name": "Mariano Mercado",
+      "email": "test_user_66072395@testuser.com",
+      "phone": "3854223399",
+      "whatsapp":"3854223399",
+      "password":"Qaz12345",
+      "comments":"Usuario",
+      "isAdmin": false
+  }
+  
+
 ]

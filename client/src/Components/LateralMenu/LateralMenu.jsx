@@ -84,7 +84,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function LateralMenu({ list, routeAction }) {
+export default function LateralMenu({ list, routeAction, body }) {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(true);
@@ -149,7 +149,7 @@ export default function LateralMenu({ list, routeAction }) {
         </div>
         <Divider />
         <List>
-          {list.admin.map((item, index) => (
+          {list.admin?.map((item, index) => (
             <ListItem
               button
               key={item.title}
@@ -164,7 +164,7 @@ export default function LateralMenu({ list, routeAction }) {
         </List>
         <Divider />
         <List>
-          {list.user.map((item, index) => (
+          {list.user?.map((item, index) => (
             <ListItem
               button
               key={item.title}
@@ -179,7 +179,7 @@ export default function LateralMenu({ list, routeAction }) {
         </List>
         <Divider />
         <List>
-          {list.property.map((item, index) => (
+          {list.property?.map((item, index) => (
             <ListItem
               button
               key={item.title}
@@ -194,7 +194,7 @@ export default function LateralMenu({ list, routeAction }) {
         </List>
         <Divider />
         <List>
-          {list.contract.map((item, index) => (
+          {list.contract?.map((item, index) => (
             <ListItem
               button
               key={item.title}
@@ -209,7 +209,7 @@ export default function LateralMenu({ list, routeAction }) {
         </List>
         <Divider />
         <List>
-          {list.options.map((item, index) => (
+          {list.options?.map((item, index) => (
             <ListItem
               button
               key={item.title}
@@ -229,7 +229,7 @@ export default function LateralMenu({ list, routeAction }) {
         })}
       >
         <div className={classes.drawerHeader} />
-        <AdminBody />
+        {body}
       </main>
     </div>
   );
