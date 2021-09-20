@@ -1,8 +1,7 @@
-// import React from 'react';
+import React, { useState, useEffect} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
 import Divider from '@material-ui/core/Divider';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
@@ -13,17 +12,21 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Avatar from '@material-ui/core/Avatar';
 import Fab from '@material-ui/core/Fab';
 import SendIcon from '@material-ui/icons/Send';
+import {Modal, Button, Dialog} from '@material-ui/core';
+import icoChat from "../../images/icon-chat.png"; 
+import style from './Chat.module.css';
+import imageChat from '../../images/image.jpg'
 
-import React,{useState, useEffect, useRef}  from 'react';
-import {useSelector } from "react-redux";
+import { useSelector } from "react-redux";
+
+
 
 import io from 'socket.io-client';
 //usuario logeado
 //ELIMINAR COMPONENTES DE CHATSOCKE CUANDO ESTE FUNCIONANDI BIEN 
-//FALTA FUNCIIONALIDAD CUANDO ESTA LOGEADO  Y CUANDO NO. ESTAN POR SEPARADO
 
 const BACK_SERVER =
-   "http://localhost:3010";
+  "http://localhost:3010";
 
 export let socket = io(BACK_SERVER);
 
@@ -38,24 +41,66 @@ const useStyles = makeStyles({
     height: '80vh'
   },
   headBG: {
-      backgroundColor: '#e0e0e0'
+    backgroundColor: '#e0e0e0'
   },
   borderRight500: {
-      borderRight: '1px solid #e0e0e0'
+    // borderRight: '1px solid #e0e0e0'
   },
   messageArea: {
     height: '70vh',
-    overflowY: 'auto'
-  }, 
-  root:{
-      border: '1px solid #e0e0e0',
-      width:"80%"
+    fontSize:'10px',
+    overflowY: 'auto',
+    "& .MuiList-root":{
+      overflowY: 'hidden' 
+    }
   },
-  tit:{
-      textAlign:"center"
+  root: {
+    // border: '1px solid #e0e0e0',
+    width: "100%",
+    maginLeft: '100px'
+  },
+//   tit: {
+//     textAlign: "center"
+//   },
+  modal:{
+      position: 'absolute',
+      width: '50%',
+      // padding: '16px 32px 34px',
+      top: '50%',
+      left: '50%',
+      transform: 'translate(-50%, -50%)',
+      background: '#FFF',
+      maginLeft: '20px',
+      overflow: 'hidden'
+
+  },
+  paper:{
+      width:"40%",
+      height:'20%',
+    //   position:'absolute',
+       marginTop: '10px',
+       marginLeft: '300px',
+       marginRight: '20px',
+       marginBottom: '50px',
+       overflow: 'hidden',
+       display: 'flex'
+
+  },
+  listItem:{
+      marginLeft: '30px',
+      overflow: 'hidden',
+      overflowX: 'hidden',
+      justifyContent: 'center',
+      marginTop:'10px',
+      width:'90%',
+      overflowY: 'hidden' 
+  },
+  listItemText:{
+    fontSize: '3px'
   }
 });
-let date= new Date()
+
+let date = new Date()
 let hour = date.getHours() + ':' + date.getMinutes()
 
 const Chat = () => {
@@ -64,141 +109,127 @@ const Chat = () => {
   const [mensaje, setMensaje] = useState("");
   const [mensajes, setMensajes] = useState([]);
 
-//    let name = if(userInfo){userInfo.user.name || "usuario nuevo"
-let name = "Usuario nuevo";
+  const [modal, setModal] = useState(false);
 
-// if(userInfo.user.name){
-//      name = userInfo.user.name
-// }else{
-//      name= "Usuario"
-// }
-  
+  const openModal = () =>{
+      setModal(!modal)
+  }
+
+
+  let name = "Usuario nuevo";
+
   const { userInfo } = useSelector((state) => state);
 
-//   console.log("NOMBRE USUARIO", userInfo.user.name)
-
-    // useEffect(() => {
-    //     if(userInfo.user.name){
-    //       socket.emit("conectado", userInfo.user.name);
-    //   }
-      
-    //     }
-    //    , [ userInfo.user.name]);
-
-    // useEffect(() => {
-       
-  
-    //       socket.emit("conectado", userInfo.user.name);
-      
-    //     }
-    //    , [userInfo.user.name]);
-
-
+  //   console.log("NOMBRE USUARIO", userInfo.user.name)
 
 
   useEffect(() => {
-      if(userInfo.user?.name){
-        socket.emit("conectado", userInfo.user.name);
-    }else{
+    if (userInfo.user?.name) {
+      socket.emit("conectado", userInfo.user.name);
+    } else {
 
-        socket.emit("conectado", name);
+      socket.emit("conectado", name);
     }
-      }
-     , [ userInfo.user?.name]);
+  }
+    , [userInfo.user?.name]);
 
 
-useEffect(() => {
-   socket.on("mensajes", (mensaje) => {
-     setMensajes([...mensajes, mensaje]);
-   //   console.log("MENSAJES", mensajes)
-   });
+  useEffect(() => {
+    socket.on("mensajes", (mensaje) => {
+      setMensajes([...mensajes, mensaje]);
+      //   console.log("MENSAJES", mensajes)
+    });
 
-   return () => {
-     socket.off();
-   };
- }, [mensajes]);
+    return () => {
+      socket.off();
+    };
+  }, [mensajes]);
 
- let count = 0;
+  let count = 0;
 
- const submit = (e) => {
-   e.preventDefault();
-   count = count + 1
-//    if(userInfo.user.name){
-//     socket.emit("mensaje", userInfo.user.name, mensaje);
-// }else{
+  const submit = (e) => {
+    e.preventDefault();
+    count = count + 1
 
-//     socket.emit("mensaje", name, mensaje);
-// }
-   socket.emit("mensaje", userInfo.user?.name || name , mensaje);
-   console.log("MENSAJE ENVIADO", mensaje)
-   setMensaje("");
-    console.log("SE EJECUTO SUBMIT")
- };
+    socket.emit("mensaje", userInfo.user?.name || name, mensaje);
+    console.log("MENSAJE ENVIADO", mensaje)
+    setMensaje("");
+    // console.log("SE EJECUTO SUBMIT")
+  };
 
+   function summary(mensaje) {
+    return { __html: mensaje };
+}
 
-  return (
-      <div>
-        <Grid className={classes.root}>
-            <Typography variant="h6" className={classes.tit}>Chat</Typography>
-           
-            <Grid item xs={10}>
-                <List className={classes.messageArea}>
-                    <ListItem key="1">
-                        <Grid container>
-                            <Grid item xs={12}>
-{console.log("MENSAJES", mensajes)}
-                            {mensajes?.map((e,i)=>{
-                   return <div>
+const body=(
 
-                       <ListItem button key={i}>
-                   <ListItemIcon>
-                   <Avatar alt={e.name} src="https://material-ui.com/static/images/avatar/2.jpg" /><span>
-
-                   <ListItemText primary={e.name}align="right" >{e.name}-</ListItemText>
-                       </span>
-                           <ListItemText align="left" >: {hour}hs</ListItemText>
-                   </ListItemIcon>
-                   
-               </ListItem>    
-                           <ListItemText align="center" >{e.mensaje}</ListItemText>
-                   </div>
-                })}
-                </Grid>
-                <Grid item xs={12}>
-                </Grid>
-            </Grid>
-        </ListItem>
-                    {/* <ListItem key="2">
+        <div className={classes.modal}>
+            {/* <Paper elevation={24} className={classes.paper}> */}
+          <Grid container className={classes.root}>
+            <Typography variant="h6" className={classes.tit}><Button onClick={openModal}>X</Button></Typography>
+    
+            <Grid item>
+            
+              <List className={classes.messageArea}>
+                <ListItem className={classes.listItem} key="1">
+                  <Grid item>
                     <Grid item xs={12}>
-                            <ListItem button key="Marcos">
-                        <ListItemIcon>
-                            <Avatar alt="Marcos"align="right" src="https://material-ui.com/static/images/avatar/1.jpg" /><span>
-
-                        <ListItemText primary="Marcos" align="right" >Marcos</ListItemText>
-                            </span>
-                        </ListItemIcon>
-                        
-                    </ListItem>    
-                                <ListItemText align="left" primary="Hola"></ListItemText>
-                                <ListItemText align="left" secondary="09:30"></ListItemText>
-                            </Grid>
-                    </ListItem>
-                     */}
-                </List>
-                <Divider />
-                <Grid container style={{padding: '20px'}}>
-                    <Grid item xs={11}>
-                        <TextField id="outlined-basic-email" label="Type Something"  value={mensaje}
-          onChange={(e) => setMensaje(e.target.value)} fullWidth />
+                      {console.log("MENSAJES", mensajes)}
+                      {mensajes?.map((e, i) => {
+                        return <div>
+    
+                          <ListItem button key={i}>
+                            <ListItemIcon>
+                              <Avatar alt={e.name} src={e.name === "Makelaar" ? "https://image.shutterstock.com/image-vector/beautiful-pensive-brunette-office-secretary-260nw-243022681.jpg" : "https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-portrait-176256935.jpg" } />
+                              <span>
+                                <ListItemText primary={e.name} align="right" >{e.name}-</ListItemText>
+                              </span>
+                              <ListItemText align="left" >: {hour}hs</ListItemText>
+                            </ListItemIcon>
+    
+                          </ListItem>
+                          
+                          <ListItemText className={classes.listItemText} align="justify" ><div dangerouslySetInnerHTML={summary(e.mensaje)} /></ListItemText>
+                        </div>
+                      })}
                     </Grid>
-                    <Grid xs={1} align="right">
-                        <Fab color="primary" aria-label="add"><SendIcon onClick={submit}/></Fab>
-                    </Grid>
+                  
+                  </Grid>
+                </ListItem>
+              
+              </List>
+              <Divider />
+              <Grid item style={{ padding: '20px' }}>
+                <Grid item >
+                
+                  <TextField id="outlined-basic-email" label="Type Something" value={mensaje}
+                    onChange={(e) => setMensaje(e.target.value)} fullWidth />
                 </Grid>
+                <Grid  align="right">
+                  <Fab color="primary" aria-label="add"><SendIcon onClick={submit} /></Fab>
+                 
+                </Grid>
+              </Grid>
             </Grid>
-        </Grid>
+          </Grid>
+          {/* </Paper> */}
+        </div>
+    
+    
+)
+return(
+    <div>
+      <div classes={style.btn}>
+
+        <img classes={style.btn} onClick={openModal} src={icoChat} />
       </div>
-  );
+        {/* <Button > Abrir</Button> */}
+        <Modal open={modal} onClose={openModal}>
+            {body}
+            </Modal>
+    </div>
+
+)
 }
 
 export default Chat;

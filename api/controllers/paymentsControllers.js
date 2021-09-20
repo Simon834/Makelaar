@@ -40,21 +40,7 @@ async function createPreference(req, res, next) {
           quantity: 1,
           unit_price: parseInt(price),
 
-          // reason: "Plan Gym Gold",
-          // auto_recurring: {
-          //   frequency: "1",
-          //   frequency_type: "months",
-          //   transaction_amount: 1100,
-          //   currency_id: "ARS",
-          //   repetitions: 12,
-          //   billing_day: 10,
-          //   billing_day_proportional: false,
-          //   free_trial: {
-          //     frequency_type: "months",
-          //     frequency: "1",
-          //   },
-          // },
-
+         
           //devuelven el estado de la compra
           back_urls: {
             success: "http://localhost:3000/",
