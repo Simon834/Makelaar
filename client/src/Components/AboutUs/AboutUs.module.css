@@ -1,3 +1,4 @@
+/* "https://i.ibb.co/M928sHD/land9.jpg" */
 .container {
   display: flex;
   align-items: center;
@@ -5,18 +6,22 @@
   flex-direction: column;
   font-family: "Roboto", sans-serif;
   height: 100vh;
+  width: 100%;
+  background-image: url(https://i.ibb.co/M928sHD/land9.jpg);
+  background-size: cover;
+  background-position: center;
 }
 
 .image {
   border-radius: 6px;
-  
-  height: 100vh;
 
+  height: 100vh;
 }
 
 .image2 {
   margin: 40px;
   margin-top: 60px;
+  width: -webkit-fill-available;
 }
 
 .h2text {
@@ -24,28 +29,27 @@
   font-weight: 600;
   text-transform: uppercase;
   font-size: 30px;
-  color: white
+  color: white;
 }
 
 .textContainer {
-  background-color:rgba(0, 0, 0, 0.637);
+  background-color: rgba(0, 0, 0, 0.637);
   float: left;
-  position:absolute;
-  width: 800px;
+  position: absolute;
+  width: 55rem;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   padding: 20px;
-  margin-left: 40%;
-  
+  right: 0;
 }
 
 .textContainer p {
   font-size: 18px;
   font-weight: 400;
   color: white;
-  text-align: justify
+  text-align: justify;
 }
 
 .Icon {
@@ -60,6 +64,7 @@
     width: 80%;
   }
   .textContainer {
-    width: auto;
+    width: -webkit-fill-available;
+    margin-left: 0%;
   }
 }

@@ -3,7 +3,7 @@ import { DataGrid, esES } from "@material-ui/data-grid";
 import { useHistory } from "react-router";
 import { useParams } from "react-router";
 import { makeStyles } from "@material-ui/styles";
-import { createTheme} from "@material-ui/core/styles";
+import { createTheme } from "@material-ui/core/styles";
 import { RowClassName, rowData } from "./functions";
 
 const defaultTheme = createTheme({
@@ -66,37 +66,35 @@ const useStyles = makeStyles(
   { defaultTheme }
 );
 
-
-
 export default function TableList({ columns, rows, user, reference }) {
   const classes = useStyles();
   const history = useHistory();
   const { id } = useParams();
 
-  const rowsMod = rowData(rows,user)
+  const rowsMod = rowData(rows, user);
 
-  function handleRoutes(params, event){
+  function handleRoutes(params, event) {
     if (params.row.endDate && user) {
-      history.push(`/user/${id}/editcontract/${params.row.id}`); 
-    } else if (params.row.endDate && params.field!=="UserId") {
-      history.push(`/admin/${id}/editcontract/${params.row.id}`); 
+      history.push(`/user/${id}/editcontract/${params.row.id}`);
+    } else if (params.row.endDate && params.field !== "UserId") {
+      history.push(`/admin/${id}/editcontract/${params.row.id}`);
     } else if (params.row.price && params.field !== "contract") {
-      history.push(`/admin/${id}/editproperty/${params.row.id}`); 
-    } else if (params.row.email || params.field==="UserId" ) {
-      history.push(`/admin/${id}/user/${params.row.id}`); 
-    }else if (params.field==="UserId" ) {
-      history.push(`/admin/${id}/user/${params.row.User.id}`); 
-    }else if (params.field==="User" && params.row.UserId ) {
-      history.push(`/admin/${id}/user/${params.row.UserId}`); 
-    }else if (params.field==="Contract" && params.row.ContractId ) {
-      history.push(`/admin/${id}/editcontract/${params.row.ContractId}`); 
+      history.push(`/admin/${id}/editproperty/${params.row.id}`);
+    } else if (params.row.email || params.field === "UserId") {
+      history.push(`/admin/${id}/user/${params.row.id}`);
+    } else if (params.field === "UserId") {
+      history.push(`/admin/${id}/user/${params.row.User.id}`);
+    } else if (params.field === "User" && params.row.UserId) {
+      history.push(`/admin/${id}/user/${params.row.UserId}`);
+    } else if (params.field === "Contract" && params.row.ContractId) {
+      history.push(`/admin/${id}/editcontract/${params.row.ContractId}`);
     }
   }
 
   return (
     <div style={{ height: 500, width: "100%" }} className={classes.root}>
       <div className={classes.ref}>
-        {reference.map((e) => (
+        {reference?.map((e) => (
           <div className={e.color} style={{ padding: "4px" }}>
             {e.name}
           </div>
@@ -113,4 +111,3 @@ export default function TableList({ columns, rows, user, reference }) {
     </div>
   );
 }
-

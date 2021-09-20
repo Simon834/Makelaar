@@ -1,4 +1,4 @@
-const { Property, Image, Contract } = require("../db");
+const { Property, Image, Contract, User } = require("../db");
 
 async function addNewProperty(req, res, next) {
   try {
@@ -24,7 +24,7 @@ async function addNewProperty(req, res, next) {
       price,
       premium,
     } = req.body;
-   
+
     let newProperty = await Property.create({
       name: name,
       area: area,
@@ -136,28 +136,27 @@ async function updateProperty(req, res, next) {
   }
 }
 
-async function deleteProperty(req, res, next){
-  try{
-    const id = req.query.id
+async function deleteProperty(req, res, next) {
+  try {
+    const id = req.query.id;
     const propertyToDelete = await Property.findByPk(id, {
-      include: Contract
-    })
-    if(propertyToDelete.deleted){
-      const idCont = propertyToDelete.Contract.id
+      include: Contract,
+    });
+    if (propertyToDelete.deleted) {
+      const idCont = propertyToDelete.Contract.id;
       const contractToDelete = await Contract.findByPk(idCont);
       await contractToDelete.destroy();
       await propertyToDelete.destroy();
       res.send("La propiedad ha sido borrada definitivamente");
-    }else{
+    } else {
       propertyToDelete.deleted = true;
       await propertyToDelete.save();
       res.send("la propiedad se encuentra en papelera de reciclaje");
     }
-  }catch(err){
+  } catch (err) {
     return next(err);
   }
 }
-
 
 module.exports = {
   addNewProperty,
@@ -165,5 +164,4 @@ module.exports = {
   updateProperty,
   idProperties,
   deleteProperty,
-  
 };

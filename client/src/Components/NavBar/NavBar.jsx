@@ -29,16 +29,33 @@ export default function NavBar() {
       </div>
       <div>
         <div className={style.links}>
-          <NavLink className={style.texto} activeClassName={style.selected} exact  to="/">
+          <NavLink
+            className={style.texto}
+            activeClassName={style.selected}
+            exact
+            to="/"
+          >
             Inicio
           </NavLink>
-          <NavLink className={style.texto} activeClassName={style.selected} to="/property">
+          <NavLink
+            className={style.texto}
+            activeClassName={style.selected}
+            to="/property"
+          >
             Propiedades
           </NavLink>
-          <NavLink className={style.texto} activeClassName={style.selected} to="/about">
+          <NavLink
+            className={style.texto}
+            activeClassName={style.selected}
+            to="/about"
+          >
             Nosotros
           </NavLink>
-          <NavLink className={style.texto} activeClassName={style.selected} to="/contact">
+          <NavLink
+            className={style.texto}
+            activeClassName={style.selected}
+            to="/contact"
+          >
             Contacto
           </NavLink>
         </div>
@@ -61,7 +78,7 @@ export default function NavBar() {
             return (
               <li key={index} className={style.nav_text}>
                 <Link to={item.path} className={style.text}>
-                  <span>{item.title}</span>
+                  {item.title}
                 </Link>
               </li>
             );
