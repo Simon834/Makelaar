@@ -31,16 +31,15 @@ socketio.on("connection", (socket) => {
 
     socketio.emit("mensajes", {
       name: "Makelaar",
-      mensaje: `Bienvenido/a ${name} responda:
+      mensaje: `Bienvenido/a ${name} responda con el numero:
       <br/>
-      Con el numero 1 si esta interesado/a en Alquilar o Vender una propiedad
+     ◉ 1 si esta interesado/a en Alquilar o Vender una propiedad
      <br/>
-      Con el numero 2 si esta interesado/a en Comprar o Alquilar una propiedad
+     ◉ 2 si esta interesado/a en Comprar o Alquilar una propiedad
       <br/>
-      Con el numero 3 si esta interesado/a en Realizar un pago mediante este medio
+     ◉ 3 si esta interesado/a en Realizar un pago mediante este medio
       <br/>
-      Con el numero 4 si tiene otra consulta
-      
+     ◉ 4 si tiene otra consulta
       `,
     });
 
@@ -59,15 +58,9 @@ socketio.on("connection", (socket) => {
     if (mensaje.includes(1)) {
       socketio.emit("mensajes", {
         name: "Makelaar",
-        mensaje: `Responda con el numero:
-            <br/>
-           ◉ 1 si esta interesado/a en Alquilar o Vender una propiedad
-           <br/>
-           ◉ 2 si esta interesado/a en Comprar o Alquilar una propiedad
-            <br/>
-           ◉ 3 si esta interesado/a en Realizar un pago mediante este medio
-            <br/>
-           ◉ 4 si tiene otra consulta
+        mensaje:`Completa el Formulario que se encuentra en este <a href="http://localhost:3000/contact"> link</a> y a la brevedad nos estaremos comunicando con usted.
+        <br/>
+        Gracias
                `
       })
     }
@@ -85,6 +78,7 @@ socketio.on("connection", (socket) => {
           name: "Makelaar",
           mensaje: `Para realizar el pago podes dirigirte al siguiente: <a href="http://localhost:3000/user/${id}/contrat">link</a> `,
         })
+        
       }else{
         socketio.emit("mensajes", {
           name: "Makelaar",
