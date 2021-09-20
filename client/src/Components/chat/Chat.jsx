@@ -1,6 +1,5 @@
 import React, { useState, useEffect} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Divider from '@material-ui/core/Divider';
 import TextField from '@material-ui/core/TextField';
@@ -12,18 +11,14 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Avatar from '@material-ui/core/Avatar';
 import Fab from '@material-ui/core/Fab';
 import SendIcon from '@material-ui/icons/Send';
-import {Modal, Button, Dialog} from '@material-ui/core';
+import {Modal, Button} from '@material-ui/core';
 import icoChat from "../../images/icon-chat.png"; 
 import style from './Chat.module.css';
-import imageChat from '../../images/image.jpg'
+import Tooltip from "@material-ui/core/Tooltip";
 
 import { useSelector } from "react-redux";
 
-
-
 import io from 'socket.io-client';
-//usuario logeado
-//ELIMINAR COMPONENTES DE CHATSOCKE CUANDO ESTE FUNCIONANDI BIEN 
 
 const BACK_SERVER =
   "http://localhost:3010";
@@ -43,9 +38,7 @@ const useStyles = makeStyles({
   headBG: {
     backgroundColor: '#e0e0e0'
   },
-  borderRight500: {
-    // borderRight: '1px solid #e0e0e0'
-  },
+  
   messageArea: {
     height: '70vh',
     fontSize:'10px',
@@ -55,17 +48,14 @@ const useStyles = makeStyles({
     }
   },
   root: {
-    // border: '1px solid #e0e0e0',
+   
     width: "100%",
     maginLeft: '100px'
   },
-//   tit: {
-//     textAlign: "center"
-//   },
+
   modal:{
       position: 'absolute',
       width: '50%',
-      // padding: '16px 32px 34px',
       top: '50%',
       left: '50%',
       transform: 'translate(-50%, -50%)',
@@ -74,18 +64,7 @@ const useStyles = makeStyles({
       overflow: 'hidden'
 
   },
-  paper:{
-      width:"40%",
-      height:'20%',
-    //   position:'absolute',
-       marginTop: '10px',
-       marginLeft: '300px',
-       marginRight: '20px',
-       marginBottom: '50px',
-       overflow: 'hidden',
-       display: 'flex'
 
-  },
   listItem:{
       marginLeft: '30px',
       overflow: 'hidden',
@@ -97,6 +76,10 @@ const useStyles = makeStyles({
   },
   listItemText:{
     fontSize: '3px'
+  },
+  submit:{
+     marginTop:"-10%",
+    width:"100%",
   }
 });
 
@@ -120,7 +103,7 @@ const Chat = () => {
 
   const { userInfo } = useSelector((state) => state);
 
-  //   console.log("NOMBRE USUARIO", userInfo.user.name)
+    console.log("INFO USUARIO", userInfo)
 
 
   useEffect(() => {
@@ -151,7 +134,8 @@ const Chat = () => {
     e.preventDefault();
     count = count + 1
 
-    socket.emit("mensaje", userInfo.user?.name || name, mensaje);
+    socket.emit("mensaje", userInfo.user?.name || name, mensaje, userInfo.user?.id || "");
+    console.log("INFO USER", userInfo)
     console.log("MENSAJE ENVIADO", mensaje)
     setMensaje("");
     // console.log("SE EJECUTO SUBMIT")
@@ -164,7 +148,7 @@ const Chat = () => {
 const body=(
 
         <div className={classes.modal}>
-            {/* <Paper elevation={24} className={classes.paper}> */}
+          
           <Grid container className={classes.root}>
             <Typography variant="h6" className={classes.tit}><Button onClick={openModal}>X</Button></Typography>
     
@@ -202,28 +186,25 @@ const body=(
               <Grid item style={{ padding: '20px' }}>
                 <Grid item >
                 
-                  <TextField id="outlined-basic-email" label="Type Something" value={mensaje}
+                  <TextField id="outlined-basic-email" label="Escribe tu opcion aqui" value={mensaje}
                     onChange={(e) => setMensaje(e.target.value)} fullWidth />
                 </Grid>
-                <Grid  align="right">
+                <Grid className={classes.submit} align="right" >
                   <Fab color="primary" aria-label="add"><SendIcon onClick={submit} /></Fab>
-                 
                 </Grid>
               </Grid>
             </Grid>
           </Grid>
-          {/* </Paper> */}
+        
         </div>
     
     
 )
 return(
     <div>
-      <div classes={style.btn}>
-
-        <img classes={style.btn} onClick={openModal} src={icoChat} />
-      </div>
-        {/* <Button > Abrir</Button> */}
+       <Tooltip title="Chatea con nosotros">
+        <img className={style.img} onClick={openModal} src={icoChat} />
+        </Tooltip>
         <Modal open={modal} onClose={openModal}>
             {body}
             </Modal>

@@ -1,12 +1,7 @@
-.btn{
-    width: 50px;
-    height: 50px;
-    position: fixed;
-    line-height: 55px;
-    bottom:30px;
-    right: 30px;
-    float: right;
-    color:aqua
+.img{
+    width: 20%;
+}
 
-
+.img:hover{
+    cursor:pointer
 }

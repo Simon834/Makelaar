@@ -69,6 +69,16 @@
 .right {
   width: 80%;
 }
+.btn{
+  display: flex;
+  justify-content: right;
+  margin-bottom: 10px;
+  position: fixed;
+  line-height: 10px;
+  bottom:0px;
+  right: -100px;
+}
+
 
 @media (max-width: 1000px) {
   .body-container {

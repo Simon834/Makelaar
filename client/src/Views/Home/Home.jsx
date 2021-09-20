@@ -25,7 +25,7 @@ import { filterEstates } from "../../Functions/filters/filters";
 import { clearFilter } from "../../Redux/Actions/filterActions";
 import { getAllProperties } from "../../Redux/Actions/propertyActions";
 
- import Chat from '../../Components/Chat/cha';
+//  import Chat from '../../Components/Chat/Chat';
 
 const inmuebles = require("../../inmuebles.json");
 
@@ -115,7 +115,7 @@ export default function Home() {
         carousel={<Carrusel />}
         content={<Cards inmuebles={estates}/>}
         />
-        <Chat/>
+        
     </div>
   );
 }
