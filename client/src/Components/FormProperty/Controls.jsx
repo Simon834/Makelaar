@@ -17,7 +17,6 @@ const resetValues = {
   address: "",
   cp: "",
   description: "",
-  // firstImg: "",
   photos: [],
   status: "activo",
   transaction: "",
@@ -39,7 +38,7 @@ export function Controls(update) {
   const [address, setAddress] = useState("");
 
   const [latLng, setLatLng] = useState({});
-  // console.log("ESTADO INICIAL CHECK", check)
+  
 
   function validate(values = property) {
     let error = { ...errors };
@@ -203,7 +202,6 @@ export function Controls(update) {
       try {
         const propertySubmit = { ...property, photos: img };
 
-        // console.log("PROPIEDAD CREADA",property)
         const registeredProperty = await addNewProperty(propertySubmit);
         if (registeredProperty) {
           Swal.fire("Listo!", "Se agrego una propiedad con exito!", "success");
@@ -215,9 +213,7 @@ export function Controls(update) {
     setProperty(resetValues);
     setImage([]);
     update();
-    // console.log("PROPIEDAD RESETTTT", property)
     setCheck({});
-    // console.log("CHECK ESTADO", check);
   }
 
   function setImage(images) {
@@ -235,15 +231,6 @@ export function Controls(update) {
       address: value,
       lat: latLng.lat,
       lng: latLng.lng,
-      city: results[0].address_components[
-        results[0].address_components.length - 6
-      ].long_name,
-      province:
-        results[0].address_components[results[0].address_components.length - 4]
-          .long_name,
-      cp: results[0].address_components[
-        results[0].address_components.length - 2
-      ].long_name,
     });
   }
 

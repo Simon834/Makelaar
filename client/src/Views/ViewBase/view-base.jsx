@@ -3,8 +3,9 @@ import NavBar from "../../Components/NavBar/NavBar";
 import TopBar from "../../Components/TopBar/TopBar";
 import Footer from "../../Components/Footer/Footer";
 import { Fragment } from "react";
+import Chat from '../../Components/chat/Chat'
 
-export default function ViewBase({ carousel, filters, content }) {
+export default function ViewBase({ carousel, filters, content, propertyMap }) {
   return (
     <div className="base-container">
       <div
@@ -35,6 +36,13 @@ export default function ViewBase({ carousel, filters, content }) {
           </Fragment>
         )}
       </div>
+      <div>
+        {propertyMap && (
+          <>
+            <div className="map-container">{propertyMap}</div>
+          </>
+        )}
+      </div>
 
       <div className="body-container">
         {filters && <div className="filter-container">{filters}</div>}
@@ -43,6 +51,9 @@ export default function ViewBase({ carousel, filters, content }) {
         >
           {content}
         </div>
+      <div className="btn">
+      <Chat />
+      </div>
       </div>
       <div className="footer-container">
         <Footer />

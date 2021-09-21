@@ -1,0 +1,40 @@
+.imageTitle {
+  width: 0.3rem;
+}
+.title {
+  font-size: 6px;
+  color: #4c3c90;
+}
+.address {
+  font-size: 6px;
+  color: #4c3c90;
+}
+.icons {
+  list-style: none;
+  margin-left: 3rem;
+  margin-top: -0.8rem;
+}
+
+.infoTitle {
+  font-size: 6px;
+  text-transform: uppercase;
+  margin: 2px;
+}
+
+.infoText {
+  display: inline-flex;
+  font-size: 6px;
+  margin-left: 3px;
+  color: #4c3c90;
+}
+
+.priceTxt {
+  font-size: 6px;
+  color: #4c3c90;
+}
+.footerCard {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+}

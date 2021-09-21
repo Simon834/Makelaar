@@ -1,41 +1,86 @@
-import { mergeClasses } from "@material-ui/styles";
 import GoogleMapReact from "google-map-react";
-import { useState } from "react";
-import style from "./GoogleMap.module.css";
+import { useEffect, useState } from "react";
+import InfoWindow from "./InfoWindow";
 import marker from "../../images/gps-icon-makelaar.png";
+import style from "./GoogleMap.module.css";
 
 require("dotenv").config();
 
 const { REACT_APP_GOOGLE_API_KEY } = process.env;
 
-const initialState = {
-  activeMarker: {},
-  selectedPlace: {},
-};
-const AnyReactComponent = ({ text, lat, lng }) => (
-  <div className={style.marker} lat={lat} lng={lng}>
-    <img src={marker} alt={"logo"} className={style.markerIcon} />
-  </div>
-);
-
 //Enviar por props latitud y longitus paraa centrar el mapa
 
-export function MapContainer(props) {
-  const coordinates = { lat: props.lat, lng: props.lng };
+export function MapContainer({ lat, lng, estates }) {
+  const [coordinates, setCoordinates] = useState({ lat: "", lng: "" });
+  const [show, setShow] = useState(null);
+
+  useEffect(() => {
+    if (estates) {
+      navigator.geolocation.getCurrentPosition(
+        ({ coords: { latitude, longitude } }) => {
+          setCoordinates({ ...coordinates, lat: latitude, lng: longitude });
+        }
+      );
+    } else {
+      setCoordinates({ ...coordinates, lat: lat, lng: lng });
+    }
+  }, [lat, lng, estates]);
+
+  const Marker = ({ onClick, lat, lng }) => {
+    return (
+      <div className={style.marker} lat={lat} lng={lng} onClick={onClick}>
+        <img src={marker} alt={"logo"} className={style.markerIcon} />
+      </div>
+    );
+  };
+  const Markers = estates?.map((estate) => {
+    return (
+      <Marker
+        lat={estate.lat}
+        lng={estate.lng}
+        onClick={() =>
+          setShow({
+            id: estate.id,
+            name: estate.name,
+            img: estate.Images[0].url,
+            address: estate.address,
+            transaction: estate.transaction,
+            price: estate.price,
+          })
+        }
+      />
+    );
+  });
 
   return (
-    <GoogleMapReact
-      bootstrapURLKeys={{ key: "AIzaSyAVef8w7jcOU7gqCZ6JtorzeFKFR2AsDdw" }}
-      defaultCenter={coordinates}
-      center={coordinates}
-      defaultZoom={16}
-      margin={[50, 50, 50, 50]}
-      options={""}
-      onChange={""}
-      onChildClick={""}
-    >
-      <AnyReactComponent lat={coordinates.lat} lng={coordinates.lng} />
-    </GoogleMapReact>
+    <>
+      <GoogleMapReact
+        bootstrapURLKeys={{ key: { REACT_APP_GOOGLE_API_KEY } }}
+        defaultCenter={coordinates}
+        center={coordinates}
+        defaultZoom={14}
+        margin={[50, 50, 50, 50]}
+        options={""}
+        onChange={""}
+      >
+        {estates ? (
+          Markers
+        ) : (
+          <Marker lat={coordinates.lat} lng={coordinates.lng} />
+        )}
+      </GoogleMapReact>
+      {show && (
+        <InfoWindow
+          name={show.name}
+          address={show.address}
+          img={show.img}
+          type={show.type}
+          price={show.price}
+          id={show.id}
+          setShow={setShow}
+        />
+      )}
+    </>
   );
 }
 

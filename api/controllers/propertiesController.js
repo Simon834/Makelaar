@@ -78,7 +78,6 @@ async function allProperties(req, res, next) {
 
 async function idProperties(req, res, next) {
   let id = Number(req.params.id);
-  console.log(id);
   try {
     const properties = await Property.findByPk(id, {
       include: [{ model: Image }, { model: Contract, include: User }],
