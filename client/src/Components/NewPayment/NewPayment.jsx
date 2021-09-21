@@ -205,7 +205,7 @@ export default function NewPayment({ contList, update }) {
               required
             />
             <TextField
-              value={dataPaymen.amount}
+              value={dataPaymen.amount*1}
               type="number"
               name="amount"
               id="amount"

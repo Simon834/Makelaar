@@ -55,7 +55,7 @@ export function rowData(rows, user) {
 
     if (e.status === "approved") newrow = { ...newrow, status: "Pago" };
     if (e.date) newrow = { ...newrow, date: new Date(e.date).toLocaleDateString() };
-    if (e.amount) newrow= {...newrow, amount:`$ ${e.amount}`}
+    if (e.amount) newrow= {...newrow, amount:`$ ${new Intl.NumberFormat().format(Math.abs(e.amount))}`}
 
     return newrow;
   });
