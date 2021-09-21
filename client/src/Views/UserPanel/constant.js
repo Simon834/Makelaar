@@ -5,12 +5,6 @@ export const menuList = {
       rute: "Home",
     },
   ],
-  property: [
-    {
-      title: "Mis propiedades",
-      rute: "/property",
-    },
-  ],
   contract: [
     {
       title: "Mis contratos",

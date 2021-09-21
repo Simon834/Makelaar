@@ -11,8 +11,8 @@ async function getUserById(req, res, next) {
   try {
     const user = await User.findByPk(userId, {
       include: [
-        { model: Contract, include: [{ model: Property }, { model: Payment }] },
-        { model: Payment, include: Contract },
+        { model: Contract, include: [{ model: Property }, { model: Payment, order: [["date", "DESC"]],}] },
+        { model: Payment, include: Contract,order: [["date", "DESC"]], },
       ],
     });
     if (user) {

@@ -1,4 +1,4 @@
-const { Contract } = require("../db");
+const { Contract, User, Payment } = require("../db");
 
 async function updateContractCron() {
   const contracts = await Contract.findAll();
@@ -20,6 +20,39 @@ async function updateContractCron() {
   });
 }
 
+async function liquidationContract() {
+  const contracts = await Contract.findAll(      {
+    include: [
+    { model: User },
+  ]},);
+
+  // console.log(contracts)
+  
+  contracts.map(async (con) => {
+    if (con.dataValues.status === "activo")  {
+
+    let paymentUser = await User.findOne({
+      where: {
+        email: con.dataValues.User.email,
+      },
+    });
+    const newPayment = await paymentUser.createPayment({
+      idPay:"Liquidación Autom.",
+      status:"Liquidación",
+      userEmail:con.dataValues.User.email,
+      amount:parseInt(con.dataValues.amount)*(-1),
+      ContractId:con.dataValues.id,
+      date: new Date()
+    });
+    }
+  });
+
+
+
+}
+
+
 module.exports = {
   updateContractCron,
+  liquidationContract
 };
