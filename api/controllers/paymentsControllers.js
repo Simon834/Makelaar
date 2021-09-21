@@ -14,6 +14,7 @@ async function getAllPayments(req, res, next) {
   try {
     const allPayments = await Payment.findAll({
       include: [{ model: User }, { model: Contract }],
+      order: [["date", "DESC"]],
     });
     return res.json(allPayments);
   } catch (err) {
@@ -24,8 +25,7 @@ async function getAllPayments(req, res, next) {
 
 async function createPreference(req, res, next) {
   const { title, price, description, contractId } = req.body;
-  console.log("BODY", req.body);
-  try {
+    try {
     //"orden de compra"
     let preference = {
       items: [
@@ -100,6 +100,7 @@ async function newNotification(req, res, next) {
           userEmail: references.payer.email,
           amount: references.additional_info.items[0].unit_price,
           ContractId: parseInt(references.additional_info.items[0].id),
+          date: new Date()
         };
 
         await paymentUser.createPayment(newPay);
@@ -121,7 +122,7 @@ async function newNotification(req, res, next) {
 
 async function addAllPayments(req, res, next) {
   try {
-    const { idPay, status, userEmail, amount, ContractId } = req.body;
+    const { idPay, status, userEmail, amount, ContractId, date } = req.body;
     let paymentUser = await User.findOne({
       where: {
         email: userEmail,
@@ -133,6 +134,7 @@ async function addAllPayments(req, res, next) {
       userEmail,
       amount,
       ContractId,
+      date: new Date(date)
     });
 
     return res.json(newPayment);

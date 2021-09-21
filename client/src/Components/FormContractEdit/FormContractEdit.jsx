@@ -74,6 +74,11 @@ const useStyle = makeStyles((theme) => ({
   title: {
     paddingLeft: theme.spacing(4),
   },
+
+  buttonList: {
+    display: "flex !Important",
+    flexDirection: "row",
+     },
 }));
 
 export default function NewContractForm({ user, update }) {
@@ -93,13 +98,12 @@ export default function NewContractForm({ user, update }) {
     handleClickCancel,
   } = UseFormControls(update);
 
-  const { columnsPaymentList } = contractEditConstant();
+  const { columnsPaymentList, paymentReference } = contractEditConstant();
 
   const { idcont } = useParams();
 
-  console.log("contrato", contract);
-
   const [userList, setUserList] = useState([]);
+  const [rest, setRest] = useState("");
   const [propertyList, setPropertyList] = useState([]);
   const [auth, setAuth] = useState(false);
 
@@ -112,7 +116,6 @@ export default function NewContractForm({ user, update }) {
   }, [contract]);
 
   useEffect(() => {
-    console.log("STATUS", contract.status);
     if (
       user &&
       (contract.status === "pendiente" || contract.status === "modificado")
@@ -138,9 +141,20 @@ export default function NewContractForm({ user, update }) {
   }
 
   async function getContract() {
-    const oldContract = await getContractById(idcont);
-    // console.log("XXXXXXXX", oldContract);
-    setContract(oldContract);
+    const contractApi = await getContractById(idcont);
+
+    if (contractApi.Payments) {
+      const resValue = contractApi.Payments.reduce((acc, val) => {
+        if (acc.amount) {
+          return acc.amount + parseInt(val.amount);
+        } else {
+          return acc + parseInt(val.amount);
+        }
+      });
+
+      setRest(resValue);
+    }
+    setContract(contractApi);
   }
 
   useEffect(() => {
@@ -153,8 +167,6 @@ export default function NewContractForm({ user, update }) {
     getAllProperties(); // eslint-disable-next-line
   }, []);
 
-  console.log("AUTH", auth);
-
   return (
     <>
       <Paper className={classes.root}>
@@ -164,6 +176,23 @@ export default function NewContractForm({ user, update }) {
           onSubmit={handleSubmit}
         >
           <h1 className={classes.title}>Contrato</h1>
+          {rest < 0 ? (
+            <Alert variant="filled" severity="warning">
+              {`Contrato con deuda de $ ${new Intl.NumberFormat().format(Math.abs(rest))}`}
+            </Alert>
+          ) : rest >= 0 ? (
+            <Alert variant="filled" severity="success">
+              Contrato sin deuda
+            </Alert>
+          ) : contract.status === "pendiente" ||
+            contract.status === "modificado" ? (
+            <Alert variant="filled" severity="info">
+              Contrato pendiente de confirmación
+            </Alert>
+          ) : (
+            <></>
+          )}
+
           <Grid container>
             <Grid item className={classes.grid} xs={12} sm={6} md={3}>
               <TextField
@@ -320,7 +349,7 @@ export default function NewContractForm({ user, update }) {
               />
             </Grid>
 
-            <Grid item className={classes.grid} xs={12} sm={12} md={12}>
+            <Grid item  xs={12} sm={12} md={12}>
               {auth ? (
                 <div className={classes.ButtonsConfirm}>
                   <Grid item className={classes.grid} xs={12} sm={6} md={6}>
@@ -397,7 +426,7 @@ export default function NewContractForm({ user, update }) {
               <TableList
                 columns={columnsPaymentList}
                 rows={contract?.Payments || []}
-                reference={[]}
+                reference={paymentReference}
               />
             </Grid>
           </Grid>

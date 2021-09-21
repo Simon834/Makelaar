@@ -1,7 +1,7 @@
 require("dotenv").config();
 const cron = require('node-cron');
 const { db } = require("./db");
-const { updateContractCron } = require('./cron/contractCron')
+const {updateContractCron, liquidationContract} = require('./cron/contractCron')
 
 const app = require("./app");
 
@@ -135,6 +135,10 @@ db.sync({ force: false }).then(async () => {
     cron.schedule('44 * * * *', () => {
       updateContractCron()
       console.log('update contract state');
+    });
+    cron.schedule('51 * * * *', () => {
+      liquidationContract()
+      console.log('update payments state');
     });
   });
 });

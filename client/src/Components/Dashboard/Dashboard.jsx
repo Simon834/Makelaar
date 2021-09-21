@@ -48,6 +48,7 @@ export default function Dashboard({
   userList,
   prpList,
   contList,
+  payList
 }) {
   const classes = useStyles();
   const pieChart = {
@@ -142,7 +143,7 @@ export default function Dashboard({
         </GridItem>
 
         <Grid item xs={12} md={6} lg={8}>
-          <BarChart series={pieChart.series} labels={pieChart.labels} />
+          <BarChart payList={payList} labels={pieChart.labels} />
         </Grid>
 
         <Grid item xs={12} md={6} lg={4}>

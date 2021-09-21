@@ -19,7 +19,7 @@ export function contractEditConstant(id, history) {
       headerClassName: "super-app-theme--header",
     },
     {
-      field: "createdAt",
+      field: "date",
       headerName: "Fecha",
       flex: 1,
       headerClassName: "super-app-theme--header",
@@ -27,24 +27,14 @@ export function contractEditConstant(id, history) {
 
   ];
 
-  const userReference = [
-    { name: "Administrador", color: "super-app-theme--ocupado" }
-  ];
-
-  const propertyReference = [
-    { name: "Activo", color: "super-app-theme--activo" },
-    { name: "Destacado", color: "super-app-theme--destacado" },
-    { name: "Ocupado", color: "super-app-theme--ocupado" },
-    { name: "Eliminado", color: "super-app-theme--eliminado" },
-  ];
-
-  const contractReference = [
-    { name: "Activo", color: "super-app-theme--activo" },
-    { name: "Caducado", color: "super-app-theme--eliminado" },
+  const paymentReference = [
+    { name: "Pago", color: "super-app-theme--activo" },
+    { name: "Liquidacion", color: "super-app-theme--eliminado" },
   ];
 
   return {
     columnsPaymentList,
+    paymentReference
 
   };
 }
