@@ -133,7 +133,7 @@ db.sync({ force: false }).then(async () => {
       updateContractCron()
       console.log('update contract state');
     });
-    cron.schedule('51 * * * *', () => {
+    cron.schedule('* * 5 * *', () => {
       liquidationContract()
       console.log('update payments state');
     });
