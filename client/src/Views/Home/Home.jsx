@@ -4,8 +4,8 @@ import { useSelector, useDispatch } from "react-redux";
 import ViewBase from "../ViewBase/view-base";
 import Carrusel from "../../Components/Carrusel/Carrusel";
 import Cards from "../../Components/Cards/Cards";
-// import FavoriteCard from "../../Components/Favorites/FavoriteCard";
-// import FavoriteCards from "../../Components/Favorites/FavoritesCards/FavoriteCards";
+import FavoriteCard from "../../Components/Favorites/FavoriteCard";
+import FavoriteCards from "../../Components/Favorites/FavoritesCards/FavoriteCards";
 
 import Filter from "../Filters/Filters";
 import SearchBar from "../../Components/SearchBar/SearchBar";
@@ -24,32 +24,48 @@ import { filterEstates } from "../../Functions/filters/filters";
 import { clearFilter } from "../../Redux/Actions/filterActions";
 import { getAllProperties } from "../../Redux/Actions/propertyActions";
 
+
 const inmuebles = require("../../inmuebles.json");
 
 export default function Home() {
-  const { concept, tipe, bedroom, bathroom, price, search,properties } = useSelector(
-    (state) => state
-  );
-
+  const { concept, tipe, bedroom, bathroom, price, search, properties } =
+    useSelector((state) => state);
 
   const [estates, setEstates] = useState(properties);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    getEstates()
+    getEstates(); // eslint-disable-next-line
   }, [concept, tipe, bedroom, bathroom, price, search, properties]);
 
-  async function getEstates(){
-    const estatesApi = await filterEstates(properties, concept, tipe, bedroom, bathroom, price, search)
-    setEstates(estatesApi.filter(e=>e.premium && !e.Contract && e.status==="activo"))
+  async function getEstates() {
+    const estatesApi = await filterEstates(
+      properties,
+      concept,
+      tipe,
+      bedroom,
+      bathroom,
+      price,
+      search
+    );
+    setEstates(
+      estatesApi.filter((e) => {
+        let contract;
+        if (e.Contracts.length) {
+          contract = e.Contracts[e.Contracts.length - 1].status !== "activo";
+        } else {
+          contract = true;
+        }
+        return e.premium && contract && e.status === "activo";
+      })
+    );
   }
 
   useEffect(() => {
     window.scrollTo(0, 0);
     dispatch(clearFilter());
     dispatch(getAllProperties());
-
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
@@ -94,8 +110,9 @@ export default function Home() {
           />
         }
         carousel={<Carrusel />}
-        content={<Cards inmuebles={estates} />}
-      />
+        content={<Cards inmuebles={estates}/>}
+        />
+        
     </div>
   );
 }

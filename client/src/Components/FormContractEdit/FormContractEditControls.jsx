@@ -12,12 +12,15 @@ const initialFormValues = {
   comments: "",
   UserId: "",
   PropertyId: "",
+  status: "modificado",
+  email: "",
 };
 
-export function UseFormControls(props) {
+export function UseFormControls(update) {
   const [contract, setContract] = useState(initialFormValues);
   const [errors, setErrors] = useState({});
   const [selectValues, setSelectValues] = useState({});
+  const [email, setEmail] = useState("");
 
   const validate = (fieldValues = contract) => {
     let temp = { ...errors };
@@ -64,6 +67,7 @@ export function UseFormControls(props) {
     setContract({
       ...contract,
       [name]: value,
+      email: email,
     });
     validate({ [name]: value });
   };
@@ -86,30 +90,83 @@ export function UseFormControls(props) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setContract({
+      ...contract,
+      status: "modificado",
+    });
     const isValid =
       Object.values(errors).every((x) => x === "") && formIsValid();
     if (isValid) {
       try {
         await editContract(contract, contract.id);
-            Swal.fire({
-              icon: "success",
-              title: "Perfecto..!",
-              text: "Tu contrato ha sido modificado con exito cheeee...!",
-              customClass: {
-                container: "my-swal",
-              },
-            });
+        Swal.fire({
+          icon: "success",
+          title: "Perfecto!",
+          text: "Los cambios han sido enviados al usuario y están a la espera de ser aprobados.",
+          confirmButtonColor: "#4c3c90",
+          customClass: {
+            container: "my-swal",
+          },
+        });
+        update();
       } catch (err) {
         console.log(err);
-            Swal.fire({
-              icon: "success",
-              title: "Ups..!",
-              text: "Tu contrato no ha podido ser modificado, intenta de nuevo",
-              customClass: {
-                container: "my-swal",
-              },
+        Swal.fire({
+          icon: "error",
+          title: "Ups..!",
+          text: "Tu contrato no ha podido ser modificado, intenta de nuevo por favor",
+          confirmButtonColor: "#4c3c90",
+          customClass: {
+            container: "my-swal",
+          },
         });
       }
+    }
+  };
+
+  const handleClickConfirm = async (e) => {
+    e.preventDefault();
+    setContract({
+      ...contract,
+      status: "activo",
+    });
+    try {
+      await editContract(contract, contract.id);
+      Swal.fire({
+        icon: "success",
+        title: "Perfecto!",
+        text: "El contrato ha sido aprobado!",
+        confirmButtonColor: "#4c3c90",
+        customClass: {
+          container: "my-swal",
+        },
+      });
+      update();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleClickCancel = async (e) => {
+    e.preventDefault();
+    setContract({
+      ...contract,
+      status: "rechazado",
+    });
+    try {
+      await editContract(contract, contract.id);
+      Swal.fire({
+        icon: "error",
+        title: "Entendido!",
+        text: "El contrato ha sido rechazado. Nos comunicaremos con usted a la brevedad!",
+        confirmButtonColor: "#4c3c90",
+        customClass: {
+          container: "my-swal",
+        },
+      });
+      update();
+    } catch (err) {
+      console.log(err);
     }
   };
 
@@ -130,5 +187,8 @@ export function UseFormControls(props) {
     selectValues,
     setContract,
     setFile,
+    setEmail,
+    handleClickConfirm,
+    handleClickCancel,
   };
 }

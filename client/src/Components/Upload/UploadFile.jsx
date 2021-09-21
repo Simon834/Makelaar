@@ -1,68 +1,90 @@
-import React, { useState, useEffect } from 'react'
-import { makeStyles } from '@material-ui/core/styles';
-import {IconButton, Paper, Button, List ,ListItem, ListItemAvatar, Avatar,ListItemText,ListItemSecondaryAction } from '@material-ui/core';
-import {Delete as DeleteIcon, Folder as FolderIcon } from '@material-ui/icons';
-import { uploadConection } from '../../Functions/api/upload';
-
+import React, { useState, useEffect } from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import {
+  IconButton,
+  Paper,
+  Button,
+  List,
+  ListItem,
+  ListItemAvatar,
+  Avatar,
+  ListItemText,
+  ListItemSecondaryAction,
+} from "@material-ui/core";
+import { Delete as DeleteIcon, Folder as FolderIcon } from "@material-ui/icons";
+import { uploadConection } from "../../Functions/api/upload";
+import { translationEs, stylesColor } from "./uploadConfig";
 
 const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
-
+        padding: theme.spacing(2),
         flexWrap: 'wrap',
         justifyContent: 'space-around',
         overflow: 'hidden',
-        width: "100%",
+        minWidth: "100%",
+        maxWidth: "100%",
     },
     paper: {
-      width: "100%" ,
+   
+      minWidth: "100%",
+      maxWidth: "100%",
     },
     list: {
-      width: "100%", 
+      minWidth: "100%",
+      maxWidth: "100%",
     },
     button:{
         width:"100%"
     }
 }));
 
-export default function UploadFile({files, setFiles}) {
-    const [myWidget, setmyWidget] = useState({})
-    const classes = useStyles();
+export default function UploadFile({ files, setFiles }) {
+  const [myWidget, setmyWidget] = useState({});
+  const classes = useStyles();
+  const [fileArr, setFileArr] = useState(files);
 
-    let fileArr = files || []
-    
-    useEffect(() => {
-      var myWidgetConect = window.cloudinary.createUploadWidget({
-        cloudName: 'makelaar',
-        uploadPreset: 'amojar0m'
-      }, (error, result) => {
+  useEffect(() => {
+    setFileArr(files);
+    var myWidgetConect = window.cloudinary.createUploadWidget(
+      {
+        cloudName: "makelaar",
+        uploadPreset: "amojar0m",
+        language: "es",
+        buttonClass: "bg-action",
+        text: translationEs,
+        styles:stylesColor
+        },
+      
+      (error, result) => {
         if (!error && result && result.event === "success") {
-          fileArr.push({name: result.info.original_filename, url:result.info.url})
-          setFiles([...fileArr])
+          fileArr.push({
+            name: result.info.original_filename,
+            url: result.info.url,
+          });
+          setFiles([...fileArr]);
         }
       }
-      )
-      myWidgetConect.open();
-      myWidgetConect.close();
-      setmyWidget(myWidgetConect)
-    }, [])
-    
+    );
+    myWidgetConect.open();
+    myWidgetConect.close();
+    setmyWidget(myWidgetConect);
+  }, [files]);
 
+  async function uploadImage() {
+    await myWidget.open();
+  }
 
-
-    async function uploadImage() {
-        await myWidget.open()
-    }
-
-    function deleteFile(pos){
-        let fileDel=[...files]
-        fileDel.splice(pos,1)
-        setFiles(fileDel)
-    }
+  function deleteFile(pos) {
+    let fileDel = [...files];
+    fileDel.splice(pos, 1);
+    fileArr.splice(pos, 1);
+    setFiles(fileDel);
+  }
 
     return (
         <div className={classes.root}>
-            <Paper>
+            <Paper className={classes.paper}>
             <Button className={classes.button} variant="contained" color="primary" onClick={() => uploadImage()}>Subir documento</Button>
             <div className={classes.demo}>
             <List className={classes.list}>
@@ -87,5 +109,5 @@ export default function UploadFile({files, setFiles}) {
           </div>
             </Paper>
         </div>
-    )
+  );
 }

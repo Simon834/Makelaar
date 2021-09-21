@@ -1,9 +1,7 @@
-const { Property, Image, Contract } = require("../db");
+const { Property, Image, Contract, User } = require("../db");
 
-//creacion propiedad
 async function addNewProperty(req, res, next) {
   try {
-    //photos, firstImg los recibe por body???
     const {
       name,
       area,
@@ -23,15 +21,9 @@ async function addNewProperty(req, res, next) {
       photos,
       lat,
       lng,
-      price, 
-      premium
+      price,
+      premium,
     } = req.body;
-    // console.log(req.body);
-    // let property= await Property.findOrCreate({where: {name,area,rooms, bathrooms,type, city,neighborhood, province, street, streetNumber, cp, description, transaction}});
-
-    // if(propertyValidation){
-    //     res.status(409).json({ msg: "Esta propieda ya fue creada" })
-    // }else{
 
     let newProperty = await Property.create({
       name: name,
@@ -52,9 +44,9 @@ async function addNewProperty(req, res, next) {
       lat: lat,
       lng: lng,
       price: price,
-      premium: premium
+      premium: premium,
     });
-    if(photos){
+    if (photos) {
       const image = photos?.map(
         async (photo) => await newProperty.createImage({ url: photo })
       );
@@ -86,10 +78,9 @@ async function allProperties(req, res, next) {
 
 async function idProperties(req, res, next) {
   let id = Number(req.params.id);
-  console.log(id);
   try {
     const properties = await Property.findByPk(id, {
-      include: [{ model: Image }, { model: Contract }],
+      include: [{ model: Image }, { model: Contract, include: User }],
     });
     if (properties) {
       return res.json(properties);
@@ -144,4 +135,32 @@ async function updateProperty(req, res, next) {
   }
 }
 
-module.exports = { addNewProperty, allProperties, updateProperty, idProperties };
+async function deleteProperty(req, res, next) {
+  try {
+    const id = req.query.id;
+    const propertyToDelete = await Property.findByPk(id, {
+      include: Contract,
+    });
+    if (propertyToDelete.deleted) {
+      const idCont = propertyToDelete.Contract.id;
+      const contractToDelete = await Contract.findByPk(idCont);
+      await contractToDelete.destroy();
+      await propertyToDelete.destroy();
+      res.send("La propiedad ha sido borrada definitivamente");
+    } else {
+      propertyToDelete.deleted = true;
+      await propertyToDelete.save();
+      res.send("la propiedad se encuentra en papelera de reciclaje");
+    }
+  } catch (err) {
+    return next(err);
+  }
+}
+
+module.exports = {
+  addNewProperty,
+  allProperties,
+  updateProperty,
+  idProperties,
+  deleteProperty,
+};

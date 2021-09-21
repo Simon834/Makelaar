@@ -10,3 +10,4 @@ router.use("/property", properties);
 router.use("/contract", contracts);
 
 module.exports = router;
+

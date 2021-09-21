@@ -3,7 +3,6 @@ const { Sequelize } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
 
-
 const {
   DATABASE_URL,
   DB_USER,
@@ -48,11 +47,11 @@ db.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-const { User, Property, Image, Contract, File } = db.models;
+const { User, Property, Image, Contract, File, Payment } = db.models;
 
 //Relaciones
 //contract-property
-Property.hasOne(Contract);
+Property.hasMany(Contract);
 Contract.belongsTo(Property, {foreignKey: "PropertyId"})
 
 //contract-user
@@ -66,6 +65,14 @@ Image.belongsTo(Property, {foreignKey: "ImageId"})
 //file-property
 Contract.hasMany(File);
 File.belongsTo(Contract)
+
+//payment-user
+User.hasMany(Payment);
+Payment.belongsTo(User);
+
+
+Contract.hasMany(Payment);
+Payment.belongsTo(Contract, {foreignKey: "ContractId"})
 
 module.exports = {
   db,

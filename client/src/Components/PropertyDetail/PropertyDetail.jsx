@@ -9,8 +9,7 @@ import { useParams } from "react-router";
 import { propertyById } from "../../Functions/api/property";
 import GoogleMap from "../GoogleMap/GoogleMap";
 import { useLocation } from "react-router-dom";
-import phoneImg from "../../images/telefono-03.jpg"
-
+import phoneImg from "../../images/telefono-03.jpg";
 
 import style from "./PropertyDetail.module.css";
 
@@ -33,56 +32,49 @@ export default function PropertyDetail() {
 
   async function getDetail(id) {
     const inmDetail = await propertyById(id);
-    console.log(inmDetail)
     setInm(inmDetail);
-    setImg(inmDetail.Images[0].url)
+    setImg(inmDetail.Images[0].url);
     return inmDetail;
   }
-
+  console.log("INM", inm);
   const classes = useStyles();
-
   return (
     <div>
-    <div className={style.conteiner}>
-      <div className={style.info}>
-        <CardComponent
-          title={inm.name}
-          type={inm.type}
-          bathroom={inm.bathrooms}
-          bedroom={inm.rooms}
-          rooms={inm.rooms + inm.bathrooms + 2}
-          price={inm.price}
-          address={inm.address}
-          garage={inm.garage}
-          id={id*1}
-          image={img}
-          condition={inm.condition}
-          description={inm.description}
-          transaction={inm.transaction}
-          type={inm.type}
-          area={inm.area}
-          contrat={inm.Contract}
-          hideImage={true}
-        />
+      <div className={style.conteiner}>
+        <div className={style.info}>
+          <CardComponent
+            title={inm.name}
+            type={inm.type}
+            bathroom={inm.bathrooms}
+            bedroom={inm.rooms}
+            rooms={inm.rooms + inm.bathrooms + 2}
+            price={inm.price}
+            address={inm.address}
+            garage={inm.garage}
+            id={id * 1}
+            image={img}
+            condition={inm.condition}
+            description={inm.description}
+            transaction={inm.transaction}
+            area={inm.area}
+            contrat={inm.Contract}
+            hideImage={true}
+          />
+        </div>
+        <div className={style.galery}>
+          <GaleryImg images={inm.Images} />
+        </div>
       </div>
-      <div className={style.galery}>
-        <GaleryImg images={inm.Images} />
-      </div>
-    </div>
 
-        <div className={style.map}>
-          <GoogleMap lat={inm.lat} lng={inm.lng} />
-        </div>
-        <div className={style.contact}>
-          <ContactForm
-            msg={`Hola, tengo interés en ${inm.name} en ${inm.address}, ¿podriamos coordinar una visita?`}
-          />
-                    <img
-            className={style.img}
-            src={phoneImg}
-            alt="imagen"
-          />
-        </div>
+      <div className={style.map}>
+        <GoogleMap lat={inm.lat} lng={inm.lng} />
+      </div>
+      <div className={style.contact}>
+        <ContactForm
+          msg={`Hola, tengo interés en ${inm.name} en ${inm.address}, ¿Podemos coordinar una visita?`}
+        />
+        <img className={style.img} src={phoneImg} alt="imagen" />
+      </div>
     </div>
   );
 }

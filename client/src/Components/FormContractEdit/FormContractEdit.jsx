@@ -2,10 +2,23 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getAllUserApi } from "../../Functions/api/users";
 import { allProperties } from "../../Functions/api/property";
+import Alert from "@material-ui/lab/Alert";
+import TableList from "../TableList/TableList";
+import { contractEditConstant } from "./constant";
+
 import { getAllContract, getContractById } from "../../Functions/api/contract";
 import UploadFile from "../Upload/UploadFile";
-import {IconButton, List ,ListItem, ListItemAvatar, Avatar,ListItemText,ListItemSecondaryAction } from '@material-ui/core';
-import {Delete as DeleteIcon, Folder as FolderIcon } from '@material-ui/icons';
+import {
+  IconButton,
+  List,
+  ListItem,
+  ListItemAvatar,
+  Avatar,
+  ListItemText, // eslint-disable-next-line
+  ListItemSecondaryAction,
+} from "@material-ui/core"; // eslint-disable-next-line
+import { Delete as DeleteIcon, Folder as FolderIcon } from "@material-ui/icons";
+import BtnPayment from "../BtnPayment/BtnPayment";
 
 import {
   MenuItem,
@@ -23,31 +36,52 @@ import { UseFormControls } from "./FormContractEditControls";
 const useStyle = makeStyles((theme) => ({
   form: {
     "& .MuiFormControl-root": {
-      width: "650px",
+      width: "100%",
       margin: theme.spacing(2),
     },
   },
   root: {
-    width: "min-content",
+    width: "100%",
     margin: theme.spacing(5),
     padding: theme.spacing(3),
     display: "flex",
     flexDirection: "column",
     allingItems: "center",
     justifyContent: "center",
+    "& .makeStyles-root-11": {
+      width: "100%",
+    },
   },
   button: {
-    marginTop: theme.spacing(2),
-    marginLeft: theme.spacing(36),
+    width: "100%",
   },
   header: {
     fontSize: "25px",
   },
   list: {
-    width: "100%",} 
+    width: "100%",
+  },
+  buttons: {
+    display: "flex",
+    flexDirection: "columns",
+    width: "100%",
+  },
+  grid: {
+    display: "flex",
+    flexDirection: "columns",
+    padding: theme.spacing(2),
+  },
+  title: {
+    paddingLeft: theme.spacing(4),
+  },
+
+  buttonList: {
+    display: "flex !Important",
+    flexDirection: "row",
+     },
 }));
 
-export default function NewContractForm({user}) {
+export default function NewContractForm({ user, update }) {
   const classes = useStyle();
   const {
     handleChange,
@@ -55,45 +89,82 @@ export default function NewContractForm({user}) {
     formIsValid,
     errors,
     contract,
-    handleSelect,
+    handleSelect, // eslint-disable-next-line
     selectValues,
-    setContract,
+    setContract, // eslint-disable-next-line
     setFile,
-  } = UseFormControls();
+    setEmail,
+    handleClickConfirm,
+    handleClickCancel,
+  } = UseFormControls(update);
+
+  const { columnsPaymentList, paymentReference } = contractEditConstant();
 
   const { idcont } = useParams();
 
   const [userList, setUserList] = useState([]);
+  const [rest, setRest] = useState("");
   const [propertyList, setPropertyList] = useState([]);
+  const [auth, setAuth] = useState(false);
+
+  let userEmail = userList.find((p) => p.id === contract.UserId);
 
   useEffect(() => {
-    setContract({
-      ...contract,
-      UserId: selectValues.UserId,
-      PropertyId: selectValues.PropertyId,
-    });
-  }, [selectValues]);
+    if (userEmail) {
+      setEmail(userEmail.email);
+    } // eslint-disable-next-line
+  }, [contract]);
 
   useEffect(() => {
-    async function getAllUser() {
-      const allUsersApi = await getAllUserApi();
-      setUserList(allUsersApi);
+    if (
+      user &&
+      (contract.status === "pendiente" || contract.status === "modificado")
+    ) {
+      setAuth(true);
     }
+    if (
+      user &&
+      (contract.status === "rechazado" || contract.status === "activo")
+    ) {
+      setAuth(false);
+    } // eslint-disable-next-line
+  }, [contract]);
 
-    async function getAllProperties() {
-      const allPropertiesApi = await allProperties();
-      setPropertyList(allPropertiesApi);
+  async function getAllUser() {
+    const allUsersApi = await getAllUserApi();
+    setUserList(allUsersApi);
+  }
+
+  async function getAllProperties() {
+    const allPropertiesApi = await allProperties();
+    setPropertyList(allPropertiesApi);
+  }
+
+  async function getContract() {
+    const contractApi = await getContractById(idcont);
+
+    if (contractApi.Payments) {
+      const resValue = contractApi.Payments.reduce((acc, val) => {
+        if (acc.amount) {
+          return acc.amount + parseInt(val.amount);
+        } else {
+          return acc + parseInt(val.amount);
+        }
+      });
+
+      setRest(resValue);
     }
-    
-    async function getContract(){
-        const oldContract = await getContractById(idcont);
-        console.log("XXXXXXXX", oldContract);
-        setContract(oldContract);
+    setContract(contractApi);
+  }
+
+  useEffect(() => {
+    if (!user) {
+      getAllUser();
+      getAllProperties();
     }
     getContract();
     getAllUser();
-    getAllProperties();
-
+    getAllProperties(); // eslint-disable-next-line
   }, []);
 
   return (
@@ -104,8 +175,26 @@ export default function NewContractForm({user}) {
           autoComplete="off"
           onSubmit={handleSubmit}
         >
+          <h1 className={classes.title}>Contrato</h1>
+          {rest < 0 ? (
+            <Alert variant="filled" severity="warning">
+              {`Contrato con deuda de $ ${new Intl.NumberFormat().format(Math.abs(rest))}`}
+            </Alert>
+          ) : rest >= 0 ? (
+            <Alert variant="filled" severity="success">
+              Contrato sin deuda
+            </Alert>
+          ) : contract.status === "pendiente" ||
+            contract.status === "modificado" ? (
+            <Alert variant="filled" severity="info">
+              Contrato pendiente de confirmación
+            </Alert>
+          ) : (
+            <></>
+          )}
+
           <Grid container>
-            <Grid item xs={6}>
+            <Grid item className={classes.grid} xs={12} sm={6} md={3}>
               <TextField
                 variant="outlined"
                 label="Titulo"
@@ -120,9 +209,11 @@ export default function NewContractForm({user}) {
                 required
                 disabled={!!user}
               />
+            </Grid>
+            <Grid item className={classes.grid} xs={12} sm={6} md={4}>
               <FormControl className={classes.formControl}>
                 <Select
-                disabled={!!user}
+                  disabled={!!user}
                   onChange={handleSelect}
                   name="UserId"
                   value={contract.UserId}
@@ -143,11 +234,13 @@ export default function NewContractForm({user}) {
                     </MenuItem>
                   ))}
                 </Select>
-                <FormHelperText>Seleccione el usuario</FormHelperText>
+                <FormHelperText>Usuario</FormHelperText>
               </FormControl>
+            </Grid>
+            <Grid item className={classes.grid} xs={12} sm={6} md={5}>
               <FormControl className={classes.formControl}>
                 <Select
-                disabled={!!user}
+                  disabled={!!user}
                   name="PropertyId"
                   onChange={handleSelect}
                   value={contract.PropertyId}
@@ -172,10 +265,12 @@ export default function NewContractForm({user}) {
                     </MenuItem>
                   )}
                 </Select>
-                <FormHelperText>Seleccione la propiedad</FormHelperText>
+                <FormHelperText>Propiedad</FormHelperText>
               </FormControl>
+            </Grid>
+            <Grid item className={classes.grid} xs={12} sm={6} md={3}>
               <TextField
-              disabled={!!user}
+                disabled={!!user}
                 InputLabelProps={{ shrink: true }}
                 variant="outlined"
                 label="Fecha de inicio"
@@ -189,8 +284,10 @@ export default function NewContractForm({user}) {
                   helperText: errors.startDate,
                 })}
               />
+            </Grid>
+            <Grid item className={classes.grid} xs={12} sm={6} md={3}>
               <TextField
-              disabled={!!user}
+                disabled={!!user}
                 variant="outlined"
                 InputLabelProps={{ shrink: true }}
                 label="Fecha de cierre"
@@ -204,8 +301,10 @@ export default function NewContractForm({user}) {
                   helperText: errors.endDate,
                 })}
               />
+            </Grid>
+            <Grid item className={classes.grid} xs={12} sm={6} md={3}>
               <TextField
-              disabled={!!user}
+                disabled={!!user}
                 variant="outlined"
                 label="Monto a pagar"
                 name="amount"
@@ -219,8 +318,10 @@ export default function NewContractForm({user}) {
                   helperText: errors.amount,
                 })}
               />
+            </Grid>
+            <Grid item className={classes.grid} xs={12} sm={6} md={3}>
               <TextField
-              disabled={!!user}
+                disabled={!!user}
                 variant="outlined"
                 InputLabelProps={{ shrink: true }}
                 label="Fecha de pago"
@@ -234,48 +335,68 @@ export default function NewContractForm({user}) {
                 })}
                 required
               />
-
-              {/* <TextField
-                variant="outlined"
-                label="Archivo adjunto"
-                name="file"
-                value={contract.file}
-                onChange={handleChange}
-                required
-              /> */}
+            </Grid>
+            <Grid item className={classes.grid} xs={12} sm={12} md={12}>
               <TextField
-              disabled={!!user}
+                disabled={!!user}
                 variant="outlined"
                 label="Agregue un comentario (opcional)"
                 multiline
-                rows={4}
+                rows={3}
                 name="comments"
                 value={contract.comments}
                 onChange={handleChange}
               />
-                <List className={classes.list}>
-                  {console.log(contract.Files)}
-              {contract.Files?.map((e,pos)=>
-                <ListItem onClick={()=>window.open(e.url, '_blank')}>
-                  <ListItemAvatar>
-                    <Avatar>
-                      <FolderIcon />
-                    </Avatar>
-                  </ListItemAvatar>
-                  <ListItemText
-                    primary={e.url}
-                    />
-                    
-                </ListItem>,
-              )}
-            </List>
+            </Grid>
 
-
-              {/* {contract.Files?.map(fl => <a href={fl.url} target="_blank">fl.name</a>)} */}
-              <p>
-                {user?<></>:
+            <Grid item  xs={12} sm={12} md={12}>
+              {auth ? (
+                <div className={classes.ButtonsConfirm}>
+                  <Grid item className={classes.grid} xs={12} sm={6} md={6}>
+                    <Alert
+                      severity="warning"
+                      elevation={6}
+                      variant="filled"
+                      style={{ width: "100%" }}
+                    >
+                      {" "}
+                      Hay cambios en el contrato
+                    </Alert>
+                  </Grid>
+                  <Grid item className={classes.grid} xs={12} sm={6} md={3}>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      onClick={handleClickConfirm}
+                      className={classes.buttonConfirm}
+                    >
+                      Confirmar
+                    </Button>
+                  </Grid>
+                  <Grid item className={classes.grid} xs={12} sm={6} md={3}>
+                    <Button
+                      variant="contained"
+                      color="secondary"
+                      onClick={handleClickCancel}
+                      className={classes.buttonReject}
+                    >
+                      Rechazar
+                    </Button>
+                  </Grid>
+                </div>
+              ) : null}
+            </Grid>
+            <Grid item className={classes.grid} xs={12} sm={12} md={12}>
+              {user ? (
+                <BtnPayment
+                  id={idcont}
+                  title={contract.name}
+                  description={`Pago contrato ${contract.name} por ${contract.PropertyId}`}
+                  price={contract.amount}
+                  className={classes.button}
+                />
+              ) : (
                 <Button
-                  
                   variant="contained"
                   color="primary"
                   type="submit"
@@ -283,8 +404,30 @@ export default function NewContractForm({user}) {
                   disabled={!formIsValid()}
                 >
                   Enviar
-                </Button>}
-              </p>
+                </Button>
+              )}
+            </Grid>
+            <Grid item className={classes.grid} xs={12} sm={12} md={12}>
+              <List className={classes.list}>
+                <h2>Documentos</h2>
+                {contract.Files?.map((e, pos) => (
+                  <ListItem onClick={() => window.open(e.url, "_blank")}>
+                    <ListItemAvatar>
+                      <Avatar>
+                        <FolderIcon />
+                      </Avatar>
+                    </ListItemAvatar>
+                    <ListItemText primary={e.url} />
+                  </ListItem>
+                ))}
+              </List>
+            </Grid>
+            <Grid item className={classes.grid} xs={12} sm={12} md={12}>
+              <TableList
+                columns={columnsPaymentList}
+                rows={contract?.Payments || []}
+                reference={paymentReference}
+              />
             </Grid>
           </Grid>
         </form>

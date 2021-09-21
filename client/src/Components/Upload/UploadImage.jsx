@@ -8,6 +8,7 @@ import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
 import Paper from "@material-ui/core/Paper";
 import { uploadConection } from "../../Functions/api/upload";
+import { translationEs, stylesColor } from "./uploadConfig";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -15,9 +16,10 @@ const useStyles = makeStyles((theme) => ({
     flexWrap: "wrap",
     justifyContent: "space-around",
     overflow: "hidden",
-  
-    minWidth: "350px",
-    maxWidth: "350px",
+    padding: theme.spacing(2),
+    minWidth: "100%",
+    maxWidth: "100%",
+
   },
   paper: {
     width: "100%",
@@ -47,20 +49,25 @@ const useStyles = makeStyles((theme) => ({
 export default function UploadImage({ images = [], setImages }) {
   const [myWidget, setmyWidget] = useState({});
   const classes = useStyles();
+  const [imgArr, setImgArr]=useState(images)
 
-  let imgArr = images || [];
 
   useEffect(() => {
     // const myWidgetConect = uploadConection(imgArr,setImages)
+    setImgArr(images)
     var myWidgetConect = window.cloudinary.createUploadWidget(
       {
         cloudName: "makelaar",
         uploadPreset: "amojar0m",
+        language: "es",
+        buttonClass: "bg-action",
+        text: translationEs,
+        styles:stylesColor
       },
       (error, result) => {
         if (!error && result && result.event === "success") {
           imgArr.push(result.info.url);
-          setImages([...imgArr]);
+          setImgArr([...imgArr]);
         }
       }
     );
@@ -69,6 +76,13 @@ export default function UploadImage({ images = [], setImages }) {
     setmyWidget(myWidgetConect);
   }, []);
 
+  useEffect(() => {
+   
+    setImages([...images,...imgArr])
+
+  }, [imgArr])
+
+
   async function uploadImage() {
     await myWidget.open();
   }
@@ -76,7 +90,7 @@ export default function UploadImage({ images = [], setImages }) {
   function deleteImg(pos) {
     let imgDel = [...images];
     imgDel.splice(pos, 1);
-    imgArr.splice(pos, 1);
+    setImgArr([...imgArr.splice(pos, 1)])
     setImages(imgDel);
   }
 

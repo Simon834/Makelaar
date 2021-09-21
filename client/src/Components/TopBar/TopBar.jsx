@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import WhatsAppIcon from "@material-ui/icons/WhatsApp";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
@@ -13,8 +13,11 @@ import FormLogin from "../FormLogin/FormLogin";
 import FavoriteCards from "../Favorites/FavoritesCards/FavoriteCards";
 import FormContraseña from "../FormContraseña/FormContraseña";
 import UserRegistrationForm from "../UserRegistrationForm/UserRegistrationFrom";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 
 import style from "./TopBar.module.css";
+import Logout from "../Logout/Logout";
+import { useSelector } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
   paperList: {
@@ -34,8 +37,8 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     height: 400,
   },
-  
-  daialogFav:{
+
+  daialogFav: {
     width: "600px",
   },
 
@@ -54,12 +57,33 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: "transparent",
     },
   },
+  iconInfo: {
+    fontSize: "18px",
+    "&:hover": {
+      backgroundColor: "transparent",
+    },
+    marginRight: "5px",
+    marginLeft: "10px",
+  },
 }));
 
 export default function TopBar() {
+  const { userInfo } = useSelector((state) => state);
+  const [auth, setAuth] = useState(false);
+
+  useEffect(() => {
+    if (userInfo.token) {
+      setAuth(true);
+    }
+  }, [userInfo]);
+
   const LoginModal = (props) => {
     return (
-      <Dialog open={showDialog} onClose={closeDialog} className={style.zIndexDialogRegister}>
+      <Dialog
+        open={showDialog}
+        onClose={closeDialog}
+        className={style.zIndexDialogRegister}
+      >
         <DialogContent>
           <Button
             className={classes.button}
@@ -123,6 +147,16 @@ export default function TopBar() {
     );
   };
 
+  const LogoutModal = (props) => {
+    return (
+      <Dialog open={openDialogLogout} onClose={closeLogout}>
+        <DialogContent>
+          <Logout action={closeLogout} auth={setAuth} />
+        </DialogContent>
+      </Dialog>
+    );
+  };
+
   ///// -- Login dialog
   const [showDialog, setShowDialog] = useState(false);
 
@@ -148,6 +182,12 @@ export default function TopBar() {
 
   const openFav = () => setShowFav(true);
   const closeFav = () => setShowFav(false);
+  // logout dialog
+
+  const [openDialogLogout, setOpenDialogLogout] = useState(false);
+
+  const openLogout = () => setOpenDialogLogout(true);
+  const closeLogout = () => setOpenDialogLogout(false);
 
   // const handleToggle = () => {
   //     setOpen((prevOpen) => !prevOpen);
@@ -158,15 +198,15 @@ export default function TopBar() {
   return (
     <div className={style.containerTopBar}>
       <div className={style.containerContact}>
-        <IconButton className={classes.icon}>
-          <WhatsAppIcon className={classes.icon} />
-          <Typography  >
+        <IconButton className={classes.iconInfo}>
+          <WhatsAppIcon className={classes.iconInfo} />
+          <Typography>
             <p className={style.mail}>+549 11456982365</p>
-            </Typography>
+          </Typography>
         </IconButton>
 
-        <IconButton className={classes.icon}>
-          <MailOutlineIcon className={classes.icon} />
+        <IconButton className={classes.iconInfo}>
+          <MailOutlineIcon className={classes.iconInfo} />
           <Typography>
             <a href="mailto:info_makelaar@yahoo.com" className={style.mail}>
               info_makelaar@yahoo.com
@@ -214,6 +254,17 @@ export default function TopBar() {
             />
           </IconButton>
         </Tooltip>
+        {auth && (
+          <Tooltip title="Salir">
+            <IconButton arial-label="app" className={classes.icon}>
+              <ExitToAppIcon onClick={openLogout} className={classes.icon} />
+              <LogoutModal
+                open={openDialogLogout}
+                handleClose={() => setOpenDialogLogout(false)}
+              />
+            </IconButton>
+          </Tooltip>
+        )}
       </div>
     </div>
   );

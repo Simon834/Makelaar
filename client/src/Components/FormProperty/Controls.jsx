@@ -3,9 +3,8 @@ import { addNewProperty } from "../../Functions/api/property";
 import Swal from "sweetalert2";
 import { geocodeByAddress, getLatLng } from "react-places-autocomplete";
 
-
 const resetValues = {
-  price:"",
+  price: "",
   name: "",
   available: true,
   area: "",
@@ -18,7 +17,6 @@ const resetValues = {
   address: "",
   cp: "",
   description: "",
-  // firstImg: "",
   photos: [],
   status: "activo",
   transaction: "",
@@ -28,7 +26,7 @@ const resetValues = {
   lng: -64.183037,
 };
 
-export function Controls() {
+export function Controls(update) {
   const [property, setProperty] = useState(resetValues);
 
   const [img, setImg] = useState([]);
@@ -40,7 +38,7 @@ export function Controls() {
   const [address, setAddress] = useState("");
 
   const [latLng, setLatLng] = useState({});
-  // console.log("ESTADO INICIAL CHECK", check)
+  
 
   function validate(values = property) {
     let error = { ...errors };
@@ -48,11 +46,12 @@ export function Controls() {
     if ("name" in values)
       error.name = values.name ? "" : "Este campo es requerido";
     if (values.name) {
-      error.name = /^[a-zA-Zñáéíóú]+(([',. -][a-zA-Zñáéíóú ])?[a-zA-Zñáéíóú]*)*$/.test(
-        values.name
-      )
-        ? ""
-        : "El nombre no es valido";
+      error.name =
+        /^[a-zA-Zñáéíóú]+(([',. -][a-zA-Zñáéíóú ])?[a-zA-Zñáéíóú]*)*$/.test(
+          values.name
+        )
+          ? ""
+          : "El nombre no es valido";
     }
 
     if ("area" in values)
@@ -65,14 +64,13 @@ export function Controls() {
     }
 
     if ("price" in values)
-    error.available = values.price ? "" : "Este campo es requerido";
-  if (values.price) {
-    //Regex numero real
-    error.price = /^[+-]?\d+([,.]\d+)?$/.test(values.price)
-      ? ""
-      : "El numero de area no es valido";
-  }
-
+      error.available = values.price ? "" : "Este campo es requerido";
+    if (values.price) {
+      //Regex numero real
+      error.price = /^[+-]?\d+([,.]\d+)?$/.test(values.price)
+        ? ""
+        : "El numero de area no es valido";
+    }
 
     if ("rooms" in values)
       error.values = values.rooms ? "" : "Este campo es requerido";
@@ -175,7 +173,6 @@ export function Controls() {
       [e.target.name]: e.target.value,
     });
     setCheck({ ...check, [e.target.name]: e.target.value });
-    console.log("ESTADO HANDLECHECK", check);
   }
   function formValid(values = property) {
     const isValid =
@@ -203,9 +200,8 @@ export function Controls() {
 
     if (isValid) {
       try {
-        const propertySubmit={...property, photos: img}
+        const propertySubmit = { ...property, photos: img };
 
-        // console.log("PROPIEDAD CREADA",property)
         const registeredProperty = await addNewProperty(propertySubmit);
         if (registeredProperty) {
           Swal.fire("Listo!", "Se agrego una propiedad con exito!", "success");
@@ -215,21 +211,21 @@ export function Controls() {
       }
     }
     setProperty(resetValues);
-    // console.log("PROPIEDAD RESETTTT", property)
-    setCheck(false);
-    // console.log("CHECK ESTADO", check);
+    setImage([]);
+    update();
+    setCheck({});
   }
 
   function setImage(images) {
-    setImg([
-      ...images,
-    ]);
+    setImg([...images]);
   }
   async function handleSelect(value) {
     const results = await geocodeByAddress(value);
     const latLng = await getLatLng(results[0]);
+    console.log("Resultados", results[0]);
     setAddress(value);
     setLatLng(latLng);
+
     setProperty({
       ...property,
       address: value,
@@ -250,6 +246,6 @@ export function Controls() {
     address,
     setAddress,
     handleSelect,
-    img
+    img,
   };
 }

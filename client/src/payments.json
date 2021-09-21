@@ -1,0 +1,70 @@
+[
+    {
+        "idPay": 13545,
+       "status":"approved",
+       "userEmail": "cgonzalez@yahootest.com",
+       "amount": 20000,
+       "ContractId": 10,
+       "date":"2021-09-10"
+      },
+      {
+        "idPay": 13546,
+       "status":"Liquidación",
+       "userEmail": "cgonzalez@yahootest.com",
+       "amount": -20000,
+       "ContractId": 10,
+       "date":"2021-09-5"
+       
+      },
+      {
+        "idPay": 13547,
+       "status":"approved",
+       "userEmail": "cgonzalez@yahootest.com",
+       "amount": 20000,
+       "ContractId": 10,
+       "date":"2021-08-10"
+       
+      },
+      {
+        "idPay": 13548,
+       "status":"Liquidación",
+       "userEmail": "cgonzalez@yahootest.com",
+       "amount": -20000,
+       "ContractId": 10,
+       "date":"2021-08-05"
+      }, 
+      {
+        "idPay": 13545,
+       "status":"approved",
+       "userEmail": "cgonzalez@yahootest.com",
+       "amount": 20000,
+       "ContractId": 3,
+       "date":"2021-07-10"
+      },
+      {
+        "idPay": 13546,
+       "status":"Liquidación",
+       "userEmail": "cgonzalez@yahootest.com",
+       "amount": -20000,
+       "ContractId": 3,
+       "date":"2021-07-05"
+      },
+      {
+        "idPay": 13547,
+       "status":"approved",
+       "userEmail": "cgonzalez@yahootest.com",
+       "amount": 20000,
+       "ContractId": 3,
+       "date":"2021-04-10"
+      },
+      {
+        "idPay": 13548,
+       "status":"Liquidación",
+       "userEmail": "cgonzalez@yahootest.com",
+       "amount": -20000,
+       "ContractId": 3,
+       "date":"2021-04-05"
+      }
+
+
+]

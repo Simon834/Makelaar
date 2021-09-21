@@ -1,104 +1,156 @@
 import React, { useState, useEffect } from "react";
-import { Route } from "react-router";
-import TableList from "../TableList/TableList";
+import { Route, useParams, useLocation } from "react-router";
+import { useHistory } from "react-router";
+
+import Dashboard from "../Dashboard/Dashboard";
 import UserRegistrationForm from "../UserRegistrationForm/UserRegistrationFrom";
-import { getAllUserApi } from "../../Functions/api/users";
-import property from "../../inmuebles.json";
+import NewContractForm from "../FormContract/FormContract";
+import EditContractForm from "../FormContractEdit/FormContractEdit";
+import PropertyInfo from "../PropertyInfo/PropertyInfo";
+import TableList from "../TableList/TableList";
 import UserDetail from "../UserDetail/UserDetail";
 import Logout from "../Logout/Logout";
 import FormProperty from "../FormProperty/FormProperty";
-import UploadFile from "../Upload/UploadFile";
-import NewContractForm from "../FormContract/FormContract";
-import EditContractForm from "../FormContractEdit/FormContractEdit";
+import UserInfo from "../UserInfo/UserInfo";
+import NewPayment from "../NewPayment/NewPayment";
+
+import { getAllUserApi } from "../../Functions/api/users";
 import { allProperties } from "../../Functions/api/property";
 import { getAllContract } from "../../Functions/api/contract";
-import EditProperty from "../EditProperty/EditProperty";
+import { getAllPayment } from "../../Functions/api/payments";
 
-const columnsUserList = [
-  { field: "name", headerName: "Nombre", width: 150 },
-  { field: "email", headerName: "Email", width: 250 },
-  { field: "phone", headerName: "Telefono", width: 150 },
-  { field: "whatsapp", headerName: "WhatsApp", width: 150 },
-  { field: "isAdmin", headerName: "Admin", width: 150 },
-  { field: "contract", headerName: "Contratos", width: 150 },
-];
-
-const columnsPropertyList = [
-  { field: "name", headerName: "Titulo", width: 350 },
-  { field: "transaction", headerName: "Relación", width: 150 },
-  { field: "address", headerName: "Dirección", width: 150 },
-  { field: "type", headerName: "Tipo", width: 150 },
-  { field: "price", headerName: "Precio", width: 150 },
-  { field: "premium", headerName: "Destacado", width: 150 },
-  { field: "contract", headerName: "Contratos", width: 150 },
-  { field: "status", headerName: "Estado", width: 150 },
-];
-
-const columnsContratList = [
-  { field: "name", headerName: "Titulo", width: 150 },
-  { field: "UserId", headerName: "Usuario", width: 150 },
-  { field: "PropId", headerName: "Propiedad", width: 150 },
-  { field: "startDate", headerName: "Inicio", width: 150 },
-  { field: "endDate", headerName: "Fin", width: 150 },
-  { field: "amount", headerName: "Monto", width: 150 },
-  { field: "paymentDate", headerName: "Pago", width: 150 },
-];
+import { adminConstant } from "./constant";
 
 export default function AdminBody() {
   const [userList, setUserList] = useState([]);
   const [prpList, setPropList] = useState([]);
+  const [payList, setPayList] = useState([]);
+  const [prpDisp, setPrpDisp] = useState([]);
   const [contList, setContList] = useState([]);
+  const [contActiveList, setContActiveList] = useState([]);
+  const { id } = useParams();
+  const history = useHistory();
+  const location = useLocation();
+  console.log("LOCATION", location)
+
+  const {
+    columnsUserList,
+    columnsPropertyList,
+    columnsContratList,
+    userReference,
+    propertyReference,
+    contractReference,
+    columnsPaymentList,
+    paymentReference,
+  } = adminConstant(id, history);
+  const [load, setLoad] = useState(true);
 
   async function get() {
     const allUsersApi = await getAllUserApi();
     setUserList(allUsersApi);
     const allPropsApi = await allProperties();
     setPropList(allPropsApi);
+    setPrpDisp(
+      allPropsApi.filter(
+        (p) =>
+          p.status === "activo" &&
+          !p.Contracts.some((e) => e.status === "activo")
+      )
+    );
     const allContrApi = await getAllContract();
+    console.log("allContrApi",allContrApi)
     setContList(allContrApi);
+    setContActiveList(allContrApi.filter((c) => c.status === "activo"));
+    const payments = await getAllPayment();
+    setPayList(payments);
   }
 
   useEffect(
     () => {
       get();
     }, // eslint-disable-next-line
-    []
+    [load]
   );
+
+  function updateList() {
+    setLoad(!load);
+  }
 
   return (
     <div>
+      <Route path="/admin/:id/dashboard">
+        <Dashboard
+          inmNum={prpDisp.length}
+          userNum={userList.length}
+          contNum={contActiveList.length}
+          inmTot={prpList.length}
+          userList={userList}
+          prpList={prpList}
+          contList={contList}
+          payList={payList}
+        />
+      </Route>
       <Route path="/admin/:id/data">
         <UserDetail />
       </Route>
 
       <Route path="/admin/:id/users">
-        <TableList columns={columnsUserList} rows={userList} />
+        <h2>Usuarios</h2>
+        <TableList
+          columns={columnsUserList}
+          rows={userList}
+          reference={userReference}
+        />
       </Route>
       <Route path="/admin/:id/property">
-        <TableList columns={columnsPropertyList} rows={prpList} />
+        <h2>Propiedades</h2>
+        <TableList
+          columns={columnsPropertyList}
+          rows={prpList}
+          reference={propertyReference}
+        />
       </Route>
       <Route path="/admin/:id/contrat">
-        <TableList columns={columnsContratList} rows={contList} />
+        <h2>Contratos</h2>
+        <TableList
+          columns={columnsContratList}
+          rows={contList}
+          reference={contractReference}
+        />
+      </Route>
+
+      <Route path="/admin/:id/payment">
+        <h2>Pagos</h2>
+        <NewPayment contList={contList} update={updateList} />
+        <TableList
+          columns={columnsPaymentList}
+          rows={payList}
+          reference={paymentReference}
+        />
       </Route>
 
       <Route path="/admin/:id/newadmin">
-        <UserRegistrationForm isAdmin={true} />
+        <UserRegistrationForm isAdmin={true} update={updateList} />
       </Route>
       <Route path="/admin/:id/newproperty">
-        <FormProperty />
+        <FormProperty update={updateList} />
       </Route>
       <Route path="/admin/:id/newcontract">
-        <NewContractForm />
+        <NewContractForm update={updateList} />
       </Route>
 
       <Route path="/admin/:id/editcontract/:idcont">
-        <EditContractForm />
+        <EditContractForm update={updateList} />
       </Route>
 
       <Route path="/admin/:id/editproperty/:idprop">
-        <EditProperty />
+        <PropertyInfo update={updateList} />
       </Route>
-      
+
+      <Route path="/admin/:id/user/:iduser">
+        <UserInfo userInfo={userList} update={updateList} />
+      </Route>
+
       <Route path="/admin/:id/logout">
         <Logout />
       </Route>
