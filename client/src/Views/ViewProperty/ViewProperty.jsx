@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import GoogleMap from "../../Components/GoogleMap/GoogleMap";
+import MarkerInfoWindow from "../../Components/GoogleMap/GoogleMapTest";
 import ViewBase from "../ViewBase/view-base";
 import Cards from "../../Components/Cards/Cards";
+import GoogleMap from "../../Components/GoogleMap/GoogleMap";
 
 import Filter from "../Filters/Filters";
 import SearchBar from "../../Components/SearchBar/SearchBar";

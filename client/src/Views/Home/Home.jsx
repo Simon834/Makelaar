@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-
 import ViewBase from "../ViewBase/view-base";
 import Carrusel from "../../Components/Carrusel/Carrusel";
- import Cards from "../../Components/Cards/Cards";
+import Cards from "../../Components/Cards/Cards";
 import FavoriteCard from "../../Components/Favorites/FavoriteCard";
 import FavoriteCards from "../../Components/Favorites/FavoritesCards/FavoriteCards";
 
@@ -27,7 +26,6 @@ import { getAllProperties } from "../../Redux/Actions/propertyActions";
 // import ChatSocket from "../../Components/ChatSocket/ChatSocket";
 // import Chat from '../../Components/Chat/cha';
 // import FormPago from "../../Components/FormPago/FormPago"
-const inmuebles = require("../../inmuebles.json");
 
 export default function Home() {
   const { concept, tipe, bedroom, bathroom, price, search, properties } =
@@ -38,7 +36,7 @@ export default function Home() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    getEstates();
+    getEstates(); // eslint-disable-next-line
   }, [concept, tipe, bedroom, bathroom, price, search, properties]);
 
   async function getEstates() {
@@ -52,16 +50,15 @@ export default function Home() {
       search
     );
     setEstates(
-      estatesApi.filter(
-        (e) => {
-          let contract
-          if(e.Contracts.length){
-            contract=e.Contracts[e.Contracts.length - 1].status !== "activo"
-          }else{
-            contract=true
-          }
-          return e.premium && contract && e.status === "activo"}
-      )
+      estatesApi.filter((e) => {
+        let contract;
+        if (e.Contracts.length) {
+          contract = e.Contracts[e.Contracts.length - 1].status !== "activo";
+        } else {
+          contract = true;
+        }
+        return e.premium && contract && e.status === "activo";
+      })
     );
   }
 
@@ -113,7 +110,7 @@ export default function Home() {
           />
         }
         carousel={<Carrusel />}
-        content={<Cards inmuebles={estates}/>}
+        content={<Cards inmuebles={estates} />}
       />
     </div>
   );

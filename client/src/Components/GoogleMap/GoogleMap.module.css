@@ -2,4 +2,55 @@
   position: absolute;
   width: 2rem;
   filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.5));
+  cursor: pointer;
+}
+.infoIMG {
+  height: 100%;
+  width: 7rem;
+  max-height: 60%;
+}
+.infoContent {
+  margin-left: 1rem;
+}
+.infoTitle {
+  font-size: 17px;
+  margin-bottom: 0.3rem;
+  text-transform: uppercase;
+  width: 10rem;
+  word-wrap: break-word;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+  color: #4c3c90;
+  font-weight: 550;
+}
+.infoPrice {
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-align: center;
+  padding: 0.2rem;
+  color: #e1535e;
+}
+.infoWindow {
+  position: absolute;
+  top: 15rem;
+  right: 1.25rem;
+  width: 21.875rem;
+  min-height: 10rem;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: row;
+  box-shadow: 1.5px 1.5px 10px rgba(0, 0, 0, 0.3);
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 0.313rem;
+}
+.infoAddress {
+  font-size: 0.9rem;
+  color: #c63b8e;
+}
+.infoLink {
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: bolder;
+  margin-top: 0.2rem;
 }
