@@ -83,7 +83,7 @@ export const UserInfoControl = (userInfo, update) => {
       [name]: value,
     });
     validate({ [name]: value });
-    //console.log(user);
+    
   };
 
   const formIsValid = (fieldValues = user) => {

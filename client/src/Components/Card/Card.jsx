@@ -82,10 +82,10 @@ export default function CardComponent(props) {
   const { userInfo } = useSelector((state) => state);
   const [userIsAdmin, setUserIsAdmin] = useState(false);
 
-  /////////modal
+  //modal
 
   let idProp = props.id;
-  console.log(props,"card")
+  
 
   const OpenModalEdit = () => {
     return (
@@ -220,15 +220,7 @@ export default function CardComponent(props) {
 
         <Divider light />
         <div className={style.footerCard}>
-          {/* <IconButton
-              aria-label="add to favorites"
-              onClick={() => handleOnClick(props)}
-            > */}
-          {/* <FavoriteIcon
-              className={style.FavoriteButton}
-              aria-label="add to favorites"
-              onClick={() => handleOnClick(props)}
-            /> */}
+        
           <div className={style.iconsContainer}>
             <div className={style.heart}>
               <input
@@ -254,7 +246,7 @@ export default function CardComponent(props) {
               </div>
             )}
           </div>
-          {/* </IconButton> */}
+         
           <span className={style.priceTxt}>Precio ${props.price}</span>
         </div>
       </CardContent>

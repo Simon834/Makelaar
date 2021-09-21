@@ -89,7 +89,7 @@ export default function FormLogin({ action }) {
     }
   }, [userInfo]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  console.log("USERINFO", userInfo);
+ 
   function handleChange(e) {
     e.persist();
     setInput({
@@ -145,7 +145,7 @@ export default function FormLogin({ action }) {
             Password
           </InputLabel>
           <OutlinedInput
-            // variant="outlined"
+          
             label="Contraseña"
             name="password"
             id="password"
@@ -173,20 +173,6 @@ export default function FormLogin({ action }) {
           <em>{errors.password}</em>
         </FormControl>
 
-        {/* <label htmlFor="password"></label>
-           <TextField
-          label="Password"
-          variant="outlined"
-          placeholder="Contraseña"
-          type={input.showPassword ? 'text' : 'password'}
-          id="password"
-          value={input.password}
-          onChange={(e) => handleChange(e)}
-          {...(errors.password && {
-            error: true,
-            helperText: errors.password,
-          })}
-        />*/}
       </div>
 
       <div>
@@ -201,14 +187,7 @@ export default function FormLogin({ action }) {
           </Button>
         </p>
       </div>
-      {/* 
-      <Typography className={classes.link}>
-        <Link href="/resetpassword">¿Olvidaste tu contraseña?</Link>
-      </Typography> */}
-
-      {/* <Typography className={classes.link}>
-        <Link href="/register">REGISTRARSE</Link>
-      </Typography> */}
+    
     </form>
   );
 }

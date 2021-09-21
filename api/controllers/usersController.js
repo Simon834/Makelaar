@@ -7,7 +7,7 @@ const { sendUserEmail } = require("../email/userEmail");
 
 async function getUserById(req, res, next) {
   const userId = req.params.id;
-  // console.log("me ejecuto");
+  
   try {
     const user = await User.findByPk(userId, {
       include: [
@@ -50,7 +50,7 @@ async function resetPassword(req, res, next) {
       Math.random() * 1000000000,
       1000000000
     ).toString();
-    // console.log(newPass);
+   
     let password = await bcrypt.hashSync(
       newPass,
       Number.parseInt(authConfig.rounds)

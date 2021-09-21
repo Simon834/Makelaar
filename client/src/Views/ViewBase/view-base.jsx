@@ -3,7 +3,7 @@ import NavBar from "../../Components/NavBar/NavBar";
 import TopBar from "../../Components/TopBar/TopBar";
 import Footer from "../../Components/Footer/Footer";
 import { Fragment } from "react";
-import Chat from '../../Components/Chat/Chat'
+import Chat from '../../Components/chat/Chat'
 
 export default function ViewBase({ carousel, filters, content, propertyMap }) {
   return (

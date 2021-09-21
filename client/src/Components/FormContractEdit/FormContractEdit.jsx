@@ -6,8 +6,8 @@ import Alert from "@material-ui/lab/Alert";
 import TableList from "../TableList/TableList";
 import { contractEditConstant } from "./constant";
 
-import { getAllContract, getContractById } from "../../Functions/api/contract";
-import UploadFile from "../Upload/UploadFile";
+import { getContractById } from "../../Functions/api/contract";
+
 import {
   IconButton,
   List,
@@ -97,7 +97,6 @@ export default function NewContractForm({ user, update }) {
 
   const { idcont } = useParams();
 
-  console.log("contrato", contract);
 
   const [userList, setUserList] = useState([]);
   const [propertyList, setPropertyList] = useState([]);
@@ -112,7 +111,7 @@ export default function NewContractForm({ user, update }) {
   }, [contract]);
 
   useEffect(() => {
-    console.log("STATUS", contract.status);
+   
     if (
       user &&
       (contract.status === "pendiente" || contract.status === "modificado")
@@ -139,7 +138,6 @@ export default function NewContractForm({ user, update }) {
 
   async function getContract() {
     const oldContract = await getContractById(idcont);
-    // console.log("XXXXXXXX", oldContract);
     setContract(oldContract);
   }
 
@@ -152,8 +150,6 @@ export default function NewContractForm({ user, update }) {
     getAllUser();
     getAllProperties(); // eslint-disable-next-line
   }, []);
-
-  console.log("AUTH", auth);
 
   return (
     <>

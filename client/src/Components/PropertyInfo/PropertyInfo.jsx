@@ -128,7 +128,7 @@ export default function PropertyInfo({ id, update }) {
             const propertyId = await propertyById(idprop);
             setProperty(propertyId);
             setImage(propertyId.Images.map(i=>i.url))
-            console.log("prop",propertyId,img)
+        
 
     }
   }
@@ -158,13 +158,7 @@ export default function PropertyInfo({ id, update }) {
           <Grid item className={classes.grid} xs={12} sm={9} md={9}>
             <TextField
               className={classes.input}
-              // autoComplete='off'
-              // inputProps={{
-              //     autocomplete: 'off',
-              //     form: {
-              //       autocomplete: 'off',
-              //     },
-              //   }}
+             
               variant="outlined"
               label="Nombre"
               name="name"
@@ -259,7 +253,7 @@ export default function PropertyInfo({ id, update }) {
           <Grid item className={classes.grid} xs={12} sm={6} md={3}>
             <FormControl component="fieldset">
               <Typography>Condicion de la Propiedad</Typography>
-              {/* <FormLabel component="legend">Condicion de la Propiedad</FormLabel> */}
+              
               <Select
                 onChange={handleSelect}
                 aria-label="condition"
@@ -273,7 +267,7 @@ export default function PropertyInfo({ id, update }) {
                     </MenuItem>
                   ))}
               </Select>
-              {/* {console.log("PROPIEDADCHECK", property)} */}
+              
             </FormControl>
           </Grid>
               <Grid item className={classes.grid} xs={12} sm={6} md={3}>
@@ -329,15 +323,14 @@ export default function PropertyInfo({ id, update }) {
             />
           </Grid>
           <Grid item className={classes.grid} xs={12} sm={12} md={12}>
-              {/* </FormGroup>
-              <FormGroup> */}
+             
               <div className={classes.mapContainer}>
                 <GoogleMap lat={property.lat} lng={property.lng} />
               </div>
             </Grid>
             <Grid item className={classes.grid} xs={12} sm={12} md={12}>
               <UploadImage images={img} setImages={setImage} className={classes.upload}/>
-              {/* </FormGroup> */}
+             
             </Grid>
           <Grid item className={classes.grid} xs={12} sm={12} md={12}>
             <Button

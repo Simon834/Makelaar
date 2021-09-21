@@ -14,7 +14,7 @@ import {
   FILTER_TIPE,
   FILTER_BEDROOM,
   FILTER_BATHROOM,
-  //   RESET_FILTER,
+
 } from "../../Redux/Constants/constants";
 import { filterEstates } from "../../Functions/filters/filters";
 import { clearFilter } from "../../Redux/Actions/filterActions";
@@ -50,7 +50,7 @@ export default function ViewProperty() {
     dispatch(clearFilter());
     dispatch(getAllProperties());
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
-  console.log("PROPIEDADES", estates);
+ 
   return (
     <div>
       <ViewBase
