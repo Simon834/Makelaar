@@ -115,7 +115,7 @@ const useStyles = makeStyles({
 let date = new Date()
 let hour = date.getHours() + ':' + date.getMinutes()
 
-const Chat = () => {
+ const Chat = () => {
   const classes = useStyles();
 
   const [mensaje, setMensaje] = useState("");

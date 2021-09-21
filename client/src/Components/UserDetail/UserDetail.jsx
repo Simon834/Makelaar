@@ -79,11 +79,7 @@ export default function UserDetail() {
   const classes = useStyles();
 
   const { handleChange, handleSubmit, errors, user } = UserDetailControl();
-  // useEffect(()=>{
-  //     dispatch(getUserDetail(id))
-
-  // },[])
-
+  
   return (
     <div>
       <Paper className={classes.root}>
@@ -110,9 +106,7 @@ export default function UserDetail() {
                     })}
                     required
                   />
-                  {/* <Tooltip title="Enviar" onClick={handleSubmit}>
-                    <ThumbUpAltIcon className={classes.icon}  />
-                  </Tooltip> */}
+                  
                   <Button classname={classes.btn} color="secondary">
                     Enviar
                   </Button>
@@ -153,9 +147,7 @@ export default function UserDetail() {
                       helperText: errors.phone,
                     })}
                   />
-                  {/* <Tooltip title="Enviar" onClick={handleSubmit}>
-                    <ThumbUpAltIcon className={classes.icon} />
-                  </Tooltip> */}
+                 
                   <Button classname={classes.btn} color="secondary">
                     Enviar
                   </Button>
@@ -180,9 +172,7 @@ export default function UserDetail() {
                     })}
                   />
 
-                  {/* <Tooltip title="Enviar" onClick={handleSubmit}>
-                    <ThumbUpAltIcon className={classes.icon} />
-                  </Tooltip> */}
+
                   <Button classname={classes.btn} color="secondary">
                     Enviar
                   </Button>
@@ -206,9 +196,7 @@ export default function UserDetail() {
                       helperText: errors.password,
                     })}
                   />
-                  {/* <Tooltip title="Enviar" onClick={handleSubmit}>
-                    <ThumbUpAltIcon className={classes.icon} />
-                  </Tooltip> */}
+
                   <Button className={classes.btn} color="secondary">
                     Enviar
                   </Button>

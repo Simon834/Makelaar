@@ -25,7 +25,6 @@ import { filterEstates } from "../../Functions/filters/filters";
 import { clearFilter } from "../../Redux/Actions/filterActions";
 import { getAllProperties } from "../../Redux/Actions/propertyActions";
 
-//  import Chat from '../../Components/Chat/Chat';
 
 const inmuebles = require("../../inmuebles.json");
 

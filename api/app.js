@@ -6,7 +6,7 @@ var logger = require("morgan");
 var indexRouter = require("./routes/index");
 
 var app = express();
-//  const server = require("http").createServer(app);
+
 
 
 app.use(cors({origin:"*"}));
@@ -30,4 +30,4 @@ app.use("/", indexRouter);
 
 module.exports = app;
 
-//  module.exports= server;
+

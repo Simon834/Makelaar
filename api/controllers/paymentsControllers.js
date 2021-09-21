@@ -84,10 +84,10 @@ async function newNotification(req, res, next) {
       );
 
       references = references.data;
-      // console.log("RTA", references)
+      
 
       try {
-        // console.log("REEEEEEEEEEEEEE", references.payer.email)
+       
         let paymentUser = await User.findOne({
           where: {
             email: references.payer.email,
@@ -101,8 +101,6 @@ async function newNotification(req, res, next) {
           amount: references.additional_info.items[0].unit_price,
           ContractId: parseInt(references.additional_info.items[0].id),
         };
-        // console.log("ADITIONAAAAAAAL",references.additional_info.items[0].id )
-        // console.log("NEWPAAAAAAAAAAAAY", newPay)
 
         await paymentUser.createPayment(newPay);
         return res.json(newPay);

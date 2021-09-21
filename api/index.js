@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 3010;
 //socketIo conexion
 const http = require("http");
 const server = http.createServer(app);
-let { createPreference } = require('../api/controllers/paymentsControllers')
+
 
 const socketio = require("socket.io")(server, {
   cors: {
@@ -76,7 +76,7 @@ socketio.on("connection", (socket) => {
         socketio.emit("mensajes", {
           name: "Makelaar",
           mensaje: `Para realizar el pago podes dirigirte al siguiente: <a href="http://localhost:3000/user/${id}/contrat">link</a> `,
-          // mensaje: `Para realizar el pago debes dirigirte a la seccion de Mis Contratos y seleccionar el contrato que deseas abonar.
+          
         })
         
       }else{
