@@ -3,7 +3,7 @@ const { DataTypes } = require("sequelize");
 module.exports = (db) => {
   db.define("Payment", {
     idPay: {
-      type: DataTypes.BIGINT,
+      type: DataTypes.STRING,
       allowNull: false,
       // primaryKey: true,
       // autoIncrement: true,
@@ -20,6 +20,10 @@ module.exports = (db) => {
         type: DataTypes.FLOAT,
         allowNull: false
     },
+    date:{
+      type: DataTypes.DATE,
+      allowNull: false
+  },
     
   });
 };

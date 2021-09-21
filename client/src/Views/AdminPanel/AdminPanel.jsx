@@ -20,18 +20,6 @@ export default function AdminPanel() {
   }, [userInfo]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    // <div>
-    //   <ViewBase
-    //     filters={
-    //       <MenuPanelList
-    //         list={list}
-    //         routeAction={`/admin/${userInfo.user?.id}`}
-    //       />
-    //     }
-    //     content={<AdminBody />}
-    //   />
-    // </div>
-
       <div>
          <LateralMenu
           list={menuList}

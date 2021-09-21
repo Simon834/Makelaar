@@ -67,7 +67,7 @@ async function getContractsById(req, res, next) {
       include: [
         { model: Payment, 
           separate: true,
-          order: [['createdAt', 'DESC']], 
+          order: [['date', 'DESC']], 
           include: User },
         { model: File },
       ],
