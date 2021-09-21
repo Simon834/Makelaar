@@ -4,7 +4,7 @@ import TopBar from "../../Components/TopBar/TopBar";
 import Footer from "../../Components/Footer/Footer";
 import { Fragment } from "react";
 
-export default function ViewBase({ carousel, filters, content }) {
+export default function ViewBase({ carousel, filters, content, propertyMap }) {
   return (
     <div className="base-container">
       <div
@@ -33,6 +33,13 @@ export default function ViewBase({ carousel, filters, content }) {
               </div>
             </div> */}
           </Fragment>
+        )}
+      </div>
+      <div>
+        {propertyMap && (
+          <>
+            <div className="map-container">{propertyMap}</div>
+          </>
         )}
       </div>
 

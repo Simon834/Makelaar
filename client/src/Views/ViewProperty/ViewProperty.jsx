@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-
+import MarkerInfoWindow from "../../Components/GoogleMap/GoogleMapTest";
 import ViewBase from "../ViewBase/view-base";
 import Cards from "../../Components/Cards/Cards";
+import GoogleMap from "../../Components/GoogleMap/GoogleMap";
 
 import Filter from "../Filters/Filters";
 import SearchBar from "../../Components/SearchBar/SearchBar";
@@ -23,19 +24,26 @@ import { getAllProperties } from "../../Redux/Actions/propertyActions";
 const inmuebles = require("../../inmuebles.json");
 
 export default function ViewProperty() {
-  const { concept, tipe, bedroom, bathroom, price, search, properties } = useSelector(
-    (state) => state
-  );
+  const { concept, tipe, bedroom, bathroom, price, search, properties } =
+    useSelector((state) => state);
   const [estates, setEstates] = useState(properties);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    getEstates()
+    getEstates();
   }, [concept, tipe, bedroom, bathroom, price, search, properties]);
 
-  async function getEstates(){
-    const estatesApi = await filterEstates(properties, concept, tipe, bedroom, bathroom, price, search)
-    setEstates(estatesApi.filter(e=>e.status==="activo"))
+  async function getEstates() {
+    const estatesApi = await filterEstates(
+      properties,
+      concept,
+      tipe,
+      bedroom,
+      bathroom,
+      price,
+      search
+    );
+    setEstates(estatesApi.filter((e) => e.status === "activo"));
   }
 
   useEffect(() => {
@@ -43,7 +51,7 @@ export default function ViewProperty() {
     dispatch(clearFilter());
     dispatch(getAllProperties());
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
+  console.log("PROPIEDADES", estates);
   return (
     <div>
       <ViewBase
@@ -84,6 +92,9 @@ export default function ViewProperty() {
               />
             }
           />
+        }
+        propertyMap={
+          <GoogleMap lat={-34.4080148} lng={-60.2571464} estates={estates} />
         }
         content={<Cards inmuebles={estates} />}
       />
