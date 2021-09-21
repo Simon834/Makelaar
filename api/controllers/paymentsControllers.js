@@ -40,21 +40,7 @@ async function createPreference(req, res, next) {
           quantity: 1,
           unit_price: parseInt(price),
 
-          // reason: "Plan Gym Gold",
-          // auto_recurring: {
-          //   frequency: "1",
-          //   frequency_type: "months",
-          //   transaction_amount: 1100,
-          //   currency_id: "ARS",
-          //   repetitions: 12,
-          //   billing_day: 10,
-          //   billing_day_proportional: false,
-          //   free_trial: {
-          //     frequency_type: "months",
-          //     frequency: "1",
-          //   },
-          // },
-
+         
           //devuelven el estado de la compra
           back_urls: {
             success: "http://localhost:3000/",
@@ -98,10 +84,10 @@ async function newNotification(req, res, next) {
       );
 
       references = references.data;
-      // console.log("RTA", references)
+      
 
       try {
-        // console.log("REEEEEEEEEEEEEE", references.payer.email)
+       
         let paymentUser = await User.findOne({
           where: {
             email: references.payer.email,
@@ -115,8 +101,6 @@ async function newNotification(req, res, next) {
           amount: references.additional_info.items[0].unit_price,
           ContractId: parseInt(references.additional_info.items[0].id),
         };
-        // console.log("ADITIONAAAAAAAL",references.additional_info.items[0].id )
-        // console.log("NEWPAAAAAAAAAAAAY", newPay)
 
         await paymentUser.createPayment(newPay);
         return res.json(newPay);

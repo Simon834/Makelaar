@@ -1,5 +1,5 @@
 import TextField from "@material-ui/core/TextField";
-import { useState } from "react";
+
 import UploadImage from "../Upload/UploadImage";
 import PlacesAutocomplete, {
   geocodeByAddress,
@@ -38,7 +38,6 @@ const useStyle = makeStyles((theme) => ({
   },
   root: {
     width: "100%",
-    // margin: theme.spacing(5),
     display: "flex",
     flexDirection: "column",
     allingItems: "center",
@@ -118,13 +117,6 @@ export default function FormProperty(props) {
               {/* <FormGroup> */}
               <TextField
                 className={classes.name}
-                // autoComplete='off'
-                // inputProps={{
-                //     autocomplete: 'off',
-                //     form: {
-                //       autocomplete: 'off',
-                //     },
-                //   }}
                 variant="outlined"
                 label="Nombre"
                 name="name"
@@ -215,8 +207,7 @@ export default function FormProperty(props) {
               />
             </Grid>
             <Grid item className={classes.grid} xs={12} sm={6} md={4}>
-              {/* </FormGroup> */}
-              {/* <FormGroup> */}
+             
               <FormControl component="fieldset">
                 <Typography>Tipo de Propiedad</Typography>
                 <RadioGroup aria-label="type" name="type" value={check.type}>
@@ -235,7 +226,7 @@ export default function FormProperty(props) {
             <Grid item className={classes.grid} xs={12} sm={6} md={4}>
               <FormControl component="fieldset">
                 <Typography>Condicion de la Propiedad</Typography>
-                {/* <FormLabel component="legend">Condicion de la Propiedad</FormLabel> */}
+               
                 <RadioGroup
                   aria-label="condition"
                   name="condition"
@@ -271,12 +262,11 @@ export default function FormProperty(props) {
                       />
                     ))}
                 </RadioGroup>
-                {/* {console.log("PROPIEDADCHECK", property)} */}
+            
               </FormControl>
             </Grid>
             <Grid item className={classes.grid} xs={12} sm={6} md={3}>
-              {/* </FormGroup> */}
-              {/* <FormGroup> */}
+             
               <TextField
                 variant="outlined"
                 label="Ciudad"
@@ -363,7 +353,7 @@ export default function FormProperty(props) {
                         const className = suggestion.active
                           ? "suggestion-item--active"
                           : "suggestion-item";
-                        // inline style for demonstration purpose
+                        
                         const style = suggestion.active
                           ? { backgroundColor: "#fafafa", cursor: "pointer" }
                           : { backgroundColor: "#ffffff", cursor: "pointer" };
@@ -386,15 +376,14 @@ export default function FormProperty(props) {
               </PlacesAutocomplete>
             </Grid>
             <Grid item className={classes.grid} xs={12} sm={12} md={12}>
-              {/* </FormGroup>
-              <FormGroup> */}
+            
               <div className={classes.mapContainer}>
                 <GoogleMap lat={property.lat} lng={property.lng} />
               </div>
             </Grid>
             <Grid item className={classes.grid} xs={12} sm={12} md={12}>
               <UploadImage images={img} setImages={setImage} className={classes.upload}/>
-              {/* </FormGroup> */}
+              
             </Grid>
           </Grid>
           <Button

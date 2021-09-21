@@ -3,6 +3,7 @@ import NavBar from "../../Components/NavBar/NavBar";
 import TopBar from "../../Components/TopBar/TopBar";
 import Footer from "../../Components/Footer/Footer";
 import { Fragment } from "react";
+import Chat from '../../Components/chat/Chat'
 
 export default function ViewBase({ carousel, filters, content, propertyMap }) {
   return (
@@ -50,6 +51,9 @@ export default function ViewBase({ carousel, filters, content, propertyMap }) {
         >
           {content}
         </div>
+      <div className="btn">
+      <Chat />
+      </div>
       </div>
       <div className="footer-container">
         <Footer />

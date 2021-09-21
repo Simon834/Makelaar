@@ -69,6 +69,16 @@
 .right {
   width: 80%;
 }
+.btn{
+  display: flex;
+  justify-content: right;
+  margin-bottom: 10px;
+  position: fixed;
+  line-height: 10px;
+  bottom:0px;
+  right: -100px;
+}
+
 .map-container {
   /* border: 3px solid rgb(185, 46, 104); */
   height: 38rem;

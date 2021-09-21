@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Route, useParams } from "react-router";
+import { Route, useParams, useLocation } from "react-router";
 import { useHistory } from "react-router";
 
 import Dashboard from "../Dashboard/Dashboard";
@@ -30,6 +30,8 @@ export default function AdminBody() {
   const [contActiveList, setContActiveList] = useState([]);
   const { id } = useParams();
   const history = useHistory();
+  const location = useLocation();
+  console.log("LOCATION", location)
 
   const {
     columnsUserList,
