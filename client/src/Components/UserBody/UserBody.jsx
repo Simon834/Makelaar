@@ -43,7 +43,7 @@ export default function UserBody({id}) {
         <UserDetail />
       </Route>
       <Route path="/user/:id/contrat">
-          <TableList columns={columnsContratList} rows={userInfo.Contracts} user={true} reference={contractReference}/>
+          <TableList columns={columnsContratList} rows={userInfo.Contracts || []} user={true} reference={contractReference}/>
       </Route>
       <Route path="/user/:id/logout">
         <Logout/>
