@@ -14,9 +14,9 @@ import {
   ListItem,
   ListItemAvatar,
   Avatar,
-  ListItemText,
+  ListItemText, // eslint-disable-next-line
   ListItemSecondaryAction,
-} from "@material-ui/core";
+} from "@material-ui/core"; // eslint-disable-next-line
 import { Delete as DeleteIcon, Folder as FolderIcon } from "@material-ui/icons";
 import BtnPayment from "../BtnPayment/BtnPayment";
 
@@ -61,7 +61,7 @@ const useStyle = makeStyles((theme) => ({
   list: {
     width: "100%",
   },
-  ButtonsConfirm: {
+  buttons: {
     display: "flex",
     flexDirection: "columns",
     width: "100%",
@@ -84,22 +84,20 @@ export default function NewContractForm({ user, update }) {
     formIsValid,
     errors,
     contract,
-    handleSelect,
+    handleSelect, // eslint-disable-next-line
     selectValues,
-    setContract,
+    setContract, // eslint-disable-next-line
     setFile,
     setEmail,
     handleClickConfirm,
     handleClickCancel,
   } = UseFormControls(update);
 
-  const {
-    columnsPaymentList
-  } = contractEditConstant();
+  const { columnsPaymentList } = contractEditConstant();
 
   const { idcont } = useParams();
 
-  console.log("contrato",contract)
+  console.log("contrato", contract);
 
   const [userList, setUserList] = useState([]);
   const [propertyList, setPropertyList] = useState([]);
@@ -110,7 +108,7 @@ export default function NewContractForm({ user, update }) {
   useEffect(() => {
     if (userEmail) {
       setEmail(userEmail.email);
-    }
+    } // eslint-disable-next-line
   }, [contract]);
 
   useEffect(() => {
@@ -126,7 +124,7 @@ export default function NewContractForm({ user, update }) {
       (contract.status === "rechazado" || contract.status === "activo")
     ) {
       setAuth(false);
-    }
+    } // eslint-disable-next-line
   }, [contract]);
 
   async function getAllUser() {
@@ -151,6 +149,8 @@ export default function NewContractForm({ user, update }) {
       getAllProperties();
     }
     getContract();
+    getAllUser();
+    getAllProperties(); // eslint-disable-next-line
   }, []);
 
   console.log("AUTH", auth);
@@ -339,7 +339,7 @@ export default function NewContractForm({ user, update }) {
                       variant="contained"
                       color="primary"
                       onClick={handleClickConfirm}
-                      className={classes.button}
+                      className={classes.buttonConfirm}
                     >
                       Confirmar
                     </Button>
@@ -349,7 +349,7 @@ export default function NewContractForm({ user, update }) {
                       variant="contained"
                       color="secondary"
                       onClick={handleClickCancel}
-                      className={classes.button}
+                      className={classes.buttonReject}
                     >
                       Rechazar
                     </Button>

@@ -57,6 +57,14 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: "transparent",
     },
   },
+  iconInfo: {
+    fontSize: "18px",
+    "&:hover": {
+      backgroundColor: "transparent",
+    },
+    marginRight: "5px",
+    marginLeft: "10px",
+  },
 }));
 
 export default function TopBar() {
@@ -190,15 +198,15 @@ export default function TopBar() {
   return (
     <div className={style.containerTopBar}>
       <div className={style.containerContact}>
-        <IconButton className={classes.icon}>
-          <WhatsAppIcon className={classes.icon} />
+        <IconButton className={classes.iconInfo}>
+          <WhatsAppIcon className={classes.iconInfo} />
           <Typography>
             <p className={style.mail}>+549 11456982365</p>
           </Typography>
         </IconButton>
 
-        <IconButton className={classes.icon}>
-          <MailOutlineIcon className={classes.icon} />
+        <IconButton className={classes.iconInfo}>
+          <MailOutlineIcon className={classes.iconInfo} />
           <Typography>
             <a href="mailto:info_makelaar@yahoo.com" className={style.mail}>
               info_makelaar@yahoo.com

@@ -231,15 +231,6 @@ export function Controls(update) {
       address: value,
       lat: latLng.lat,
       lng: latLng.lng,
-      city: results[0].address_components[
-        results[0].address_components.length - 6
-      ].long_name,
-      province:
-        results[0].address_components[results[0].address_components.length - 4]
-          .long_name,
-      cp: results[0].address_components[
-        results[0].address_components.length - 2
-      ].long_name,
     });
   }
 
