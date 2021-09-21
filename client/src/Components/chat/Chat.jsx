@@ -221,13 +221,12 @@ const body=(
             </Grid>
           </Grid>
         
-        </div>
-    
-    
+        </div>   
 )
+
 return(
     <div>
-       <Tooltip title="Chatea con nosotros">
+       <Tooltip title="Consulta tus dudas">
         <img className={style.img} onClick={openModal} src={icoChat} />
         </Tooltip>
         <Modal open={modal} onClose={openModal}>
