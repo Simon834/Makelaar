@@ -2,13 +2,12 @@ import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import GaleryImg from "../GaleryImg/GaleryImg";
 import ContactForm from "../ContactForm/ContactForm";
-import inmuebles from "../../inmuebles.json";
-import Card from "@material-ui/core/Card";
+
 import CardComponent from "../Card/Card";
 import { useParams } from "react-router";
 import { propertyById } from "../../Functions/api/property";
 import GoogleMap from "../GoogleMap/GoogleMap";
-import { useLocation } from "react-router-dom";
+
 import phoneImg from "../../images/telefono-03.jpg";
 
 import style from "./PropertyDetail.module.css";
@@ -36,7 +35,7 @@ export default function PropertyDetail() {
     setImg(inmDetail.Images[0].url);
     return inmDetail;
   }
-  console.log("INM", inm);
+
   const classes = useStyles();
   return (
     <div>

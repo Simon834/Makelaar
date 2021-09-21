@@ -22,7 +22,6 @@ import {
 } from "@material-ui/core";
 import { useFormControls } from "./FormControls";
 
-//import "./Styles.css";
 
 const useStyle = makeStyles((theme) => ({
   form: {
@@ -78,7 +77,7 @@ export default function UserRegistrationForm(props) {
     }
   }, [userInfo]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  console.log(user);
+
   return (
     <>
       <Paper className={classes.root} elevation={0}>
@@ -177,7 +176,7 @@ export default function UserRegistrationForm(props) {
                   Contraseña
                 </InputLabel>
                 <OutlinedInput
-                  // variant="outlined"
+                 
                   label="Contraseña"
                   name="password"
                   type={showPass ? "text" : "password"}
@@ -208,7 +207,7 @@ export default function UserRegistrationForm(props) {
                   Confirma tu Contraseña
                 </InputLabel>
                 <OutlinedInput
-                  // variant="outlined"
+                 
                   label="confirmaContraseña"
                   name="confirmPassword"
                   type={showPass ? "text" : "password"}

@@ -16,7 +16,7 @@ async function filterProperties(req, res, next) {
     price,
     type
   } = req.query;
-  console.log(req.query);
+
   let filterArray = [{ status: "activo" }];
   if (type) filterArray.push({ type: type });
   if (transaction) filterArray.push({ transaction: transaction });
@@ -53,7 +53,7 @@ async function filterProperties(req, res, next) {
       ],
     });
   }
-  console.log("FILTER:", filterArray);
+ 
   try {
     const filterProperties = await Property.findAll({
       where: {
@@ -61,7 +61,7 @@ async function filterProperties(req, res, next) {
       },
       include: [{ model: Image }, { model: Contract }],
     });
-    //console.log("FILERED FILTER", filterProperties);
+    
     if (filterProperties.length > 0) {
       return res.json(filterProperties);
     } else {

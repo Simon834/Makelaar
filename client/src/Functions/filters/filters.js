@@ -23,7 +23,7 @@ export async function filterEstates(
     price,
     search
   );
-  console.log(estatesFiltred)
+  
   const ordenador_premium = estatesFiltred.sort(
     (a, b) =>  !!a.Contracts.length - !!b.Contracts.length
   );
@@ -68,7 +68,7 @@ function generateRoute(tipe, bedroom, bathroom, search, concept) {
   if (bedroom) aux.push(`bedrooms=${bedroom}&`);
   if (bathroom) aux.push(`bathrooms=${bathroom}&`);
   if (search) aux.push(`search=${search}&`);
-  console.log(aux, "AUX");
+
   let acumulador = aux.toString();
 
   for (let i = 0; i < aux.length - 1; i++) {
@@ -83,7 +83,7 @@ async function llamadoBack(tipe, bedroom, bathroom, search, concept) {
     const ruta = generateRoute(tipe, bedroom, bathroom, search, concept);
     const backEstates = await axios.get(`${BACK_SERVER}/property/filter?${ruta}`);
     
-    console.log("LA DATA DEL GET", backEstates.data );
+   
     return backEstates.data.filter(e=>e.status==="activo");
 
   

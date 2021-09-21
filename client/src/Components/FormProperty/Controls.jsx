@@ -121,23 +121,6 @@ export function Controls(update) {
         : "El nombre de la provincia no es valido";
     }
 
-    // if ("street" in values)
-    //   error.values = values.street ? "" : "Este campo es requerido";
-    // if (values.street) {
-    //   error.street = /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/.test(
-    //     values.street
-    //   )
-    //     ? ""
-    //     : "El nombre de la calle no es valido";
-    // }
-
-    // if ("streetNumber" in values)
-    //   error.values = values.streetNumber ? "" : "Este campo es requerido";
-    // if (values.streetNumber) {
-    //   error.streetNumber = /^[+-]?[0-9]+$/.test(values.streetNumber)
-    //     ? ""
-    //     : "El numero de la calle debe ser un numero entero";
-    // }
 
     if ("cp" in values)
       error.values = values.cp ? "" : "Este campo es requerido";
@@ -222,7 +205,7 @@ export function Controls(update) {
   async function handleSelect(value) {
     const results = await geocodeByAddress(value);
     const latLng = await getLatLng(results[0]);
-    console.log("Resultados", results[0]);
+   
     setAddress(value);
     setLatLng(latLng);
 

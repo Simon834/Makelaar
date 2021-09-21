@@ -39,7 +39,7 @@ export function Controls(update) {
   const [address, setAddress] = useState("");
 
   const [latLng, setLatLng] = useState({});
-  // console.log("ESTADO INICIAL CHECK", check)
+
 
   function validate(values = property) {
     let error = { ...errors };
@@ -122,24 +122,6 @@ export function Controls(update) {
         : "El nombre de la provincia no es valido";
     }
 
-    // if ("street" in values)
-    //   error.values = values.street ? "" : "Este campo es requerido";
-    // if (values.street) {
-    //   error.street = /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/.test(
-    //     values.street
-    //   )
-    //     ? ""
-    //     : "El nombre de la calle no es valido";
-    // }
-
-    // if ("streetNumber" in values)
-    //   error.values = values.streetNumber ? "" : "Este campo es requerido";
-    // if (values.streetNumber) {
-    //   error.streetNumber = /^[+-]?[0-9]+$/.test(values.streetNumber)
-    //     ? ""
-    //     : "El numero de la calle debe ser un numero entero";
-    // }
-
     if ("status" in values)
       error.values = values.status ? "" : "Este campo es requerido";
 
@@ -187,7 +169,7 @@ export function Controls(update) {
 
     if (isValid) {
       try {
-        // console.log(property);
+       
         const propertySubmit = { ...property };
         const editedProperty = await editProperty(propertySubmit);
         if (editedProperty) {

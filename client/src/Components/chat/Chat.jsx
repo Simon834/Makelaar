@@ -149,7 +149,7 @@ let hour = date.getHours() + ':' + date.getMinutes()
   useEffect(() => {
     socket.on("mensajes", (mensaje) => {
       setMensajes([...mensajes, mensaje]);
-      //   console.log("MENSAJES", mensajes)
+      
     });
 
     return () => {
@@ -164,10 +164,9 @@ let hour = date.getHours() + ':' + date.getMinutes()
     count = count + 1
 
     socket.emit("mensaje", userInfo.user?.name || name, mensaje, userInfo.user?.id || "");
-    console.log("INFO USER", userInfo)
-    console.log("MENSAJE ENVIADO", mensaje)
+    
     setMensaje("");
-    // console.log("SE EJECUTO SUBMIT")
+    
   };
 
    function summary(mensaje) {
@@ -188,7 +187,7 @@ const body=(
               <List className={classes.messageArea}>
                 <ListItem className={classes.listItem} key="1">
                 
-                      {/* {console.log("MENSAJES", mensajes)} */}
+                      
                       {mensajes?.map((e, i) => {
                         return <div >
                           

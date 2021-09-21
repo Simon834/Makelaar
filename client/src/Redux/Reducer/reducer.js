@@ -61,8 +61,8 @@ export default function userReducer(state = initialState, action) {
     case SIGN_UP_SUCCES: {
       return {
         ...state,
-        user: action.payload, // no es un objeto?
-        userInfo: action.payload, //no es un objeto?
+        user: action.payload,
+        userInfo: action.payload, 
         isLoading: false,
         error: false,
       };
@@ -159,7 +159,7 @@ export default function userReducer(state = initialState, action) {
       const alreadyFavorite = state.favorites.find(
         (fav) => fav.id === action.payload.id
       );
-      console.log(alreadyFavorite);
+      
       if (alreadyFavorite) {
         return state;
       } else {

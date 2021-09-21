@@ -17,13 +17,7 @@ export async function allProperties() {
     const allProperties = await axios.get(
       `${BACK_SERVER}/property/allProperties`
     );
-    // const allPropertiesSort= allProperties.data.sort((a,b)=>{
-      
-    //   if(a.Contract && !b.Contract ){
-    //     return 1
-    //   }
-    //   return -1
-    // })
+  
     
     return allProperties.data;
   } catch (err) {
@@ -43,7 +37,7 @@ export async function propertyById(id) {
 }
 
 export async function editProperty(property) {
-  console.log("asdasdas", property);
+  
   try {
     const editProperty = await axios.put(
       `${BACK_SERVER}/property/editproperty`,
