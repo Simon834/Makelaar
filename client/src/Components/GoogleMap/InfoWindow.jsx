@@ -6,8 +6,7 @@ import CloseIcon from "@material-ui/icons/Close";
 export default function InfoWindow(props) {
   const history = useHistory();
   const { name, address, price, img, id, setShow } = props;
-  console.log("id", id);
-
+  
   const handleClick = () => {
     setShow(null);
   };

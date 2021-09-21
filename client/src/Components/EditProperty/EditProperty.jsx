@@ -7,7 +7,6 @@ import {
   Container,
   Grid,
   makeStyles,
-  Paper,
   Button,
   FormGroup,
   MenuItem,
@@ -131,13 +130,7 @@ export default function EditProperty({ id, update }) {
             <FormGroup>
               <TextField
                 className={classes.input}
-                // autoComplete='off'
-                // inputProps={{
-                //     autocomplete: 'off',
-                //     form: {
-                //       autocomplete: 'off',
-                //     },
-                //   }}
+                
                 variant="outlined"
                 label="Nombre"
                 name="name"
@@ -225,7 +218,7 @@ export default function EditProperty({ id, update }) {
 
               <FormControl component="fieldset">
                 <Typography>Condicion de la Propiedad</Typography>
-                {/* <FormLabel component="legend">Condicion de la Propiedad</FormLabel> */}
+                
                 <Select
                   onChange={handleSelect}
                   aria-label="condition"
@@ -239,7 +232,7 @@ export default function EditProperty({ id, update }) {
                       </MenuItem>
                     ))}
                 </Select>
-                {/* {console.log("PROPIEDADCHECK", property)} */}
+                
               </FormControl>
             </FormGroup>
 

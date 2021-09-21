@@ -2,10 +2,8 @@ import React,{useEffect, useState} from "react";
 import { Route } from "react-router";
 
 
-import UserRegistrationForm from "../UserRegistrationForm/UserRegistrationFrom";
-import FormContraseña from "../FormContraseña/FormContraseña";
+
 import UserDetail from "../UserDetail/UserDetail";
-import Cards from "../Cards/Cards";
 import Logout from "../Logout/Logout";
 import TableList from "../TableList/TableList";
 import { getUserByIdApi } from "../../Functions/api/users";
@@ -32,7 +30,6 @@ export default function UserBody({id}) {
 
   async function getUserInfo(id){
     const data = await getUserByIdApi(id)
-    console.log(data)
     setuserInfo(data)
 
   }

@@ -136,13 +136,12 @@ const Chat = () => {
       socket.emit("conectado", userInfo.user.name);
     } else {
       socket.emit("conectado", name);
-    }
+    } // eslint-disable-next-line
   }, [userInfo.user?.name]);
 
   useEffect(() => {
     socket.on("mensajes", (mensaje) => {
       setMensajes([...mensajes, mensaje]);
-      //   console.log("MENSAJES", mensajes)
     });
 
     return () => {
@@ -162,10 +161,8 @@ const Chat = () => {
       mensaje,
       userInfo.user?.id || ""
     );
-    console.log("INFO USER", userInfo);
-    console.log("MENSAJE ENVIADO", mensaje);
+
     setMensaje("");
-    // console.log("SE EJECUTO SUBMIT")
   };
 
   function summary(mensaje) {
@@ -185,7 +182,6 @@ const Chat = () => {
         <Grid item xs={12} sm={12} md={12} className={classes.msjContainer}>
           <List className={classes.messageArea}>
             <ListItem className={classes.listItem} key="1">
-              {/* {console.log("MENSAJES", mensajes)} */}
               {mensajes?.map((e, i) => {
                 return (
                   <div>
@@ -242,7 +238,12 @@ const Chat = () => {
   return (
     <div>
       <Tooltip title="Consulta tus dudas">
-        <img className={style.img} onClick={openModal} src={icoChat} />
+        <img
+          className={style.img}
+          alt="imagen"
+          onClick={openModal}
+          src={icoChat}
+        />
       </Tooltip>
       <Modal open={modal} onClose={openModal}>
         {body}

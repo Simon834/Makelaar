@@ -107,7 +107,6 @@ export default function NewContractForm() {
     getAllProperties();
   }, []);
 
-  console.log("contract", contract);
 
 
   return (
@@ -258,14 +257,7 @@ export default function NewContractForm() {
               <UploadFile files={filesUp} setFiles={setFile} className={classes.upload}/>
             </Grid>
             <Grid item className={classes.grid} xs={12} sm={12} md={12}>
-              {/* <TextField
-                variant="outlined"
-                label="Archivo adjunto"
-                name="file"
-                value={contract.file}
-                onChange={handleChange}
-                required
-              /> */}
+           
               <TextField
                 variant="outlined"
                 label="Agregue un comentario (opcional)"

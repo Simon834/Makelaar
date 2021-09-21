@@ -10,7 +10,7 @@ const BACK_SERVER =
 
         let response = await axios.post( `${BACK_SERVER}/property/payment`, dataInfo)
         response = response.data
-        console.log(response, "PETICIONNN")
+        
         window.open(response, "_blank")
         return response
 
