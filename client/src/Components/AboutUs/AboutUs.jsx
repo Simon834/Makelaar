@@ -1,19 +1,14 @@
 import React from "react";
 import styles from "./AboutUs.module.css";
 import logo from "../../images/logo-white-horizontal.png";
-import image from "../../images/land9.jpg"
+import image from "../../images/land9.jpg";
 
 export default function AboutUs() {
   return (
     <>
       <div className={styles.container}>
-        <img
-          className={styles.image}
-          src="https://i.ibb.co/M928sHD/land9.jpg"
-          alt="imagen"
-        />
         <div className={styles.textContainer}>
-        <h2 className={styles.h2text}>Sobre nosotros</h2>
+          <h2 className={styles.h2text}>Sobre nosotros</h2>
           <p>
             Somos un equipo de especialistas trabajando dia a dia para ofrecerle
             las mejores opciones para la{" "}
@@ -36,7 +31,7 @@ export default function AboutUs() {
             estás buscando. Aquí encontrarás información sobre venta y
             alquileres de departamentos, casas, locales y terrenos.
           </p>
-        <img className={styles.image2} src={logo} alt="imagenlogo" />
+          <img className={styles.image2} src={logo} alt="imagenlogo" />
         </div>
       </div>
     </>
