@@ -85,7 +85,7 @@ export const UserDetailControl = () => {
       [name]: value,
     });
     validate({ [name]: value });
-    //console.log(user);
+   
   };
 
   const formIsValid = (fieldValues = user) => {
@@ -103,7 +103,7 @@ export const UserDetailControl = () => {
       Object.values(errors).every((x) => x === "") && formIsValid();
     if (isValid) {
       const registeredUser = await updateUser(user);
-      //console.log(registeredUser);
+      
       dispatch(logOutUser());
       history.push(`/`);
       Swal.fire({

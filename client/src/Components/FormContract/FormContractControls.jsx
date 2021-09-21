@@ -106,7 +106,7 @@ export function UseFormControls() {
         });
         setContract(initialFormValues)
         setFilesUp([])
-        console.log(addedContract);
+        
       } catch (err) {
         console.log(err);
         Swal.fire({

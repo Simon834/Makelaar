@@ -14,7 +14,7 @@ export async function getAllUserApi() {
 }
 
 export async function registerUser(user) {
-  console.log("register")
+ 
   try {
     const response = await axios.post(`${BACK_SERVER}/users/signup`, user)
      return response.data;

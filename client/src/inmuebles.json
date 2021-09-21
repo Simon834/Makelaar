@@ -27,7 +27,7 @@
   },
   {
     "id": 2,
-    "name": "CASA MODERNA Y AMPLIA CON EXCELENTE UBICACION",
+    "name": "CASA MODERNA.GRAN UBICACION",
     "transaction": "Venta",
     "address": "Av Rafael Nuñez 1398",
     "type": "Casa",
@@ -53,7 +53,7 @@
   },
   {
     "id": 3,
-    "name": "DUPLEX 2 HABITACIONES. CASI NUEVO. VILLA ALLENDE",
+    "name": "DUPLEX 2 HABITACIONES. CASI NUEVO.",
     "transaction": "Alquiler",
     "address": "Enrique Policastro 3958",
     "type": "Duplex",
@@ -131,7 +131,7 @@
   },
   {
     "id": 6,
-    "name": "CASA CON HERMOSA VISTA AL LAGO. BARRIO CERRADO",
+    "name": "CASA CON HERMOSA VISTA AL LAGO.",
     "transaction": "Venta",
     "address": "Av Luis de Tejeda 1456",
     "type": "Casa",
@@ -209,7 +209,7 @@
   },
   {
     "id": 9,
-    "name": "CASA CON HERMOSA VISTA. BARRIO CERRADO",
+    "name": "CASA CON HERMOSA VISTA.",
     "transaction": "Venta",
     "address": "Av Luis de Tejeda 1458",
     "type": "Casa",
@@ -261,7 +261,7 @@
   },
   {
     "id": 11,
-    "name": "DPTO CON GRAN BALCÓN A PASOS DE CAÑADA",
+    "name": "DPTO CON GRAN BALCÓN",
     "transaction": "Venta",
     "address": "Santa Rosa 715",
     "type": "Duplex",
@@ -312,7 +312,7 @@
   },
   {
     "id": 13,
-    "name": "CASA CON JARDIN y pileta",
+    "name": "CASA CON JARDIN y PILETA",
     "transaction": "Venta",
     "address": "Santa Fe 1220",
     "type": "Casa",
@@ -339,7 +339,7 @@
 
   {
     "id": 14,
-    "name": "CASA CON pileta",
+    "name": "CASA CON PILETA",
     "transaction": "Alquiler",
     "address": "Ituzaigo 1220",
     "type": "Casa",

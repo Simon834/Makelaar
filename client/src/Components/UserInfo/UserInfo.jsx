@@ -73,7 +73,6 @@ export default function UserInfo({ userInfo, update }) {
   );
   const history = useHistory();
 
-  console.log(userInfo.length, "userinfo");
   useEffect(() => {
     if (userInfo.length === 0) {
       history.push(`/admin/${id}/dashboard`);
@@ -93,7 +92,7 @@ export default function UserInfo({ userInfo, update }) {
         >
           <Grid container>
             <Grid item className={classes.grid} xs={12} sm={6} md={3}>
-              {/* <FormGroup> */}
+             
               <TextField
                 name="name"
                 variant="outlined"

@@ -43,11 +43,10 @@ const useStyles = makeStyles({
 
 export default function MiniCardComponent({ estate }) {
   const classes = useStyles();
-  console.log("INMUEBLE", estate);
-
+ 
   return estate ? (
     <Card className={classes.root}>
-      {/* <img src={estate.image} alt="imagen" /> */}
+     
       <CardContent className={classes.content}>
         <div className={style.TitleAddress}>
           <Typography className={style.title}>{estate.title}</Typography>

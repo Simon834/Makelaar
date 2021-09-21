@@ -2,6 +2,8 @@ const axios = require("axios");
 const { PROD_ACCESS_TOKEN } = process.env;
 const { Notifications, Payment, User, Contract } = require("../db");
 
+const URL = process.env.FRONT_URL || "http://localhost:3000"
+
 //SDK mercadopago
 var mercadopago = require("mercadopago");
 
@@ -25,7 +27,8 @@ async function getAllPayments(req, res, next) {
 
 async function createPreference(req, res, next) {
   const { title, price, description, contractId } = req.body;
-    try {
+  
+  try {
     //"orden de compra"
     let preference = {
       items: [
@@ -43,9 +46,9 @@ async function createPreference(req, res, next) {
          
           //devuelven el estado de la compra
           back_urls: {
-            success: "http://localhost:3000/",
-            failure: "http://localhost:3000/",
-            pending: "http://localhost:3000",
+            success: URL,
+            failure: URL,
+            pending: URL, 
           },
         },
       ],
@@ -55,7 +58,7 @@ async function createPreference(req, res, next) {
       concept_id: contractId,
     };
     const respuesta = await mercadopago.preferences.create(preference);
-    console.log(respuesta.response.init_point);
+    
     return res.send(respuesta.response.init_point); //se coloca el init point de produccion (del vendedor)
   } catch (err) {
     console.log(err);

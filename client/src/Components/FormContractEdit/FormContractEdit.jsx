@@ -6,8 +6,8 @@ import Alert from "@material-ui/lab/Alert";
 import TableList from "../TableList/TableList";
 import { contractEditConstant } from "./constant";
 
-import { getAllContract, getContractById } from "../../Functions/api/contract";
-import UploadFile from "../Upload/UploadFile";
+import { getContractById } from "../../Functions/api/contract";
+
 import {
   IconButton,
   List,

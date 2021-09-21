@@ -108,7 +108,7 @@ export const useFormControls = (isAdmin, update) => {
       [name]: value,
     });
     validate({ [name]: value });
-    //console.log(user);
+    
   };
 
   const formIsValid = (fieldValues = user) => {

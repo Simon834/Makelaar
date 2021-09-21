@@ -5,7 +5,7 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import IconButton from "@material-ui/core/IconButton";
-// import FavoriteIcon from "@material-ui/icons/Favorite";
+
 import Typography from "@material-ui/core/Typography";
 import { useDispatch } from "react-redux";
 import DeleteIcon from "@material-ui/icons/Delete";
@@ -58,7 +58,7 @@ const useStyles = makeStyles({
 });
 
 export default function FavoriteCard(props) {
-  console.log(props)
+  
   const dispatch = useDispatch();
   const classes = useStyles();
   const handleOnClick = (id) => {
@@ -78,9 +78,7 @@ export default function FavoriteCard(props) {
           </div>
           <div className={style.iconPrice}>
             <Typography className={classes.address}>
-              {/* <IconButton aria-label="add to favorites">
-                <FavoriteIcon className="Favorite-button" />
-              </IconButton> */}
+             
               <span className={style.priceTxt}>Precio ${props.price}</span>
             </Typography>
           </div>
@@ -99,7 +97,7 @@ export default function FavoriteCard(props) {
               />
             </IconButton>
           </div>
-          {/* <button onClick={() => handleOnClick(props.id)}>x</button> */}
+         
         </CardContent>
       </CardActionArea>
     </Card>

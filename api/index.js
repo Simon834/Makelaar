@@ -3,9 +3,11 @@ const cron = require('node-cron');
 const { db } = require("./db");
 const {updateContractCron, liquidationContract} = require('./cron/contractCron')
 
+
 const app = require("./app");
 
 const PORT = process.env.PORT || 3010;
+const URL = process.env.FRONT_URL || "http://localhost:3000"
 
 //socketIo conexion
 const http = require("http");
@@ -14,7 +16,7 @@ const server = http.createServer(app);
 
 const socketio = require("socket.io")(server, {
   cors: {
-    origin: ["http://localhost:3000"],
+    origin: [URL],
     methods: ["GET", "POST", "PUT", "DELETE"],
   },
 
@@ -42,22 +44,17 @@ socketio.on("connection", (socket) => {
       `,
     });
 
-    // socket.broadcast.emit("mensajes", {
-    //   name: name,
-    //   mensaje: `${name} ha entrado en la sala del chat`,
-    // });
   });
 
   socket.on("mensaje", (name, mensaje, id=24) => {
     socketio.emit("mensajes", { name, mensaje });
     mensaje = mensaje.toLowerCase();
-    console.log("ID RECIBIDO", mensaje)
-
+  
 
     if (mensaje.includes(1)) {
       socketio.emit("mensajes", {
         name: "Makelaar",
-        mensaje:`Completa el Formulario que se encuentra en este <a href="http://localhost:3000/contact"> link</a> y a la brevedad nos estaremos comunicando con usted.
+        mensaje:`Completa el Formulario que se encuentra en este <a href="${URL}/contact"> link</a> y a la brevedad nos estaremos comunicando con usted.
         <br/>
         Gracias
                `
@@ -66,7 +63,7 @@ socketio.on("connection", (socket) => {
     else if (mensaje.includes(2)) {
       socketio.emit("mensajes", {
         name: "Makelaar",
-        mensaje: `Podes encontrar todas las propiedades en Alquiler en venta en el siguiente: <a href="http://localhost:3000/property"> link </a>  `,
+        mensaje: `Podes encontrar todas las propiedades en Alquiler en venta en el siguiente: <a href="${URL}/property"> link </a>  `,
       })
 
     }
@@ -75,7 +72,7 @@ socketio.on("connection", (socket) => {
 
         socketio.emit("mensajes", {
           name: "Makelaar",
-          mensaje: `Para realizar el pago podes dirigirte al siguiente: <a href="http://localhost:3000/user/${id}/contrat">link</a> `,
+          mensaje: `Para realizar el pago podes dirigirte al siguiente: <a href="${URL}/user/${id}/contrat">link</a> `,
           
         })
         
@@ -86,7 +83,7 @@ socketio.on("connection", (socket) => {
         })
       }
 
-    }
+    } 
 
     else if (mensaje.includes(4)) {
       socketio.emit("mensajes", {
@@ -136,7 +133,7 @@ db.sync({ force: false }).then(async () => {
       updateContractCron()
       console.log('update contract state');
     });
-    cron.schedule('51 * * * *', () => {
+    cron.schedule('* * 5 * *', () => {
       liquidationContract()
       console.log('update payments state');
     });
