@@ -1,19 +1,23 @@
 .markerIcon {
   position: absolute;
   width: 2rem;
-  filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.5));
+  filter: drop-shadow(0px 3px 4px rgba(0, 0, 0, 0.2));
   cursor: pointer;
 }
 .infoIMG {
   height: 100%;
-  width: 7rem;
-  max-height: 60%;
+  width: 8.5rem;
+  max-height: 8rem;
+  border-radius: 3px;
+  object-fit: cover;
 }
 .infoContent {
-  margin-left: 1rem;
+  padding: 0.4rem;
+  margin-left: 0.4rem;
+  max-width: 60%;
 }
 .infoTitle {
-  font-size: 17px;
+  font-size: 0.8rem;
   margin-bottom: 0.3rem;
   text-transform: uppercase;
   width: 10rem;
@@ -21,36 +25,43 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: normal;
-  color: #4c3c90;
-  font-weight: 550;
+  color: #848484;
+  font-weight: 430;
+  margin-top: 0.7rem;
 }
 .infoPrice {
-  font-size: 1.1rem;
-  font-weight: bold;
-  text-align: center;
-  padding: 0.2rem;
-  color: #e1535e;
+  font-size: 1rem;
+  margin-top: 0.7rem;
+  text-align: right;
+  color: #848484;
 }
 .infoWindow {
   position: absolute;
   top: 15rem;
   right: 1.25rem;
-  width: 21.875rem;
+  width: 23rem;
   min-height: 10rem;
-  padding: 1.25rem;
+  padding: 2rem;
   display: flex;
   flex-direction: row;
-  box-shadow: 1.5px 1.5px 10px rgba(0, 0, 0, 0.3);
-  background-color: rgba(255, 255, 255, 0.7);
+  box-shadow: 1.5px 1.5px 10px rgba(0, 0, 0, 0.1);
+  background-color: rgba(255, 255, 255, 0.9);
   border-radius: 0.313rem;
 }
 .infoAddress {
-  font-size: 0.9rem;
-  color: #c63b8e;
+  font-size: 0.7rem;
+  color: #848484;
+  margin-top: 0.3rem;
 }
 .infoLink {
+  text-align: right;
   cursor: pointer;
   font-size: 0.8rem;
-  font-weight: bolder;
-  margin-top: 0.2rem;
+  font-weight: 500;
+  margin-top: 0.5rem;
+}
+.buttonClose {
+  position: absolute !important;
+  right: 0.5rem;
+  top: 0.3rem;
 }

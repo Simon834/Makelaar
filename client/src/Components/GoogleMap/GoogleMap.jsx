@@ -77,6 +77,7 @@ export function MapContainer({ lat, lng, estates }) {
           type={show.type}
           price={show.price}
           id={show.id}
+          setShow={setShow}
         />
       )}
     </>
