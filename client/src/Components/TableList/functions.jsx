@@ -78,7 +78,7 @@ export function rowData(rows, user) {
 }
 
 export function CellClassName(params){
-  if(params.field==="rest" && params.value.slice(1)*1 < 0 ){
+  if(params.field==="rest" && params.value?.slice(1)*1 < 0 ){
     return "super-app-theme--negativenumber"
   }
 

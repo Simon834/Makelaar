@@ -77,20 +77,34 @@ export default function TableList({ columns, rows, user, reference }) {
 
   const rowsMod = rowData(rows, user);
 
+console.log("rowsMod",rowsMod)
+
   function handleRoutes(params, event) {
     if (params.row.endDate && user) {
+      
       history.push(`/user/${id}/editcontract/${params.row.id}`);
     } else if (params.row.endDate && params.field !== "UserId") {
+
       history.push(`/admin/${id}/editcontract/${params.row.id}`);
+
     } else if (params.row.price && params.field !== "contract") {
+
       history.push(`/admin/${id}/editproperty/${params.row.id}`);
-    } else if (params.row.email || params.field === "UserId") {
+
+    } else if (params.row.email) {
+
       history.push(`/admin/${id}/user/${params.row.id}`);
+
     } else if (params.field === "UserId") {
+
       history.push(`/admin/${id}/user/${params.row.User.id}`);
+
     } else if (params.field === "User" && params.row.UserId) {
+
       history.push(`/admin/${id}/user/${params.row.UserId}`);
+
     } else if (params.field === "Contract" && params.row.ContractId) {
+
       history.push(`/admin/${id}/editcontract/${params.row.ContractId}`);
     }
   }
