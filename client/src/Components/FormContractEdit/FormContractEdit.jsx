@@ -143,7 +143,7 @@ export default function NewContractForm({ user, update }) {
   async function getContract() {
     const contractApi = await getContractById(idcont);
 
-    if (contractApi.Payments) {
+    if (contractApi.Payments.length > 0) {
       const resValue = contractApi.Payments?.reduce((acc, val) => {
         if (acc.amount) {
           return acc.amount + parseInt(val.amount);
