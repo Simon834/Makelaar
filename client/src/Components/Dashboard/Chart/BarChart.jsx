@@ -37,6 +37,9 @@ export default function BarChart({ payList, labels }) {
 
   let state = {
     options: {
+      dataLabels: {
+        formatter: (v) => `$ ${new Intl.NumberFormat().format(Math.abs(v))}`,
+      },
       colors: ["#C63B8E", "#4C3C90", "#D3D65B", "#E1A554", "#E1535E"],
       stroke: { curve: "smooth" },
       yaxis: {

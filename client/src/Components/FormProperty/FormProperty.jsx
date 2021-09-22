@@ -9,14 +9,13 @@ import PlacesAutocomplete, {
 import {
   Container,
   FormControlLabel,
-  Checkbox,
   Grid,
   makeStyles,
   Paper,
   Button,
-  FormGroup,
   Typography,
 } from "@material-ui/core";
+
 import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
 
@@ -101,7 +100,7 @@ export default function FormProperty(props) {
     setAddress,
     handleSelect,
     img,
-  } = Controls();
+  } = Controls(update);
 
   return (
     <>
