@@ -40,7 +40,7 @@ export function adminConstant(id, history) {
       headerClassName: "super-app-theme--header",
     },
     {
-      field: "User",
+      field: "UserId",
       headerName: "Usuario",
       flex: 1,
       headerClassName: "super-app-theme--header",
@@ -157,7 +157,13 @@ export function adminConstant(id, history) {
     },
     {
       field: "paymentDate",
-      headerName: "Pago",
+      headerName: "Firma",
+      flex: 1,
+      headerClassName: "super-app-theme--header",
+    },
+    {
+      field: "rest",
+      headerName: "Balance",
       flex: 1,
       headerClassName: "super-app-theme--header",
     },

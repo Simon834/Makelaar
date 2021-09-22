@@ -21,7 +21,7 @@ export default function ContractPanel({columns, rows}) {
         { field: 'startDate', headerName: 'Fecha de inicio', width: 250 },
         { field: 'endDate', headerName: 'Fecha de termino', width: 150 },
         { field: 'amount', headerName: 'Monto', width: 150 },
-        { field: 'paymentDate', headerName: 'Fecha de pago', width: 150 },
+        { field: 'paymentDate', headerName: 'Fecha de firma', width: 150 },
         { field: 'contract', headerName: 'Contrato', width: 150 },
 
     ];

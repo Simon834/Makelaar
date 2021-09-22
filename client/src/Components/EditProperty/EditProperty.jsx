@@ -107,7 +107,7 @@ export default function EditProperty({ id, update }) {
   }
 
   useEffect(() => {
-    getPropertyId();
+    getPropertyId();// eslint-disable-next-line
   }, []);
 
   return (

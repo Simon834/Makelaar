@@ -9,16 +9,13 @@ import {
   Container,
   Grid,
   makeStyles,
-  Paper,
   Button,
-  FormGroup,
   MenuItem,
   Select,
   Typography,
   FormControlLabel,
   Switch,
 } from "@material-ui/core";
-import Radio from "@material-ui/core/Radio";
 
 import FormControl from "@material-ui/core/FormControl";
 import { Controls } from "./PropertyInfoControls";
@@ -91,13 +88,13 @@ const useStyle = makeStyles((theme) => ({
 }));
 
 const contractReference = [
-    { name: "Activo", color: "super-app-theme--activo" },
-    { name: "Caducado", color: "super-app-theme--eliminado" },
-  ];
+  { name: "Activo", color: "super-app-theme--activo" },
+  { name: "Caducado", color: "super-app-theme--eliminado" },
+];
 
 export default function PropertyInfo({ id, update }) {
-    const { columnsContratList } = propertyInfoConstant();
-    const classes = useStyle();
+  const { columnsContratList } = propertyInfoConstant();
+  const classes = useStyle();
   const {
     handleChange,
     handleSubmit,
@@ -106,35 +103,28 @@ export default function PropertyInfo({ id, update }) {
     property,
     handleSelect,
     setProperty,
-    checked,
-    setChecked,
     handleSwitch,
-    toggleChecked,
     img,
-    setImage
-
+    setImage,
   } = Controls(update);
 
   const idProps = id;
 
-  
   const { idprop } = useParams();
-  
-  async function getPropertyId() {
-      if (idProps) {
-          const propertyId = await propertyById(idProps);
-          setProperty(propertyId);
-        } else {
-            const propertyId = await propertyById(idprop);
-            setProperty(propertyId);
-            setImage(propertyId.Images.map(i=>i.url))
-        
 
+  async function getPropertyId() {
+    if (idProps) {
+      const propertyId = await propertyById(idProps);
+      setProperty(propertyId);
+    } else {
+      const propertyId = await propertyById(idprop);
+      setProperty(propertyId);
+      setImage(propertyId.Images.map((i) => i.url));
     }
   }
 
   useEffect(() => {
-    getPropertyId();
+    getPropertyId(); // eslint-disable-next-line
   }, []);
 
   return (
@@ -158,7 +148,6 @@ export default function PropertyInfo({ id, update }) {
           <Grid item className={classes.grid} xs={12} sm={9} md={9}>
             <TextField
               className={classes.input}
-             
               variant="outlined"
               label="Nombre"
               name="name"
@@ -233,17 +222,18 @@ export default function PropertyInfo({ id, update }) {
             />
           </Grid>
           <Grid item className={classes.grid} xs={12} sm={6} md={3}>
-            <FormControl component="fieldset">
-              <Typography>Tipo de Propiedad</Typography>
+            <FormControl>
+              <Typography>Tipo de Propiedad: </Typography>
               <Select
                 onChange={handleSelect}
-                aria-label="type"
                 name="type"
                 value={property.type}
+                variant="outlined"
+                displayEmpty={true}
               >
                 {type &&
                   type.map((t) => (
-                    <MenuItem value={t} control={<Radio />} label={t}>
+                    <MenuItem value={t} label={t}>
                       {t}
                     </MenuItem>
                   ))}
@@ -253,12 +243,13 @@ export default function PropertyInfo({ id, update }) {
           <Grid item className={classes.grid} xs={12} sm={6} md={3}>
             <FormControl component="fieldset">
               <Typography>Condicion de la Propiedad</Typography>
-              
+
               <Select
                 onChange={handleSelect}
                 aria-label="condition"
                 name="condition"
                 value={property.condition}
+                variant="outlined"
               >
                 {condition &&
                   condition.map((t) => (
@@ -267,27 +258,27 @@ export default function PropertyInfo({ id, update }) {
                     </MenuItem>
                   ))}
               </Select>
-              
             </FormControl>
           </Grid>
-              <Grid item className={classes.grid} xs={12} sm={6} md={3}>
-                <FormControl component="fieldset">
-                  <Typography>Que tipo de actividad desea realizar?</Typography>
-                  <Select
-                    onChange={handleSelect}
-                    aria-label="transaction"
-                    name="transaction"
-                    value={property.transaction}
-                  >
-                    {transaction &&
-                      transaction.map((t) => (
-                        <MenuItem value={t} onChange={handleSelect} label={t}>
-                          {t}
-                        </MenuItem>
-                      ))}
-                  </Select>
-                </FormControl>
-              </Grid>
+          <Grid item className={classes.grid} xs={12} sm={6} md={3}>
+            <FormControl component="fieldset">
+              <Typography>Que tipo de actividad desea realizar?</Typography>
+              <Select
+                onChange={handleSelect}
+                aria-label="transaction"
+                name="transaction"
+                value={property.transaction}
+                variant="outlined"
+              >
+                {transaction &&
+                  transaction.map((t) => (
+                    <MenuItem value={t} onChange={handleSelect} label={t}>
+                      {t}
+                    </MenuItem>
+                  ))}
+              </Select>
+            </FormControl>
+          </Grid>
           <Grid item className={classes.grid} xs={12} sm={6} md={3}>
             <FormControl component="fieldset">
               <Typography>Estado</Typography>
@@ -296,6 +287,7 @@ export default function PropertyInfo({ id, update }) {
                 aria-label="status"
                 name="status"
                 value={property.status}
+                variant="outlined"
               >
                 {status &&
                   status.map((t) => (
@@ -323,15 +315,17 @@ export default function PropertyInfo({ id, update }) {
             />
           </Grid>
           <Grid item className={classes.grid} xs={12} sm={12} md={12}>
-             
-              <div className={classes.mapContainer}>
-                <GoogleMap lat={property.lat} lng={property.lng} />
-              </div>
-            </Grid>
-            <Grid item className={classes.grid} xs={12} sm={12} md={12}>
-              <UploadImage images={img} setImages={setImage} className={classes.upload}/>
-             
-            </Grid>
+            <div className={classes.mapContainer}>
+              <GoogleMap lat={property.lat} lng={property.lng} />
+            </div>
+          </Grid>
+          <Grid item className={classes.grid} xs={12} sm={12} md={12}>
+            <UploadImage
+              images={img}
+              setImages={setImage}
+              className={classes.upload}
+            />
+          </Grid>
           <Grid item className={classes.grid} xs={12} sm={12} md={12}>
             <Button
               variant="contained"
@@ -344,16 +338,15 @@ export default function PropertyInfo({ id, update }) {
             </Button>
           </Grid>
           <Grid item className={classes.grid} xs={12} sm={12} md={12}>
-          <h1>Contratos</h1>
-        </Grid>
-        <Grid item className={classes.grid} xs={12} sm={12} md={12}>
-          <TableList
-            columns={columnsContratList}
-            rows={property?.Contracts || []}
-            reference={contractReference}
-
-          />
-        </Grid>
+            <h1>Contratos</h1>
+          </Grid>
+          <Grid item className={classes.grid} xs={12} sm={12} md={12}>
+            <TableList
+              columns={columnsContratList}
+              rows={property?.Contracts || []}
+              reference={contractReference}
+            />
+          </Grid>
         </Grid>
       </form>
     </>
