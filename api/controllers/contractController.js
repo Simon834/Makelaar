@@ -75,6 +75,7 @@ async function getContractsById(req, res, next) {
           include: User,
         },
         { model: File },
+        { model: Property }
       ],
     });
     if (contract) {

@@ -13,6 +13,7 @@ import {
   List,
   ListItem,
   ListItemAvatar,
+  Typography,
   Avatar,
   ListItemText, // eslint-disable-next-line
   ListItemSecondaryAction,
@@ -142,6 +143,7 @@ export default function NewContractForm({ user, update }) {
 
   async function getContract() {
     const contractApi = await getContractById(idcont);
+    console.log("contractApi",contractApi)
 
     if (contractApi.Payments.length > 0) {
       const resValue = contractApi.Payments?.reduce((acc, val) => {
@@ -210,6 +212,19 @@ export default function NewContractForm({ user, update }) {
                 disabled={!!user}
               />
             </Grid>
+            {user?
+            <Grid item className={classes.grid} xs={12} sm={6} md={9}>
+              <TextField
+                disabled={!!user}
+                variant="outlined"
+                label="Resumen"
+                multiline
+                rows={2}
+                name="comments"
+                value={`${contract.Property.transaction} de propiedad: ${contract.Property.name} en ${contract.Property.address}, ${contract.Property.city}, ${contract.Property.province}`}
+              />
+            </Grid>:
+            <>
             <Grid item className={classes.grid} xs={12} sm={6} md={4}>
               <FormControl className={classes.formControl}>
                 <Select
@@ -237,7 +252,9 @@ export default function NewContractForm({ user, update }) {
                 <FormHelperText>Usuario</FormHelperText>
               </FormControl>
             </Grid>
+
             <Grid item className={classes.grid} xs={12} sm={6} md={5}>
+            
               <FormControl className={classes.formControl}>
                 <Select
                   disabled={!!user}
@@ -268,6 +285,8 @@ export default function NewContractForm({ user, update }) {
                 <FormHelperText>Propiedad</FormHelperText>
               </FormControl>
             </Grid>
+            </>
+}
             <Grid item className={classes.grid} xs={12} sm={6} md={3}>
               <TextField
                 disabled={!!user}
