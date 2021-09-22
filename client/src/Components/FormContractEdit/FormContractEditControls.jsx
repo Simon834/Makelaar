@@ -90,15 +90,12 @@ export function UseFormControls(update) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setContract({
-      ...contract,
-      status: "modificado",
-    });
+    const newContractEdit = { ...contract, status: "modificado" };
     const isValid =
       Object.values(errors).every((x) => x === "") && formIsValid();
     if (isValid) {
       try {
-        await editContract(contract, contract.id);
+        await editContract(newContractEdit, contract.id);
         Swal.fire({
           icon: "success",
           title: "Perfecto!",
@@ -126,12 +123,9 @@ export function UseFormControls(update) {
 
   const handleClickConfirm = async (e) => {
     e.preventDefault();
-    setContract({
-      ...contract,
-      status: "activo",
-    });
+    const newContractConfirm = { ...contract, status: "rechazado" };
     try {
-      await editContract(contract, contract.id);
+      await editContract(newContractConfirm, contract.id);
       Swal.fire({
         icon: "success",
         title: "Perfecto!",
@@ -149,12 +143,9 @@ export function UseFormControls(update) {
 
   const handleClickCancel = async (e) => {
     e.preventDefault();
-    setContract({
-      ...contract,
-      status: "rechazado",
-    });
+    const newContractCancel = { ...contract, status: "rechazado" };
     try {
-      await editContract(contract, contract.id);
+      await editContract(newContractCancel, contract.id);
       Swal.fire({
         icon: "error",
         title: "Entendido!",
