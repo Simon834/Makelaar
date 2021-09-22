@@ -2,16 +2,33 @@
   {
     "PropertyId": 1,
     "UserId": 1,
-    "name": "Alquiler",
-    "startDate": "02/02/2018",
-    "endDate": "02/02/2020",
-    "amount": "275.000",
-    "paymentDate": "02/02/2018",
-    "comments": "alquiler por dos años",
+    "name": "Alquiler en San Rafel",
+    "startDate": "02/20/2018",
+    "endDate": "02/20/2020",
+    "amount": 20000,
+    "paymentDate": "02/15/2018",
+    "comments": "Alquiler por dos años, con garantía de dos meses",
+    "status": "vencido",
+    "file": [
+      {
+        "name": "Alquiler en San Rafel",
+        "url": "http://abogadostucuman.com/Uploads/Articulos/Docs/7f19007997434.pdf"
+      }
+    ]
+  },
+  {
+    "PropertyId": 1,
+    "UserId": 1,
+    "name": "Alquiler en San Rafel",
+    "startDate": "03/20/2020",
+    "endDate": "03/20/2022",
+    "amount": 20000,
+    "paymentDate": "03/15/2020",
+    "comments": "Alquiler por dos años, con garantía de dos meses",
     "status": "activo",
     "file": [
       {
-        "name": "Alquiler",
+        "name": "Alquiler en San Rafel",
         "url": "http://abogadostucuman.com/Uploads/Articulos/Docs/7f19007997434.pdf"
       }
     ]
@@ -19,184 +36,221 @@
   {
     "PropertyId": 2,
     "UserId": 2,
-    "name": "Venta",
-    "startDate": "03/03/2021",
-    "endDate": "03/03/2021",
-    "amount": "575.000",
-    "paymentDate": "03/03/2021",
-    "comments": "Venta Casa",
-    "status": "activo",
+    "name": "Alquiler en Villa Martín",
+    "startDate": "03/03/2019",
+    "endDate": "03/03/2020",
+    "amount": 15000,
+    "paymentDate": "02/18/2019",
+    "comments": "Alquiler por un año, con garantía de tres meses",
+    "status": "vencido",
     "file": [
       {
-        "name": "Venta",
+        "name": "Alquiler en Villa Martín",
         "url": "http://abogadostucuman.com/Uploads/Articulos/Docs/7f19007997434.pdf"
       }
     ]
   },
   {
-    "PropertyId": 3,
-    "UserId": 3,
-    "name": "Alquiler",
-    "startDate": "10/12/2019",
-    "endDate": "02/02/2020",
-    "amount": "3.000",
-    "paymentDate": "02/02/2020",
-    "comments": "Alquiler por un año",
+    "PropertyId": 2,
+    "UserId": 2,
+    "name": "Alquiler en Villa Martín",
+    "startDate": "03/04/2020",
+    "endDate": "03/04/2021",
+    "amount": 15000,
+    "paymentDate": "02/27/2020",
+    "comments": "Alquiler por un año, con tres meses de garantía",
+    "status": "vencido",
+    "file": [
+      {
+        "name": "Alquiler en Villa Martín",
+        "url": "http://abogadostucuman.com/Uploads/Articulos/Docs/7f19007997434.pdf"
+      }
+    ]
+  },
+  {
+    "PropertyId": 2,
+    "UserId": 2,
+    "name": "Alquiler en Villa Martín",
+    "startDate": "03/05/2021",
+    "endDate": "03/05/2022",
+    "amount": 15000,
+    "paymentDate": "03/01/2021",
+    "comments": "Alquiler por un año, con garantía de tres meses",
     "status": "activo",
     "file": [
       {
-        "name": "alquiler",
+        "name": "Alquiler en Villa Martín",
         "url": "http://abogadostucuman.com/Uploads/Articulos/Docs/7f19007997434.pdf"
       }
     ]
   },
   {
     "PropertyId": 4,
-    "UserId": 4,
-    "name": "Alquiler",
-    "startDate": "10/11/2018",
-    "endDate": "02/05/2022",
-    "amount": "4.000",
-    "paymentDate": "02/02/2021",
-    "comments": "Alquiler por 3 años",
+    "UserId": 3,
+    "name": "Alquiler en Siliana",
+    "startDate": "02/02/2019",
+    "endDate": "02/22/2020",
+    "amount": 40000,
+    "paymentDate": "01/27/2019",
+    "comments": "Alquiler por un año, con garantía de dos meses",
+    "status": "vencido",
+    "file": [
+      {
+        "name": "Alquiler en Siliana",
+        "url": "http://abogadostucuman.com/Uploads/Articulos/Docs/7f19007997434.pdf"
+      }
+    ]
+  },
+  {
+    "PropertyId": 4,
+    "UserId": 3,
+    "name": "Alquiler en Siliana",
+    "startDate": "10/02/2020",
+    "endDate": "10/02/2021",
+    "amount": 40000,
+    "paymentDate": "9/28/2020",
+    "comments": "Alquiler por un año, con garantía de dos meses",
     "status": "activo",
     "file": [
       {
-        "name": "alquiler",
-        "url": "http://abogadostucuman.com/Uploads/Articulos/Docs/7f19007997434.pdf"
-      }
-    ]
-  },
-  {
-    "PropertyId": 5,
-    "UserId": 5,
-    "name": "Venta",
-    "startDate": "03/02/2021",
-    "endDate": "03/02/2021",
-    "amount": "400.000",
-    "paymentDate": "03/02/2021",
-    "comments": "Venta casa en cerro",
-    "status": "activo",
-    "file": [
-      {
-        "name": "Venta",
-        "url": "http://abogadostucuman.com/Uploads/Articulos/Docs/7f19007997434.pdf"
-      }
-    ]
-  },
-  {
-    "PropertyId": 6,
-    "UserId": 6,
-    "name": "Venta",
-    "startDate": "01/02/2020",
-    "endDate": "01/02/2020",
-    "amount": "800.000",
-    "paymentDate": "01/02/2020",
-    "comments": "Venta casa urca",
-    "status": "activo",
-    "file": [
-      {
-        "name": "Venta",
-        "url": "http://abogadostucuman.com/Uploads/Articulos/Docs/7f19007997434.pdf"
-      }
-    ]
-  },
-  {
-    "PropertyId": 7,
-    "UserId": 7,
-    "name": "Alquiler",
-    "startDate": "10/02/2022",
-    "endDate": "10/02/2020",
-    "amount": "5.000",
-    "paymentDate": "10/02/2020",
-    "comments": "Alquiler duplex",
-    "status": "pendiente",
-    "file": [
-      {
-        "name": "alquiler",
-        "url": "http://abogadostucuman.com/Uploads/Articulos/Docs/7f19007997434.pdf"
-      }
-    ]
-  },
-  {
-    "PropertyId": 8,
-    "UserId": 8,
-    "name": "Alquiler",
-    "startDate": "02/02/2018",
-    "endDate": "02/02/2020",
-    "amount": "900.000",
-    "paymentDate": "02/02/2020",
-    "comments": "ALquiler depto",
-    "status": "pendiente",
-    "file": [
-      {
-        "name": "alquiler",
-        "url": "http://abogadostucuman.com/Uploads/Articulos/Docs/7f19007997434.pdf"
-      }
-    ]
-  },
-  {
-    "PropertyId": 9,
-    "UserId": 9,
-    "name": "Venta",
-    "startDate": "02/03/2022",
-    "endDate": "02/03/2020",
-    "amount": "850.000",
-    "paymentDate": "02/03/2020",
-    "comments": "venta casa",
-    "status": "pendiente",
-    "file": [
-      {
-        "name": "Venta",
+        "name": "Alquiler en Siliana",
         "url": "http://abogadostucuman.com/Uploads/Articulos/Docs/7f19007997434.pdf"
       }
     ]
   },
   {
     "PropertyId": 10,
-    "UserId": 1,
-    "name": "Alquiler",
-    "startDate": "03/02/2018",
-    "endDate": "03/02/2020",
-    "amount": "900.000",
-    "paymentDate": "03/02/2020",
-    "comments": "Alquiler casa",
-    "status": "pendiente",
+    "UserId": 4,
+    "name": "Alquiler en Buena Ventura",
+    "startDate": "05/23/2017",
+    "endDate": "05/23/2020",
+    "amount": 14000,
+    "paymentDate": "05/17/2017",
+    "comments": "Alquiler depto por tres años. con garantía de tres meses",
+    "status": "vencido",
     "file": [
       {
-        "name": "alquiler",
+        "name": "Alquiler en Buena Ventura",
+        "url": "http://abogadostucuman.com/Uploads/Articulos/Docs/7f19007997434.pdf"
+      }
+    ]
+  },
+  {
+    "PropertyId": 10,
+    "UserId": 4,
+    "name": "Alquiler en Buena Ventura",
+    "startDate": "02/03/2020",
+    "endDate": "02/03/2022",
+    "amount": 14000,
+    "paymentDate": "02/02/2020",
+    "comments": "Alquiler por dos año, con garantía de tres meses",
+    "status": "activo",
+    "file": [
+      {
+        "name": "Alquiler en Buena Ventura",
         "url": "http://abogadostucuman.com/Uploads/Articulos/Docs/7f19007997434.pdf"
       }
     ]
   },
   {
     "PropertyId": 11,
-    "UserId": 22,
-    "name": "Alquiler",
-    "startDate": "03/02/2018",
-    "endDate": "03/02/2022",
-    "amount": "15000",
-    "paymentDate": "03/02/2020",
-    "comments": "Alquiler casa",
+    "UserId": 5,
+    "name": "Alquiler en Mitre",
+    "startDate": "01/24/2021",
+    "endDate": "02/24/2021",
+    "amount": 28000,
+    "paymentDate": "01/22/2021",
+    "comments": "Alquiler por un mes, y un mes de garantía",
+    "status": "vencido",
     "file": [
       {
-        "name": "alquiler",
+        "name": "Alquiler en Mitre",
+        "url": "http://abogadostucuman.com/Uploads/Articulos/Docs/7f19007997434.pdf"
+      }
+    ]
+  },
+  {
+    "PropertyId": 11,
+    "UserId": 5,
+    "name": "Alquiler en Mitre",
+    "startDate": "01/24/2021",
+    "endDate": "01/25/2025",
+    "amount": 28000,
+    "paymentDate": "01/22/2021",
+    "comments": "Alquiler por cuatro años, con garantía de cuatro meses",
+    "status": "activo",
+    "file": [
+      {
+        "name": "Alquiler en Mitre",
+        "url": "http://abogadostucuman.com/Uploads/Articulos/Docs/7f19007997434.pdf"
+      }
+    ]
+  },
+
+  {
+    "PropertyId": 12,
+    "UserId": 6,
+    "name": "Alquiler en Platanos",
+    "startDate": "05/02/2021",
+    "endDate": "06/02/2021",
+    "amount": 25000,
+    "paymentDate": "05/01/2021",
+    "comments": "Alquiler por un mes, con garantía de tres meses",
+    "status": "vencido",
+    "file": [
+      {
+        "name": "Alquiler en Platanos",
         "url": "http://abogadostucuman.com/Uploads/Articulos/Docs/7f19007997434.pdf"
       }
     ]
   },
   {
     "PropertyId": 12,
-    "UserId": 23,
-    "name": "Alquiler",
-    "startDate": "03/02/2018",
-    "endDate": "03/02/2022",
-    "amount": "18000",
-    "paymentDate": "03/02/2020",
-    "comments": "Alquiler casa",
+    "UserId": 6,
+    "name": "Alquiler en Platanos",
+    "startDate": "06/03/2021",
+    "endDate": "07/03/2021",
+    "amount": 25000,
+    "paymentDate": "06/01/2021",
+    "comments": "Alquiler por un mes, con garantía de tres meses",
+    "status": "vencido",
     "file": [
       {
-        "name": "alquiler",
+        "name": "Alquiler en Platanos",
+        "url": "http://abogadostucuman.com/Uploads/Articulos/Docs/7f19007997434.pdf"
+      }
+    ]
+  },
+  {
+    "PropertyId": 12,
+    "UserId": 6,
+    "name": "Alquiler en Platanos",
+    "startDate": "07/04/2021",
+    "endDate": "08/04/2021",
+    "amount": 25000,
+    "paymentDate": "07/02/2021",
+    "comments": "Alquiler por un mes, con garantía de tres meses",
+    "status": "vencido",
+    "file": [
+      {
+        "name": "Alquiler en Platanos",
+        "url": "http://abogadostucuman.com/Uploads/Articulos/Docs/7f19007997434.pdf"
+      }
+    ]
+  },
+  {
+    "PropertyId": 12,
+    "UserId": 6,
+    "name": "Alquiler en Platanos",
+    "startDate": "08/05/2021",
+    "endDate": "09/05/2021",
+    "amount": 25000,
+    "paymentDate": "08/03/2021",
+    "comments": "Alquiler por un mes, con garantía de tres meses",
+    "status": "activo",
+    "file": [
+      {
+        "name": "Alquiler en Platanos",
         "url": "http://abogadostucuman.com/Uploads/Articulos/Docs/7f19007997434.pdf"
       }
     ]
