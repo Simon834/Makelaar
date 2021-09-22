@@ -8,11 +8,13 @@ import { RowClassName, rowData, CellClassName } from "./functions";
 
 const defaultTheme = createTheme({
   palette: {
-    activo: "#C4D7F0",
+    activo: "#c0dbb2",
     ocupado: "#F0E5D0",
     eliminado: "#EFCBE2",
     destacado: "#D7D3EB",
     header: "#E5E4E4",
+    rechazado: "#c0b7a6",
+    modificado: "#98b9e3",
   },
 });
 const useStyles = makeStyles(
@@ -40,6 +42,18 @@ const useStyles = makeStyles(
 
         "& .super-app-theme--destacado": {
           backgroundColor: theme.palette.destacado,
+          "&:hover": {
+            backgroundColor: theme.palette.grey[300],
+          },
+        },
+        "& .super-app-theme--rechazado": {
+          backgroundColor: theme.palette.rechazado,
+          "&:hover": {
+            backgroundColor: theme.palette.grey[300],
+          },
+        },
+        "& .super-app-theme--modificado": {
+          backgroundColor: theme.palette.modificado,
           "&:hover": {
             backgroundColor: theme.palette.grey[300],
           },
@@ -74,8 +88,8 @@ export default function TableList({ columns, rows, user, reference }) {
   const classes = useStyles();
   const history = useHistory();
   const { id } = useParams();
-
   const rowsMod = rowData(rows, user);
+  console.log("ROWS MOD", rowsMod);
 
 console.log("rowsMod",rowsMod)
 

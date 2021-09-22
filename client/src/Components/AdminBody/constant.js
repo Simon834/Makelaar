@@ -183,6 +183,9 @@ export function adminConstant(id, history) {
   const contractReference = [
     { name: "Activo", color: "super-app-theme--activo" },
     { name: "Caducado", color: "super-app-theme--eliminado" },
+    { name: "Pendiente", color: "super-app-theme--ocupado" },
+    { name: "Modificado", color: "super-app-theme--modificado" },
+    { name: "Rechazado", color: "super-app-theme--rechazado" },
   ];
 
   const paymentReference = [
