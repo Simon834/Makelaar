@@ -221,7 +221,7 @@ export default function NewContractForm({ user, update }) {
                 multiline
                 rows={2}
                 name="comments"
-                value={`${contract.Property.transaction} de propiedad: ${contract.Property.name} en ${contract.Property.address}, ${contract.Property.city}, ${contract.Property.province}`}
+                value={`${contract.Property?.transaction} de propiedad: ${contract.Property?.name} en ${contract.Property?.address}, ${contract.Property?.city}, ${contract.Property?.province}`}
               />
             </Grid>:
             <>
