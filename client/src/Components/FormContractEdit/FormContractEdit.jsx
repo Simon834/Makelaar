@@ -78,7 +78,7 @@ const useStyle = makeStyles((theme) => ({
   buttonList: {
     display: "flex !Important",
     flexDirection: "row",
-     },
+  },
 }));
 
 export default function NewContractForm({ user, update }) {
@@ -144,7 +144,7 @@ export default function NewContractForm({ user, update }) {
     const contractApi = await getContractById(idcont);
 
     if (contractApi.Payments) {
-      const resValue = contractApi.Payments.reduce((acc, val) => {
+      const resValue = contractApi.Payments?.reduce((acc, val) => {
         if (acc.amount) {
           return acc.amount + parseInt(val.amount);
         } else {
@@ -162,9 +162,7 @@ export default function NewContractForm({ user, update }) {
       getAllUser();
       getAllProperties();
     }
-    getContract();
-    getAllUser();
-    getAllProperties(); // eslint-disable-next-line
+    getContract(); // eslint-disable-next-line
   }, []);
 
   return (
@@ -178,7 +176,9 @@ export default function NewContractForm({ user, update }) {
           <h1 className={classes.title}>Contrato</h1>
           {rest < 0 ? (
             <Alert variant="filled" severity="warning">
-              {`Contrato con deuda de $ ${new Intl.NumberFormat().format(Math.abs(rest))}`}
+              {`Contrato con deuda de $ ${new Intl.NumberFormat().format(
+                Math.abs(rest)
+              )}`}
             </Alert>
           ) : rest >= 0 ? (
             <Alert variant="filled" severity="success">
@@ -349,7 +349,7 @@ export default function NewContractForm({ user, update }) {
               />
             </Grid>
 
-            <Grid item  xs={12} sm={12} md={12}>
+            <Grid item xs={12} sm={12} md={12}>
               {auth ? (
                 <div className={classes.ButtonsConfirm}>
                   <Grid item className={classes.grid} xs={12} sm={6} md={6}>
