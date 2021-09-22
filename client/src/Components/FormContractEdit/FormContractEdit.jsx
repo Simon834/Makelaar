@@ -145,13 +145,13 @@ export default function NewContractForm({ user, update }) {
 
     if (contractApi.Payments.length > 0) {
       const resValue = contractApi.Payments?.reduce((acc, val) => {
+        
         if (acc.amount) {
           return acc.amount + parseInt(val.amount);
         } else {
           return acc + parseInt(val.amount);
         }
       });
-
       setRest(resValue);
     }
     setContract(contractApi);
@@ -324,7 +324,7 @@ export default function NewContractForm({ user, update }) {
                 disabled={!!user}
                 variant="outlined"
                 InputLabelProps={{ shrink: true }}
-                label="Fecha de pago"
+                label="Fecha de firma de contrato"
                 type="date"
                 name="paymentDate"
                 value={contract.paymentDate}

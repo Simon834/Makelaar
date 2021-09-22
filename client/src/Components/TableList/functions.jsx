@@ -32,26 +32,41 @@ export function RowClassName(params) {
 }
 
 export function rowData(rows, user) {
+  console.log("rows", rows)
   const newrow = rows?.map((e) => {
     let newrow = e;
-
+    //Tabla de usuarios
     if (e.isAdmin) newrow = { ...newrow, isAdmin: "Si" };
     if (!e.isAdmin) newrow = { ...newrow, isAdmin: "No" };
-    if (e.Contracts || e.Contract)
-      newrow = { ...newrow, contract: "Ver contrato" };
+
+    //Tabla de contratos
     if (e.User) newrow = { ...newrow, UserId: e.User.name };
     if (e.Property) newrow = { ...newrow, PropId: e.Property.name };
+
+    if (e.Payments?.length > 0) {
+      const resValue = e.Payments?.reduce((acc, val) => {
+        
+        if (acc.amount) {
+          return acc.amount + parseInt(val.amount);
+        } else {
+          return acc + parseInt(val.amount);
+        }
+      });
+
+      newrow = { ...newrow, rest: isNaN(resValue)? `$0`:`$ ${new Intl.NumberFormat().format(resValue)}` };}
+
+
+    //Tabla de propiedades
     if (e.premium) newrow = { ...newrow, premium: "Destacado" };
     if (!e.premium) newrow = { ...newrow, premium: "" };
-    if (e.startDate && user) newrow = { ...newrow, contract: "Ver contrato" };
+
+    //Tabla de pagos
     if (e.Contract?.name)
       newrow = {
         ...newrow,
         Contract: e.Contract.name,
         ContractId: e.Contract.id,
       };
-    if (e.User?.name)
-      newrow = { ...newrow, User: e.User.name, UserId: e.User.id };
 
     if (e.status === "approved") newrow = { ...newrow, status: "Pago" };
     if (e.date) newrow = { ...newrow, date: new Date(e.date).toLocaleDateString() };
@@ -60,4 +75,11 @@ export function rowData(rows, user) {
     return newrow;
   });
   return newrow;
+}
+
+export function CellClassName(params){
+  if(params.field==="rest" && params.value.slice(1)*1 < 0 ){
+    return "super-app-theme--negativenumber"
+  }
+
 }

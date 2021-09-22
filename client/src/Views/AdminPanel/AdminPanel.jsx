@@ -2,12 +2,9 @@ import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router";
 
-import ViewBase from "../ViewBase/view-base";
-import MenuPanelList from "../../Components/MenuPanelList/MenuPanelList";
 import AdminBody from "../../Components/AdminBody/AdminBody";
 import LateralMenu from "../../Components/LateralMenu/LateralMenu";
 import { menuList } from "./constant";
-import TopBar from "../../Components/TopBar/TopBar";
 
 export default function AdminPanel() {
   const { userInfo } = useSelector((state) => state);
@@ -20,13 +17,12 @@ export default function AdminPanel() {
   }, [userInfo]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-      <div>
-         <LateralMenu
-          list={menuList}
-          routeAction={`/admin/${userInfo.user?.id}`}
-          body={<AdminBody/>}
-        />
-      </div>
-
+    <div>
+      <LateralMenu
+        list={menuList}
+        routeAction={`/admin/${userInfo.user?.id}`}
+        body={<AdminBody />}
+      />
+    </div>
   );
 }

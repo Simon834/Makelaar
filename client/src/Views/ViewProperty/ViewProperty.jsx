@@ -20,8 +20,6 @@ import { filterEstates } from "../../Functions/filters/filters";
 import { clearFilter } from "../../Redux/Actions/filterActions";
 import { getAllProperties } from "../../Redux/Actions/propertyActions";
 
-const inmuebles = require("../../inmuebles.json");
-
 export default function ViewProperty() {
   const { concept, tipe, bedroom, bathroom, price, search, properties } =
     useSelector((state) => state);
@@ -29,7 +27,7 @@ export default function ViewProperty() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    getEstates();
+    getEstates();// eslint-disable-next-line
   }, [concept, tipe, bedroom, bathroom, price, search, properties]);
 
   async function getEstates() {

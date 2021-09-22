@@ -26,21 +26,26 @@ import { useFormControls } from "./FormControls";
 const useStyle = makeStyles((theme) => ({
   form: {
     "& .MuiFormControl-root": {
-      width: "440px",
-      margin: theme.spacing(3),
+      width: "100%",
+      margin: theme.spacing(1),
     },
   },
   root: {
-    width: "min-content",
-
+    width: "100%",
     padding: theme.spacing(4),
     display: "flex",
     flexDirection: "column",
     allingItems: "center",
     justifyContent: "center",
   },
+  grid: {
+    display: "flex",
+    flexDirection: "columns",
+    
+  },
   button: {
-    marginLeft: theme.spacing(27),
+    width: "100%",
+    
   },
   header: {
     fontSize: "25px",
@@ -90,7 +95,7 @@ export default function UserRegistrationForm(props) {
           onSubmit={handleSubmit}
         >
           <Grid container>
-            <Grid item xs={6}>
+          <Grid item className={classes.grid} xs={12} sm={12} md={12}>
               {isAdmin ? (
                 <FormControlLabel
                   className={classes.switch}
@@ -106,7 +111,8 @@ export default function UserRegistrationForm(props) {
               ) : (
                 <></>
               )}
-
+</Grid>
+<Grid item className={classes.grid} xs={12} sm={12} md={12}>
               <TextField
                 variant="outlined"
                 label="Nombre"
@@ -120,6 +126,8 @@ export default function UserRegistrationForm(props) {
                 })}
                 required
               />
+              </Grid>
+              <Grid item className={classes.grid} xs={12} sm={12} md={6}>
               <TextField
                 variant="outlined"
                 label="Email"
@@ -133,6 +141,8 @@ export default function UserRegistrationForm(props) {
                 })}
                 required
               />
+                            </Grid>
+              <Grid item className={classes.grid} xs={12} sm={12} md={6}>
               <TextField
                 variant="outlined"
                 label="Confirma tu Email"
@@ -146,6 +156,8 @@ export default function UserRegistrationForm(props) {
                 })}
                 required
               />
+                            </Grid>
+              <Grid item className={classes.grid} xs={12} sm={12} md={6}>
               <TextField
                 variant="outlined"
                 label="Telefono"
@@ -158,6 +170,8 @@ export default function UserRegistrationForm(props) {
                   helperText: errors.phone,
                 })}
               />
+                            </Grid>
+              <Grid item className={classes.grid} xs={12} sm={12} md={6}>
               <TextField
                 variant="outlined"
                 label="Whatsapp"
@@ -171,6 +185,8 @@ export default function UserRegistrationForm(props) {
                   helperText: errors.whastapp,
                 })}
               />
+                            </Grid>
+              <Grid item className={classes.grid} xs={12} sm={12} md={12}>
               <FormControl variant="outlined">
                 <InputLabel htmlFor="outlined-adornment-password">
                   Contraseña
@@ -202,6 +218,8 @@ export default function UserRegistrationForm(props) {
                 />
                 <em>{errors.password}</em>
               </FormControl>
+              </Grid>
+              <Grid item className={classes.grid} xs={12} sm={12} md={12}>
               <FormControl variant="outlined">
                 <InputLabel htmlFor="outlined-adornment-password">
                   Confirma tu Contraseña
@@ -233,7 +251,9 @@ export default function UserRegistrationForm(props) {
                 />
                 <em>{errors.confirmPassword}</em>
               </FormControl>
-              <p>
+              </Grid>
+              <Grid item className={classes.grid} xs={12} sm={12} md={12}>
+ 
                 <Button
                   variant="contained"
                   color="primary"
@@ -243,7 +263,7 @@ export default function UserRegistrationForm(props) {
                 >
                   Enviar
                 </Button>
-              </p>
+ 
             </Grid>
           </Grid>
         </form>

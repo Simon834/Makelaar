@@ -4,7 +4,7 @@ import { useHistory } from "react-router";
 import { useParams } from "react-router";
 import { makeStyles } from "@material-ui/styles";
 import { createTheme } from "@material-ui/core/styles";
-import { RowClassName, rowData } from "./functions";
+import { RowClassName, rowData, CellClassName } from "./functions";
 
 const defaultTheme = createTheme({
   palette: {
@@ -54,6 +54,10 @@ const useStyles = makeStyles(
         "& .super-app-theme--header": {
           backgroundColor: theme.palette.header,
         },
+
+        "& .super-app-theme--negativenumber": {
+          color: "red",
+        },
       },
       ref: {
         display: "flex",
@@ -92,7 +96,7 @@ export default function TableList({ columns, rows, user, reference }) {
   }
 
   return (
-    <div style={{ height: 500, width: "100%" }} className={classes.root}>
+    <div style={{ height: "80vh", width: "100%" }} className={classes.root}>
       <div className={classes.ref}>
         {reference?.map((e) => (
           <div className={e.color} style={{ padding: "4px" }}>
@@ -104,9 +108,10 @@ export default function TableList({ columns, rows, user, reference }) {
         onCellClick={handleRoutes}
         rows={rowsMod}
         columns={columns}
-        pageSize={10}
+        autoPageSize={true}
         localeText={esES.props.MuiDataGrid.localeText}
         getRowClassName={RowClassName}
+        getCellClassName={CellClassName}
       />
     </div>
   );

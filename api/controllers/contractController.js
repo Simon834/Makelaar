@@ -51,7 +51,8 @@ async function newContract(req, res, next) {
 async function getContracts(req, res, next) {
   try {
     const contracts = await Contract.findAll({
-      include: [{ model: User }, { model: Property }],
+      include: [{ model: User }, { model: Property }, { model: Payment }],
+      order: [["endDate", "DESC"]],
     });
     if (!contracts.length) {
       return res.json({ msg: "No hay contratos registrados por el momento" });
