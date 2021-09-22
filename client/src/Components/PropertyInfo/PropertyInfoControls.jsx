@@ -26,7 +26,7 @@ const resetValues = {
 };
 
 export function Controls(update) {
-  const [property, setProperty] = useState({});
+  const [property, setProperty] = useState(resetValues);
 
   const [img, setImg] = useState([]);
 
@@ -37,7 +37,6 @@ export function Controls(update) {
   const [address, setAddress] = useState("");
 
   const [latLng, setLatLng] = useState({});
- 
 
   function validate(values = property) {
     let error = { ...errors };
@@ -120,8 +119,6 @@ export function Controls(update) {
         : "El nombre de la provincia no es valido";
     }
 
-    
-
     if ("status" in values)
       error.values = values.status ? "" : "Este campo es requerido";
 
@@ -169,7 +166,6 @@ export function Controls(update) {
 
     if (isValid) {
       try {
-     
         const propertySubmit = { ...property, photos: img };
         const editedProperty = await editProperty(propertySubmit);
         if (editedProperty) {
@@ -224,6 +220,6 @@ export function Controls(update) {
     setChecked,
     toggleChecked,
     handleSwitch,
-    setImage
+    setImage,
   };
 }

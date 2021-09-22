@@ -241,7 +241,7 @@ export default function NewContractForm() {
               <TextField
                 variant="outlined"
                 InputLabelProps={{ shrink: true }}
-                label="Fecha de pago"
+                label="Fecha de firma de contrato"
                 type="date"
                 name="paymentDate"
                 value={contract.paymentDate}
