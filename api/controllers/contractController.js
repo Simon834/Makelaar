@@ -16,6 +16,7 @@ async function newContract(req, res, next) {
       UserId,
       PropertyId,
       email,
+      status,
     } = req.body;
 
     let contract = await Contract.create({
@@ -27,6 +28,7 @@ async function newContract(req, res, next) {
       comments: comments,
       PropertyId: PropertyId,
       UserId: UserId,
+      status: status,
     });
 
     if (file) {
@@ -65,10 +67,12 @@ async function getContractsById(req, res, next) {
   try {
     const contract = await Contract.findByPk(contractId, {
       include: [
-        { model: Payment, 
+        {
+          model: Payment,
           separate: true,
-          order: [['date', 'DESC']], 
-          include: User },
+          order: [["date", "DESC"]],
+          include: User,
+        },
         { model: File },
       ],
     });
