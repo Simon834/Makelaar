@@ -26,7 +26,7 @@ export default function FilterPrice({valuePrice}) {
 
   useEffect(() => {
     if(!valuePrice[0] && !valuePrice[1]){
-    setValue([10, 20])}// eslint-disable-next-line
+    setValue([5, 10])}// eslint-disable-next-line
   }, [valuePrice])
 
   const handleChange = (event, newValue) => {
@@ -43,7 +43,7 @@ export default function FilterPrice({valuePrice}) {
     <div className={classes.root}>
       <div>
         <Typography id="range-slider" gutterBottom>
-          Precio x1000
+          Valor alquiler
           <IconButton aria-label="delete" onClick={()=>reset()}>
             <DeleteIcon fontSize="small"/>
           </IconButton>
@@ -55,19 +55,19 @@ export default function FilterPrice({valuePrice}) {
           valueLabelDisplay="auto"
           aria-labelledby="range-slider"
           getAriaValueText={valuetext}
-          min={10}
-          max={110}
+          min={5}
+          max={80}
           marks={[{
-            value: 10,
-            label: '$10.000',
+            value: 5,
+            label: '$5.000',
           },
           {
-            value: 55,
-            label: '$55.000',
+            value: 40,
+            label: '$40.000',
           },
           {
-            value: 110,
-            label: '$110.000',
+            value: 80,
+            label: '$80.000',
           }]}
         />
       </div>
