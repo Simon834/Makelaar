@@ -666,7 +666,7 @@
     "type": "Duplex",
     "rooms": 4,
     "bathrooms": 2,
-    "area": "80m2",
+    "area": 80,
     "province": "Cordoba",
     "city": "Cordoba",
     "neighborhood": "Centro",
