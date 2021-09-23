@@ -126,7 +126,7 @@ socketio.on("connection", (socket) => {
   });
 });
 
-db.sync({ force: true }).then(async () => {
+db.sync({ force: false }).then(async () => {
   server.listen(PORT, () => {
     console.log(`%s listening at ${PORT}`);
     cron.schedule("44 * * * *", () => {

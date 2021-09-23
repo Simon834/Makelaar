@@ -50,7 +50,7 @@ export default function Cards({ inmuebles, update }) {
             <Grid item lg={4} xs={12} sm={6} md={6} key={inm.id}>
               <CardComponent
                 title={inm.name}
-                image={inm.Images[0].url}
+                image={inm.Images[0]?.url}
                 type={inm.type}
                 bathroom={inm.bathrooms}
                 bedroom={inm.rooms}
