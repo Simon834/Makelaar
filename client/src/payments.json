@@ -1,70 +1,197 @@
 [
     {
-        "idPay": 13545,
+        "idPay": "Debito",
        "status":"approved",
-       "userEmail": "cgonzalez@yahootest.com",
+       "userEmail": "test_user_66072395@testuser.com",
        "amount": 20000,
-       "ContractId": 10,
-       "date":"2021-09-10"
+       "ContractId": 2,
+       "date":"2021-01-05"
       },
       {
-        "idPay": 13546,
+        "idPay": "Liquidación Autom.",
        "status":"Liquidación",
-       "userEmail": "cgonzalez@yahootest.com",
+       "userEmail": "test_user_66072395@testuser.com",
        "amount": -20000,
-       "ContractId": 10,
-       "date":"2021-09-5"
+       "ContractId": 2,
+       "date":"2020-12-28"
        
       },
       {
-        "idPay": 13547,
+        "idPay": "Debito",
        "status":"approved",
-       "userEmail": "cgonzalez@yahootest.com",
+       "userEmail": "test_user_66072395@testuser.com",
        "amount": 20000,
-       "ContractId": 10,
-       "date":"2021-08-10"
+       "ContractId": 2,
+       "date":"2021-02-03"
        
       },
       {
-        "idPay": 13548,
+        "idPay": "Liquidación Autom.",
        "status":"Liquidación",
-       "userEmail": "cgonzalez@yahootest.com",
+       "userEmail": "test_user_66072395@testuser.com",
        "amount": -20000,
-       "ContractId": 10,
-       "date":"2021-08-05"
+       "ContractId": 2,
+       "date":"2021-01-28"
       }, 
       {
-        "idPay": 13545,
+        "idPay": "Debito",
        "status":"approved",
-       "userEmail": "cgonzalez@yahootest.com",
+       "userEmail": "test_user_66072395@testuser.com",
        "amount": 20000,
-       "ContractId": 3,
-       "date":"2021-07-10"
+       "ContractId": 2,
+       "date":"2021-03-05"
       },
       {
-        "idPay": 13546,
+        "idPay": "Liquidación Autom.",
        "status":"Liquidación",
-       "userEmail": "cgonzalez@yahootest.com",
+       "userEmail": "test_user_66072395@testuser.com",
        "amount": -20000,
+       "ContractId": 2,
+       "date":"2021-02-28"
+      },
+      {
+        "idPay": "Debito",
+       "status":"approved",
+       "userEmail": "test_user_66072395@testuser.com",
+       "amount": 20000,
+       "ContractId": 2,
+       "date":"2021-04-03"
+      },
+      {
+        "idPay": "Liquidación Autom.",
+       "status":"Liquidación",
+       "userEmail": "test_user_66072395@testuser.com",
+       "amount": -20000,
+       "ContractId": 2,
+       "date":"2021-03-28"
+      },
+      {
+        "idPay": "Debito",
+       "status":"approved",
+       "userEmail": "test_user_66072395@testuser.com",
+       "amount": 20000,
+       "ContractId": 2,
+       "date":"2021-05-03"
+      },
+      {
+        "idPay": "Liquidación Autom.",
+       "status":"Liquidación",
+       "userEmail": "test_user_66072395@testuser.com",
+       "amount": -20000,
+       "ContractId": 2,
+       "date":"2021-04-28"
+      },
+      {
+        "idPay": "Debito",
+       "status":"approved",
+       "userEmail": "test_user_66072395@testuser.com",
+       "amount": 20000,
+       "ContractId": 2,
+       "date":"2021-06-07"
+      },
+      {
+        "idPay": "Liquidación Autom.",
+       "status":"Liquidación",
+       "userEmail": "test_user_66072395@testuser.com",
+       "amount": -20000,
+       "ContractId": 2,
+       "date":"2021-05-28"
+      },
+      {
+        "idPay": "Debito",
+       "status":"approved",
+       "userEmail": "test_user_66072395@testuser.com",
+       "amount": 20000,
+       "ContractId": 2,
+       "date":"2021-07-05"
+      },
+      {
+        "idPay": "Liquidación Autom.",
+       "status":"Liquidación",
+       "userEmail": "test_user_66072395@testuser.com",
+       "amount": -20000,
+       "ContractId": 2,
+       "date":"2021-06-28"
+      },
+      {
+        "idPay": "Debito",
+       "status":"approved",
+       "userEmail": "test_user_66072395@testuser.com",
+       "amount": 20000,
+       "ContractId": 2,
+       "date":"2021-08-03"
+      },
+      {
+        "idPay": "Liquidación Autom.",
+       "status":"Liquidación",
+       "userEmail": "test_user_66072395@testuser.com",
+       "amount": -20000,
+       "ContractId": 2,
+       "date":"2021-07-28"
+      },
+      {
+        "idPay": "Debito",
+       "status":"approved",
+       "userEmail": "test_user_66072395@testuser.com",
+       "amount": 20000,
+       "ContractId": 2,
+       "date":"2021-09-05"
+      },
+      {
+        "idPay": "Liquidación Autom.",
+       "status":"Liquidación",
+       "userEmail": "test_user_66072395@testuser.com",
+       "amount": -20000,
+       "ContractId": 2,
+       "date":"2021-08-28"
+      },
+      {
+        "idPay": "Debito",
+       "status":"approved",
+       "userEmail": "cgonzalez@yahootest.com",
+       "amount": 15000,
        "ContractId": 3,
        "date":"2021-07-05"
       },
       {
-        "idPay": 13547,
-       "status":"approved",
-       "userEmail": "cgonzalez@yahootest.com",
-       "amount": 20000,
-       "ContractId": 3,
-       "date":"2021-04-10"
-      },
-      {
-        "idPay": 13548,
+        "idPay": "Liquidación Autom.",
        "status":"Liquidación",
        "userEmail": "cgonzalez@yahootest.com",
-       "amount": -20000,
+       "amount": -15000,
        "ContractId": 3,
-       "date":"2021-04-05"
+       "date":"2021-06-28"
+      },
+      {
+        "idPay": "Debito",
+       "status":"approved",
+       "userEmail": "cgonzalez@yahootest.com",
+       "amount": 15000,
+       "ContractId": 3,
+       "date":"2021-08-03"
+      },
+      {
+        "idPay": "Liquidación Autom.",
+       "status":"Liquidación",
+       "userEmail": "cgonzalez@yahootest.com",
+       "amount": -15000,
+       "ContractId": 3,
+       "date":"2021-07-28"
+      },
+
+      {
+        "idPay": "Debito",
+       "status":"approved",
+       "userEmail": "cgonzalez@yahootest.com",
+       "amount": 15000,
+       "ContractId": 3,
+       "date":"2021-09-06"
+      },
+      {
+       "idPay": "Liquidación Autom.",
+       "status":"Liquidación",
+       "userEmail": "cgonzalez@yahootest.com",
+       "amount": -15000,
+       "ContractId": 3,
+       "date":"2021-08-28"
       }
-
-
 ]

@@ -140,11 +140,11 @@ export default function AdminBody() {
       </Route>
 
       <Route path="/admin/:id/editcontract/:idcont">
-        <EditContractForm update={updateList} />
+        <EditContractForm forceUpdate={updateList} update={load} />
       </Route>
 
       <Route path="/admin/:id/editproperty/:idprop">
-        <PropertyInfo update={updateList} />
+        <PropertyInfo update={updateList}  />
       </Route>
 
       <Route path="/admin/:id/user/:iduser">

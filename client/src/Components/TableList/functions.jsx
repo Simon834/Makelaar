@@ -1,17 +1,22 @@
 export function RowClassName(params) {
   if (params.row.endDate) {
-    const date = new Date();
-    const rowEndDate = new Date(params.row.endDate);
-    if (rowEndDate < date) {
-      return `super-app-theme--eliminado`;
-    } else {
+    if (params.row.status === "pendiente") {
+      return `super-app-theme--ocupado`;
+    } else if (params.row.status === "modificado") {
+      return `super-app-theme--modificado`;
+    } else if (params.row.status === "rechazado") {
+      return `super-app-theme--rechazado`;
+    } else if (params.row.status === "activo") {
       return `super-app-theme--activo`;
+    } else if (params.row.status === "vencido") {
+      return `super-app-theme--eliminado`;
     }
   }
+
   if (params.row.isAdmin === "Si") {
     return `super-app-theme--ocupado`;
   }
-  
+
   if (params.row.status === "Pago") {
     return `super-app-theme--activo`;
   }
@@ -28,11 +33,10 @@ export function RowClassName(params) {
   } else {
     return `super-app-theme--white`;
   }
-
 }
 
 export function rowData(rows, user) {
-  console.log("rows", rows)
+  console.log("rows", rows);
   const newrow = rows?.map((e) => {
     let newrow = e;
     //Tabla de usuarios
@@ -44,17 +48,27 @@ export function rowData(rows, user) {
     if (e.Property) newrow = { ...newrow, PropId: e.Property.name };
 
     if (e.Payments?.length > 0) {
-      const resValue = e.Payments?.reduce((acc, val) => {
-        
+      let resValue=0
+      if(e.Payments.length===1){
+        resValue=e.Payments[0].amount
+      }else{
+      resValue = e.Payments?.reduce((acc, val) => {
         if (acc.amount) {
           return acc.amount + parseInt(val.amount);
         } else {
           return acc + parseInt(val.amount);
         }
-      });
+      });}
 
-      newrow = { ...newrow, rest: isNaN(resValue)? `$0`:`$ ${new Intl.NumberFormat().format(resValue)}` };}
-
+      newrow = {
+        ...newrow,
+        rest: isNaN(resValue)
+          ? `$ 0`
+          : `$ ${new Intl.NumberFormat().format(resValue)}`,
+      };
+    }else{
+      newrow = { ...newrow, rest: `$ 0` };
+    }
 
     //Tabla de propiedades
     if (e.premium) newrow = { ...newrow, premium: "Destacado" };
@@ -69,17 +83,21 @@ export function rowData(rows, user) {
       };
 
     if (e.status === "approved") newrow = { ...newrow, status: "Pago" };
-    if (e.date) newrow = { ...newrow, date: new Date(e.date).toLocaleDateString() };
-    if (e.amount) newrow= {...newrow, amount:`$ ${new Intl.NumberFormat().format(Math.abs(e.amount))}`}
+    if (e.date)
+      newrow = { ...newrow, date: new Date(e.date).toLocaleDateString() };
+    if (e.amount)
+      newrow = {
+        ...newrow,
+        amount: `$ ${new Intl.NumberFormat().format(Math.abs(e.amount))}`,
+      };
 
     return newrow;
   });
   return newrow;
 }
 
-export function CellClassName(params){
-  if(params.field==="rest" && params.value.slice(1)*1 < 0 ){
-    return "super-app-theme--negativenumber"
+export function CellClassName(params) {
+  if (params.field === "rest" && params.value?.slice(1) * 1 < 0) {
+    return "super-app-theme--negativenumber";
   }
-
 }

@@ -23,17 +23,22 @@ export default function PropertyDetail() {
   let { id } = useParams();
   const [inm, setInm] = useState({});
   const [img, setImg] = useState("");
+  const [update, setUpdate] = useState(false)
 
   useEffect(() => {
     window.scrollTo(0, 0);
     getDetail(id);
-  }, []);
+  }, [update]);
 
   async function getDetail(id) {
     const inmDetail = await propertyById(id);
     setInm(inmDetail);
     setImg(inmDetail.Images[0].url);
     return inmDetail;
+  }
+
+  function foceUpdate(){
+    setUpdate(!update)
   }
 
   const classes = useStyles();
@@ -58,6 +63,7 @@ export default function PropertyDetail() {
             area={inm.area}
             contrat={inm.Contract}
             hideImage={true}
+            update={foceUpdate}
           />
         </div>
         <div className={style.galery}>

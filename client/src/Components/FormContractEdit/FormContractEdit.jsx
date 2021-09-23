@@ -82,7 +82,7 @@ const useStyle = makeStyles((theme) => ({
   },
 }));
 
-export default function NewContractForm({ user, update }) {
+export default function NewContractForm({ user, forceUpdate, update  }) {
   const classes = useStyle();
   const {
     handleChange,
@@ -97,7 +97,7 @@ export default function NewContractForm({ user, update }) {
     setEmail,
     handleClickConfirm,
     handleClickCancel,
-  } = UseFormControls(update);
+  } = UseFormControls(forceUpdate);
 
   const { columnsPaymentList, paymentReference } = contractEditConstant();
 
@@ -129,7 +129,7 @@ export default function NewContractForm({ user, update }) {
     ) {
       setAuth(false);
     } // eslint-disable-next-line
-  }, [contract]);
+  }, [contract,update]);
 
   async function getAllUser() {
     const allUsersApi = await getAllUserApi();
@@ -146,14 +146,17 @@ export default function NewContractForm({ user, update }) {
     console.log("contractApi",contractApi)
 
     if (contractApi.Payments.length > 0) {
-      const resValue = contractApi.Payments?.reduce((acc, val) => {
-        
+      let resValue=0
+      if(contractApi.Payments.length===1){
+        resValue=contractApi.Payments[0].amount
+      }else{
+      resValue = contractApi.Payments?.reduce((acc, val) => {
         if (acc.amount) {
           return acc.amount + parseInt(val.amount);
         } else {
           return acc + parseInt(val.amount);
         }
-      });
+      });}
       setRest(resValue);
     }
     setContract(contractApi);
@@ -165,7 +168,7 @@ export default function NewContractForm({ user, update }) {
       getAllProperties();
     }
     getContract(); // eslint-disable-next-line
-  }, []);
+  }, [update]);
 
   return (
     <>

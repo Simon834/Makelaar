@@ -1,0 +1,12 @@
+.buttonGoUp{
+  position: fixed;
+  right: 6.3rem;
+  bottom: 4rem;
+  z-index: 999;
+  cursor: pointer;
+  
+}
+.buttonGoUp img {
+  width: 2.5rem;
+
+}

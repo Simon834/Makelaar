@@ -8,11 +8,13 @@ import { RowClassName, rowData, CellClassName } from "./functions";
 
 const defaultTheme = createTheme({
   palette: {
-    activo: "#C4D7F0",
+    activo: "#c0dbb2",
     ocupado: "#F0E5D0",
     eliminado: "#EFCBE2",
     destacado: "#D7D3EB",
     header: "#E5E4E4",
+    rechazado: "#c0b7a6",
+    modificado: "#98b9e3",
   },
 });
 const useStyles = makeStyles(
@@ -40,6 +42,18 @@ const useStyles = makeStyles(
 
         "& .super-app-theme--destacado": {
           backgroundColor: theme.palette.destacado,
+          "&:hover": {
+            backgroundColor: theme.palette.grey[300],
+          },
+        },
+        "& .super-app-theme--rechazado": {
+          backgroundColor: theme.palette.rechazado,
+          "&:hover": {
+            backgroundColor: theme.palette.grey[300],
+          },
+        },
+        "& .super-app-theme--modificado": {
+          backgroundColor: theme.palette.modificado,
           "&:hover": {
             backgroundColor: theme.palette.grey[300],
           },
@@ -74,23 +88,35 @@ export default function TableList({ columns, rows, user, reference }) {
   const classes = useStyles();
   const history = useHistory();
   const { id } = useParams();
-
   const rowsMod = rowData(rows, user);
+  console.log("ROWS MOD", rowsMod);
 
   function handleRoutes(params, event) {
     if (params.row.endDate && user) {
+      
       history.push(`/user/${id}/editcontract/${params.row.id}`);
     } else if (params.row.endDate && params.field !== "UserId") {
+
       history.push(`/admin/${id}/editcontract/${params.row.id}`);
+
     } else if (params.row.price && params.field !== "contract") {
+
       history.push(`/admin/${id}/editproperty/${params.row.id}`);
-    } else if (params.row.email || params.field === "UserId") {
+
+    } else if (params.row.email) {
+
       history.push(`/admin/${id}/user/${params.row.id}`);
+
     } else if (params.field === "UserId") {
+
       history.push(`/admin/${id}/user/${params.row.User.id}`);
+
     } else if (params.field === "User" && params.row.UserId) {
+
       history.push(`/admin/${id}/user/${params.row.UserId}`);
+
     } else if (params.field === "Contract" && params.row.ContractId) {
+
       history.push(`/admin/${id}/editcontract/${params.row.ContractId}`);
     }
   }

@@ -27,6 +27,7 @@ export default function Home() {
     useSelector((state) => state);
 
   const [estates, setEstates] = useState(properties);
+  const [update, setUpdate] = useState(true);
 
   const dispatch = useDispatch();
 
@@ -61,7 +62,12 @@ export default function Home() {
     window.scrollTo(0, 0);
     dispatch(clearFilter());
     dispatch(getAllProperties());
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [update]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  function forceUpdate(){
+    setUpdate(!update)
+  }
+
 
   return (
     <div>
@@ -105,7 +111,7 @@ export default function Home() {
           />
         }
         carousel={<Carrusel />}
-        content={<Cards inmuebles={estates} />}
+        content={<Cards inmuebles={estates} update={forceUpdate}/>}
       />
     </div>
   );
