@@ -18,8 +18,10 @@ import { getAllUserApi } from "../../Functions/api/users";
 import { allProperties } from "../../Functions/api/property";
 import { getAllContract } from "../../Functions/api/contract";
 import { getAllPayment } from "../../Functions/api/payments";
-
+import style from "./AdminBody.module.css";
 import { adminConstant } from "./constant";
+import { Paper } from "@material-ui/core";
+import { stylesColor } from "../Upload/uploadConfig";
 
 export default function AdminBody() {
   const [userList, setUserList] = useState([]);
@@ -30,8 +32,6 @@ export default function AdminBody() {
   const [contActiveList, setContActiveList] = useState([]);
   const { id } = useParams();
   const history = useHistory();
-  const location = useLocation();
-  console.log("LOCATION", location)
 
   const {
     columnsUserList,
@@ -58,7 +58,7 @@ export default function AdminBody() {
       )
     );
     const allContrApi = await getAllContract();
-    console.log("allContrApi",allContrApi)
+    console.log("allContrApi", allContrApi);
     setContList(allContrApi);
     setContActiveList(allContrApi.filter((c) => c.status === "activo"));
     const payments = await getAllPayment();
@@ -144,7 +144,7 @@ export default function AdminBody() {
       </Route>
 
       <Route path="/admin/:id/editproperty/:idprop">
-        <PropertyInfo update={updateList}  />
+        <PropertyInfo update={updateList} />
       </Route>
 
       <Route path="/admin/:id/user/:iduser">
@@ -152,7 +152,9 @@ export default function AdminBody() {
       </Route>
 
       <Route path="/admin/:id/logout">
-        <Logout />
+        <Paper className={style.paper}>
+          <Logout />
+        </Paper>
       </Route>
     </div>
   );

@@ -5,6 +5,7 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import IconButton from "@material-ui/core/IconButton";
+import { useHistory } from "react-router";
 
 import Typography from "@material-ui/core/Typography";
 import { useDispatch } from "react-redux";
@@ -16,12 +17,11 @@ import { deleteFavorite } from "../../Redux/Actions/favoriteActions";
 const useStyles = makeStyles({
   root: {
     margin: "0px",
-    width: "75%",
+    width: "90%",
     boxShadow: "1px 3px 10px rgba(0,0,0,0.3)",
-    height: "95%",
-    marginTop: "5%",
-    alignItems: "center",
-    marginLeft: "10%",
+    height: "90%",
+    marginTop: "1.5rem",
+    marginLeft: "1rem",
   },
   media: {
     height: 200,
@@ -29,7 +29,7 @@ const useStyles = makeStyles({
   },
   title: {
     fontWeight: "bold",
-    fontSize: 12,
+    fontSize: 16,
     marginBottom: 12,
     color: "#4C3C90",
     width: "100%",
@@ -55,17 +55,25 @@ const useStyles = makeStyles({
     display: "flex",
     justifyContent: "flex-end",
   },
+  priceTxt: {
+    fontSize: 14,
+    fontWeight: 500,
+  },
 });
 
 export default function FavoriteCard(props) {
-  
   const dispatch = useDispatch();
   const classes = useStyles();
+  const history = useHistory();
   const handleOnClick = (id) => {
     dispatch(deleteFavorite(id));
   };
   return (
-    <Card className={classes.root} key={props.id}>
+    <Card
+      className={classes.root}
+      key={props.id}
+      onClick={() => history.push(`/property/${props.id}`)}
+    >
       <CardActionArea>
         <CardMedia
           className={classes.media}
@@ -77,15 +85,16 @@ export default function FavoriteCard(props) {
             <Typography className={classes.title}>{props.title}</Typography>
           </div>
           <div className={style.iconPrice}>
-            <Typography className={classes.address}>
-             
-              <span className={style.priceTxt}>Precio ${props.price}</span>
+            <Typography>
+              <span className={classes.priceTxt}>
+                Precio ${new Intl.NumberFormat().format(props.price)}
+              </span>
             </Typography>
           </div>
           <div className={classes.iconDelete}>
             <IconButton
               aria-label="delete"
-              color="primary"
+              color="secondary"
               className={classes.align}
               onClick={() => handleOnClick(props.id)}
             >
@@ -97,7 +106,6 @@ export default function FavoriteCard(props) {
               />
             </IconButton>
           </div>
-         
         </CardContent>
       </CardActionArea>
     </Card>

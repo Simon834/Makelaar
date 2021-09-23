@@ -85,7 +85,6 @@ export default function CardComponent(props) {
   //modal
 
   let idProp = props.id;
-  
 
   const OpenModalEdit = () => {
     return (
@@ -101,7 +100,11 @@ export default function CardComponent(props) {
           >
             X
           </Button>
-          <EditProperty id={idProp} update={props.update} close={closeDialogEdit}/>
+          <EditProperty
+            id={idProp}
+            update={props.update}
+            close={closeDialogEdit}
+          />
         </DialogContent>
       </Dialog>
     );
@@ -124,7 +127,7 @@ export default function CardComponent(props) {
   useEffect(() => {
     if (favorites.length > 0) {
       const searFav = favorites.filter((e) => e.id * 1 === props.id * 1);
-   
+
       if (searFav.length) {
         setFav(true);
       }
@@ -154,10 +157,10 @@ export default function CardComponent(props) {
         </Alert>
       ) : (
         <Alert severity="success" elevation={6} variant="filled">
-        {`Disponible para ${props.transaction} ${props.condition}`}{" "}
-      </Alert>
+          {`Disponible para ${props.transaction} ${props.condition}`}{" "}
+        </Alert>
       )}
-      
+
       {!props.hideImage ? (
         <CardMedia
           className={classes.media}
@@ -220,7 +223,6 @@ export default function CardComponent(props) {
 
         <Divider light />
         <div className={style.footerCard}>
-        
           <div className={style.iconsContainer}>
             <div className={style.heart}>
               <input
@@ -246,8 +248,10 @@ export default function CardComponent(props) {
               </div>
             )}
           </div>
-         
-          <span className={style.priceTxt}>Precio ${props.price}</span>
+
+          <span className={style.priceTxt}>
+            Precio ${new Intl.NumberFormat().format(props.price)}
+          </span>
         </div>
       </CardContent>
     </Card>
