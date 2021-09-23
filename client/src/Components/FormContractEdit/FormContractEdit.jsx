@@ -146,14 +146,17 @@ export default function NewContractForm({ user, forceUpdate, update  }) {
     console.log("contractApi",contractApi)
 
     if (contractApi.Payments.length > 0) {
-      const resValue = contractApi.Payments?.reduce((acc, val) => {
-        
+      let resValue=0
+      if(contractApi.Payments.length===1){
+        resValue=contractApi.Payments[0].amount
+      }else{
+      resValue = contractApi.Payments?.reduce((acc, val) => {
         if (acc.amount) {
           return acc.amount + parseInt(val.amount);
         } else {
           return acc + parseInt(val.amount);
         }
-      });
+      });}
       setRest(resValue);
     }
     setContract(contractApi);

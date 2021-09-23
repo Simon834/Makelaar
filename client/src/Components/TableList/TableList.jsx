@@ -91,8 +91,6 @@ export default function TableList({ columns, rows, user, reference }) {
   const rowsMod = rowData(rows, user);
   console.log("ROWS MOD", rowsMod);
 
-console.log("rowsMod",rowsMod)
-
   function handleRoutes(params, event) {
     if (params.row.endDate && user) {
       

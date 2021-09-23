@@ -35,12 +35,12 @@ export const menuList = {
       rute: "/contrat",
     },
     {
-      title: "Pagos",
-      rute: "/payment",
-    },
-    {
       title: "Nuevo contrato",
       rute: "/newcontract",
+    },
+    {
+      title: "Pagos",
+      rute: "/payment",
     },
   ],
   options: [

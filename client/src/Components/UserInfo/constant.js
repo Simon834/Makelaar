@@ -38,10 +38,11 @@ export function userInfoConstant() {
     },
     {
       field: "paymentDate",
-      headerName: "Pago",
+      headerName: "Firma",
       flex: 1,
       headerClassName: "super-app-theme--header",
     },
+ 
   ];
 
   return { columnsContratList };
