@@ -1,7 +1,7 @@
 [
   {
     "PropertyId": 1,
-    "UserId": 1,
+    "UserId": 22,
     "name": "Alquiler en San Rafel",
     "startDate": "02/20/2018",
     "endDate": "02/20/2020",
@@ -18,7 +18,7 @@
   },
   {
     "PropertyId": 1,
-    "UserId": 1,
+    "UserId": 22,
     "name": "Alquiler en San Rafel",
     "startDate": "03/20/2020",
     "endDate": "03/20/2022",
@@ -35,7 +35,7 @@
   },
   {
     "PropertyId": 2,
-    "UserId": 2,
+    "UserId": 1,
     "name": "Alquiler en Villa Martín",
     "startDate": "03/03/2019",
     "endDate": "03/03/2020",
@@ -52,7 +52,7 @@
   },
   {
     "PropertyId": 2,
-    "UserId": 2,
+    "UserId": 1,
     "name": "Alquiler en Villa Martín",
     "startDate": "03/04/2020",
     "endDate": "03/04/2021",
@@ -69,7 +69,7 @@
   },
   {
     "PropertyId": 2,
-    "UserId": 2,
+    "UserId": 1,
     "name": "Alquiler en Villa Martín",
     "startDate": "03/05/2021",
     "endDate": "03/05/2022",

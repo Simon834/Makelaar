@@ -3,9 +3,9 @@ export function RowClassName(params) {
     if (params.row.status === "pendiente") {
       return `super-app-theme--ocupado`;
     } else if (params.row.status === "modificado") {
-      return `super-app-theme--ocupado`;
+      return `super-app-theme--modificado`;
     } else if (params.row.status === "rechazado") {
-      return `super-app-theme--eliminado`;
+      return `super-app-theme--rechazado`;
     } else if (params.row.status === "activo") {
       return `super-app-theme--activo`;
     } else if (params.row.status === "vencido") {

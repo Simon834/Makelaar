@@ -19,7 +19,6 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2),
     minWidth: "100%",
     maxWidth: "100%",
-
   },
   paper: {
     width: "100%",
@@ -46,15 +45,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function UploadImage({ images = [], setImages }) {
-  const [myWidget, setmyWidget] = useState({});
+export default function UploadImage({ images, setImages, deleteImg }) {
   const classes = useStyles();
-  const [imgArr, setImgArr]=useState(images)
 
+  const [myWidget, setmyWidget] = useState({});
 
+  
+  let urlArr = [];
+  
   useEffect(() => {
-    // const myWidgetConect = uploadConection(imgArr,setImages)
-    setImgArr(images)
+    urlArr=images || []
+
     var myWidgetConect = window.cloudinary.createUploadWidget(
       {
         cloudName: "makelaar",
@@ -62,12 +63,18 @@ export default function UploadImage({ images = [], setImages }) {
         language: "es",
         buttonClass: "bg-action",
         text: translationEs,
-        styles:stylesColor
+        styles: stylesColor,
+        showCompletedButton: true,
       },
       (error, result) => {
-        if (!error && result && result.event === "success") {
-          imgArr.push(result.info.url);
-          setImgArr([...imgArr]);
+        if (!error && result && result.event === "queues-end") {
+          urlArr = [
+            ...urlArr,
+            ...result.info.files.map((e) => e.uploadInfo.url),
+          ];
+        }
+        if (result.event === "close" && urlArr.length > 0) {
+          setImages(urlArr);
         }
       }
     );
@@ -76,22 +83,8 @@ export default function UploadImage({ images = [], setImages }) {
     setmyWidget(myWidgetConect);
   }, []);
 
-  useEffect(() => {
-   
-    setImages([...images,...imgArr])
-
-  }, [imgArr])
-
-
   async function uploadImage() {
     await myWidget.open();
-  }
-
-  function deleteImg(pos) {
-    let imgDel = [...images];
-    imgDel.splice(pos, 1);
-    setImgArr([...imgArr.splice(pos, 1)])
-    setImages(imgDel);
   }
 
   return (

@@ -100,6 +100,7 @@ export default function FormProperty(props) {
     setAddress,
     handleSelect,
     img,
+    deleteImg
   } = Controls(update);
 
   return (
@@ -381,7 +382,7 @@ export default function FormProperty(props) {
               </div>
             </Grid>
             <Grid item className={classes.grid} xs={12} sm={12} md={12}>
-              <UploadImage images={img} setImages={setImage} className={classes.upload}/>
+              <UploadImage images={img} setImages={setImage} deleteImg={deleteImg} className={classes.upload}/>
               
             </Grid>
           </Grid>
