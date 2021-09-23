@@ -13,6 +13,7 @@ import { userConstant } from "./constant";
 export default function UserBody({id}) {
 
   const [userInfo, setuserInfo]=useState({})
+  const [update, setUpdate]=useState(true)
 
   const {
       columnsContratList,
@@ -26,12 +27,16 @@ export default function UserBody({id}) {
     return () => {
       setuserInfo({})
     }
-  }, [])
+  }, [update])
 
   async function getUserInfo(id){
     const data = await getUserByIdApi(id)
     setuserInfo(data)
 
+  }
+
+  function forceUpdate(){
+    setUpdate(!update)
   }
 
   return (
@@ -46,7 +51,7 @@ export default function UserBody({id}) {
         <Logout/>
       </Route>
       <Route path="/user/:id/editcontract/:idcont">
-        <EditContractForm user={true}/>
+        <EditContractForm user={true} forceUpdate={forceUpdate} update={update}/>
       </Route>
     </div>
   );

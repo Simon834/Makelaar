@@ -123,7 +123,7 @@ export function UseFormControls(update) {
 
   const handleClickConfirm = async (e) => {
     e.preventDefault();
-    const newContractConfirm = { ...contract, status: "rechazado" };
+    const newContractConfirm = { ...contract, status: "activo" };
     try {
       await editContract(newContractConfirm, contract.id);
       Swal.fire({

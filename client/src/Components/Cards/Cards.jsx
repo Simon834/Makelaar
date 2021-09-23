@@ -5,7 +5,7 @@ import logo from "../../images/logo-color-horizontal.png";
 import Button from "@material-ui/core/Button";
 import { useHistory } from "react-router";
 
-export default function Cards({ inmuebles }) {
+export default function Cards({ inmuebles, update }) {
   const history = useHistory();
   return (
     <>
@@ -62,6 +62,7 @@ export default function Cards({ inmuebles }) {
                 contrat={contract}
                 transaction={inm.transaction}
                 condition=""
+                update={update}
               />
             </Grid>
           )})}

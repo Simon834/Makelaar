@@ -3,9 +3,9 @@ export function RowClassName(params) {
     if (params.row.status === "pendiente") {
       return `super-app-theme--ocupado`;
     } else if (params.row.status === "modificado") {
-      return `super-app-theme--ocupado`;
+      return `super-app-theme--modificado`;
     } else if (params.row.status === "rechazado") {
-      return `super-app-theme--eliminado`;
+      return `super-app-theme--rechazado`;
     } else if (params.row.status === "activo") {
       return `super-app-theme--activo`;
     } else if (params.row.status === "vencido") {
@@ -48,20 +48,26 @@ export function rowData(rows, user) {
     if (e.Property) newrow = { ...newrow, PropId: e.Property.name };
 
     if (e.Payments?.length > 0) {
-      const resValue = e.Payments?.reduce((acc, val) => {
+      let resValue=0
+      if(e.Payments.length===1){
+        resValue=e.Payments[0].amount
+      }else{
+      resValue = e.Payments?.reduce((acc, val) => {
         if (acc.amount) {
           return acc.amount + parseInt(val.amount);
         } else {
           return acc + parseInt(val.amount);
         }
-      });
+      });}
 
       newrow = {
         ...newrow,
         rest: isNaN(resValue)
-          ? `$0`
+          ? `$ 0`
           : `$ ${new Intl.NumberFormat().format(resValue)}`,
       };
+    }else{
+      newrow = { ...newrow, rest: `$ 0` };
     }
 
     //Tabla de propiedades

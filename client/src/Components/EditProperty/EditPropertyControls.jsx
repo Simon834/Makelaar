@@ -27,7 +27,7 @@ const resetValues = {
   lng: -64.183037,
 };
 
-export function Controls(update) {
+export function Controls(update, close) {
   const [property, setProperty] = useState(resetValues);
 
   const [img, setImg] = useState([]);
@@ -173,7 +173,7 @@ export function Controls(update) {
         const propertySubmit = { ...property };
         const editedProperty = await editProperty(propertySubmit);
         if (editedProperty) {
-          Swal.fire({
+          await Swal.fire({
             icon: "success",
             title: "Listo..!",
             text: "Se actualizo la propiedad con exito!",
@@ -182,8 +182,9 @@ export function Controls(update) {
               container: "my-swal",
             },
           });
+          close()
+          update()
         }
-        update()
       } catch (err) {
         console.log(err);
       }
