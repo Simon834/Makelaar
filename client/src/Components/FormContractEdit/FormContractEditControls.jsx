@@ -91,6 +91,7 @@ export function UseFormControls(update) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const newContractEdit = { ...contract, status: "modificado" };
+   
     const isValid =
       Object.values(errors).every((x) => x === "") && formIsValid();
     if (isValid) {
