@@ -19,8 +19,8 @@ function sendEmail(e) {
         (result) => {
           Swal.fire({
             icon: "success",
-            title: "Yeeey..!",
-            text: "Email enviado con Exito!",
+            title: "Excelente!",
+            text: "Muchas gracias por tu consulta!",
             confirmButtonColor: "#4c3c90",
             customClass: {
               container: "my-swal",

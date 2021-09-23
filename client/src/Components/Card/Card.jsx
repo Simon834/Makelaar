@@ -101,7 +101,7 @@ export default function CardComponent(props) {
           >
             X
           </Button>
-          <EditProperty id={idProp} />
+          <EditProperty id={idProp} update={props.update} close={closeDialogEdit}/>
         </DialogContent>
       </Dialog>
     );

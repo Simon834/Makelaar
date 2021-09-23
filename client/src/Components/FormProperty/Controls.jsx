@@ -200,8 +200,16 @@ export function Controls(update) {
   }
 
   function setImage(images) {
+  
     setImg([...images]);
   }
+
+  function deleteImg(pos){
+    let deleteImg = [...img]
+    deleteImg.splice(pos, 1)
+    setImg([...deleteImg])
+  }
+
   async function handleSelect(value) {
     const results = await geocodeByAddress(value);
     const latLng = await getLatLng(results[0]);
@@ -230,5 +238,6 @@ export function Controls(update) {
     setAddress,
     handleSelect,
     img,
+    deleteImg
   };
 }
