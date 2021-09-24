@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   daialogFav: {
-    width: "600px",
+    width: "37rem",
   },
 
   button: {
@@ -50,6 +50,17 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "12px",
     padding: "6px",
     float: "right",
+  },
+  buttonFav: {
+    color: "white",
+    fontWeight: "bold",
+    fontSize: "10px",
+    marginBottom: "20px",
+    marginTop: "12px",
+    padding: "6px",
+    position: "absolute",
+    top: "0.5rem",
+    right: "1.2rem",
   },
   icon: {
     fontSize: "18px",
@@ -222,7 +233,7 @@ export default function TopBar() {
             <Dialog open={showFav} onClose={closeFav}>
               <DialogContent className={classes.daialogFav}>
                 <Button
-                  className={classes.button}
+                  className={classes.buttonFav}
                   size="small"
                   variant="contained"
                   color="primary"

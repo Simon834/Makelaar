@@ -1,37 +1,35 @@
-import React,{useEffect} from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import { useDispatch } from 'react-redux';
-import { filterByConstant } from '../../Redux/Actions/filterActions';
+import React, { useEffect } from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import InputLabel from "@material-ui/core/InputLabel";
+import MenuItem from "@material-ui/core/MenuItem";
+import FormControl from "@material-ui/core/FormControl";
+import Select from "@material-ui/core/Select";
+import { useDispatch } from "react-redux";
+import { filterByConstant } from "../../Redux/Actions/filterActions";
 
 const useStyles = makeStyles((theme) => ({
   button: {
-    display: 'block',
+    display: "block",
     marginTop: theme.spacing(2),
   },
   formControl: {
-    margin: theme.spacing(1),
-    minWidth: "80%",
+    minWidth: "100%",
   },
 }));
 
-export default function FilterModel({list, title, constant, value}) {
+export default function FilterModel({ list, title, constant, value }) {
   const classes = useStyles();
-  const dispatch = useDispatch()
-  const [concept, setConcept] = React.useState(value||"");
+  const dispatch = useDispatch();
+  const [concept, setConcept] = React.useState(value || "");
   const [open, setOpen] = React.useState(false);
 
   useEffect(() => {
-    setConcept(value)// eslint-disable-next-line
-  }, [value])
-
+    setConcept(value); // eslint-disable-next-line
+  }, [value]);
 
   const handleChange = (event) => {
     setConcept(event.target.value);
-    dispatch(filterByConstant(constant,event.target.value))
+    dispatch(filterByConstant(constant, event.target.value));
   };
 
   const handleClose = () => {
@@ -58,8 +56,11 @@ export default function FilterModel({list, title, constant, value}) {
           <MenuItem value={null}>
             <em>Cualquier</em>
           </MenuItem>
-          {list.map(e=>
-            <MenuItem value={e} key={e} >{e}</MenuItem>)}
+          {list.map((e) => (
+            <MenuItem value={e} key={e}>
+              {e}
+            </MenuItem>
+          ))}
         </Select>
       </FormControl>
     </div>
