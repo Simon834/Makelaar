@@ -21,6 +21,8 @@ import { filterEstates } from "../../Functions/filters/filters";
 
 import { clearFilter } from "../../Redux/Actions/filterActions";
 import { getAllProperties } from "../../Redux/Actions/propertyActions";
+import { Paper, styled } from "@material-ui/core";
+import style from "./Home.module.css";
 
 export default function Home() {
   const { concept, tipe, bedroom, bathroom, price, search, properties } =
@@ -64,54 +66,55 @@ export default function Home() {
     dispatch(getAllProperties());
   }, [update]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  function forceUpdate(){
-    setUpdate(!update)
+  function forceUpdate() {
+    setUpdate(!update);
   }
-
 
   return (
     <div>
       <ViewBase
         filters={
-          <Filter
-            searchBar={<SearchBar />}
-            type={
-              <FilterModel
-                title="Tipo"
-                list={constantFilter.tipeFilter}
-                constant={FILTER_TIPE}
-                value={tipe}
-              />
-            }
-            sellRent={
-              <FilterModel
-                title="Condición"
-                list={constantFilter.conceptFilter}
-                constant={FILTER_CONCEPT}
-                value={concept}
-              />
-            }
-            price={<FilterPrice valuePrice={price} />}
-            bedrooms={
-              <FilterModel
-                title="Dormitorios"
-                list={constantFilter.bedroomFilter}
-                constant={FILTER_BEDROOM}
-                value={bedroom}
-              />
-            }
-            bathrooms={
-              <FilterModel
-                title="Baños"
-                list={constantFilter.bathroomFilter}
-                constant={FILTER_BATHROOM}
-                value={bathroom}
-              />
-            }
-          />
+          <Paper className={style.paper}>
+            <Filter
+              searchBar={<SearchBar />}
+              type={
+                <FilterModel
+                  title="Tipo"
+                  list={constantFilter.tipeFilter}
+                  constant={FILTER_TIPE}
+                  value={tipe}
+                />
+              }
+              sellRent={
+                <FilterModel
+                  title="Condición"
+                  list={constantFilter.conceptFilter}
+                  constant={FILTER_CONCEPT}
+                  value={concept}
+                />
+              }
+              price={<FilterPrice valuePrice={price} />}
+              bedrooms={
+                <FilterModel
+                  title="Dormitorios"
+                  list={constantFilter.bedroomFilter}
+                  constant={FILTER_BEDROOM}
+                  value={bedroom}
+                />
+              }
+              bathrooms={
+                <FilterModel
+                  title="Baños"
+                  list={constantFilter.bathroomFilter}
+                  constant={FILTER_BATHROOM}
+                  value={bathroom}
+                />
+              }
+            />
+          </Paper>
         }
         carousel={<Carrusel />}
-        content={<Cards inmuebles={estates} update={forceUpdate}/>}
+        content={<Cards inmuebles={estates} update={forceUpdate} />}
       />
     </div>
   );
