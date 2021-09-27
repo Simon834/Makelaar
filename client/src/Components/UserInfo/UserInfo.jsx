@@ -71,7 +71,7 @@ export default function UserInfo({ userInfo, update }) {
   useEffect(() => {
     if (userInfo.length === 0) {
       history.push(`/admin/${id}/dashboard`);
-    }
+    } // eslint-disable-next-line
   }, []);
 
   const { handleChange, handleSubmit, errors, user } = UserInfoControl(

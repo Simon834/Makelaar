@@ -66,7 +66,7 @@ export default function UploadFile({ files, setFiles }) {
     );
     myWidgetConect.open();
     myWidgetConect.close();
-    setmyWidget(myWidgetConect);
+    setmyWidget(myWidgetConect); // eslint-disable-next-line
   }, [files]);
 
   async function uploadImage() {

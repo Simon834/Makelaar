@@ -95,7 +95,7 @@ export function UseFormControls() {
       try {
         const contractSubmit = { ...contract, file: filesUp };
 
-        const addedContract = await addContract(contractSubmit);
+        await addContract(contractSubmit);
         Swal.fire({
           icon: "success",
           title: "Perfecto..!",

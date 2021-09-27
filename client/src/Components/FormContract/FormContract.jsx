@@ -84,7 +84,7 @@ export default function NewContractForm() {
         PropertyId: selectValues.PropertyId,
         amount: prop.price,
       });
-    }
+    } // eslint-disable-next-line
   }, [selectValues]);
 
   useEffect(() => {

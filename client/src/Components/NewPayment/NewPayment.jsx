@@ -35,7 +35,7 @@ export default function NewPayment({ contList, update }) {
 
     return () => {
       setContract([]);
-    };
+    }; // eslint-disable-next-line
   }, [contList.length]);
 
   const iniState = {

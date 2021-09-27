@@ -52,6 +52,7 @@ export default function UploadImage({ images, setImages, deleteImg }) {
   let urlArr = [];
 
   useEffect(() => {
+    // eslint-disable-next-line
     urlArr = images || [];
 
     var myWidgetConect = window.cloudinary.createUploadWidget(
