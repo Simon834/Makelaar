@@ -8,8 +8,6 @@ export default function ContractPanel({columns, rows}) {
     const [userListContract, setUserListContract] = useState([]);
     const history= useHistory();
 
-     // const getAllUsercontract = getAllUsercontract()
-        // setUserListContract(getAllUsercontract)
 
     const listContract=userListContract.map(e=>{
         if(e.contract){

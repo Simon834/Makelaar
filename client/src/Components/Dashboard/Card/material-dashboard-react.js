@@ -1,26 +1,3 @@
-/*!
-
- =========================================================
- * Material Dashboard React - v1.10.0 based on Material Dashboard - v1.2.0
- =========================================================
-
- * Product Page: http://www.creative-tim.com/product/material-dashboard-react
- * Copyright 2021 Creative Tim (http://www.creative-tim.com)
- * Licensed under MIT (https://github.com/creativetimofficial/material-dashboard-react/blob/master/LICENSE.md)
-
- =========================================================
-
- * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
- */
-
-// ##############################
-// // // Function that converts from hex color to rgb color
-// // // Example: input = #9c27b0 => output = 156, 39, 176
-// // // Example: input = 9c27b0 => output = 156, 39, 176
-// // // Example: input = #999 => output = 153, 153, 153
-// // // Example: input = 999 => output = 153, 153, 153
-// #############################
 const hexToRgb = (input) => {
   input = input + "";
   input = input.replace("#", "");
@@ -46,10 +23,6 @@ const hexToRgb = (input) => {
     parseInt(last, 16)
   );
 };
-
-// ##############################
-// // // Variables - Styles that are used on more than one component
-// #############################
 
 const drawerWidth = 260;
 

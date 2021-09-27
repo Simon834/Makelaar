@@ -32,8 +32,6 @@ async function liquidationContract() {
     include: [{ model: User }],
   });
 
-  // console.log(contracts)
-
   contracts.map(async (con) => {
     if (con.dataValues.status === "activo") {
       let paymentUser = await User.findOne({
