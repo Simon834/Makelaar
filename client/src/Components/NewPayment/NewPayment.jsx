@@ -25,21 +25,18 @@ const useStyle = makeStyles((theme) => ({
 
 export default function NewPayment({ contList, update }) {
   const [open, setOpen] = useState(false);
-  const [contract, setContract]= useState([])
+  const [contract, setContract] = useState([]);
   const classes = useStyle();
 
   useEffect(() => {
-    
-    const activeContract=contList?.filter(c=>c.status==="activo")
+    const activeContract = contList?.filter((c) => c.status === "activo");
 
-    setContract(activeContract)
+    setContract(activeContract);
 
     return () => {
-      setContract([])
-    }
-  }, [contList.length])
-
-  console.log("userList", contList);
+      setContract([]);
+    };
+  }, [contList.length]);
 
   const iniState = {
     idPay: "",
@@ -61,24 +58,24 @@ export default function NewPayment({ contList, update }) {
   }
 
   function handleContrat(option, value) {
-     setDataPayment({
+    setDataPayment({
       ...dataPaymen,
       ContractId: value?.id,
       userEmail: value?.User.email,
       user: value?.User.name,
-      amount: value?.amount*1,
+      amount: value?.amount * 1,
     });
   }
 
   async function handleSubmit(e) {
     e.preventDefault();
 
-    let dataSubmit=dataPaymen
+    let dataSubmit = dataPaymen;
 
-    if (dataSubmit.status === "Liquidación"){
-        dataSubmit={...dataSubmit,amount:dataSubmit.amount*(-1)}
-    }else{
-        dataSubmit={...dataSubmit,amount:dataSubmit.amount*(1)}
+    if (dataSubmit.status === "Liquidación") {
+      dataSubmit = { ...dataSubmit, amount: dataSubmit.amount * -1 };
+    } else {
+      dataSubmit = { ...dataSubmit, amount: dataSubmit.amount * 1 };
     }
 
     const res = await setPayment(dataSubmit);
@@ -92,7 +89,7 @@ export default function NewPayment({ contList, update }) {
           container: "my-swal",
         },
       });
-      update()
+      update();
       handleClose();
     } else {
       Swal.fire({
@@ -205,7 +202,7 @@ export default function NewPayment({ contList, update }) {
               required
             />
             <TextField
-              value={dataPaymen.amount*1}
+              value={dataPaymen.amount * 1}
               type="number"
               name="amount"
               id="amount"

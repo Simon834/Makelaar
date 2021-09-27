@@ -1,7 +1,6 @@
 import React from "react";
 import styles from "./AboutUs.module.css";
 import logo from "../../images/logo-white-horizontal.png";
-import image from "../../images/land9.jpg";
 
 export default function AboutUs() {
   return (

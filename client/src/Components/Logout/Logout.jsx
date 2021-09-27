@@ -1,4 +1,4 @@
-import { Button, Grid, Paper, makeStyles } from "@material-ui/core";
+import { Button, Grid, makeStyles } from "@material-ui/core";
 import { useDispatch } from "react-redux";
 import { logOutUser } from "../../Redux/Actions/userActions";
 import { useHistory } from "react-router";

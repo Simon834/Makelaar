@@ -104,11 +104,9 @@ export function UseFormControls() {
             container: "my-swal",
           },
         });
-        setContract(initialFormValues)
-        setFilesUp([])
-        
+        setContract(initialFormValues);
+        setFilesUp([]);
       } catch (err) {
-        console.log(err);
         Swal.fire({
           icon: "error",
           title: "Ups..!",
@@ -116,14 +114,13 @@ export function UseFormControls() {
           customClass: {
             container: "my-swal",
           },
-    });
+        });
       }
     }
   };
 
   function setFile(files) {
     setFilesUp([...files]);
-    
   }
 
   return {

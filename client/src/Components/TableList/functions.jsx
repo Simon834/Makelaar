@@ -36,7 +36,6 @@ export function RowClassName(params) {
 }
 
 export function rowData(rows, user) {
-  console.log("rows", rows);
   const newrow = rows?.map((e) => {
     let newrow = e;
     //Tabla de usuarios
@@ -48,17 +47,18 @@ export function rowData(rows, user) {
     if (e.Property) newrow = { ...newrow, PropId: e.Property.name };
 
     if (e.Payments?.length > 0) {
-      let resValue=0
-      if(e.Payments.length===1){
-        resValue=e.Payments[0].amount
-      }else{
-      resValue = e.Payments?.reduce((acc, val) => {
-        if (acc.amount) {
-          return acc.amount + parseInt(val.amount);
-        } else {
-          return acc + parseInt(val.amount);
-        }
-      });}
+      let resValue = 0;
+      if (e.Payments.length === 1) {
+        resValue = e.Payments[0].amount;
+      } else {
+        resValue = e.Payments?.reduce((acc, val) => {
+          if (acc.amount) {
+            return acc.amount + parseInt(val.amount);
+          } else {
+            return acc + parseInt(val.amount);
+          }
+        });
+      }
 
       newrow = {
         ...newrow,
@@ -66,7 +66,7 @@ export function rowData(rows, user) {
           ? `$ 0`
           : `$ ${new Intl.NumberFormat().format(resValue)}`,
       };
-    }else{
+    } else {
       newrow = { ...newrow, rest: `$ 0` };
     }
 

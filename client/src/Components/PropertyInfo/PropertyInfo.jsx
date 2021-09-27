@@ -42,10 +42,10 @@ const useStyle = makeStyles((theme) => ({
     flexDirection: "column",
     allingItems: "center",
     justifyContent: "center",
-    width: "100%",
   },
   button: {
     marginLeft: theme.spacing(27),
+    width: "100%",
   },
   header: {
     fontSize: "25px",
@@ -81,9 +81,6 @@ const useStyle = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "columns",
     padding: theme.spacing(2),
-  },
-  button: {
-    width: "100%",
   },
 }));
 

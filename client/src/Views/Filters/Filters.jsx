@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 import Button from "@material-ui/core/Button";
 import { useDispatch } from "react-redux";
 import { clearFilter } from "../../Redux/Actions/filterActions";
-import Divider from "@material-ui/core/Divider";
 import { makeStyles } from "@material-ui/styles";
 const useStyles = makeStyles((theme) => ({
   searchButton: {

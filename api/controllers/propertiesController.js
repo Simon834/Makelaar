@@ -55,7 +55,6 @@ async function addNewProperty(req, res, next) {
     }
     res.json({ newProperty });
   } catch (err) {
-    console.log(next(err));
     return res.status(500).json(err);
   }
 }
@@ -71,7 +70,6 @@ async function allProperties(req, res, next) {
       return res.json(properties);
     }
   } catch (err) {
-    console.log(err);
     return next(err);
   }
 }
@@ -88,7 +86,6 @@ async function idProperties(req, res, next) {
       return res.json({ msg: "Id de propiedad inexistente" });
     }
   } catch (err) {
-    console.log(err);
     return next(err);
   }
 }
@@ -130,7 +127,6 @@ async function updateProperty(req, res, next) {
       return res.json({ msg: "Tu propiedad ha sido nodificada" });
     }
   } catch (err) {
-    console.log(err);
     next(err);
   }
 }
