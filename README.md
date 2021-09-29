@@ -1,12 +1,14 @@
 ![Logo](https://lh3.googleusercontent.com/tnl6F4_wYoxSaubriLfxOCTb-6CGbn04h9zoNiUQfafNkuLsBXJOgMqFF6hsaBpJS7u1WOQ=s170)
 
 
-#Makelaar
+# Makelaar
 
-Este proyecto  esta destinado a inmobiliarias y nace de la necesidad de brindar  una herramienta de gestión integral, en donde la inmobiliaria y sus clientes  tienen acceso a toda su información.
-La plataforma  permite a ambas partes llevar un registro ordenado y consultar datos de forma rapida.
+Este proyecto está destinado a inmobiliarias y nace de la necesidad de brindar una herramienta de gestión integral. En donde tienen acceso a toda su información, ya sea propiedades, clientes, contratos y pagos, llevando un registro ordenado permitiendo consultar datos de forma rápida.
+Adicionalmente los visitantes de la web tienen la posibilidad de localizar y visualizar todas las propiedades para solicitar información de interés, y una vez que forma un vínculo comercial, dentro de su cuenta puede efectuar los pagos de sus alquileres por medio de MercadoPago.
 
-La inmobiliaria puede desde su cuenta como administrador:
+[![Alt text](https://img.youtube.com/vi/ymsuwoBvcvI/0.jpg)](https://youtu.be/ymsuwoBvcvI)
+
+#### La inmobiliaria puede desde su cuenta como administrador:
 
 • publicar los inmuebles de sus clientes.
 
@@ -19,7 +21,7 @@ La inmobiliaria puede desde su cuenta como administrador:
 • visualizar en el panel de inmuebles, un listados de todos los inmuebles y sus estados.
 
 
-El usuario cliente de la inmobiliaria desde su cuenta puede:
+#### El usuario cliente de la inmobiliaria desde su cuenta puede:
 
 • realizar sus pagos recurrente a traves de la misma plataforma mediante Mercado Pago. 
 
@@ -44,16 +46,13 @@ El usuario visitante puede:
 
 ## Autores
 
-- [@milagrosniro](https://github.com/milagrosniro)
-- [@mariavirginiaespeche](https://github.com/mariavirginiaespeche)
-- [@Simon834](https://github.com/Simon834)
+- [@AlanBVN](https://github.com/AlanBVN)
+- [@Fernando-Jaramillo](https://github.com/Fernando-Jaramillo)
 - [@jeremias-jalil](https://github.com/jeremias-jalil)
 - [@marcosvillar456](https://github.com/marcosvillar456)
-- [@Fernando-Jaramillo](https://github.com/Fernando-Jaramillo)
-- [@AlanBVN](https://github.com/AlanBVN)
-
-
-
+- [@milagrosniro](https://github.com/milagrosniro)
+- [@Simon834](https://github.com/Simon834)
+- [@mariavirginiaespeche](https://github.com/mariavirginiaespeche)
 
   
 ## Deployment
