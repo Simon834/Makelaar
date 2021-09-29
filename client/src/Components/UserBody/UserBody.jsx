@@ -1,7 +1,5 @@
-import React,{useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { Route } from "react-router";
-
-
 
 import UserDetail from "../UserDetail/UserDetail";
 import Logout from "../Logout/Logout";
@@ -10,33 +8,27 @@ import { getUserByIdApi } from "../../Functions/api/users";
 import EditContractForm from "../FormContractEdit/FormContractEdit";
 import { userConstant } from "./constant";
 
-export default function UserBody({id}) {
+export default function UserBody({ id }) {
+  const [userInfo, setuserInfo] = useState({});
+  const [update, setUpdate] = useState(true);
 
-  const [userInfo, setuserInfo]=useState({})
-  const [update, setUpdate]=useState(true)
-
-  const {
-      columnsContratList,
-    contractReference,
-  } = userConstant();
-
+  const { columnsContratList, contractReference } = userConstant();
 
   useEffect(() => {
-    getUserInfo(id)
+    getUserInfo(id);
 
     return () => {
-      setuserInfo({})
-    }
-  }, [update])
+      setuserInfo({});
+    }; // eslint-disable-next-line
+  }, [update]);
 
-  async function getUserInfo(id){
-    const data = await getUserByIdApi(id)
-    setuserInfo(data)
-
+  async function getUserInfo(id) {
+    const data = await getUserByIdApi(id);
+    setuserInfo(data);
   }
 
-  function forceUpdate(){
-    setUpdate(!update)
+  function forceUpdate() {
+    setUpdate(!update);
   }
 
   return (
@@ -45,13 +37,22 @@ export default function UserBody({id}) {
         <UserDetail />
       </Route>
       <Route path="/user/:id/contrat">
-          <TableList columns={columnsContratList} rows={userInfo.Contracts || []} user={true} reference={contractReference}/>
+        <TableList
+          columns={columnsContratList}
+          rows={userInfo.Contracts || []}
+          user={true}
+          reference={contractReference}
+        />
       </Route>
       <Route path="/user/:id/logout">
-        <Logout/>
+        <Logout />
       </Route>
       <Route path="/user/:id/editcontract/:idcont">
-        <EditContractForm user={true} forceUpdate={forceUpdate} update={update}/>
+        <EditContractForm
+          user={true}
+          forceUpdate={forceUpdate}
+          update={update}
+        />
       </Route>
     </div>
   );

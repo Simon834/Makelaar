@@ -36,8 +36,6 @@ export function Controls(update) {
 
   const [address, setAddress] = useState("");
 
-  const [latLng, setLatLng] = useState({});
-
   function validate(values = property) {
     let error = { ...errors };
 
