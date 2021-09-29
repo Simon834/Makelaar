@@ -1,17 +1,8 @@
 import React from "react";
 import { useParams } from "react-router";
 import { useHistory } from "react-router";
-import { Button } from "@material-ui/core";
 
-import {
-  Grid,
-  makeStyles,
-  Container,
-  Box,
-  Typography,
-  Icon,
-  Card,
-} from "@material-ui/core";
+import { Grid, makeStyles, Icon, Card } from "@material-ui/core";
 
 import CardIcon from "./Card/CardIcon";
 import CardHeader from "./Card/CardHeader";
@@ -48,7 +39,7 @@ export default function Dashboard({
   userList,
   prpList,
   contList,
-  payList
+  payList,
 }) {
   const classes = useStyles();
   const pieChart = {
@@ -58,10 +49,8 @@ export default function Dashboard({
   const { id } = useParams();
   const history = useHistory();
   const {
-    columnsUserList,
     columnsPropertyList,
     columnsContratList,
-    userReference,
     propertyReference,
     contractReference,
   } = dashConstant(id, history);
@@ -152,12 +141,20 @@ export default function Dashboard({
 
         <Grid item xs={12} md={6} lg={8}>
           <h2>Propiedades</h2>
-          <TableList columns={columnsPropertyList} rows={prpList} reference={propertyReference}/>
+          <TableList
+            columns={columnsPropertyList}
+            rows={prpList}
+            reference={propertyReference}
+          />
         </Grid>
 
         <Grid item xs={12} md={6} lg={4}>
           <h2>Contratos</h2>
-          <TableList columns={columnsContratList} rows={contList} reference={contractReference}/>
+          <TableList
+            columns={columnsContratList}
+            rows={contList}
+            reference={contractReference}
+          />
         </Grid>
       </GridContainer>
     </div>

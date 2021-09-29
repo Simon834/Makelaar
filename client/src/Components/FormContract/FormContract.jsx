@@ -42,12 +42,8 @@ const useStyle = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "columns",
   },
-  upload:{
+  upload: {
     padding: theme.spacing(2),
-  },
-  button: {
-    width: "100%",
-    
   },
 }));
 
@@ -88,7 +84,7 @@ export default function NewContractForm() {
         PropertyId: selectValues.PropertyId,
         amount: prop.price,
       });
-    }
+    } // eslint-disable-next-line
   }, [selectValues]);
 
   useEffect(() => {
@@ -106,8 +102,6 @@ export default function NewContractForm() {
     getAllUser();
     getAllProperties();
   }, []);
-
-
 
   return (
     <>
@@ -159,7 +153,7 @@ export default function NewContractForm() {
                 <FormHelperText>Seleccione el usuario</FormHelperText>
               </FormControl>
             </Grid>
-            <Grid item  className={classes.grid} xs={12} sm={6} md={6}>
+            <Grid item className={classes.grid} xs={12} sm={6} md={6}>
               <FormControl className={classes.formControl}>
                 <Select
                   name="PropertyId"
@@ -253,11 +247,14 @@ export default function NewContractForm() {
                 required
               />
             </Grid>
-            <Grid item className={classes.grid}  xs={12} sm={12} md={12}>
-              <UploadFile files={filesUp} setFiles={setFile} className={classes.upload}/>
+            <Grid item className={classes.grid} xs={12} sm={12} md={12}>
+              <UploadFile
+                files={filesUp}
+                setFiles={setFile}
+                className={classes.upload}
+              />
             </Grid>
             <Grid item className={classes.grid} xs={12} sm={12} md={12}>
-           
               <TextField
                 variant="outlined"
                 label="Agregue un comentario (opcional)"
@@ -269,17 +266,15 @@ export default function NewContractForm() {
               />
             </Grid>
             <Grid item className={classes.grid} xs={12} sm={12} md={12}>
-       
-                <Button
-                  variant="contained"
-                  color="primary"
-                  type="submit"
-                  className={classes.button}
-                  disabled={!formIsValid()}
-                >
-                  Enviar
-                </Button>
-    
+              <Button
+                variant="contained"
+                color="primary"
+                type="submit"
+                className={classes.button}
+                disabled={!formIsValid()}
+              >
+                Enviar
+              </Button>
             </Grid>
           </Grid>
         </form>

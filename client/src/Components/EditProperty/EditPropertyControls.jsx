@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { editProperty } from "../../Functions/api/property";
-import EditProperty from "./EditProperty";
 import Swal from "sweetalert2";
-import { geocodeByAddress, getLatLng } from "react-places-autocomplete";
 
 const resetValues = {
   price: "",
@@ -30,16 +28,13 @@ const resetValues = {
 export function Controls(update, close) {
   const [property, setProperty] = useState(resetValues);
 
-  const [img, setImg] = useState([]);
+  const [img] = useState([]);
 
   const [errors, setErrors] = useState({});
 
-  const [check, setCheck] = useState({});
+  const [check] = useState({});
 
   const [address, setAddress] = useState("");
-
-  const [latLng, setLatLng] = useState({});
-
 
   function validate(values = property) {
     let error = { ...errors };
@@ -169,7 +164,6 @@ export function Controls(update, close) {
 
     if (isValid) {
       try {
-       
         const propertySubmit = { ...property };
         const editedProperty = await editProperty(propertySubmit);
         if (editedProperty) {
@@ -182,11 +176,11 @@ export function Controls(update, close) {
               container: "my-swal",
             },
           });
-          close()
-          update()
+          close();
+          update();
         }
       } catch (err) {
-        console.log(err);
+        return err;
       }
     }
   }

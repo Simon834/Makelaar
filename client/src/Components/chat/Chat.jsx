@@ -129,8 +129,6 @@ const Chat = () => {
 
   const { userInfo } = useSelector((state) => state);
 
-  console.log("INFO USUARIO", userInfo);
-
   useEffect(() => {
     if (userInfo.user?.name) {
       socket.emit("conectado", userInfo.user.name);

@@ -1,4 +1,4 @@
-import { Button, IconButton } from "@material-ui/core";
+import { IconButton } from "@material-ui/core";
 import { useHistory } from "react-router";
 import style from "./GoogleMap.module.css";
 import CloseIcon from "@material-ui/icons/Close";
@@ -6,7 +6,7 @@ import CloseIcon from "@material-ui/icons/Close";
 export default function InfoWindow(props) {
   const history = useHistory();
   const { name, address, price, img, id, setShow } = props;
-  
+
   const handleClick = () => {
     setShow(null);
   };

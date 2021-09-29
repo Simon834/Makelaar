@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Route, useParams, useLocation } from "react-router";
+import { Route, useParams } from "react-router";
 import { useHistory } from "react-router";
 
 import Dashboard from "../Dashboard/Dashboard";
@@ -21,7 +21,6 @@ import { getAllPayment } from "../../Functions/api/payments";
 import style from "./AdminBody.module.css";
 import { adminConstant } from "./constant";
 import { Paper } from "@material-ui/core";
-import { stylesColor } from "../Upload/uploadConfig";
 
 export default function AdminBody() {
   const [userList, setUserList] = useState([]);
@@ -58,7 +57,7 @@ export default function AdminBody() {
       )
     );
     const allContrApi = await getAllContract();
-    console.log("allContrApi", allContrApi);
+
     setContList(allContrApi);
     setContActiveList(allContrApi.filter((c) => c.status === "activo"));
     const payments = await getAllPayment();

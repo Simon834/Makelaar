@@ -1,11 +1,5 @@
-import Button from "@material-ui/core/Button";
-
-
-
-
 export function propertyInfoConstant() {
-  
-    const columnsContratList = [
+  const columnsContratList = [
     {
       field: "name",
       headerName: "Titulo",

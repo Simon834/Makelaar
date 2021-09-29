@@ -1,27 +1,26 @@
 require("dotenv").config();
-const cron = require('node-cron');
+const cron = require("node-cron");
 const { db } = require("./db");
-const {updateContractCron, liquidationContract} = require('./cron/contractCron')
-
+const {
+  updateContractCron,
+  liquidationContract,
+} = require("./cron/contractCron");
 
 const app = require("./app");
 
 const PORT = process.env.PORT || 3010;
-const URL = process.env.FRONT_URL || "http://localhost:3000"
+const URL = process.env.FRONT_URL || "http://localhost:3000";
 
 //socketIo conexion
 const http = require("http");
 const server = http.createServer(app);
-
 
 const socketio = require("socket.io")(server, {
   cors: {
     origin: [URL],
     methods: ["GET", "POST", "PUT", "DELETE"],
   },
-
 });
-
 
 socketio.on("connection", (socket) => {
   //se ejecuta esta funcion cada vez q un usuario se conecta
@@ -43,49 +42,38 @@ socketio.on("connection", (socket) => {
      ◉ 4 si tiene otra consulta
       `,
     });
-
   });
 
-  socket.on("mensaje", (name, mensaje, id=24) => {
+  socket.on("mensaje", (name, mensaje, id = 24) => {
     socketio.emit("mensajes", { name, mensaje });
     mensaje = mensaje.toLowerCase();
-  
 
     if (mensaje.includes(1)) {
       socketio.emit("mensajes", {
         name: "Makelaar",
-        mensaje:`Completa el Formulario que se encuentra en este <a href="${URL}/contact"> link</a> y a la brevedad nos estaremos comunicando con usted.
+        mensaje: `Completa el Formulario que se encuentra en este <a href="${URL}/contact"> link</a> y a la brevedad nos estaremos comunicando con usted.
         <br/>
         Gracias
-               `
-      })
-    }
-    else if (mensaje.includes(2)) {
+               `,
+      });
+    } else if (mensaje.includes(2)) {
       socketio.emit("mensajes", {
         name: "Makelaar",
         mensaje: `Podes encontrar todas las propiedades en Alquiler en venta en el siguiente: <a href="${URL}/property"> link </a>  `,
-      })
-
-    }
-    else if (mensaje.includes(3)) {
-      if(name != "Usuario nuevo"){
-
+      });
+    } else if (mensaje.includes(3)) {
+      if (name != "Usuario nuevo") {
         socketio.emit("mensajes", {
           name: "Makelaar",
           mensaje: `Para realizar el pago podes dirigirte al siguiente: <a href="${URL}/user/${id}/contrat">link</a> `,
-          
-        })
-        
-      }else{
+        });
+      } else {
         socketio.emit("mensajes", {
           name: "Makelaar",
           mensaje: `Para realizar un pago debes iniciar sesion y dirigirte a la seccion de 'Mis Contratos' `,
-        })
+        });
       }
-
-    } 
-
-    else if (mensaje.includes(4)) {
+    } else if (mensaje.includes(4)) {
       socketio.emit("mensajes", {
         name: "Makelaar",
         mensaje: ` Podes encontrarnos: 
@@ -99,8 +87,7 @@ socketio.on("connection", (socket) => {
       ◉ Enviarnos un correo electronico a info_makelaar@yahoo.com para comunicarte con un responsable del area. 
       <br/> 
       Gracias `,
-      })
-
+      });
     } else {
       socketio.emit("mensajes", {
         name: "Makelaar",
@@ -113,10 +100,9 @@ socketio.on("connection", (socket) => {
                 Con el numero 3 si esta interesado/a en Realizar un pago mediante este medio
                 <br/>
                 Con el numero 4 si tiene otra consulta
-                   `
-      })
-    } 
-
+                   `,
+      });
+    }
   });
   socket.on("disconnect", () => {
     socketio.emit("mensajes", {
@@ -128,14 +114,11 @@ socketio.on("connection", (socket) => {
 
 db.sync({ force: false }).then(async () => {
   server.listen(PORT, () => {
-    console.log(`%s listening at ${PORT}`);
     cron.schedule("44 * * * *", () => {
       updateContractCron();
-      console.log("update contract state");
     });
     cron.schedule("* * 28 * *", () => {
       liquidationContract();
-      console.log("update payments state");
     });
   });
 });

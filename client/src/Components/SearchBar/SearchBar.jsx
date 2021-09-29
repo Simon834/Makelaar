@@ -6,7 +6,6 @@ import Divider from "@material-ui/core/Divider";
 import IconButton from "@material-ui/core/IconButton";
 import SearchIcon from "@material-ui/icons/Search";
 import ClearIcon from "@material-ui/icons/Clear";
-import DirectionsIcon from "@material-ui/icons/Directions";
 import { useDispatch } from "react-redux";
 import { searchAction } from "../../Redux/Actions/filterActions";
 

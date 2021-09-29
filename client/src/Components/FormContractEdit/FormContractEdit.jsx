@@ -9,14 +9,11 @@ import { contractEditConstant } from "./constant";
 import { getContractById } from "../../Functions/api/contract";
 
 import {
-  IconButton,
   List,
   ListItem,
   ListItemAvatar,
-  Typography,
   Avatar,
-  ListItemText, // eslint-disable-next-line
-  ListItemSecondaryAction,
+  ListItemText,
 } from "@material-ui/core"; // eslint-disable-next-line
 import { Delete as DeleteIcon, Folder as FolderIcon } from "@material-ui/icons";
 import BtnPayment from "../BtnPayment/BtnPayment";
@@ -82,7 +79,7 @@ const useStyle = makeStyles((theme) => ({
   },
 }));
 
-export default function NewContractForm({ user, forceUpdate, update  }) {
+export default function NewContractForm({ user, forceUpdate, update }) {
   const classes = useStyle();
   const {
     handleChange,
@@ -129,7 +126,7 @@ export default function NewContractForm({ user, forceUpdate, update  }) {
     ) {
       setAuth(false);
     } // eslint-disable-next-line
-  }, [contract,update]);
+  }, [contract, update]);
 
   async function getAllUser() {
     const allUsersApi = await getAllUserApi();
@@ -143,20 +140,20 @@ export default function NewContractForm({ user, forceUpdate, update  }) {
 
   async function getContract() {
     const contractApi = await getContractById(idcont);
-    console.log("contractApi",contractApi)
 
     if (contractApi.Payments.length > 0) {
-      let resValue=0
-      if(contractApi.Payments.length===1){
-        resValue=contractApi.Payments[0].amount
-      }else{
-      resValue = contractApi.Payments?.reduce((acc, val) => {
-        if (acc.amount) {
-          return acc.amount + parseInt(val.amount);
-        } else {
-          return acc + parseInt(val.amount);
-        }
-      });}
+      let resValue = 0;
+      if (contractApi.Payments.length === 1) {
+        resValue = contractApi.Payments[0].amount;
+      } else {
+        resValue = contractApi.Payments?.reduce((acc, val) => {
+          if (acc.amount) {
+            return acc.amount + parseInt(val.amount);
+          } else {
+            return acc + parseInt(val.amount);
+          }
+        });
+      }
       setRest(resValue);
     }
     setContract(contractApi);
@@ -215,81 +212,81 @@ export default function NewContractForm({ user, forceUpdate, update  }) {
                 disabled={!!user}
               />
             </Grid>
-            {user?
-            <Grid item className={classes.grid} xs={12} sm={6} md={9}>
-              <TextField
-                disabled={!!user}
-                variant="outlined"
-                label="Resumen"
-                multiline
-                rows={2}
-                name="comments"
-                value={`${contract.Property?.transaction} de propiedad: ${contract.Property?.name} en ${contract.Property?.address}, ${contract.Property?.city}, ${contract.Property?.province}`}
-              />
-            </Grid>:
-            <>
-            <Grid item className={classes.grid} xs={12} sm={6} md={4}>
-              <FormControl className={classes.formControl}>
-                <Select
+            {user ? (
+              <Grid item className={classes.grid} xs={12} sm={6} md={9}>
+                <TextField
                   disabled={!!user}
-                  onChange={handleSelect}
-                  name="UserId"
-                  value={contract.UserId}
-                  inputLabel="User"
-                  className={classes.selectEmpty}
-                  inputProps={{ "aria-label": "Without label" }}
-                  {...(errors.UserId && {
-                    error: true,
-                    helperText: errors.UserId,
-                  })}
-                >
-                  <MenuItem selected disabled value="">
-                    <em>Seleccione el usuario</em>
-                  </MenuItem>
-                  {userList.map((u) => (
-                    <MenuItem value={u.id}>
-                      {u.name} - {u.email}
-                    </MenuItem>
-                  ))}
-                </Select>
-                <FormHelperText>Usuario</FormHelperText>
-              </FormControl>
-            </Grid>
+                  variant="outlined"
+                  label="Resumen"
+                  multiline
+                  rows={2}
+                  name="comments"
+                  value={`${contract.Property?.transaction} de propiedad: ${contract.Property?.name} en ${contract.Property?.address}, ${contract.Property?.city}, ${contract.Property?.province}`}
+                />
+              </Grid>
+            ) : (
+              <>
+                <Grid item className={classes.grid} xs={12} sm={6} md={4}>
+                  <FormControl className={classes.formControl}>
+                    <Select
+                      disabled={!!user}
+                      onChange={handleSelect}
+                      name="UserId"
+                      value={contract.UserId}
+                      inputLabel="User"
+                      className={classes.selectEmpty}
+                      inputProps={{ "aria-label": "Without label" }}
+                      {...(errors.UserId && {
+                        error: true,
+                        helperText: errors.UserId,
+                      })}
+                    >
+                      <MenuItem selected disabled value="">
+                        <em>Seleccione el usuario</em>
+                      </MenuItem>
+                      {userList.map((u) => (
+                        <MenuItem value={u.id}>
+                          {u.name} - {u.email}
+                        </MenuItem>
+                      ))}
+                    </Select>
+                    <FormHelperText>Usuario</FormHelperText>
+                  </FormControl>
+                </Grid>
 
-            <Grid item className={classes.grid} xs={12} sm={6} md={5}>
-            
-              <FormControl className={classes.formControl}>
-                <Select
-                  disabled={!!user}
-                  name="PropertyId"
-                  onChange={handleSelect}
-                  value={contract.PropertyId}
-                  displayEmpty
-                  className={classes.selectEmpty}
-                  inputProps={{ "aria-label": "Without label" }}
-                  {...(errors.PropertyId && {
-                    error: true,
-                    helperText: errors.PropertyId,
-                  })}
-                >
-                  <MenuItem value="">
-                    <em>Seleccione la propiedad</em>
-                  </MenuItem>
-                  {propertyList.length > 0 ? (
-                    propertyList.map((p) => (
-                      <MenuItem value={p.id}>{p.name}</MenuItem>
-                    ))
-                  ) : (
-                    <MenuItem selected disabled value="">
-                      No hay propiedades
-                    </MenuItem>
-                  )}
-                </Select>
-                <FormHelperText>Propiedad</FormHelperText>
-              </FormControl>
-            </Grid>
-            </>
-}
+                <Grid item className={classes.grid} xs={12} sm={6} md={5}>
+                  <FormControl className={classes.formControl}>
+                    <Select
+                      disabled={!!user}
+                      name="PropertyId"
+                      onChange={handleSelect}
+                      value={contract.PropertyId}
+                      displayEmpty
+                      className={classes.selectEmpty}
+                      inputProps={{ "aria-label": "Without label" }}
+                      {...(errors.PropertyId && {
+                        error: true,
+                        helperText: errors.PropertyId,
+                      })}
+                    >
+                      <MenuItem value="">
+                        <em>Seleccione la propiedad</em>
+                      </MenuItem>
+                      {propertyList.length > 0 ? (
+                        propertyList.map((p) => (
+                          <MenuItem value={p.id}>{p.name}</MenuItem>
+                        ))
+                      ) : (
+                        <MenuItem selected disabled value="">
+                          No hay propiedades
+                        </MenuItem>
+                      )}
+                    </Select>
+                    <FormHelperText>Propiedad</FormHelperText>
+                  </FormControl>
+                </Grid>
+              </>
+            )}
             <Grid item className={classes.grid} xs={12} sm={6} md={3}>
               <TextField
                 disabled={!!user}
