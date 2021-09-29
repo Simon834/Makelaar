@@ -38,7 +38,6 @@ export function Controls(update) {
   const [address, setAddress] = useState("");
 
   const [latLng, setLatLng] = useState({});
-  
 
   function validate(values = property) {
     let error = { ...errors };
@@ -121,7 +120,6 @@ export function Controls(update) {
         : "El nombre de la provincia no es valido";
     }
 
-
     if ("cp" in values)
       error.values = values.cp ? "" : "Este campo es requerido";
     if (values.cp) {
@@ -190,7 +188,7 @@ export function Controls(update) {
           Swal.fire("Listo!", "Se agrego una propiedad con exito!", "success");
         }
       } catch (err) {
-        console.log(err);
+        return err;
       }
     }
     setProperty(resetValues);
@@ -200,20 +198,19 @@ export function Controls(update) {
   }
 
   function setImage(images) {
-  
     setImg([...images]);
   }
 
-  function deleteImg(pos){
-    let deleteImg = [...img]
-    deleteImg.splice(pos, 1)
-    setImg([...deleteImg])
+  function deleteImg(pos) {
+    let deleteImg = [...img];
+    deleteImg.splice(pos, 1);
+    setImg([...deleteImg]);
   }
 
   async function handleSelect(value) {
     const results = await geocodeByAddress(value);
     const latLng = await getLatLng(results[0]);
-   
+
     setAddress(value);
     setLatLng(latLng);
 
@@ -238,6 +235,6 @@ export function Controls(update) {
     setAddress,
     handleSelect,
     img,
-    deleteImg
+    deleteImg,
   };
 }

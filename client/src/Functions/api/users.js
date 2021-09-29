@@ -8,41 +8,39 @@ export async function getAllUserApi() {
     const allUsers = await axios.get(`${BACK_SERVER}/users/AllUsers`);
     return allUsers.data;
   } catch (err) {
-    
     throw err;
   }
 }
 
 export async function registerUser(user) {
- 
   try {
-    const response = await axios.post(`${BACK_SERVER}/users/signup`, user)
-     return response.data;
-  } catch(err) {
+    const response = await axios.post(`${BACK_SERVER}/users/signup`, user);
+    return response.data;
+  } catch (err) {
     return err.response.status;
   }
 }
 
 export async function getUserByIdApi(id) {
-    try {
-        const userbyid = await axios.get(`${BACK_SERVER}/users/${id}`)
-        return userbyid.data
-    } catch (err) {
-        throw err
-    }
+  try {
+    const userbyid = await axios.get(`${BACK_SERVER}/users/${id}`);
+    return userbyid.data;
+  } catch (err) {
+    throw err;
+  }
 }
 
 export async function loguinUserApi(email, password) {
   try {
-    const data = await axios.post(`${BACK_SERVER}/users/logIn`, {email, password})
-    return data
-
+    const data = await axios.post(`${BACK_SERVER}/users/logIn`, {
+      email,
+      password,
+    });
+    return data;
   } catch (err) {
-    console.log("error",err)  
-    throw err
+    throw err;
   }
 }
-
 
 export async function updateUser(user) {
   try {

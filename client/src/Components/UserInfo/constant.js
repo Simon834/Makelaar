@@ -1,11 +1,5 @@
-import Button from "@material-ui/core/Button";
-
-
-
-
 export function userInfoConstant() {
-  
-    const columnsContratList = [
+  const columnsContratList = [
     {
       field: "name",
       headerName: "Titulo",
@@ -42,7 +36,6 @@ export function userInfoConstant() {
       flex: 1,
       headerClassName: "super-app-theme--header",
     },
- 
   ];
 
   return { columnsContratList };

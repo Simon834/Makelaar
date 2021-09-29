@@ -1,17 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getUserDetail } from "../../Redux/Actions/actions";
-import { useParams } from "react-router-dom";
-import style from "./userDetail.module.css";
+import React from "react";
 import TextField from "@material-ui/core/TextField";
 import { UserDetailControl } from "./UserDetailControl";
-import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
 import Button from "@material-ui/core/Button";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
-import EditIcon from "@material-ui/icons/Edit";
 import BlockIcon from "@material-ui/icons/Block";
 import Tooltip from "@material-ui/core/Tooltip";
 
@@ -38,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
     backgroundColor: "#E1535E",
     color: "#fff",
-    marginTop:theme.spacing(2)
+    marginTop: theme.spacing(2),
   },
   "& .MuiGrid-root": {
     width: 150,
@@ -59,7 +53,6 @@ const useStyles = makeStyles((theme) => ({
   icon: {
     alingSelf: "flex-end",
     color: "#E1535E",
-   
   },
   btn: {
     "&:hover": {
@@ -67,7 +60,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   gridContainer: { display: "flex", flexDirection: "row" },
-  
+
   paper: {
     display: "flex",
     flexDirection: "row",
@@ -79,7 +72,7 @@ export default function UserDetail() {
   const classes = useStyles();
 
   const { handleChange, handleSubmit, errors, user } = UserDetailControl();
-  
+
   return (
     <div>
       <Paper className={classes.root}>
@@ -89,10 +82,10 @@ export default function UserDetail() {
           onSubmit={handleSubmit}
         >
           <Grid container>
-          <Grid item className={classes.grid} xs={12} sm={6} md={3}>
+            <Grid item className={classes.grid} xs={12} sm={6} md={3}>
               <Paper className={classes.paperLeft}>Nombre</Paper>
-              </Grid>
-              <Grid item className={classes.grid} xs={12} sm={9} md={9}>
+            </Grid>
+            <Grid item className={classes.grid} xs={12} sm={9} md={9}>
               <Paper className={classes.paperRight}>
                 <div className={classes.paper}>
                   <TextField
@@ -106,17 +99,17 @@ export default function UserDetail() {
                     })}
                     required
                   />
-                  
+
                   <Button classname={classes.btn} color="secondary">
                     Enviar
                   </Button>
                 </div>
               </Paper>
-              </Grid>
-              <Grid item className={classes.grid} xs={12} sm={6} md={3}>
+            </Grid>
+            <Grid item className={classes.grid} xs={12} sm={6} md={3}>
               <Paper className={classes.paperLeft}>Email</Paper>
-              </Grid>
-              <Grid item className={classes.grid} xs={12} sm={9} md={9}>
+            </Grid>
+            <Grid item className={classes.grid} xs={12} sm={9} md={9}>
               <Paper className={classes.paperRight}>
                 <div className={classes.paper}>
                   <TextField
@@ -130,11 +123,11 @@ export default function UserDetail() {
                   </Tooltip>
                 </div>
               </Paper>
-              </Grid>
-              <Grid item className={classes.grid} xs={12} sm={6} md={3}>
+            </Grid>
+            <Grid item className={classes.grid} xs={12} sm={6} md={3}>
               <Paper className={classes.paperLeft}>Telefono</Paper>
-              </Grid>
-              <Grid item className={classes.grid} xs={12} sm={9} md={9}>
+            </Grid>
+            <Grid item className={classes.grid} xs={12} sm={9} md={9}>
               <Paper className={classes.paperRight}>
                 <div className={classes.paper}>
                   <TextField
@@ -147,17 +140,17 @@ export default function UserDetail() {
                       helperText: errors.phone,
                     })}
                   />
-                 
+
                   <Button classname={classes.btn} color="secondary">
                     Enviar
                   </Button>
                 </div>
               </Paper>
-              </Grid>
-              <Grid item className={classes.grid} xs={12} sm={6} md={3}>
+            </Grid>
+            <Grid item className={classes.grid} xs={12} sm={6} md={3}>
               <Paper className={classes.paperLeft}>WhatsApp</Paper>
-              </Grid>
-              <Grid item className={classes.grid} xs={12} sm={9} md={9}>
+            </Grid>
+            <Grid item className={classes.grid} xs={12} sm={9} md={9}>
               <Paper className={classes.paperRight}>
                 <div className={classes.paper}>
                   <TextField
@@ -172,17 +165,16 @@ export default function UserDetail() {
                     })}
                   />
 
-
                   <Button classname={classes.btn} color="secondary">
                     Enviar
                   </Button>
                 </div>
               </Paper>
-              </Grid>
-              <Grid item className={classes.grid} xs={12} sm={6} md={3}>
+            </Grid>
+            <Grid item className={classes.grid} xs={12} sm={6} md={3}>
               <Paper className={classes.paperLeft}>Password</Paper>
-              </Grid>
-              <Grid item className={classes.grid} xs={12} sm={9} md={9}>
+            </Grid>
+            <Grid item className={classes.grid} xs={12} sm={9} md={9}>
               <Paper className={classes.paperRight}>
                 <div className={classes.paper}>
                   <TextField

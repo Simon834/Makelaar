@@ -9,10 +9,9 @@ export default function BarChart({ payList, labels }) {
   ingressArray = segmentInMonth(payList, ingressArray);
 
   function segmentInMonth(array, segmentArray) {
-    console.log("pagos", array);
     if (segmentArray.length < 12) {
       for (let i = 0; i < 12; i++) {
-        segmentArray.push({ x: `${i+1}-10-2021 GMT`, y: 0 });
+        segmentArray.push({ x: `${i + 1}-10-2021 GMT`, y: 0 });
       }
     }
 
@@ -32,8 +31,6 @@ export default function BarChart({ payList, labels }) {
 
     return segmentArray;
   }
-
-  console.log("ingressArray", ingressArray);
 
   let state = {
     options: {
@@ -57,15 +54,10 @@ export default function BarChart({ payList, labels }) {
       xaxis: {
         type: "datetime",
       },
-      stroke: {
-        curve: "smooth",
-      },
     },
     series: [
       {
-        
         data: ingressArray,
- 
       },
     ],
   };

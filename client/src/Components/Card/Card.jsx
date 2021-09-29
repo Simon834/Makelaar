@@ -233,7 +233,7 @@ export default function CardComponent(props) {
                     ? handleDeleteFavorite(props.id * 1)
                     : handleAddFavorite(props)
                 }
-                checked={fav}
+                readOnly={fav}
               />
               <div className={style.heart__icon} />
             </div>

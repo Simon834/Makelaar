@@ -23,7 +23,7 @@ export function MapContainer({ lat, lng, estates }) {
       );
     } else {
       setCoordinates({ ...coordinates, lat: lat, lng: lng });
-    }
+    } // eslint-disable-next-line
   }, [lat, lng, estates]);
 
   const Marker = ({ onClick, lat, lng }) => {

@@ -1,13 +1,7 @@
 import { useState, useEffect } from "react";
-import { updateUser } from "../../Functions/api/users";
-import { useSelector, useDispatch } from "react-redux";
-import { useHistory } from "react-router";
 import Swal from "sweetalert2";
 
 export const UserInfoControl = (userInfo, update) => {
-  const dispatch = useDispatch();
-  const history = useHistory();
-
   const [user, setUser] = useState(userInfo);
 
   const [errors, setErrors] = useState({});
@@ -83,7 +77,6 @@ export const UserInfoControl = (userInfo, update) => {
       [name]: value,
     });
     validate({ [name]: value });
-    
   };
 
   const formIsValid = (fieldValues = user) => {
@@ -100,9 +93,8 @@ export const UserInfoControl = (userInfo, update) => {
     const isValid =
       Object.values(errors).every((x) => x === "") && formIsValid();
     if (isValid) {
-      const registeredUser=await updateUser(user);
-      update()
-      
+      update();
+
       Swal.fire({
         icon: "success",
         title: "Perfecto..!",

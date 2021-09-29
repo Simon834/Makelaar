@@ -86,10 +86,7 @@ export default function EditProperty({ id, update, close }) {
     property,
     handleSelect,
     setProperty,
-    checked,
-    setChecked,
     handleSwitch,
-    toggleChecked,
   } = Controls(update, close);
 
   const idProps = id;
@@ -107,7 +104,7 @@ export default function EditProperty({ id, update, close }) {
   }
 
   useEffect(() => {
-    getPropertyId();// eslint-disable-next-line
+    getPropertyId(); // eslint-disable-next-line
   }, []);
 
   return (
@@ -130,7 +127,6 @@ export default function EditProperty({ id, update, close }) {
             <FormGroup>
               <TextField
                 className={classes.input}
-                
                 variant="outlined"
                 label="Nombre"
                 name="name"
@@ -218,7 +214,7 @@ export default function EditProperty({ id, update, close }) {
 
               <FormControl component="fieldset">
                 <Typography>Condicion de la Propiedad</Typography>
-                
+
                 <Select
                   onChange={handleSelect}
                   aria-label="condition"
@@ -232,7 +228,6 @@ export default function EditProperty({ id, update, close }) {
                       </MenuItem>
                     ))}
                 </Select>
-                
               </FormControl>
             </FormGroup>
 

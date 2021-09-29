@@ -7,7 +7,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
 import Paper from "@material-ui/core/Paper";
-import { uploadConection } from "../../Functions/api/upload";
 import { translationEs, stylesColor } from "./uploadConfig";
 
 const useStyles = makeStyles((theme) => ({
@@ -50,11 +49,11 @@ export default function UploadImage({ images, setImages, deleteImg }) {
 
   const [myWidget, setmyWidget] = useState({});
 
-  
   let urlArr = [];
-  
+
   useEffect(() => {
-    urlArr=images || []
+    // eslint-disable-next-line
+    urlArr = images || [];
 
     var myWidgetConect = window.cloudinary.createUploadWidget(
       {

@@ -1,7 +1,7 @@
-require('dotenv').config();
-const { Sequelize } = require('sequelize');
-const fs = require('fs');
-const path = require('path');
+require("dotenv").config();
+const { Sequelize } = require("sequelize");
+const fs = require("fs");
+const path = require("path");
 
 const {
   DATABASE_URL,
@@ -13,13 +13,16 @@ const {
   DB_DIALECT,
 } = process.env;
 
-const db = new Sequelize(DATABASE_URL || `${DB_DIALECT}://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_HOST_PORT}/${DB_DATABASE}`, {
-  logging: false,
-  native: false,
-});
+const db = new Sequelize(
+  DATABASE_URL ||
+    `${DB_DIALECT}://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_HOST_PORT}/${DB_DATABASE}`,
+  {
+    logging: false,
+    native: false,
+  }
+);
 
-db.authenticate().then(() => console.log('conectado')).catch(e => console.log(e))
-
+db.authenticate();
 
 const basename = path.basename(__filename);
 
@@ -52,30 +55,29 @@ const { User, Property, Image, Contract, File, Payment } = db.models;
 //Relaciones
 //contract-property
 Property.hasMany(Contract);
-Contract.belongsTo(Property, {foreignKey: "PropertyId"})
+Contract.belongsTo(Property, { foreignKey: "PropertyId" });
 
 //contract-user
 User.hasMany(Contract);
-Contract.belongsTo(User, {foreignKey: "UserId"})
+Contract.belongsTo(User, { foreignKey: "UserId" });
 
 //image-property
 Property.hasMany(Image);
-Image.belongsTo(Property, {foreignKey: "ImageId"})
+Image.belongsTo(Property, { foreignKey: "ImageId" });
 
 //file-property
 Contract.hasMany(File);
-File.belongsTo(Contract)
+File.belongsTo(Contract);
 
 //payment-user
 User.hasMany(Payment);
 Payment.belongsTo(User);
 
-
 Contract.hasMany(Payment);
-Payment.belongsTo(Contract, {foreignKey: "ContractId"})
+Payment.belongsTo(Contract, { foreignKey: "ContractId" });
 
 module.exports = {
   db,
   ...db.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
-  conn: db
-}
+  conn: db,
+};

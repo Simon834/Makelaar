@@ -16,10 +16,8 @@ export async function addContract(contract) {
 }
 
 export async function getAllContract() {
-
   try {
-    const response = await axios.get(
-      `${BACK_SERVER}/contract/getContracts`);
+    const response = await axios.get(`${BACK_SERVER}/contract/getContracts`);
     return response.data;
   } catch (err) {
     return err.response.status;

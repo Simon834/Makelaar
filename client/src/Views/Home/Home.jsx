@@ -21,7 +21,7 @@ import { filterEstates } from "../../Functions/filters/filters";
 
 import { clearFilter } from "../../Redux/Actions/filterActions";
 import { getAllProperties } from "../../Redux/Actions/propertyActions";
-import { Paper, styled } from "@material-ui/core";
+import { Paper } from "@material-ui/core";
 import style from "./Home.module.css";
 
 export default function Home() {

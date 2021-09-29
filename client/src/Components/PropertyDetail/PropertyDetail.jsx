@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import GaleryImg from "../GaleryImg/GaleryImg";
 import ContactForm from "../ContactForm/ContactForm";
 
@@ -12,22 +11,15 @@ import phoneImg from "../../images/telefono-03.jpg";
 
 import style from "./PropertyDetail.module.css";
 
-const useStyles = makeStyles({
-  root: {
-    boxShadow: "1px 3px 10px rgba(0,0,0,0.3)",
-    padding: 20,
-  },
-});
-
 export default function PropertyDetail() {
   let { id } = useParams();
   const [inm, setInm] = useState({});
   const [img, setImg] = useState("");
-  const [update, setUpdate] = useState(false)
+  const [update, setUpdate] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    getDetail(id);
+    getDetail(id); // eslint-disable-next-line
   }, [update]);
 
   async function getDetail(id) {
@@ -37,11 +29,10 @@ export default function PropertyDetail() {
     return inmDetail;
   }
 
-  function foceUpdate(){
-    setUpdate(!update)
+  function foceUpdate() {
+    setUpdate(!update);
   }
 
-  const classes = useStyles();
   return (
     <div>
       <div className={style.conteiner}>
