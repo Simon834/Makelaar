@@ -1,33 +1,34 @@
-import React, { useState } from "react";
-import { DataGrid } from "@material-ui/data-grid";
 
-import { useHistory } from "react-router";
+import React, { useState, useEffect } from 'react'
+import { DataGrid } from '@material-ui/data-grid';
 
-export default function ContractPanel({ columns, rows }) {
-  const [userListContract] = useState([]);
-  const history = useHistory();
+import {useHistory} from "react-router"
+ 
 
-  // const getAllUsercontract = getAllUsercontract()
-  // setUserListContract(getAllUsercontract)
+export default function ContractPanel({columns, rows}) {
+    const [userListContract, setUserListContract] = useState([]);
+    const history= useHistory();
 
-  const listContract = userListContract.map((e) => {
-    if (e.contract) {
-      return { ...e, contract: "Ver contrato" };
-    }
-  });
 
-  const columnsUserList = [
-    { field: "name", headerName: "Nombre", width: 150 },
-    { field: "startDate", headerName: "Fecha de inicio", width: 250 },
-    { field: "endDate", headerName: "Fecha de termino", width: 150 },
-    { field: "amount", headerName: "Monto", width: 150 },
-    { field: "paymentDate", headerName: "Fecha de firma", width: 150 },
-    { field: "contract", headerName: "Contrato", width: 150 },
-  ];
+    const listContract=userListContract.map(e=>{
+        if(e.contract){
+            return {...e,contract:"Ver contrato"}
+        }});
 
-  return (
-    <div style={{ height: 500, width: "70vw" }}>
-      <DataGrid
+    const columnsUserList= [
+        { field: 'name', headerName: 'Nombre', width: 150 },
+        { field: 'startDate', headerName: 'Fecha de inicio', width: 250 },
+        { field: 'endDate', headerName: 'Fecha de termino', width: 150 },
+        { field: 'amount', headerName: 'Monto', width: 150 },
+        { field: 'paymentDate', headerName: 'Fecha de firma', width: 150 },
+        { field: 'contract', headerName: 'Contrato', width: 150 },
+
+    ];
+
+      return (
+        <div style={{ height: 500, width: '70vw' }}>
+            <DataGrid
+
         onCellClick={(params, event) => {
           if (params.field === "contract") {
             history.push(`/user/:id/${params.row.id}`); //aqui va la ruta en la que se pueda ver el archivo del contrato

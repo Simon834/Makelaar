@@ -5,7 +5,7 @@ const authConfig = require("../config/auth");
 const { sendUserEmail } = require("../email/userEmail");
 const { newUser } = require("../email/emailModels/newUser");
 
-//Proteger las rutas, isAuthenticated (Simon)
+//Proteger las rutas, isAuthenticated 
 
 //auth0: permite terciarizar signIn logIn --> investigar
 //token

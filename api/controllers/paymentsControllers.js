@@ -34,10 +34,10 @@ async function createPreference(req, res, next) {
         {
           id: contractId, //id contrato
           title: title, //de la propiedad
-          currency_id: "ARS", //
+          currency_id: "ARS",
           picture_url:
             "https://res.cloudinary.com/makelaar/image/upload/v1631883556/logo-color_bzxf50.png", //logo makelar
-          description: description, //
+          description: description,
           category_id: "others",
           quantity: 1,
           unit_price: parseInt(price),

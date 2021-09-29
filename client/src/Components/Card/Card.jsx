@@ -116,7 +116,6 @@ export default function CardComponent(props) {
 
   const closeDialogEdit = () => setShowDialogEdit(false);
 
-  ///////////
 
   useEffect(() => {
     if (userInfo.token) {
@@ -135,7 +134,7 @@ export default function CardComponent(props) {
     }
     if (favorites.length === 0) {
       localStorage.setItem("favorites", JSON.stringify([]));
-    } // eslint-disable-next-line
+    } 
   }, [favorites]);
 
   const classes = useStyles();

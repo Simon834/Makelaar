@@ -5,8 +5,6 @@ module.exports = (db) => {
     idPay: {
       type: DataTypes.STRING,
       allowNull: false,
-      // primaryKey: true,
-      // autoIncrement: true,
     },
     status: {
       type: DataTypes.STRING,

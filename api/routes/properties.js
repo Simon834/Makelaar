@@ -8,7 +8,6 @@ const {
   deleteProperty,
   paymentProperty,
 
-  // deleteProperty,
 } = require("../controllers/propertiesController");
 
 const {createPreference, newNotification, getAllPayments, addAllPayments} = require("../controllers/paymentsControllers")

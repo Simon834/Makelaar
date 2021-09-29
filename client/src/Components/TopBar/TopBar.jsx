@@ -200,10 +200,6 @@ export default function TopBar() {
   const openLogout = () => setOpenDialogLogout(true);
   const closeLogout = () => setOpenDialogLogout(false);
 
-  // const handleToggle = () => {
-  //     setOpen((prevOpen) => !prevOpen);
-  // };
-
   const classes = useStyles();
 
   return (

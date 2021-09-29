@@ -21,7 +21,6 @@ const useStyles = makeStyles((theme) => ({
   },
   root: {
     width: "100%",
-    // margin: theme.spacing(5),
     display: "flex",
     flexDirection: "column",
     allingItems: "center",
