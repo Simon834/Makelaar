@@ -36,7 +36,7 @@ export function Controls(update) {
   const [check, setCheck] = useState({});
 
   const [address, setAddress] = useState("");
-
+  // eslint-disable-next-line
   const [latLng, setLatLng] = useState({});
 
   function validate(values = property) {
