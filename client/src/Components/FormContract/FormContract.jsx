@@ -145,7 +145,7 @@ export default function NewContractForm() {
                     <em>Seleccione el usuario</em>
                   </MenuItem>
                   {userList.map((u) => (
-                    <MenuItem value={u.id}>
+                    <MenuItem value={u.id} key={u.id}>
                       {u.name} - {u.email}
                     </MenuItem>
                   ))}
@@ -172,7 +172,9 @@ export default function NewContractForm() {
                   </MenuItem>
                   {propertyList.length > 0 ? (
                     propertyList.map((p) => (
-                      <MenuItem value={p.id}>{p.name}</MenuItem>
+                      <MenuItem value={p.id} key={p.id}>
+                        {p.name}
+                      </MenuItem>
                     ))
                   ) : (
                     <MenuItem selected disabled value="">

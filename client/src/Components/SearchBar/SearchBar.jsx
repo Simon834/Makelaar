@@ -57,7 +57,7 @@ export default function CustomizedInputBase() {
         placeholder="Buscar"
         inputProps={{ "aria-label": "search google maps" }}
         onChange={(e) => setInput(e.target.value)}
-        value={input}
+        value={input || ""}
       />
       <IconButton
         type="submit"

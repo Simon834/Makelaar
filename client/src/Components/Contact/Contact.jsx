@@ -1,4 +1,4 @@
-import React from "react"
+import React from "react";
 import { Fragment } from "react";
 import { Button } from "@material-ui/core";
 import emailjs from "emailjs-com";
@@ -10,7 +10,7 @@ import Instagram from "@material-ui/icons/Instagram";
 import TextField from "@material-ui/core/TextField";
 import style from "./Contact.module.css";
 import Swal from "sweetalert2";
-import phoneImg from "../../images/telefono-03.jpg"
+import phoneImg from "../../images/telefono-03.jpg";
 
 export default function Contact() {
   function sendEmail(e) {
@@ -26,14 +26,14 @@ export default function Contact() {
       .then(
         (result) => {
           Swal.fire({
-              icon: "success",
-              title: "Perfecto..!",
-              text: "Tu mensaje ha sido enviado con éxito!",
-                confirmButtonColor: "#4c3c90",
-              customClass: {
-                container: "my-swal",
-              },
-            });
+            icon: "success",
+            title: "Perfecto..!",
+            text: "Tu mensaje ha sido enviado con éxito!",
+            confirmButtonColor: "#4c3c90",
+            customClass: {
+              container: "my-swal",
+            },
+          });
           document.getElementById("name").value = "";
           document.getElementById("phone").value = "";
           document.getElementById("message").value = "";
@@ -52,7 +52,6 @@ export default function Contact() {
         }
       );
   }
-
 
   return (
     <Fragment>
@@ -134,7 +133,7 @@ export default function Contact() {
               name="message"
               placeholder="Tu mensaje"
               rows={4}
-              rowsMin={3}
+              minRows={3}
               cols="20"
               variant="outlined"
             />
@@ -148,11 +147,7 @@ export default function Contact() {
               Enviar
             </Button>
           </form>
-          <img
-            className={style.img}
-            src={phoneImg}
-            alt="imagen"
-          />
+          <img className={style.img} src={phoneImg} alt="imagen" />
         </div>
         <div className={style.container_redes}>
           <div className={style.red}>

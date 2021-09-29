@@ -213,6 +213,7 @@ export default function FormProperty(props) {
                         control={<Radio />}
                         onChange={handleCheck}
                         label={t}
+                        key={t}
                       />
                     ))}
                 </RadioGroup>
@@ -234,6 +235,7 @@ export default function FormProperty(props) {
                         control={<Radio />}
                         onChange={handleCheck}
                         label={t}
+                        key={t}
                       />
                     ))}
                 </RadioGroup>
@@ -254,6 +256,7 @@ export default function FormProperty(props) {
                         control={<Radio />}
                         onChange={handleCheck}
                         label={t}
+                        key={t}
                       />
                     ))}
                 </RadioGroup>

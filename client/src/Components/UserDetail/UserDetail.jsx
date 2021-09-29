@@ -100,7 +100,7 @@ export default function UserDetail() {
                     required
                   />
 
-                  <Button classname={classes.btn} color="secondary">
+                  <Button className={classes.btn} color="secondary">
                     Enviar
                   </Button>
                 </div>
@@ -141,7 +141,7 @@ export default function UserDetail() {
                     })}
                   />
 
-                  <Button classname={classes.btn} color="secondary">
+                  <Button className={classes.btn} color="secondary">
                     Enviar
                   </Button>
                 </div>
@@ -165,7 +165,7 @@ export default function UserDetail() {
                     })}
                   />
 
-                  <Button classname={classes.btn} color="secondary">
+                  <Button className={classes.btn} color="secondary">
                     Enviar
                   </Button>
                 </div>

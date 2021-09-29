@@ -172,7 +172,6 @@ const Chat = () => {
       <Grid container className={classes.root}>
         <Grid item xs={12} sm={12} md={12} className={classes.close}>
           <Button className={classes.btnx} onClick={openModal}>
-            {" "}
             <CancelPresentationIcon />
           </Button>
         </Grid>
@@ -182,8 +181,8 @@ const Chat = () => {
             <ListItem className={classes.listItem} key="1">
               {mensajes?.map((e, i) => {
                 return (
-                  <div>
-                    <ListItem button key={i}>
+                  <div key={i}>
+                    <ListItem button>
                       <ListItemIcon>
                         <Avatar
                           alt={e.name}

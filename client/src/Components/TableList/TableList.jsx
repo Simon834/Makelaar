@@ -112,7 +112,7 @@ export default function TableList({ columns, rows, user, reference }) {
     <div style={{ height: "80vh", width: "100%" }} className={classes.root}>
       <div className={classes.ref}>
         {reference?.map((e) => (
-          <div className={e.color} style={{ padding: "4px" }}>
+          <div className={e.color} style={{ padding: "4px" }} key={e.name}>
             {e.name}
           </div>
         ))}

@@ -245,7 +245,7 @@ export default function NewContractForm({ user, forceUpdate, update }) {
                         <em>Seleccione el usuario</em>
                       </MenuItem>
                       {userList.map((u) => (
-                        <MenuItem value={u.id}>
+                        <MenuItem value={u.id} key={u.id}>
                           {u.name} - {u.email}
                         </MenuItem>
                       ))}
@@ -274,7 +274,9 @@ export default function NewContractForm({ user, forceUpdate, update }) {
                       </MenuItem>
                       {propertyList.length > 0 ? (
                         propertyList.map((p) => (
-                          <MenuItem value={p.id}>{p.name}</MenuItem>
+                          <MenuItem value={p.id} key={p.id}>
+                            {p.name}
+                          </MenuItem>
                         ))
                       ) : (
                         <MenuItem selected disabled value="">
@@ -429,8 +431,11 @@ export default function NewContractForm({ user, forceUpdate, update }) {
             <Grid item className={classes.grid} xs={12} sm={12} md={12}>
               <List className={classes.list}>
                 <h2>Documentos</h2>
-                {contract.Files?.map((e, pos) => (
-                  <ListItem onClick={() => window.open(e.url, "_blank")}>
+                {contract.Files?.map((e, pos, index) => (
+                  <ListItem
+                    onClick={() => window.open(e.url, "_blank")}
+                    key={index}
+                  >
                     <ListItemAvatar>
                       <Avatar>
                         <FolderIcon />
