@@ -1,10 +1,7 @@
 import TextField from "@material-ui/core/TextField";
 
 import UploadImage from "../Upload/UploadImage";
-import PlacesAutocomplete, {
-  geocodeByAddress,
-  getLatLng,
-} from "react-places-autocomplete";
+import PlacesAutocomplete from "react-places-autocomplete";
 
 import {
   Container,
@@ -44,7 +41,6 @@ const useStyle = makeStyles((theme) => ({
   },
   button: {
     width: "100%",
-    
   },
   header: {
     fontSize: "25px",
@@ -75,7 +71,7 @@ const useStyle = makeStyles((theme) => ({
     marginLeft: "3%",
     marginBottom: "3%",
   },
-  upload:{
+  upload: {
     padding: theme.spacing(2),
   },
   grid: {
@@ -100,7 +96,7 @@ export default function FormProperty(props) {
     setAddress,
     handleSelect,
     img,
-    deleteImg
+    deleteImg,
   } = Controls(update);
 
   return (
@@ -207,7 +203,6 @@ export default function FormProperty(props) {
               />
             </Grid>
             <Grid item className={classes.grid} xs={12} sm={6} md={4}>
-             
               <FormControl component="fieldset">
                 <Typography>Tipo de Propiedad</Typography>
                 <RadioGroup aria-label="type" name="type" value={check.type}>
@@ -218,6 +213,7 @@ export default function FormProperty(props) {
                         control={<Radio />}
                         onChange={handleCheck}
                         label={t}
+                        key={t}
                       />
                     ))}
                 </RadioGroup>
@@ -226,7 +222,7 @@ export default function FormProperty(props) {
             <Grid item className={classes.grid} xs={12} sm={6} md={4}>
               <FormControl component="fieldset">
                 <Typography>Condicion de la Propiedad</Typography>
-               
+
                 <RadioGroup
                   aria-label="condition"
                   name="condition"
@@ -239,6 +235,7 @@ export default function FormProperty(props) {
                         control={<Radio />}
                         onChange={handleCheck}
                         label={t}
+                        key={t}
                       />
                     ))}
                 </RadioGroup>
@@ -259,14 +256,13 @@ export default function FormProperty(props) {
                         control={<Radio />}
                         onChange={handleCheck}
                         label={t}
+                        key={t}
                       />
                     ))}
                 </RadioGroup>
-            
               </FormControl>
             </Grid>
             <Grid item className={classes.grid} xs={12} sm={6} md={3}>
-             
               <TextField
                 variant="outlined"
                 label="Ciudad"
@@ -353,7 +349,7 @@ export default function FormProperty(props) {
                         const className = suggestion.active
                           ? "suggestion-item--active"
                           : "suggestion-item";
-                        
+
                         const style = suggestion.active
                           ? { backgroundColor: "#fafafa", cursor: "pointer" }
                           : { backgroundColor: "#ffffff", cursor: "pointer" };
@@ -376,14 +372,17 @@ export default function FormProperty(props) {
               </PlacesAutocomplete>
             </Grid>
             <Grid item className={classes.grid} xs={12} sm={12} md={12}>
-            
               <div className={classes.mapContainer}>
                 <GoogleMap lat={property.lat} lng={property.lng} />
               </div>
             </Grid>
             <Grid item className={classes.grid} xs={12} sm={12} md={12}>
-              <UploadImage images={img} setImages={setImage} deleteImg={deleteImg} className={classes.upload}/>
-              
+              <UploadImage
+                images={img}
+                setImages={setImage}
+                deleteImg={deleteImg}
+                className={classes.upload}
+              />
             </Grid>
           </Grid>
           <Button

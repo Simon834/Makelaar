@@ -1,20 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getUserDetail } from "../../Redux/Actions/actions";
 import { useParams } from "react-router-dom";
 import { useHistory } from "react-router";
 
 import TextField from "@material-ui/core/TextField";
 import { UserInfoControl } from "./UserInfoControl";
-import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
 import Button from "@material-ui/core/Button";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
-import EditIcon from "@material-ui/icons/Edit";
-import BlockIcon from "@material-ui/icons/Block";
-import Tooltip from "@material-ui/core/Tooltip";
 import TableList from "../TableList/TableList";
 import { userInfoConstant } from "./constant";
 
@@ -27,7 +21,6 @@ const useStyles = makeStyles((theme) => ({
   },
   root: {
     width: "100%",
-    // margin: theme.spacing(5),
     display: "flex",
     flexDirection: "column",
     allingItems: "center",
@@ -71,19 +64,19 @@ export default function UserInfo({ userInfo, update }) {
 
   const classes = useStyles();
   const { iduser, id } = useParams();
-  const [userIdInfo, setUserIdInfo] = useState(
-    userInfo.find((e) => e.id === iduser * 1)
-  );
+  const [userIdInfo] = useState(userInfo.find((e) => e.id === iduser * 1));
   const history = useHistory();
 
   useEffect(() => {
     if (userInfo.length === 0) {
       history.push(`/admin/${id}/dashboard`);
-    }
+    } // eslint-disable-next-line
   }, []);
 
-  const { handleChange, handleSubmit, errors, user } =
-    UserInfoControl(userIdInfo, update);
+  const { handleChange, handleSubmit, errors, user } = UserInfoControl(
+    userIdInfo,
+    update
+  );
 
   return (
     <>
@@ -95,7 +88,6 @@ export default function UserInfo({ userInfo, update }) {
         >
           <Grid container>
             <Grid item className={classes.grid} xs={12} sm={6} md={3}>
-             
               <TextField
                 name="name"
                 variant="outlined"
@@ -170,7 +162,6 @@ export default function UserInfo({ userInfo, update }) {
             columns={columnsContratList}
             rows={userIdInfo?.Contracts}
             reference={contractReference}
-
           />
         </Grid>
       </Paper>

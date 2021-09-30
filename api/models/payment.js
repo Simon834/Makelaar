@@ -10,15 +10,12 @@ module.exports = (db) => {
     },
     aproved: {
       type: DataTypes.BOOLEAN,
-      // allowNull: false
     },
     moneyAmount: {
       type: DataTypes.FLOAT,
-      // allowNull: false
     },
     date: {
       type: DataTypes.DATE,
-      // allowNull: false
     },
   });
 };

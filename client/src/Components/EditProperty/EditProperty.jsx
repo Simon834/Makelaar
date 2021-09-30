@@ -86,10 +86,7 @@ export default function EditProperty({ id, update, close }) {
     property,
     handleSelect,
     setProperty,
-    checked,
-    setChecked,
     handleSwitch,
-    toggleChecked,
   } = Controls(update, close);
 
   const idProps = id;
@@ -107,7 +104,7 @@ export default function EditProperty({ id, update, close }) {
   }
 
   useEffect(() => {
-    getPropertyId();// eslint-disable-next-line
+    getPropertyId(); // eslint-disable-next-line
   }, []);
 
   return (
@@ -130,7 +127,6 @@ export default function EditProperty({ id, update, close }) {
             <FormGroup>
               <TextField
                 className={classes.input}
-                
                 variant="outlined"
                 label="Nombre"
                 name="name"
@@ -209,7 +205,7 @@ export default function EditProperty({ id, update, close }) {
                 >
                   {type &&
                     type.map((t) => (
-                      <MenuItem value={t} control={<Radio />} label={t}>
+                      <MenuItem value={t} control={<Radio />} label={t} key={t}>
                         {t}
                       </MenuItem>
                     ))}
@@ -218,7 +214,7 @@ export default function EditProperty({ id, update, close }) {
 
               <FormControl component="fieldset">
                 <Typography>Condicion de la Propiedad</Typography>
-                
+
                 <Select
                   onChange={handleSelect}
                   aria-label="condition"
@@ -227,12 +223,16 @@ export default function EditProperty({ id, update, close }) {
                 >
                   {condition &&
                     condition.map((t) => (
-                      <MenuItem value={t} onChange={handleSelect} label={t}>
+                      <MenuItem
+                        value={t}
+                        onChange={handleSelect}
+                        label={t}
+                        key={t}
+                      >
                         {t}
                       </MenuItem>
                     ))}
                 </Select>
-                
               </FormControl>
             </FormGroup>
 
@@ -262,7 +262,12 @@ export default function EditProperty({ id, update, close }) {
                 >
                   {transaction &&
                     transaction.map((t) => (
-                      <MenuItem value={t} onChange={handleSelect} label={t}>
+                      <MenuItem
+                        value={t}
+                        onChange={handleSelect}
+                        label={t}
+                        key={t}
+                      >
                         {t}
                       </MenuItem>
                     ))}
@@ -279,7 +284,12 @@ export default function EditProperty({ id, update, close }) {
                 >
                   {status &&
                     status.map((t) => (
-                      <MenuItem value={t} onChange={handleSelect} label={t}>
+                      <MenuItem
+                        value={t}
+                        onChange={handleSelect}
+                        label={t}
+                        key={t}
+                      >
                         {t}
                       </MenuItem>
                     ))}

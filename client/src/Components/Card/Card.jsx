@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
@@ -116,8 +116,6 @@ export default function CardComponent(props) {
 
   const closeDialogEdit = () => setShowDialogEdit(false);
 
-  ///////////
-
   useEffect(() => {
     if (userInfo.token) {
       setUserIsAdmin(userInfo.user.isAdmin);
@@ -174,50 +172,47 @@ export default function CardComponent(props) {
       <CardContent>
         <Typography className={classes.title}>{props.title}</Typography>
         <Typography className={classes.address}>{props.address}</Typography>
-        <Typography className={style.ContainerInfo}>
-          <img className={style.imageTitle} src={icoRoom} alt="rooms" />
-          <span className={style.infoTitle}>
-            Ambientes
-            <span className={style.infoText}>{props.rooms}</span>
-          </span>
-          <Divider flexItem={true} />
-          <img className={style.imageTitle} src={icoBeth} alt="rooms" />
-          <span className={style.infoTitle}>
-            Baños
-            <span className={style.infoText}>{props.bathroom}</span>
-          </span>
-          <Divider flexItem={true} />
-          <img className={style.imageTitle} src={icoBed} alt="rooms" />
-          <span className={style.infoTitle}>
-            Dormitorios
-            <span className={style.infoText}>{props.bedroom}</span>
-          </span>
-          {props.type ? (
-            <>
-              <Divider flexItem={true} />
-              <img className={style.imageTitle} src={icoType} alt="type" />
-              <span className={style.infoTitle}>
-                Tipo
-                <span className={style.infoText}>{props.type}</span>
-              </span>
-            </>
-          ) : (
-            <></>
-          )}
+        <img className={style.imageTitle} src={icoRoom} alt="rooms" />
+        <span className={style.infoTitle}>
+          Ambientes
+          <span className={style.infoText}>{props.rooms}</span>
+        </span>
+        <Divider flexItem={true} />
+        <img className={style.imageTitle} src={icoBeth} alt="rooms" />
+        <span className={style.infoTitle}>
+          Baños
+          <span className={style.infoText}>{props.bathroom}</span>
+        </span>
+        <Divider flexItem={true} />
+        <img className={style.imageTitle} src={icoBed} alt="rooms" />
+        <span className={style.infoTitle}>
+          Dormitorios
+          <span className={style.infoText}>{props.bedroom}</span>
+        </span>
+        {props.type ? (
+          <Fragment>
+            <Divider flexItem={true} />
+            <img className={style.imageTitle} src={icoType} alt="type" />
+            <span className={style.infoTitle}>
+              Tipo
+              <span className={style.infoText}>{props.type}</span>
+            </span>
+          </Fragment>
+        ) : null}
 
-          {props.area ? (
-            <>
-              <Divider flexItem={true} />
-              <img className={style.imageTitle} src={icoArea} alt="area" />
-              <span className={style.infoTitle}>
-                Superficie
-                <span className={style.infoText}>{`${props.area} m2`}</span>
-              </span>
-            </>
-          ) : (
-            <></>
-          )}
-        </Typography>
+        {props.area ? (
+          <Fragment>
+            <Divider flexItem={true} />
+            <img className={style.imageTitle} src={icoArea} alt="area" />
+            <span className={style.infoTitle}>
+              Superficie
+              <span className={style.infoText}>{`${props.area} m2`}</span>
+            </span>
+          </Fragment>
+        ) : (
+          <></>
+        )}
+        {/* </Typography> */}
         <Divider flexItem={true} />
         <em>{props.description}</em>
 
@@ -234,7 +229,8 @@ export default function CardComponent(props) {
                     ? handleDeleteFavorite(props.id * 1)
                     : handleAddFavorite(props)
                 }
-                checked={fav}
+                readOnly={fav}
+                value=""
               />
               <div className={style.heart__icon} />
             </div>

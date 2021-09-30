@@ -1,4 +1,4 @@
-import { Button, Grid, Paper, makeStyles } from "@material-ui/core";
+import { Button, Grid, makeStyles } from "@material-ui/core";
 import { useDispatch } from "react-redux";
 import { logOutUser } from "../../Redux/Actions/userActions";
 import { useHistory } from "react-router";
@@ -63,7 +63,7 @@ export default function Logout({ action, auth }) {
       <Grid className={classes.message}>
         ¿Estás seguro que deseas cerrar tu sesión?
       </Grid>
-      <Grid classname={classes.buttonContainer}>
+      <Grid className={classes.buttonContainer}>
         <Button
           variant="contained"
           color="secondary"

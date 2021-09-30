@@ -75,7 +75,7 @@ async function getContractsById(req, res, next) {
           include: User,
         },
         { model: File },
-        { model: Property }
+        { model: Property },
       ],
     });
     if (contract) {
@@ -122,7 +122,6 @@ async function editContract(req, res, next) {
       });
     }
   } catch (err) {
-    console.log(err);
     next(err);
   }
 }

@@ -8,9 +8,6 @@ import Swal from "sweetalert2";
 export function userLogIn({ email, password }) {
   return async function (dispatch) {
     try {
-      //  dispatch({
-      //      type: LOGIN
-      //  })
 
       const data = await loguinUserApi(email, password);
 
@@ -26,16 +23,11 @@ export function userLogIn({ email, password }) {
           break;
 
         case 401:
-          // dispatch({
-          //     type: LOGIN_ERROR,
-          //     payload: data.error
-          // });
           Swal.fire({
             icon: "error",
             title: "Oh no!",
             text: "Usuario o contraseña incorrectos",
             confirmButtonColor: "#4c3c90",
-            //    width: 1800 !important,
             customClass: {
               container: "my-swal",
             },
@@ -44,16 +36,11 @@ export function userLogIn({ email, password }) {
           break;
 
         case 500:
-          // dispatch({
-          //     type: LOGIN_ERROR,
-          //     payload: data.error
-          // });
           Swal.fire({
             icon: "error",
             title: "Oh no!",
             text: "Error en el servidor",
             confirmButtonColor: "#4c3c90",
-            //    width: 1800 !important,
             customClass: {
               container: "my-swal",
             },
@@ -72,10 +59,6 @@ export function userLogIn({ email, password }) {
           container: "my-swal",
         },
       });
-      //  dispatch({
-      //      type: LOGIN_ERROR,
-      //      payload: err
-      //  })
     }
   };
 }

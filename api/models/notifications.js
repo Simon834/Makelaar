@@ -5,8 +5,6 @@ module.exports = (db) => {
     idNot: {
       type: DataTypes.BIGINT,
       allowNull: false,
-      // primaryKey: true,
-      // autoIncrement: true,
     },
     resource: {
       type: DataTypes.STRING,

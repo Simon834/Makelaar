@@ -32,11 +32,9 @@ export function Controls(update) {
 
   const [errors, setErrors] = useState({});
 
-  const [check, setCheck] = useState({});
+  const [check] = useState({});
 
   const [address, setAddress] = useState("");
-
-  const [latLng, setLatLng] = useState({});
 
   function validate(values = property) {
     let error = { ...errors };
@@ -181,7 +179,7 @@ export function Controls(update) {
         }
         update();
       } catch (err) {
-        console.log(err);
+        return err;
       }
     }
   }

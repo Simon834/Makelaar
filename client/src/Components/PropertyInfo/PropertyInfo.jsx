@@ -42,10 +42,10 @@ const useStyle = makeStyles((theme) => ({
     flexDirection: "column",
     allingItems: "center",
     justifyContent: "center",
-    width: "100%",
   },
   button: {
     marginLeft: theme.spacing(27),
+    width: "100%",
   },
   header: {
     fontSize: "25px",
@@ -81,9 +81,6 @@ const useStyle = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "columns",
     padding: theme.spacing(2),
-  },
-  button: {
-    width: "100%",
   },
 }));
 
@@ -233,7 +230,7 @@ export default function PropertyInfo({ id, update }) {
               >
                 {type &&
                   type.map((t) => (
-                    <MenuItem value={t} label={t}>
+                    <MenuItem value={t} label={t} key={t}>
                       {t}
                     </MenuItem>
                   ))}
@@ -253,7 +250,12 @@ export default function PropertyInfo({ id, update }) {
               >
                 {condition &&
                   condition.map((t) => (
-                    <MenuItem value={t} onChange={handleSelect} label={t}>
+                    <MenuItem
+                      value={t}
+                      onChange={handleSelect}
+                      label={t}
+                      key={t}
+                    >
                       {t}
                     </MenuItem>
                   ))}
@@ -272,7 +274,12 @@ export default function PropertyInfo({ id, update }) {
               >
                 {transaction &&
                   transaction.map((t) => (
-                    <MenuItem value={t} onChange={handleSelect} label={t}>
+                    <MenuItem
+                      value={t}
+                      onChange={handleSelect}
+                      label={t}
+                      key={t}
+                    >
                       {t}
                     </MenuItem>
                   ))}
@@ -291,7 +298,12 @@ export default function PropertyInfo({ id, update }) {
               >
                 {status &&
                   status.map((t) => (
-                    <MenuItem value={t} onChange={handleSelect} label={t}>
+                    <MenuItem
+                      value={t}
+                      onChange={handleSelect}
+                      label={t}
+                      key={t}
+                    >
                       {t}
                     </MenuItem>
                   ))}
@@ -343,7 +355,7 @@ export default function PropertyInfo({ id, update }) {
           <Grid item className={classes.grid} xs={12} sm={12} md={12}>
             <TableList
               columns={columnsContratList}
-              rows={property?.Contracts || []}
+              minRows={property?.Contracts || []}
               reference={contractReference}
             />
           </Grid>

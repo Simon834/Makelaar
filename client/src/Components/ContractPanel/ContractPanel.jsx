@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react'
 import { DataGrid } from '@material-ui/data-grid';
 
@@ -8,8 +9,6 @@ export default function ContractPanel({columns, rows}) {
     const [userListContract, setUserListContract] = useState([]);
     const history= useHistory();
 
-     // const getAllUsercontract = getAllUsercontract()
-        // setUserListContract(getAllUsercontract)
 
     const listContract=userListContract.map(e=>{
         if(e.contract){
@@ -26,25 +25,19 @@ export default function ContractPanel({columns, rows}) {
 
     ];
 
-    
-
-    
-
       return (
         <div style={{ height: 500, width: '70vw' }}>
             <DataGrid
 
         onCellClick={(params, event) => {
-          if(params.field==="contract"){
-           history.push(`/user/:id/${params.row.id}`)//aqui va la ruta en la que se pueda ver el archivo del contrato
-            };
-            }}
-                rows={listContract}
-                columns={columnsUserList}
-                pageSize={10}   
-            />
-            
-        </div>
-
-    )
+          if (params.field === "contract") {
+            history.push(`/user/:id/${params.row.id}`); //aqui va la ruta en la que se pueda ver el archivo del contrato
+          }
+        }}
+        rows={listContract}
+        columns={columnsUserList}
+        pageSize={10}
+      />
+    </div>
+  );
 }

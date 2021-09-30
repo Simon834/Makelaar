@@ -91,7 +91,7 @@ export function UseFormControls(update) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const newContractEdit = { ...contract, status: "modificado" };
-   
+
     const isValid =
       Object.values(errors).every((x) => x === "") && formIsValid();
     if (isValid) {
@@ -108,7 +108,6 @@ export function UseFormControls(update) {
         });
         update();
       } catch (err) {
-        console.log(err);
         Swal.fire({
           icon: "error",
           title: "Ups..!",
@@ -138,7 +137,7 @@ export function UseFormControls(update) {
       });
       update();
     } catch (err) {
-      console.log(err);
+      return err;
     }
   };
 
@@ -158,7 +157,7 @@ export function UseFormControls(update) {
       });
       update();
     } catch (err) {
-      console.log(err);
+      return err;
     }
   };
 

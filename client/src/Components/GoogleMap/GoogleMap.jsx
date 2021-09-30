@@ -8,7 +8,7 @@ require("dotenv").config();
 
 const { REACT_APP_GOOGLE_API_KEY } = process.env;
 
-//Enviar por props latitud y longitus paraa centrar el mapa
+//Envia por props latitud y longitus paraa centrar el mapa
 
 export function MapContainer({ lat, lng, estates }) {
   const [coordinates, setCoordinates] = useState({ lat: "", lng: "" });
@@ -23,7 +23,7 @@ export function MapContainer({ lat, lng, estates }) {
       );
     } else {
       setCoordinates({ ...coordinates, lat: lat, lng: lng });
-    }
+    } // eslint-disable-next-line
   }, [lat, lng, estates]);
 
   const Marker = ({ onClick, lat, lng }) => {
@@ -33,11 +33,12 @@ export function MapContainer({ lat, lng, estates }) {
       </div>
     );
   };
-  const Markers = estates?.map((estate) => {
+  const Markers = estates?.map((estate, index) => {
     return (
       <Marker
         lat={estate.lat}
         lng={estate.lng}
+        key={index}
         onClick={() =>
           setShow({
             id: estate.id,
@@ -56,12 +57,9 @@ export function MapContainer({ lat, lng, estates }) {
     <>
       <GoogleMapReact
         bootstrapURLKeys={{ key: { REACT_APP_GOOGLE_API_KEY } }}
-        defaultCenter={coordinates}
         center={coordinates}
         defaultZoom={14}
         margin={[50, 50, 50, 50]}
-        options={""}
-        onChange={""}
       >
         {estates ? (
           Markers

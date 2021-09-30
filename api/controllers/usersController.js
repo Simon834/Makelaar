@@ -7,12 +7,18 @@ const { sendUserEmail } = require("../email/userEmail");
 
 async function getUserById(req, res, next) {
   const userId = req.params.id;
-  
+
   try {
     const user = await User.findByPk(userId, {
       include: [
-        { model: Contract, include: [{ model: Property }, { model: Payment, order: [["date", "DESC"]],}] },
-        { model: Payment, include: Contract,order: [["date", "DESC"]], },
+        {
+          model: Contract,
+          include: [
+            { model: Property },
+            { model: Payment, order: [["date", "DESC"]] },
+          ],
+        },
+        { model: Payment, include: Contract, order: [["date", "DESC"]] },
       ],
     });
     if (user) {
@@ -21,7 +27,6 @@ async function getUserById(req, res, next) {
       res.status(204).json({ msg: "Id de usuario inexistente" });
     }
   } catch (err) {
-    console.log(err);
     return next(err);
   }
 }
@@ -37,7 +42,6 @@ async function allUsers(req, res, next) {
       return res.json(users);
     }
   } catch (err) {
-    console.log(err);
     return next(err);
   }
 }
@@ -50,7 +54,7 @@ async function resetPassword(req, res, next) {
       Math.random() * 1000000000,
       1000000000
     ).toString();
-   
+
     let password = await bcrypt.hashSync(
       newPass,
       Number.parseInt(authConfig.rounds)
@@ -72,7 +76,6 @@ async function resetPassword(req, res, next) {
       });
     }
   } catch (err) {
-    console.log(err);
     return next(err);
   }
 }
@@ -98,7 +101,6 @@ async function updateUser(req, res, next) {
       return res.json({ msg: "Tus datos han sido actualizados" });
     }
   } catch (err) {
-    console.log(err);
     next(err);
   }
 }

@@ -2,7 +2,7 @@ const axios = require("axios");
 const { PROD_ACCESS_TOKEN } = process.env;
 const { Notifications, Payment, User, Contract } = require("../db");
 
-const URL = process.env.FRONT_URL || "http://localhost:3000"
+const URL = process.env.FRONT_URL || "http://localhost:3000";
 
 //SDK mercadopago
 var mercadopago = require("mercadopago");
@@ -20,14 +20,13 @@ async function getAllPayments(req, res, next) {
     });
     return res.json(allPayments);
   } catch (err) {
-    console.log(err);
     res.json(err);
   }
 }
 
 async function createPreference(req, res, next) {
   const { title, price, description, contractId } = req.body;
-  
+
   try {
     //"orden de compra"
     let preference = {
@@ -35,20 +34,19 @@ async function createPreference(req, res, next) {
         {
           id: contractId, //id contrato
           title: title, //de la propiedad
-          currency_id: "ARS", //
+          currency_id: "ARS",
           picture_url:
             "https://res.cloudinary.com/makelaar/image/upload/v1631883556/logo-color_bzxf50.png", //logo makelar
-          description: description, //
+          description: description,
           category_id: "others",
           quantity: 1,
           unit_price: parseInt(price),
 
-         
           //devuelven el estado de la compra
           back_urls: {
             success: URL,
             failure: URL,
-            pending: URL, 
+            pending: URL,
           },
         },
       ],
@@ -58,10 +56,9 @@ async function createPreference(req, res, next) {
       concept_id: contractId,
     };
     const respuesta = await mercadopago.preferences.create(preference);
-    
+
     return res.send(respuesta.response.init_point); //se coloca el init point de produccion (del vendedor)
   } catch (err) {
-    console.log(err);
     next(err);
   }
 }
@@ -87,10 +84,8 @@ async function newNotification(req, res, next) {
       );
 
       references = references.data;
-      
 
       try {
-       
         let paymentUser = await User.findOne({
           where: {
             email: references.payer.email,
@@ -103,13 +98,12 @@ async function newNotification(req, res, next) {
           userEmail: references.payer.email,
           amount: references.additional_info.items[0].unit_price,
           ContractId: parseInt(references.additional_info.items[0].id),
-          date: new Date()
+          date: new Date(),
         };
 
         await paymentUser.createPayment(newPay);
         return res.json(newPay);
       } catch (err) {
-        console.log(err);
         res.json(err);
       }
     } else {
@@ -118,7 +112,6 @@ async function newNotification(req, res, next) {
       });
     }
   } catch (err) {
-    console.log(err);
     next(err);
   }
 }
@@ -137,12 +130,11 @@ async function addAllPayments(req, res, next) {
       userEmail,
       amount,
       ContractId,
-      date: new Date(date)
+      date: new Date(date),
     });
 
     return res.json(newPayment);
   } catch (err) {
-    console.log(err);
     next(err);
   }
 }

@@ -12,31 +12,29 @@ import {
   ListItemSecondaryAction,
 } from "@material-ui/core";
 import { Delete as DeleteIcon, Folder as FolderIcon } from "@material-ui/icons";
-import { uploadConection } from "../../Functions/api/upload";
 import { translationEs, stylesColor } from "./uploadConfig";
 
 const useStyles = makeStyles((theme) => ({
-    root: {
-        display: 'flex',
-        padding: theme.spacing(2),
-        flexWrap: 'wrap',
-        justifyContent: 'space-around',
-        overflow: 'hidden',
-        minWidth: "100%",
-        maxWidth: "100%",
-    },
-    paper: {
-   
-      minWidth: "100%",
-      maxWidth: "100%",
-    },
-    list: {
-      minWidth: "100%",
-      maxWidth: "100%",
-    },
-    button:{
-        width:"100%"
-    }
+  root: {
+    display: "flex",
+    padding: theme.spacing(2),
+    flexWrap: "wrap",
+    justifyContent: "space-around",
+    overflow: "hidden",
+    minWidth: "100%",
+    maxWidth: "100%",
+  },
+  paper: {
+    minWidth: "100%",
+    maxWidth: "100%",
+  },
+  list: {
+    minWidth: "100%",
+    maxWidth: "100%",
+  },
+  button: {
+    width: "100%",
+  },
 }));
 
 export default function UploadFile({ files, setFiles }) {
@@ -53,9 +51,9 @@ export default function UploadFile({ files, setFiles }) {
         language: "es",
         buttonClass: "bg-action",
         text: translationEs,
-        styles:stylesColor
-        },
-      
+        styles: stylesColor,
+      },
+
       (error, result) => {
         if (!error && result && result.event === "success") {
           fileArr.push({
@@ -68,7 +66,7 @@ export default function UploadFile({ files, setFiles }) {
     );
     myWidgetConect.open();
     myWidgetConect.close();
-    setmyWidget(myWidgetConect);
+    setmyWidget(myWidgetConect); // eslint-disable-next-line
   }, [files]);
 
   async function uploadImage() {
@@ -82,32 +80,41 @@ export default function UploadFile({ files, setFiles }) {
     setFiles(fileDel);
   }
 
-    return (
-        <div className={classes.root}>
-            <Paper className={classes.paper}>
-            <Button className={classes.button} variant="contained" color="primary" onClick={() => uploadImage()}>Subir documento</Button>
-            <div className={classes.demo}>
-            <List className={classes.list}>
-              {files.map((e,pos)=>
-                <ListItem>
-                  <ListItemAvatar>
-                    <Avatar>
-                      <FolderIcon />
-                    </Avatar>
-                  </ListItemAvatar>
-                  <ListItemText
-                    primary={e.name}
-                    />
-                  <ListItemSecondaryAction>
-                    <IconButton edge="end" aria-label="delete" onClick={()=>deleteFile(pos)} >
-                      <DeleteIcon />
-                    </IconButton>
-                  </ListItemSecondaryAction>
-                </ListItem>,
-              )}
-            </List>
-          </div>
-            </Paper>
+  return (
+    <div className={classes.root}>
+      <Paper className={classes.paper}>
+        <Button
+          className={classes.button}
+          variant="contained"
+          color="primary"
+          onClick={() => uploadImage()}
+        >
+          Subir documento
+        </Button>
+        <div className={classes.demo}>
+          <List className={classes.list}>
+            {files.map((e, pos) => (
+              <ListItem key={e.name}>
+                <ListItemAvatar>
+                  <Avatar>
+                    <FolderIcon />
+                  </Avatar>
+                </ListItemAvatar>
+                <ListItemText primary={e.name} />
+                <ListItemSecondaryAction>
+                  <IconButton
+                    edge="end"
+                    aria-label="delete"
+                    onClick={() => deleteFile(pos)}
+                  >
+                    <DeleteIcon />
+                  </IconButton>
+                </ListItemSecondaryAction>
+              </ListItem>
+            ))}
+          </List>
         </div>
+      </Paper>
+    </div>
   );
 }

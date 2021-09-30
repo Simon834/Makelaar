@@ -200,10 +200,6 @@ export default function TopBar() {
   const openLogout = () => setOpenDialogLogout(true);
   const closeLogout = () => setOpenDialogLogout(false);
 
-  // const handleToggle = () => {
-  //     setOpen((prevOpen) => !prevOpen);
-  // };
-
   const classes = useStyles();
 
   return (
@@ -211,18 +207,12 @@ export default function TopBar() {
       <div className={style.containerContact}>
         <IconButton className={classes.iconInfo}>
           <WhatsAppIcon className={classes.iconInfo} />
-          <Typography>
-            <p className={style.mail}>+549 11456982365</p>
-          </Typography>
+          <Typography> +549 11456982365</Typography>
         </IconButton>
 
         <IconButton className={classes.iconInfo}>
           <MailOutlineIcon className={classes.iconInfo} />
-          <Typography>
-            <a href="mailto:info_makelaar@yahoo.com" className={style.mail}>
-              info_makelaar@yahoo.com
-            </a>
-          </Typography>
+          <Typography>info_makelaar@yahoo.com</Typography>
         </IconButton>
       </div>
 

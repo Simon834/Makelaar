@@ -1,6 +1,6 @@
 const { Contract, User, Payment } = require("../db");
-const { sendUserEmail } =  require("../email/userEmail")
-const {paymentAut}=require("../email/emailModels/paymentAut")
+const { sendUserEmail } = require("../email/userEmail");
+const { paymentAut } = require("../email/emailModels/paymentAut");
 
 async function updateContractCron() {
   const contracts = await Contract.findAll();
@@ -32,8 +32,6 @@ async function liquidationContract() {
     include: [{ model: User }],
   });
 
-  // console.log(contracts)
-
   contracts.map(async (con) => {
     if (con.dataValues.status === "activo") {
       let paymentUser = await User.findOne({
@@ -49,7 +47,14 @@ async function liquidationContract() {
         ContractId: con.dataValues.id,
         date: new Date(),
       });
-      sendUserEmail(paymentAut(con.dataValues.User.name,con.dataValues.User.id,con.dataValues.id ), con.dataValues.User.email);
+      sendUserEmail(
+        paymentAut(
+          con.dataValues.User.name,
+          con.dataValues.User.id,
+          con.dataValues.id
+        ),
+        con.dataValues.User.email
+      );
     }
   });
 }

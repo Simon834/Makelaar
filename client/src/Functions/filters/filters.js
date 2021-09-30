@@ -23,14 +23,22 @@ export async function filterEstates(
     price,
     search
   );
-  
+
   const ordenador_premium = estatesFiltred.sort(
-    (a, b) =>  !!a.Contracts.length - !!b.Contracts.length
+    (a, b) => !!a.Contracts.length - !!b.Contracts.length
   );
   return ordenador_premium;
 }
 
-async function backFilters(estates, concept, tipe, bedroom, bathroom, price, search) {
+async function backFilters(
+  estates,
+  concept,
+  tipe,
+  bedroom,
+  bathroom,
+  price,
+  search
+) {
   if (!search && !concept && !tipe && !bedroom && !bathroom) {
     let resultado = estates.filter((estate) =>
       filterPrice(estate.price, price)
@@ -39,7 +47,6 @@ async function backFilters(estates, concept, tipe, bedroom, bathroom, price, sea
     return resultado;
   } else if (price) {
     const data = await llamadoBack(tipe, bedroom, bathroom, search, concept);
-
 
     return data.filter((estate) => filterPrice(estate.price, price));
   } else {
@@ -51,8 +58,8 @@ async function backFilters(estates, concept, tipe, bedroom, bathroom, price, sea
 
 function filterPrice(estatePrice, price) {
   if (price[0]) {
-    return estatePrice * 1 > price[0]*1000
-      ? estatePrice * 1 < price[1]*1000
+    return estatePrice * 1 > price[0] * 1000
+      ? estatePrice * 1 < price[1] * 1000
         ? true
         : false
       : false;
@@ -81,13 +88,12 @@ function generateRoute(tipe, bedroom, bathroom, search, concept) {
 async function llamadoBack(tipe, bedroom, bathroom, search, concept) {
   try {
     const ruta = generateRoute(tipe, bedroom, bathroom, search, concept);
-    const backEstates = await axios.get(`${BACK_SERVER}/property/filter?${ruta}`);
-    
-   
-    return backEstates.data.filter(e=>e.status==="activo");
+    const backEstates = await axios.get(
+      `${BACK_SERVER}/property/filter?${ruta}`
+    );
 
-  
+    return backEstates.data.filter((e) => e.status === "activo");
   } catch (err) {
-    console.log(err);
+    return err;
   }
 }
