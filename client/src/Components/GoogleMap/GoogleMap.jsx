@@ -33,11 +33,12 @@ export function MapContainer({ lat, lng, estates }) {
       </div>
     );
   };
-  const Markers = estates?.map((estate) => {
+  const Markers = estates?.map((estate, index) => {
     return (
       <Marker
         lat={estate.lat}
         lng={estate.lng}
+        key={index}
         onClick={() =>
           setShow({
             id: estate.id,
@@ -56,12 +57,9 @@ export function MapContainer({ lat, lng, estates }) {
     <>
       <GoogleMapReact
         bootstrapURLKeys={{ key: { REACT_APP_GOOGLE_API_KEY } }}
-        defaultCenter={coordinates}
         center={coordinates}
         defaultZoom={14}
         margin={[50, 50, 50, 50]}
-        options={""}
-        onChange={""}
       >
         {estates ? (
           Markers

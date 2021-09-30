@@ -94,7 +94,7 @@ export default function UploadFile({ files, setFiles }) {
         <div className={classes.demo}>
           <List className={classes.list}>
             {files.map((e, pos) => (
-              <ListItem>
+              <ListItem key={e.name}>
                 <ListItemAvatar>
                   <Avatar>
                     <FolderIcon />

@@ -230,7 +230,7 @@ export default function PropertyInfo({ id, update }) {
               >
                 {type &&
                   type.map((t) => (
-                    <MenuItem value={t} label={t}>
+                    <MenuItem value={t} label={t} key={t}>
                       {t}
                     </MenuItem>
                   ))}
@@ -250,7 +250,12 @@ export default function PropertyInfo({ id, update }) {
               >
                 {condition &&
                   condition.map((t) => (
-                    <MenuItem value={t} onChange={handleSelect} label={t}>
+                    <MenuItem
+                      value={t}
+                      onChange={handleSelect}
+                      label={t}
+                      key={t}
+                    >
                       {t}
                     </MenuItem>
                   ))}
@@ -269,7 +274,12 @@ export default function PropertyInfo({ id, update }) {
               >
                 {transaction &&
                   transaction.map((t) => (
-                    <MenuItem value={t} onChange={handleSelect} label={t}>
+                    <MenuItem
+                      value={t}
+                      onChange={handleSelect}
+                      label={t}
+                      key={t}
+                    >
                       {t}
                     </MenuItem>
                   ))}
@@ -288,7 +298,12 @@ export default function PropertyInfo({ id, update }) {
               >
                 {status &&
                   status.map((t) => (
-                    <MenuItem value={t} onChange={handleSelect} label={t}>
+                    <MenuItem
+                      value={t}
+                      onChange={handleSelect}
+                      label={t}
+                      key={t}
+                    >
                       {t}
                     </MenuItem>
                   ))}
@@ -340,7 +355,7 @@ export default function PropertyInfo({ id, update }) {
           <Grid item className={classes.grid} xs={12} sm={12} md={12}>
             <TableList
               columns={columnsContratList}
-              rows={property?.Contracts || []}
+              minRows={property?.Contracts || []}
               reference={contractReference}
             />
           </Grid>

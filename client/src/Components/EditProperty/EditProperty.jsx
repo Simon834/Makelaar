@@ -205,7 +205,7 @@ export default function EditProperty({ id, update, close }) {
                 >
                   {type &&
                     type.map((t) => (
-                      <MenuItem value={t} control={<Radio />} label={t}>
+                      <MenuItem value={t} control={<Radio />} label={t} key={t}>
                         {t}
                       </MenuItem>
                     ))}
@@ -223,7 +223,12 @@ export default function EditProperty({ id, update, close }) {
                 >
                   {condition &&
                     condition.map((t) => (
-                      <MenuItem value={t} onChange={handleSelect} label={t}>
+                      <MenuItem
+                        value={t}
+                        onChange={handleSelect}
+                        label={t}
+                        key={t}
+                      >
                         {t}
                       </MenuItem>
                     ))}
@@ -257,7 +262,12 @@ export default function EditProperty({ id, update, close }) {
                 >
                   {transaction &&
                     transaction.map((t) => (
-                      <MenuItem value={t} onChange={handleSelect} label={t}>
+                      <MenuItem
+                        value={t}
+                        onChange={handleSelect}
+                        label={t}
+                        key={t}
+                      >
                         {t}
                       </MenuItem>
                     ))}
@@ -274,7 +284,12 @@ export default function EditProperty({ id, update, close }) {
                 >
                   {status &&
                     status.map((t) => (
-                      <MenuItem value={t} onChange={handleSelect} label={t}>
+                      <MenuItem
+                        value={t}
+                        onChange={handleSelect}
+                        label={t}
+                        key={t}
+                      >
                         {t}
                       </MenuItem>
                     ))}

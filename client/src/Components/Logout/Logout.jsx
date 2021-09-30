@@ -63,7 +63,7 @@ export default function Logout({ action, auth }) {
       <Grid className={classes.message}>
         ¿Estás seguro que deseas cerrar tu sesión?
       </Grid>
-      <Grid classname={classes.buttonContainer}>
+      <Grid className={classes.buttonContainer}>
         <Button
           variant="contained"
           color="secondary"
